@@ -16,12 +16,12 @@ function App() {
 
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem('user'));
+    console.log(loggedUser);
     if (loggedUser) {
-      dispatch(setUser(loggedUser.pseudo, loggedUser.token));
+      dispatch(setUser(loggedUser.slug, loggedUser.token));
     }
     dispatch(setProductsData());
   }, []);
-
   if (loading) {
     return <Loading />;
   }
