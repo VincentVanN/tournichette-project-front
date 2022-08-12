@@ -1,19 +1,24 @@
 // == Import : npm
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { changeLoginField } from '../../../feature/user.slice';
 
 // == Import : local
 import './field.scss';
 
 // == Composant
 function Field({
+  ref,
   value,
   type,
   name,
   placeholder,
-  onChange,
 }) {
+  const dispatch = useDispatch();
   const handleChange = (evt) => {
-    onChange(evt.target.value, name);
+    const  value  = evt.target.value;
+    console.log(name);
+    dispatch(changeLoginField({ [name]: value }));
   };
 
   const inputId = `field-${name}`;
@@ -30,6 +35,7 @@ function Field({
         className="field-input"
         placeholder={placeholder}
         name={name}
+        ref={ref}
       />
 
       <label
@@ -47,7 +53,7 @@ Field.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  ref: PropTypes.func.isRequired,
 };
 
 // Valeurs par défaut pour les props

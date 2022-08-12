@@ -1,71 +1,38 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { changeLoginField, logout, login } from '../../feature/user.slice';
-import Field from './Field/Field';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeLoginEmail, changeLoginPassword, login } from '../../feature/user.slice';
 import './loginForm.scss';
 
 function LoginForm() {
+  const { email, password } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const { logged, pseudo } = useSelector((state) => state.user);
-  const { email, password } = useSelector((state) => state.user.loginForm);
-
-  const handleChangeLoginField = (value, key) => {
-    dispatch(changeLoginField(value, key));
+  const handleChangeEmail = (e) => {
+    dispatch(changeLoginEmail(e.target.value));
   };
-
-  const handleLogin = () => {
+  const handleChangePassword = (e) => {
+    dispatch(changeLoginPassword(e.target.value));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(login());
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
-  };
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    handleLogin();
-  };
-
   return (
-    <div className="login-form">
-      {(logged) && (
-        <div className="login-form-logged">
-          <p className="login-form-message">
-            {`Hello ${pseudo}!`}
-          </p>
-          <button
-            type="button"
-            className="login-form-button"
-            onClick={handleLogout}
-          >
-            Déconnexion
-          </button>
-        </div>
-      )}
-      {(!logged) && (
-
-        <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
-          <Field
-            name="email"
-            placeholder="Adresse Email"
-            onChange={handleChangeLoginField}
-            value={email}
-          />
-          <Field
-            name="password"
-            type="password"
-            placeholder="Mot de passe"
-            onChange={handleChangeLoginField}
-            value={password}
-          />
-          <button
-            type="submit"
-            className="login-form-button"
-          >
-            OK
-          </button>
-        </form>
-      )}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        placeholder="entrez votre email"
+        onChange={handleChangeEmail}
+      />
+      <input
+        type="password"
+        placeholder="entrez votre mot de passe"
+        value={password}
+        onChange={handleChangePassword}
+      />
+      <button type="submit">Envoyer</button>
+    </form>
   );
 }
 

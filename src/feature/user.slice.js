@@ -8,16 +8,16 @@ export const userSlice = createSlice({
     logged: false,
     pseudo: '',
     token: '',
+    email: '',
+    password: '',
 
-    loginForm: {
-      email: '',
-      password: '',
-    },
-    users,
   },
   reducers: {
-    changeLoginField: (state, { payload }) => {
-      state.loginForm.push(payload);
+    changeLoginEmail: (state, { payload }) => {
+      state.email = payload;
+    },
+    changeLoginPassword: (state, { payload }) => {
+      state.password = payload;
     },
     setUser: (state, { payload }) => {
       state.logged = true;
@@ -28,25 +28,29 @@ export const userSlice = createSlice({
       state.logged = false;
       state.pseudo = '';
       state.token = '';
-      state.loginForm = {
-        email: '',
-        password: '',
-      };
+      state.email = '';
+      state.password = '';
     },
     login: (state) => {
-      const userLogged = state.users.find((user) => (
-        (user.email === state.loginForm.email) && (user.password === state.loginForm.password)));
+      const userLogged = users.find((user) => (
+        (user.email === state.email && user.password === state.password)));
       if (userLogged) {
         state.logged = true;
         state.pseudo = userLogged.pseudo;
         state.token = userLogged.token;
+        state.email = '';
+        state.password = '';
       }
-      return userLogged;
+      else {
+        state.email = '';
+        state.password = '';
+      }
     },
+
   },
 });
 
 export const {
-  changeLoginField, setUser, logout, login,
+  changeLoginEmail, changeLoginPassword, setUser, logout, login,
 } = userSlice.actions;
 export default userSlice.reducer;
