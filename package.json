@@ -50,11 +50,11 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.4",
-    "axios": "^0.27.2",
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
     "react-redux": "^8.0.2",
-    "react-router-dom": "6"
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0"
   }
 }
