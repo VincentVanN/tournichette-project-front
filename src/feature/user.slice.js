@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 
-export const usersSlice = createSlice({
+export const userSlice = createSlice({
   name: 'user',
   initialState: {
     logged: false,
@@ -36,5 +36,5 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { changeLoginField, setUser, logOut } = usersSlice.actions;
-export default usersSlice.reducer;
+export const { changeLoginField, setUser, logOut } = userSlice.actions;
+export default userSlice.reducer;
