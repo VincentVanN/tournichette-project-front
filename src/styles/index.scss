@@ -1,18 +1,15 @@
 @use 'reset';
 @use 'vars';
 
+#root {
+  max-width: 450px;
+  margin: 1em auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 body {
   font-family: sans-serif;
 }
-
-/* 
-  // or you can import your own font
-  @font-face {
-    font-family: 'Roboto';
-    src: url('../assets/fonts/Roboto-Regular.ttf');
-  }
-
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-*/

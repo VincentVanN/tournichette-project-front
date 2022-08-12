@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
+import { users } from '../data/data';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -7,34 +8,49 @@ export const userSlice = createSlice({
     logged: false,
     pseudo: '',
     token: '',
+    email: '',
+    password: '',
 
-    loginForm: {
-      email: '',
-      password: '',
-    },
   },
   reducers: {
-    changeLoginField: (state, { payload }) => {
-      state.loginForm = {
-        [payload.key]: payload.value,
-      };
+    changeLoginEmail: (state, { payload }) => {
+      state.email = payload;
+    },
+    changeLoginPassword: (state, { payload }) => {
+      state.password = payload;
     },
     setUser: (state, { payload }) => {
       state.logged = true;
       state.pseudo = payload.pseudo;
       state.token = payload.token;
     },
-    logOut: (state) => {
+    logout: (state) => {
       state.logged = false;
       state.pseudo = '';
       state.token = '';
-      state.loginForm = {
-        email: '',
-        password: '',
-      };
+      state.email = '';
+      state.password = '';
     },
+    login: (state) => {
+      const userLogged = users.find((user) => (
+        (user.email === state.email && user.password === state.password)));
+      if (userLogged) {
+        state.logged = true;
+        state.pseudo = userLogged.pseudo;
+        state.token = userLogged.token;
+        state.email = '';
+        state.password = '';
+      }
+      else {
+        state.email = '';
+        state.password = '';
+      }
+    },
+
   },
 });
 
-export const { changeLoginField, setUser, logOut } = userSlice.actions;
+export const {
+  changeLoginEmail, changeLoginPassword, setUser, logout, login,
+} = userSlice.actions;
 export default userSlice.reducer;
