@@ -49,8 +49,12 @@
     "webpack-merge": "*"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.4",
     "prop-types": "*",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "react-redux": "^8.0.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0"
   }
 }
