@@ -11,7 +11,5 @@ const rootReactElement = (
     </Provider>
   </BrowserRouter>
 
-);
-
 const root = createRoot(document.getElementById('root'));
 root.render(rootReactElement);
