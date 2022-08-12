@@ -6,7 +6,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     logged: false,
-    pseudo: '',
+    slug: '',
     token: '',
     email: '',
     password: '',
@@ -35,15 +35,10 @@ export const userSlice = createSlice({
       const userLogged = users.find((user) => (
         (user.email === state.email && user.password === state.password)));
       if (userLogged) {
+        console.log(userLogged);
         state.logged = true;
-        state.pseudo = userLogged.pseudo;
-        state.token = userLogged.token;
-        state.email = '';
-        state.password = '';
-      }
-      else {
-        state.email = '';
-        state.password = '';
+        state.slug = userLogged.slug;
+        state.token = userLogged.Token;
       }
     },
 
