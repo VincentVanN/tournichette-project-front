@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
+import { products } from '../data/data';
 
 export const productsSlice = createSlice({
   name: 'products',
@@ -8,8 +9,8 @@ export const productsSlice = createSlice({
     loading: true,
   },
   reducers: {
-    setProductsData: (state, { payload }) => {
-      state.products = payload;
+    setProductsData: (state) => {
+      state.products = products;
       state.loading = false;
     },
     getProduct: (state, { payload }) => {
