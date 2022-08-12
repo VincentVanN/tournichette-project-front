@@ -10,6 +10,7 @@ const rootReactElement = (
       <App />
     </Provider>
   </BrowserRouter>
+)
 
 const root = createRoot(document.getElementById('root'));
 root.render(rootReactElement);

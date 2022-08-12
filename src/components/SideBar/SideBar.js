@@ -1,7 +1,5 @@
 import { NavLink } from 'react-router-dom';
 
-import './sideBar.scss';
-
 function SideBar() {
   return (
     <nav className="sideBar">
