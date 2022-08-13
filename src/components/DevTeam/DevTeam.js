@@ -1,8 +1,13 @@
+import Page from '../Page/Page';
+
 function DevTeam() {
   return (
-    <div>
-      <p>Dev Team</p>
-    </div>
+    <Page>
+      <div>
+        <p>Dev Team</p>
+      </div>
+    </Page>
+
   );
 }
 

@@ -1,10 +1,14 @@
+import Page from '../Page/Page';
 import './aboutUs.scss';
 
 function AboutUs() {
   return (
-    <div className="aboutUs">
-      <p>A propos</p>
-    </div>
+    <Page>
+      <div className="aboutUs">
+        <p>A propos</p>
+      </div>
+    </Page>
+
   );
 }
 

@@ -1,8 +1,14 @@
+import Page from '../Page/Page';
+
 function Cgu() {
   return (
-    <div>
-      <p>CGU</p>
-    </div>
+
+    <Page>
+      <div>
+        <p>CGU</p>
+      </div>
+    </Page>
+
   );
 }
 

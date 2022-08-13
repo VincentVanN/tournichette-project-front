@@ -1,4 +1,3 @@
-import SideBar from 'src/components/SideBar/SideBar';
 import Page from '../Page/Page';
 import './home.scss';
 
@@ -6,8 +5,7 @@ function Home() {
   return (
     <div>
       <Page>
-        <SideBar />
-        <div>
+        <div className="home">
           HOME
         </div>
       </Page>

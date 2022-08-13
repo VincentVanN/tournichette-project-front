@@ -1,8 +1,13 @@
+import Page from '../Page/Page';
+
 function LegalNotice() {
   return (
-    <div>
-      <p>Mentions Légales</p>
-    </div>
+    <Page>
+      <div>
+        <p>Mentions Légales</p>
+      </div>
+    </Page>
+
   );
 }
 
