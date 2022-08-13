@@ -29,7 +29,8 @@ function App() {
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem('user'));
     if (loggedUser) {
-      dispatch(setUser(loggedUser.slug, loggedUser.token));
+      console.log(loggedUser);
+      dispatch(setUser(loggedUser));
     }
     dispatch(setProductsData());
   }, []);
