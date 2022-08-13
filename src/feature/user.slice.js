@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import { users } from '../data/data';
+import { removeLocalStorage } from '../utils/removeLocalStorage';
 import { setLocalStorage } from '../utils/setLocalStorage';
 
 export const userSlice = createSlice({
@@ -22,7 +23,9 @@ export const userSlice = createSlice({
       state.password = payload;
     },
     setUser: (state, { payload }) => {
-      const { slug, token, firstname } = payload;
+      const {
+        firstname, slug, token,
+      } = payload;
       state.logged = true;
       state.slug = slug;
       state.token = token;
@@ -35,16 +38,18 @@ export const userSlice = createSlice({
       state.email = '';
       state.password = '';
       state.firstname = '';
+      removeLocalStorage('user');
     },
     login: (state) => {
       const userLogged = users.find((user) => (
         (user.email === state.email && user.password === state.password)));
       if (userLogged) {
-        setLocalStorage(userLogged.slug, userLogged.Token, userLogged.firstname);
+        const { firstname, slug, token } = userLogged;
+        setLocalStorage(firstname, slug, token);
         state.logged = true;
-        state.slug = userLogged.slug;
-        state.token = userLogged.Token;
-        state.firstname = userLogged.firstname;
+        state.slug = slug;
+        state.token = token;
+        state.firstname = firstname;
       }
     },
 

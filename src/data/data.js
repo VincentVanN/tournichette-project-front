@@ -8,7 +8,7 @@ export const users = [
     password: 'test',
     phone: '0706050403',
     address: '30 rue de la piraterie 95200 Painlesjuin',
-    Token: 'at2a',
+    token: 'at2a',
     code_role: 3,
   },
 
@@ -21,7 +21,7 @@ export const users = [
     password: 'pingpong',
     phone: '0706050403',
     address: '3 rue des potimarons 12140 Babelweb',
-    Token: 'aaaaat',
+    token: 'aaaaat',
     code_role: 3,
   },
   {
@@ -33,7 +33,7 @@ export const users = [
     password: 'lapinou',
     phone: '0807060504',
     address: '1 rue de la salade 15200 Verture',
-    Token: 'ffudd#&',
+    token: 'ffudd#&',
     code_role: 3,
   },
 

@@ -25,9 +25,9 @@ function App() {
   const loading = useSelector((state) => state.products.loading);
   const logged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
+  const loggedUser = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    const loggedUser = JSON.parse(localStorage.getItem('user'));
     if (loggedUser) {
       console.log(loggedUser);
       dispatch(setUser(loggedUser));
