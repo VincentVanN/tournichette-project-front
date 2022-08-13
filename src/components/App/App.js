@@ -19,6 +19,7 @@ import DevTeam from '../DevTeam/DevTeam';
 import User from '../User/User';
 import Category from '../Category/Category';
 import Products from '../Products/Products';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
   const loading = useSelector((state) => state.products.loading);
@@ -52,6 +53,7 @@ function App() {
         <Route path="/mentions-légales" element={<LegalNotice />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/La-Dev-Team" element={<DevTeam />} />
+        <Route path="/*" element={<NotFound />} />
       </>
     )}
       </Routes>
