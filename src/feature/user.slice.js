@@ -9,6 +9,7 @@ export const userSlice = createSlice({
     logged: false,
     slug: '',
     token: '',
+    firstname: '',
     email: '',
     password: '',
 
@@ -21,9 +22,11 @@ export const userSlice = createSlice({
       state.password = payload;
     },
     setUser: (state, { payload }) => {
+      const { slug, token, firstname } = payload;
       state.logged = true;
-      state.slug = payload.slug;
-      state.token = payload.token;
+      state.slug = slug;
+      state.token = token;
+      state.firstname = firstname;
     },
     logout: (state) => {
       state.logged = false;
@@ -31,15 +34,17 @@ export const userSlice = createSlice({
       state.token = '';
       state.email = '';
       state.password = '';
+      state.firstname = '';
     },
     login: (state) => {
       const userLogged = users.find((user) => (
         (user.email === state.email && user.password === state.password)));
       if (userLogged) {
-        setLocalStorage(userLogged.slug, userLogged.Token);
+        setLocalStorage(userLogged.slug, userLogged.Token, userLogged.firstname);
         state.logged = true;
         state.slug = userLogged.slug;
         state.token = userLogged.Token;
+        state.firstname = userLogged.firstname;
       }
     },
 

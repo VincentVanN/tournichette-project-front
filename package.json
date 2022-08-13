@@ -53,6 +53,7 @@
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
+    "react-ion-icon": "^4.0.0",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0"
