@@ -6,6 +6,7 @@ import './sideBar.scss';
 function SideBar() {
   const firstname = useSelector((state) => state.user.firstname);
   const dispatch = useDispatch();
+  const handleLogout = () => dispatch(logout());
   return (
     <nav>
       <div className="navbar">
@@ -20,7 +21,10 @@ function SideBar() {
             <NavLink className="navlink" to="/profil/{slug}">Profil</NavLink>
             <NavLink className="navlink" to="/panier">Panier d'achat</NavLink>
             <NavLink className="navlink" to="/apropos">Qui sommes-nous?</NavLink>
-            <div className="logout">
+            <div
+              className="logout"
+              onClick={handleLogout}
+            >
               <ion-icon size="large" name="exit-outline" />
             </div>
 

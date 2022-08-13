@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-export const setLocalStorage = (slug, token, firstname) => localStorage.setItem('user', JSON.stringify({
+export const setLocalStorage = (firstname, slug, token) => localStorage.setItem('user', JSON.stringify({
+  firstname,
   slug,
   token,
-  firstname,
 }));
