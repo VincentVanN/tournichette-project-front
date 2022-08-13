@@ -1,10 +1,14 @@
+import Page from '../Page/Page';
 import './notFound.scss';
 
 function NotFound() {
   return (
-    <div>
-      404
-    </div>
+    <Page>
+      <div>
+        404
+      </div>
+    </Page>
+
   );
 }
 

@@ -1,8 +1,13 @@
+import Page from '../Page/Page';
+
 function Contact() {
   return (
-    <div>
-      <p>Contact</p>
-    </div>
+    <Page>
+      <div>
+        <p>Contact</p>
+      </div>
+    </Page>
+
   );
 }
 

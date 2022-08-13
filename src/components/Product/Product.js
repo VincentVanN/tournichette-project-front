@@ -1,10 +1,14 @@
+import Page from '../Page/Page';
 import './product.scss';
 
 function Product() {
   return (
-    <div className="product">
-      <p>Product</p>
-    </div>
+    <Page>
+      <div className="product">
+        <p>Product</p>
+      </div>
+    </Page>
+
   );
 }
 
