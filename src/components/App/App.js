@@ -1,13 +1,24 @@
 // == Import
-import './app.scss';
-import SideBar from 'src/components/SideBar/SideBar';
-import Footer from 'src/components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import Loading from './Loading/Loading';
+import { Route, Routes } from 'react-router';
+
+import './app.scss';
 import { setProductsData } from '../../feature/products.slice';
 import { setUser } from '../../feature/user.slice';
+
+import Loading from './Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
+import Home from '../Home/Home';
+import AboutUs from '../AboutUs/AboutUs';
+import Product from '../Product/Product';
+import Cgu from '../Cgu/Cgu';
+import LegalNotice from '../LegalNotice/LegalNotice';
+import Contact from '../Contact/Contact';
+import DevTeam from '../DevTeam/DevTeam';
+import User from '../User/User';
+import Category from '../Category/Category';
+import Products from '../Products/Products';
 
 function App() {
   const loading = useSelector((state) => state.products.loading);
@@ -16,7 +27,6 @@ function App() {
 
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem('user'));
-    console.log(loggedUser);
     if (loggedUser) {
       dispatch(setUser(loggedUser.slug, loggedUser.token));
     }
@@ -27,15 +37,24 @@ function App() {
   }
   return (
     <div className="app">
-      {(!logged) && <LoginForm />}
-      {(logged)
+      <Routes>
+        {(!logged) && <Route path="/connexion" element={<LoginForm />} />}
+        {(logged)
     && (
-    <>
-      <SideBar />
-      <h1>Blabla</h1>
-      <Footer />
-    </>
+      <>
+        <Route path="/" element={<Home />} />
+        <Route path="/categorie/:slug" element={<Category />} />
+        <Route path="/profil/:slug" element={<User />} />
+        <Route path="/produit/:slug" element={<Product />} />
+        <Route path="/produits" element={<Products />} />
+        <Route path="/apropos" element={<AboutUs />} />
+        <Route path="/CGU" element={<Cgu />} />
+        <Route path="/mentions-légales" element={<LegalNotice />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/La-Dev-Team" element={<DevTeam />} />
+      </>
     )}
+      </Routes>
 
     </div>
   );
