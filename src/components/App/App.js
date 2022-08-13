@@ -38,11 +38,11 @@ function App() {
   }
   return (
     <div className="app">
-      <Routes>
-        {(!logged) && <Route path="/connexion" element={<LoginForm />} />}
-        {(logged)
+
+      {(!logged) && <LoginForm />}
+      {(logged)
     && (
-      <>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorie/:slug" element={<Category />} />
         <Route path="/profil/:slug" element={<User />} />
@@ -54,9 +54,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/La-Dev-Team" element={<DevTeam />} />
         <Route path="/*" element={<NotFound />} />
-      </>
-    )}
       </Routes>
+    )}
 
     </div>
   );
