@@ -3,30 +3,30 @@ import {
   setIsSubscribeForm, changeSubscribeForm,
 } from '../../feature/user.slice';
 import Field from './Field/Field';
+import { selectValue, selectPlaceholder } from '../../utils/setupFields';
 
 function SubscibeForm() {
   const dispatch = useDispatch();
-  const handleChangeSubscibeForm = (value, key) => {
+  const handleChangeSubscribeForm = (value, key) => {
     dispatch(changeSubscribeForm([key, value]));
   };
   const subscribeForm = useSelector((state) => state.user.subscribeForm);
   const FieldSubscribeName = Object.keys(subscribeForm);
 
-  const handleSubscribe = () => {
+  const handleSubscribe = (e) => {
+    e.preventDefault();
     dispatch(setIsSubscribeForm());
   };
-  const {
-    firsname, lastname, email, phone, password, sndPassword,
-  } = useSelector((state) => state.user.subscribeForm);
-  console.log(FieldSubscribeName);
+
   return (
     <form onSubmit={handleSubscribe}>
       {FieldSubscribeName.map((fieldName) => (
         <Field
           name={fieldName}
           type={fieldName === 'sndPassword' ? 'password' : { fieldName }}
-          value={fieldName}
-          onChange={handleChangeSubscibeForm}
+          value={selectValue(fieldName)}
+          placeholder={selectPlaceholder(fieldName)}
+          onChange={handleChangeSubscribeForm}
         />
       ))}
       <button type="submit">Envoyer</button>
