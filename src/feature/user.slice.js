@@ -14,13 +14,29 @@ export const userSlice = createSlice({
     email: '',
     password: '',
 
+    login: {
+      email: '',
+      password: '',
+    },
+    isSubscribeForm: false,
+    subscribeForm: {
+      firsname: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      password: '',
+      sndPassword: '',
+    },
+
   },
   reducers: {
-    changeLoginEmail: (state, { payload }) => {
-      state.email = payload;
+    changeLoginForm: (state, { payload }) => {
+      const [key, value] = payload;
+      state.login[key] = value;
     },
-    changeLoginPassword: (state, { payload }) => {
-      state.password = payload;
+    changeSubscribeForm: (state, { payload }) => {
+      const [key, value] = payload;
+      state.subscribeForm[key] = value;
     },
     setUser: (state, { payload }) => {
       const {
@@ -38,11 +54,13 @@ export const userSlice = createSlice({
       state.email = '';
       state.password = '';
       state.firstname = '';
+      state.login.email = '';
+      state.login.password = '';
       removeLocalStorage('user');
     },
     login: (state) => {
       const userLogged = users.find((user) => (
-        (user.email === state.email && user.password === state.password)));
+        (user.email === state.login.email && user.password === state.login.password)));
       if (userLogged) {
         const { firstname, slug, token } = userLogged;
         setLocalStorage(firstname, slug, token);
@@ -52,11 +70,13 @@ export const userSlice = createSlice({
         state.firstname = firstname;
       }
     },
-
+    setIsSubscribeForm: (state) => {
+      state.isSubscribeForm = !state.isSubscribeForm;
+    },
   },
 });
 
 export const {
-  changeLoginEmail, changeLoginPassword, setUser, logout, login,
+  changeLoginForm, changeSubscribeForm, setUser, logout, login, setIsSubscribeForm,
 } = userSlice.actions;
 export default userSlice.reducer;
