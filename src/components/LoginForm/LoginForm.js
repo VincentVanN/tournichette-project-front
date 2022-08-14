@@ -4,7 +4,7 @@ import {
 } from '../../feature/user.slice';
 import Field from './Field/Field';
 import './loginForm.scss';
-import SubscibeForm from './SubscribeForm';
+import SubscribeForm from './SubscribeForm';
 import { selectPlaceholder, selectType } from '../../utils/setupFields';
 
 function LoginForm() {
@@ -24,13 +24,13 @@ function LoginForm() {
     dispatch(setIsSubscribeForm());
   };
   const isSubscribe = useSelector((state) => state.user.isSubscribeForm);
-
   return (
     <div className="form">
       {!isSubscribe && (
       <form onSubmit={handleSubmit}>
         {FieldloginName.map((fieldName) => (
           <Field
+            nameState="login"
             key={fieldName}
             name={fieldName}
             type={selectType(fieldName)}
@@ -47,7 +47,7 @@ function LoginForm() {
         </div>
       </form>
       )}
-      {isSubscribe && <SubscibeForm />}
+      {isSubscribe && <SubscribeForm />}
     </div>
   );
 }
