@@ -29,7 +29,6 @@ function App() {
 
   useEffect(() => {
     if (loggedUser) {
-      console.log(loggedUser);
       dispatch(setUser(loggedUser));
     }
     dispatch(setProductsData());
@@ -44,7 +43,8 @@ function App() {
       {(logged)
     && (
       <Routes>
-        <Route path="/" element={<Home />} />
+        {(!logged) && <Route path="connexion" element={<LoginForm />} />}
+        <Route path="/accueil" element={<Home />} />
         <Route path="/categorie/:slug" element={<Category />} />
         <Route path="/profil/:slug" element={<User />} />
         <Route path="/produit/:slug" element={<Product />} />
