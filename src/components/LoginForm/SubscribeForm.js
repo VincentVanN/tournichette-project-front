@@ -22,7 +22,7 @@ function SubscribeForm() {
     <form onSubmit={handleSubscribe}>
       {FieldSubscribeName.map((fieldName) => (
         <Field
-          name={fieldName}
+          nameState="subscribeForm"
           type={selectType(fieldName)}
           value={selectValue(fieldName)}
           placeholder={selectPlaceholder(fieldName)}

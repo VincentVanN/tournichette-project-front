@@ -26,6 +26,7 @@ export const userSlice = createSlice({
       password: '',
       sndPassword: '',
     },
+    errorMessage: '',
 
   },
   reducers: {
@@ -72,10 +73,13 @@ export const userSlice = createSlice({
     setIsSubscribeForm: (state) => {
       state.isSubscribeForm = !state.isSubscribeForm;
     },
+    setError: (state, { payload }) => {
+      state.errorMessage = payload;
+    },
   },
 });
 
 export const {
-  changeLoginForm, changeSubscribeForm, setUser, logout, login, setIsSubscribeForm,
+  changeLoginForm, changeSubscribeForm, setUser, logout, login, setIsSubscribeForm, setError,
 } = userSlice.actions;
 export default userSlice.reducer;
