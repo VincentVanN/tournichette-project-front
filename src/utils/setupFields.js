@@ -47,3 +47,24 @@ export const selectPlaceholder = (fieldName) => {
   }
   return false;
 };
+export const selectType = (fieldName) => {
+  if (fieldName === 'firstname') {
+    return 'text';
+  }
+  if (fieldName === 'lastname') {
+    return 'text';
+  }
+  if (fieldName === 'email') {
+    return 'Email';
+  }
+  if (fieldName === 'phone') {
+    return 'text';
+  }
+  if (fieldName === 'password') {
+    return 'password';
+  }
+  if (fieldName === 'sndPassword') {
+    return 'password';
+  }
+  return false;
+};
