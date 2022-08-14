@@ -1,8 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import { users } from '../data/data';
-import { removeLocalStorage } from '../utils/removeLocalStorage';
-import { setLocalStorage } from '../utils/setLocalStorage';
+import { setLocalStorage, removeLocalStorage } from '../utils/localStorage';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -20,7 +19,7 @@ export const userSlice = createSlice({
     },
     isSubscribeForm: false,
     subscribeForm: {
-      firsname: '',
+      firstname: '',
       lastname: '',
       email: '',
       phone: '',

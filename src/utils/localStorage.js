@@ -4,3 +4,4 @@ export const setLocalStorage = (firstname, slug, token) => localStorage.setItem(
   slug,
   token,
 }));
+export const removeLocalStorage = (item) => localStorage.removeItem(item);
