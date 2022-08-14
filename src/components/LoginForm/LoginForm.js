@@ -4,8 +4,8 @@ import {
 } from '../../feature/user.slice';
 import Field from './Field/Field';
 import './loginForm.scss';
-import SubscibeForm from './SubscibeForm';
-import { selectPlaceholder } from '../../utils/setupFields';
+import SubscibeForm from './SubscribeForm';
+import { selectPlaceholder, selectType } from '../../utils/setupFields';
 
 function LoginForm() {
   const loginForm = useSelector((state) => state.user.login);
@@ -33,7 +33,7 @@ function LoginForm() {
           <Field
             key={fieldName}
             name={fieldName}
-            type={fieldName}
+            type={selectType(fieldName)}
             placeholder={selectPlaceholder(fieldName)}
             value={(fieldName === 'email') ? email : password}
             onChange={handleChangeLogin}

@@ -3,9 +3,9 @@ import {
   setIsSubscribeForm, changeSubscribeForm,
 } from '../../feature/user.slice';
 import Field from './Field/Field';
-import { selectValue, selectPlaceholder } from '../../utils/setupFields';
+import { selectValue, selectPlaceholder, selectType } from '../../utils/setupFields';
 
-function SubscibeForm() {
+function SubscribeForm() {
   const dispatch = useDispatch();
   const handleChangeSubscribeForm = (value, key) => {
     dispatch(changeSubscribeForm([key, value]));
@@ -23,7 +23,7 @@ function SubscibeForm() {
       {FieldSubscribeName.map((fieldName) => (
         <Field
           name={fieldName}
-          type={fieldName === 'sndPassword' ? 'password' : { fieldName }}
+          type={selectType(fieldName)}
           value={selectValue(fieldName)}
           placeholder={selectPlaceholder(fieldName)}
           onChange={handleChangeSubscribeForm}
@@ -34,4 +34,4 @@ function SubscibeForm() {
   );
 }
 
-export default SubscibeForm;
+export default SubscribeForm;
