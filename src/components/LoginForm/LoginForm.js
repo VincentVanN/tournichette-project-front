@@ -30,7 +30,7 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
         {FieldloginName.map((fieldName) => (
           <Field
-            nameState="login"
+            stateName="login"
             key={fieldName}
             name={fieldName}
             type={selectType(fieldName)}
