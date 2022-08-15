@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from 'src/components/App/App';
 import store from 'src/app/store';
+import './styles/index.scss';
 
 const rootReactElement = (
   <BrowserRouter>
