@@ -6,6 +6,7 @@ import { setLocalStorage, removeLocalStorage } from '../utils/localStorage';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
+    users,
     logged: false,
     slug: '',
     token: '',
