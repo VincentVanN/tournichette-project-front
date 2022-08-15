@@ -1,6 +1,12 @@
+import Page from '../Page/Page';
+
 function ShoppingCart() {
   return (
-    <div className="shoppingCart">shoppingCart</div>
+    <Page>
+      <div className="shoppingCart">
+        shoppingCart
+      </div>
+    </Page>
   );
 }
 

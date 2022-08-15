@@ -27,6 +27,7 @@ function Card({
       <button
         type="button"
         onClick={handleClickCart}
+        className="card_button"
       >
         Mettre dans mon panier
       </button>

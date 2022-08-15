@@ -1,3 +1,4 @@
+import 'src/components/SearchBar/searchBar.scss';
 function SearchBar() {
   return (
     <>
@@ -5,6 +6,7 @@ function SearchBar() {
         <input
           type="text"
           placeholder="Rechercher..."
+          className="searchbar_input"
         />
       </div>
       <div className="search_result">
