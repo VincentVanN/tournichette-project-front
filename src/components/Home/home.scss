@@ -1,0 +1,34 @@
+@use 'src/styles/_vars.scss';
+
+.home{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &_title{
+    font-family: vars.$fontMontserrat;
+    font-size: 30px;
+    color: vars.$colorOrange;
+    text-align: center;
+  }
+
+  img{
+    width: 100%;
+  }
+
+  &_basket{
+    border: solid black 1px;
+    width: 45%;
+    text-align: center;
+    margin: 5%;
+  }
+
+  &_basket h3{
+    font-size: 20px;
+  }
+
+  &_twoBasket{
+    display: flex;
+    align-items: center;
+  }
+}
