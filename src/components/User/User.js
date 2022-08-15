@@ -16,13 +16,13 @@ function User() {
           className="user-orders"
           onClick={handleClickOrders}
         >
-          vos commandes
+          Tes commandes
         </button>
         <button
           className="user-orders"
           onClick={handleClickContact}
         >
-          vos coordonnées
+          Tes coordonnées
         </button>
       </div>
     </Page>
