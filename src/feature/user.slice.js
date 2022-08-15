@@ -28,7 +28,7 @@ export const userSlice = createSlice({
       sndPassword: '',
     },
     errorMessage: '',
-
+    isSecondaryMenu: false,
   },
   reducers: {
     changeLoginForm: (state, { payload }) => {
@@ -77,10 +77,20 @@ export const userSlice = createSlice({
     setErrorMessage: (state, { payload }) => {
       state.errorMessage = payload;
     },
+    setSecondaryMenu: (state) => {
+      state.isSecondaryMenu = !state.isSecondaryMenu;
+    },
   },
 });
 
 export const {
-  changeLoginForm, changeSubscribeForm, setUser, logout, login, setIsSubscribeForm, setErrorMessage,
+  changeLoginForm,
+  changeSubscribeForm,
+  setUser,
+  logout,
+  login,
+  setIsSubscribeForm,
+  setErrorMessage,
+  setSecondaryMenu,
 } = userSlice.actions;
 export default userSlice.reducer;
