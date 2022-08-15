@@ -1,16 +1,21 @@
-body {
-  font-family: 'lekton', sans-serif;
-  background-color:#FFFBE6;
-  size: 14px;
-}
-//max width 425px
-h1 {
- color: #fd5523;
- font-family: 'Montserrat', sans-serif;
- background-color:#B9E4C9 ;
 
-}
+@use 'sass:math';
 
-h2 {
-color:#37966f;
-}
+
+// Font
+$fontMontserrat:'Montserrat', sans-serif;
+$fontLekton:'Lekton', sans-serif;
+
+
+// Font colors
+
+$colorLightGreen:#B9E4C9 ;
+$colorMediumGreen:#37966f;
+$colorDarkGreen: #356859;
+$colorBeige:#FFFBE6;
+$colorOrange:#fd5523;
+
+//taille
+$sizeH2:60px;
+$sizeText:16px;
+
