@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  changeLoginForm, login, setIsSubscribeForm
+  changeLoginForm, login, setIsSubscribeForm,
 } from '../../feature/user.slice';
 import Field from './Field/Field';
 import './loginForm.scss';
-import SubscibeForm from './SubscibeForm';
+import SubscribeForm from './SubscribeForm';
+import { selectPlaceholder, selectType } from '../../utils/setupFields';
 
 function LoginForm() {
   const loginForm = useSelector((state) => state.user.login);
@@ -23,16 +24,17 @@ function LoginForm() {
     dispatch(setIsSubscribeForm());
   };
   const isSubscribe = useSelector((state) => state.user.isSubscribeForm);
-
   return (
     <div className="form">
       {!isSubscribe && (
       <form onSubmit={handleSubmit}>
         {FieldloginName.map((fieldName) => (
           <Field
+            stateName="login"
             key={fieldName}
             name={fieldName}
-            type={fieldName}
+            type={selectType(fieldName)}
+            placeholder={selectPlaceholder(fieldName)}
             value={(fieldName === 'email') ? email : password}
             onChange={handleChangeLogin}
           />
@@ -45,7 +47,7 @@ function LoginForm() {
         </div>
       </form>
       )}
-      {/* isSubscribe && <SubscibeForm /> */}
+      {isSubscribe && <SubscribeForm />}
     </div>
   );
 }

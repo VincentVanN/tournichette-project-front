@@ -43,6 +43,7 @@ export const products = [
   {
     code_product: 1,
     name: 'Carotte',
+    slug: 'carotte',
     stock: 60,
     unity: 'grammes',
     image: 'src/assets/carottes.jpg',
@@ -53,6 +54,7 @@ export const products = [
   {
     code_product: 2,
     name: 'Aubergine',
+    slug: 'aubergine',
     stock: 60,
     unity: 'grammes',
     image: 'src/assets/aubergine2.jpg',
@@ -62,7 +64,8 @@ export const products = [
   },
   {
     code_product: 3,
-    name: 'Haricot',
+    name: 'Haricot-vert',
+    slug: 'haricot-vert',
     stock: 30,
     unity: 'grammes',
     image: 'src/assets/Haricots vert.jpg',
