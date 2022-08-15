@@ -22,6 +22,7 @@ import Products from '../Products/Products';
 import NotFound from '../NotFound/NotFound';
 import Orders from '../User/Orders';
 import UserContact from '../User/UserContact';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
 function App() {
   const loading = useSelector((state) => state.products.loading);
@@ -46,11 +47,12 @@ function App() {
     && (
       <Routes>
         {(!logged) && <Route path="connexion" element={<LoginForm />} />}
-        <Route path="/accueil" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/categorie/:slug" element={<Category />} />
         <Route path="/profil/:slug" element={<User />} />
         <Route path="/profil/:slug/commandes" element={<Orders />} />
         <Route path="/profil/:slug/contact" element={<UserContact />} />
+        <Route path="/panier" element={<ShoppingCart />} />
         <Route path="/produit/:slug" element={<Product />} />
         <Route path="/produits" element={<Products />} />
         <Route path="/apropos" element={<AboutUs />} />
