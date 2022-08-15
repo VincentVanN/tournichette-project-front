@@ -46,7 +46,7 @@ function SideBar() {
 
             <div className="menu-items">
               <NavLink className="navlink" to="/CGU">Conditions générales d'utilisation</NavLink>
-              <NavLink className="navlink" to="/produits">Mentions légales</NavLink>
+              <NavLink className="navlink" to="/mentions-legales">Mentions légales</NavLink>
               <NavLink className="navlink" to="/La-Dev-Team">La Dev Team</NavLink>
               <div
                 className="logout"

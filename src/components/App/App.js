@@ -55,7 +55,7 @@ function App() {
         <Route path="/produits" element={<Products />} />
         <Route path="/apropos" element={<AboutUs />} />
         <Route path="/CGU" element={<Cgu />} />
-        <Route path="/mentions-légales" element={<LegalNotice />} />
+        <Route path="/mentions-legales" element={<LegalNotice />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/La-Dev-Team" element={<DevTeam />} />
         <Route path="/*" element={<NotFound />} />
