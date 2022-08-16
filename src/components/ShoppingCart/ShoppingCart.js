@@ -7,7 +7,6 @@ function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const navigate = useNavigate();
   const handleClick = () => navigate('/');
-  console.log(cartToDisplay);
   return (
     <Page>
       {cartToDisplay.length === 0
@@ -25,8 +24,13 @@ function ShoppingCart() {
       && (
       <div className="shoppingCart">
         {cartToDisplay.map((item) => (
-          <div className="product">
+          <div className="productLine">
             <p>{item.name}</p>
+            <p>{item.quantity}</p>
+            <p>x</p>
+            <p>{item.parcel}</p>
+            <p>{item.unity}</p>
+            <p>{`${item.quantity * item.price}€`}</p>
           </div>
         ))}
       </div>

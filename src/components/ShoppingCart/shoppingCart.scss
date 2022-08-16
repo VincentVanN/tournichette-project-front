@@ -1,0 +1,14 @@
+.productLine {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.shoppingCart {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.productLine p {
+  padding: 10px;
+}
