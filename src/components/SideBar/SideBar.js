@@ -53,7 +53,7 @@ function SideBar() {
                 className="logout"
                 onClick={handleLogout}
               >
-                <ion-icon size="large" name="exit-outline" />
+                <ion-icon size="small" name="exit-outline" />
               </div>
               <div
                 className="more"

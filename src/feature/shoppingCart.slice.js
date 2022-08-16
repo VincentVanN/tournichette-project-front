@@ -8,10 +8,13 @@ export const shoppingCartSlice = createSlice({
     count: 0,
   },
   reducers: {
-    setSecondaryMenu: (state) => {
-      state.isSecondaryMenu = !state.isSecondaryMenu;
+    setCount: (state, { payload }) => {
+      state.count += payload;
+    },
+    pushInCart: (state, { payload }) => {
+      state.shoppingCart.push(payload);
     },
   },
 });
-export const { setSecondaryMenu } = shoppingCartSlice.actions;
+export const { setCount, pushInCart } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

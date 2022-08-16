@@ -1,9 +1,6 @@
 @use 'src/styles/_vars.scss';
 
 .home{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 
   &_title{
     font-family: vars.$fontMontserrat;
@@ -13,12 +10,12 @@
   }
 
   img{
-    width: 100%;
+    width: 80%;
   }
 
   &_basket{
     border: solid black 1px;
-    width: 45%;
+    width: 100%;
     text-align: center;
     margin: 5%;
   }
@@ -27,8 +24,4 @@
     font-size: 20px;
   }
 
-  &_twoBasket{
-    display: flex;
-    align-items: center;
-  }
 }

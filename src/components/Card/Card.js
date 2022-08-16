@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import 'src/components/Card/card.scss';
-import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 
 function Card({
-  name, image, price, unity, stock, onClick, slug,
+  name, image, price, unity, stock, onClick, slug, product,
 }) {
   const handleClick = () => onClick(slug);
-
-  const navigate = useNavigate();
-  const handleClickCart = () => navigate('/panier');
+  const dispatch = useDispatch();
+  const handleClickCart = () => {
+    dispatch(pushInCart(product));
+    dispatch(setCount(1));
+  };
   return (
     <div className="card">
       <article
@@ -43,6 +46,7 @@ Card.propTypes = {
   stock: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   slug: PropTypes.string.isRequired,
+  product: PropTypes.object.isRequired,
 };
 
 export default Card;

@@ -52,6 +52,7 @@ function App() {
         <Route path="/profil/:slug" element={<User />} />
         <Route path="/profil/:slug/commandes" element={<Orders />} />
         <Route path="/profil/:slug/contact" element={<UserContact />} />
+        <Route path="/panier" element={<ShoppingCart />} />
         <Route path="/produit/:slug" element={<Product />} />
         <Route path="/produits" element={<Products />} />
         <Route path="/panier" element={<ShoppingCart />} />
