@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { logout, setSecondaryMenu } from '../../feature/user.slice';
 import './sideBar.scss';
 
@@ -8,8 +8,12 @@ function SideBar() {
   const slug = useSelector((state) => state.user.slug);
   const isSecondaryMenu = useSelector((state) => state.user.isSecondaryMenu);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handlerClick = () => dispatch(setSecondaryMenu());
-  const handleLogout = () => dispatch(logout());
+  const handleLogout = () => {
+    navigate('/');
+    dispatch(logout());
+  };
   const countOfProducts = useSelector((state) => state.shoppingCart.count);
   return (
     <nav>

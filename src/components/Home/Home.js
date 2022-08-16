@@ -15,7 +15,7 @@ function Home() {
         <div className="home_twoBasket">
           <div className="home_basket">
             <h3>Petit Panier</h3>
-            <img src={carottes} className="header-logo" alt="Logo oRecipes" />
+            <img src={carottes} className="home-image" alt="carottes" />
             <button
               type="button"
               onClick={handleClickCart}
@@ -25,7 +25,7 @@ function Home() {
           </div>
           <div className="home_basket">
             <h3>Grand Panier</h3>
-            <img src={carottes} className="header-logo" alt="Logo oRecipes" />
+            <img src={carottes} className="home-image" alt="carottes" />
             <button
               type="button"
               onClick={handleClickCart}
@@ -34,7 +34,6 @@ function Home() {
             </button>
           </div>
         </div>
-
       </div>
     </Page>
   );

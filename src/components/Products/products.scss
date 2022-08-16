@@ -6,8 +6,8 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 2%;
-    $fontLekton:'Lekton', sans-serif;
-    $colorDarkGreen: #356859;
+    font-family: vars.$fontLekton;
+    color: vars.$colorDarkGreen;
   }
 
   h1{
