@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
 import 'src/components/Card/card.scss';
+import { useNavigate } from 'react-router';
 
 function Card({
   name, image, price, unity, stock, onClick, slug,
 }) {
   const handleClick = () => onClick(slug);
+
+  const navigate = useNavigate();
+  const handleClickCart = () => navigate('/panier');
   return (
     <div className="card">
       <article
@@ -20,7 +24,13 @@ function Card({
         </ul>
 
       </article>
-      <button type="button">Mettre dans mon panier</button>
+      <button
+        type="button"
+        onClick={handleClickCart}
+        className="card_button"
+      >
+        Mettre dans mon panier
+      </button>
     </div>
   );
 }

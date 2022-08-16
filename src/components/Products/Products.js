@@ -12,7 +12,7 @@ function Products() {
   const handleClickProduct = (slug) => navigate(`/produit/${slug}`);
 
   return (
-    <div className="products_list">
+    <div className="products">
       <Page>
         <nav>
           <NavLink to="/categorie /{slug}">Fruits</NavLink>

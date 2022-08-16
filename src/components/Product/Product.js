@@ -1,14 +1,23 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import './product.scss';
 
-function Product() {
-  const oneProduct = useSelector((state) => state.products.products).filter((element) => element.code_product);
-  console.log(oneProduct);
+function Product(name, image, price, unity, stock) {
+  // const oneProduct = useSelector((state) => state.products.products).filter((element) => element === slug );
+
+  const navigate = useNavigate();
+  const handleClickCart = () => navigate('/panier');
   return (
     <div className="product">
-      <div className="product-item">
+      <article className="card_article">
         product
-      </div>
+      </article>
+      <button
+        type="button"
+        onClick={handleClickCart}
+      >
+        Mettre dans mon panier
+      </button>
     </div>
   );
 }

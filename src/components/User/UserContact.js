@@ -10,6 +10,7 @@ function UserContact() {
   return (
     <Page>
       <>
+        <div className="updateUserAccount"> Mettre à jour mes informations</div>
         <div className="firstname">{userToDisplay.firstname}</div>
         <div className="lastname">{userToDisplay.lastname}</div>
         <div className="phone">{userToDisplay.phone}</div>
