@@ -73,5 +73,16 @@ export const products = [
     code_product_replace: 33,
     code_category: 333,
   },
+  {
+    code_product: 4,
+    name: 'Concombre',
+    slug: 'concombre',
+    stock: 30,
+    unity: 'grammes',
+    image: 'src/assets/Haricots vert.jpg',
+    price: 2,
+    code_product_replace: 44,
+    code_category: 444,
+  },
 
 ];
