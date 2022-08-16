@@ -4,14 +4,17 @@ import { createSlice } from '@reduxjs/toolkit';
 export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
   initialState: {
-    shoppingCart: null,
+    shoppingCart: [],
     count: 0,
   },
   reducers: {
-    incrementCount: (state) => {
-      state.count += 1;
+    setCount: (state, { payload }) => {
+      state.count += payload;
+    },
+    pushInCart: (state, { payload }) => {
+      state.shoppingCart.push(payload);
     },
   },
 });
-export const { incrementCount } = shoppingCartSlice.actions;
+export const { setCount, pushInCart } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

@@ -9,14 +9,14 @@ function ShoppingCart() {
   const handleClick = () => navigate('/');
   return (
     <Page>
-      {!cartToDisplay
+      {cartToDisplay.length === 0
       && (
       <div className="shoppingCart">
-        <div>Votre panier est vide!</div>
+        <div>Votre panier est vide</div>
         <div
           onClick={handleClick}
         >
-          Par ici pour faire vos courses!
+          pour vos courses c'est par ici!
         </div>
       </div>
       )}

@@ -32,6 +32,7 @@ function Products() {
               unity={product.unity}
               stock={product.stock}
               slug={product.slug}
+              product={product}
             />
           ))}
         </ul>
