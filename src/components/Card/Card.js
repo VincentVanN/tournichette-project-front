@@ -1,16 +1,34 @@
 import PropTypes from 'prop-types';
 import 'src/components/Card/card.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 
 function Card({
-  name, image, price, unity, stock, onClick, slug, product,
+  name, price, unity, stock, onClick, slug, product,
 }) {
   const handleClick = () => onClick(slug);
   const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.shoppingCart.shoppingCart);
+  // eslint-disable-next-line no-trailing-spaces
+
+  const incrementProduct = () => {
+    const productsCopy = [...products];
+    if (productsCopy.some((element) => element.id === product.id)) {
+      const [item] = productsCopy.filter((element) => element.id === product.id);
+      const newItem = { ...item };
+      newItem.quantity += 1;
+      const newArrayForState = productsCopy.filter((element) => element.id !== product.id);
+      newArrayForState.push(newItem);
+      return newArrayForState;
+    }
+    productsCopy.push(product);
+    return productsCopy;
+  };
+
   const handleClickCart = () => {
-    dispatch(pushInCart(product));
-    dispatch(setCount(1));
+    dispatch(pushInCart(incrementProduct()));
+    dispatch(setCount());
   };
   return (
     <div className="card">
@@ -19,7 +37,6 @@ function Card({
         onClick={handleClick}
       >
         <h2 className="card-title">{name}</h2>
-        <img className="card-img" src={image} alt={name} />
         <ul className="card-infos">
           <li>{price}</li>
           <li>{unity}</li>
@@ -40,7 +57,6 @@ function Card({
 
 Card.propTypes = {
   name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   unity: PropTypes.string.isRequired,
   stock: PropTypes.number.isRequired,

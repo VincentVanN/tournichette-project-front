@@ -41,7 +41,7 @@ export const users = [
 
 export const products = [
   {
-    code_product: 1,
+    id: 1,
     name: 'Carotte',
     slug: 'carotte',
     stock: 60,
@@ -50,28 +50,31 @@ export const products = [
     price: 3,
     code_product_replace: 11,
     code_category: 111,
+    quantity: 1,
   },
   {
-    code_product: 2,
+    id: 2,
     name: 'Aubergine',
     slug: 'aubergine',
     stock: 60,
     unity: 'grammes',
     image: 'src/assets/aubergine2.jpg',
     price: 5,
-    code_product_replace: 22,
+    id_replace: 22,
     code_category: 222,
+    quantity: 1,
   },
   {
-    code_product: 3,
+    id: 3,
     name: 'Haricot-vert',
     slug: 'haricot-vert',
     stock: 30,
     unity: 'grammes',
     image: 'src/assets/Haricots vert.jpg',
     price: 2,
-    code_product_replace: 33,
+    id_replace: 33,
     code_category: 333,
+    quantity: 1,
   },
 
 ];

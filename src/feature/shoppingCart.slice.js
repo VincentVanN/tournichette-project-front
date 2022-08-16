@@ -12,7 +12,7 @@ export const shoppingCartSlice = createSlice({
       state.count += payload;
     },
     pushInCart: (state, { payload }) => {
-      state.shoppingCart.push(payload);
+      state.shoppingCart = payload;
     },
   },
 });

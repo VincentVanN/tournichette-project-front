@@ -7,6 +7,7 @@ function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const navigate = useNavigate();
   const handleClick = () => navigate('/');
+  console.log(cartToDisplay);
   return (
     <Page>
       {cartToDisplay.length === 0
@@ -18,6 +19,16 @@ function ShoppingCart() {
         >
           pour vos courses c'est par ici!
         </div>
+      </div>
+      )}
+      {cartToDisplay
+      && (
+      <div className="shoppingCart">
+        {cartToDisplay.map((item) => (
+          <div className="product">
+            <p>{item.name}</p>
+          </div>
+        ))}
       </div>
       )}
     </Page>

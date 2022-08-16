@@ -46,7 +46,6 @@ function App() {
       {(logged)
     && (
       <Routes>
-        {(!logged) && <Route path="connexion" element={<LoginForm />} />}
         <Route path="/" element={<Home />} />
         <Route path="/categorie/:slug" element={<Category />} />
         <Route path="/profil/:slug" element={<User />} />

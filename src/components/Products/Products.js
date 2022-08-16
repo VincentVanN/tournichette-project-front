@@ -24,7 +24,7 @@ function Products() {
         <ul className="products_items">
           {products.map((product) => (
             <Card
-              key={product.code_product}
+              key={product.id}
               onClick={handleClickProduct}
               name={product.name}
               image={product.image}
@@ -33,6 +33,7 @@ function Products() {
               stock={product.stock}
               slug={product.slug}
               product={product}
+              id={product.id}
             />
           ))}
         </ul>
