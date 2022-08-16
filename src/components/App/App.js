@@ -2,7 +2,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
-
 import './app.scss';
 import { setProductsData } from '../../feature/products.slice';
 import { setUser } from '../../feature/user.slice';
@@ -36,6 +35,7 @@ function App() {
     }
     dispatch(setProductsData());
   }, []);
+
   if (loading) {
     return <Loading />;
   }

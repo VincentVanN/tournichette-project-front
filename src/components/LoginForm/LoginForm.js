@@ -39,7 +39,10 @@ function LoginForm() {
             onChange={handleChangeLogin}
           />
         ))}
-        <button type="submit">Envoyer</button>
+        <button
+          type="submit"
+        >Envoyer
+        </button>
         <div
           className="signIn"
           onClick={handleSubscribe}
