@@ -27,8 +27,8 @@ function Card({
   };
 
   const handleClickCart = () => {
+    dispatch(setCount(1));
     dispatch(pushInCart(incrementProduct()));
-    dispatch(setCount());
   };
   return (
     <div className="card">

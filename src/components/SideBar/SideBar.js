@@ -10,7 +10,7 @@ function SideBar() {
   const dispatch = useDispatch();
   const handlerClick = () => dispatch(setSecondaryMenu());
   const handleLogout = () => dispatch(logout());
-
+  const countOfProducts = useSelector((state) => state.shoppingCart.count);
   return (
     <nav>
       <div className="navbar">
@@ -26,7 +26,10 @@ function SideBar() {
           <div className="menu-items">
             <NavLink className="navlink" to="/">Accueil</NavLink>
             <NavLink className="navlink" to={`/profil/${slug}`}>Ton profil</NavLink>
-            <NavLink className="navlink" to="/produits">Nos produits</NavLink>
+            <div className="shoppingCart">
+              <NavLink className="navlink" to="/produits">Nos produits</NavLink>
+              {countOfProducts !== 0 && <div className="count">{countOfProducts}</div>}
+            </div>
             <NavLink className="navlink" to="/panier">Panier d'achat</NavLink>
             <NavLink className="navlink" to="/contact">Nous contacter</NavLink>
             <NavLink className="navlink" to="/apropos">Qui sommes-nous?</NavLink>
