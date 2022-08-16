@@ -24,7 +24,7 @@ function Products() {
         <ul className="products_items">
           {products.map((product) => (
             <Card
-              key={product.id}
+              key={product.name}
               onClick={handleClickProduct}
               name={product.name}
               image={product.image}

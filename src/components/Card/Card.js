@@ -15,7 +15,7 @@ function Card({
   const incrementProduct = () => {
     const productsCopy = [...products];
     if (productsCopy.some((element) => element.id === product.id)) {
-      const [item] = productsCopy.filter((element) => element.id === product.id);
+      const item = productsCopy.find((element) => element.id === product.id);
       const newItem = { ...item };
       newItem.quantity += 1;
       const newArrayForState = productsCopy.filter((element) => element.id !== product.id);
