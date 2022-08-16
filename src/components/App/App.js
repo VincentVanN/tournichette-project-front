@@ -47,7 +47,7 @@ function App() {
     && (
       <Routes>
         {(!logged) && <Route path="connexion" element={<LoginForm />} />}
-        <Route path="/accueil" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/categorie/:slug" element={<Category />} />
         <Route path="/profil/:slug" element={<User />} />
         <Route path="/profil/:slug/commandes" element={<Orders />} />

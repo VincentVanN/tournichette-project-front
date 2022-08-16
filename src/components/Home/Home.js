@@ -1,7 +1,7 @@
-import Page from '../Page/Page';
 import { useNavigate } from 'react-router';
 import './home.scss';
 import carottes from 'src/assets/carottes.jpg';
+import Page from '../Page/Page';
 
 function Home() {
   const navigate = useNavigate();

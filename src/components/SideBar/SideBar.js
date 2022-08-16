@@ -24,6 +24,7 @@ function SideBar() {
           {(!isSecondaryMenu && (
 
           <div className="menu-items">
+            <NavLink className="navlink" to="/">Accueil</NavLink>
             <NavLink className="navlink" to={`/profil/${slug}`}>Ton profil</NavLink>
             <NavLink className="navlink" to="/produits">Nos produits</NavLink>
             <NavLink className="navlink" to="/panier">Panier d'achat</NavLink>

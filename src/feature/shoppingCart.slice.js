@@ -7,9 +7,11 @@ export const shoppingCartSlice = createSlice({
     shoppingCart: [],
     count: 0,
   },
-  reducer: {
-
+  reducers: {
+    setSecondaryMenu: (state) => {
+      state.isSecondaryMenu = !state.isSecondaryMenu;
+    },
   },
 });
-
+export const { setSecondaryMenu } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;
