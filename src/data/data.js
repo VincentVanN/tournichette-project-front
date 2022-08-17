@@ -123,7 +123,7 @@ export const products = [
     category: {
       id: 8,
       name: 'Produits transformés',
-      slug: 'produits-transformes',
+      slug: 'produitstransformes',
     },
   },
 
@@ -145,7 +145,7 @@ export const categories = [
   {
     id: 9,
     name: 'Produits transformés',
-    slug: 'produits-transformes',
+    slug: 'produitstransformes',
     image: null,
   },
 ];
