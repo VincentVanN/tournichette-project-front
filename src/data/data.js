@@ -52,6 +52,11 @@ export const products = [
     code_product_replace: 11,
     code_category: 111,
     quantity: 1,
+    category: {
+      id: 7,
+      name: 'Legumes',
+      slug: 'legumes',
+    },
   },
   {
     id: 2,
@@ -65,6 +70,11 @@ export const products = [
     id_replace: 22,
     code_category: 222,
     quantity: 1,
+    category: {
+      id: 7,
+      name: 'Legumes',
+      slug: 'legumes',
+    },
   },
   {
     id: 3,
@@ -78,17 +88,64 @@ export const products = [
     id_replace: 33,
     code_category: 333,
     quantity: 1,
+    category: {
+      id: 7,
+      name: 'Legumes',
+      slug: 'legumes',
+    },
   },
   {
-    code_product: 4,
-    name: 'Concombre',
-    slug: 'concombre',
+    id: 4,
+    name: 'Mangue',
+    slug: 'mangue',
     stock: 30,
-    unity: 'grammes',
+    unity: 'kg',
     image: 'src/assets/Haricots vert.jpg',
     price: 2,
     code_product_replace: 44,
     code_category: 444,
+    category: {
+      id: 7,
+      name: 'Fruits',
+      slug: 'fruits',
+    },
+  },
+  {
+    id: 5,
+    name: 'Limonade',
+    slug: 'limonade',
+    stock: 30,
+    unity: 'kg',
+    image: 'src/assets/limonade.jpg',
+    price: 2,
+    code_product_replace: 55,
+    code_category: 555,
+    category: {
+      id: 8,
+      name: 'Produits transformés',
+      slug: 'produits-transformes',
+    },
   },
 
+];
+
+export const categories = [
+  {
+    id: 7,
+    name: 'Fruits',
+    slug: 'fruits',
+    image: null,
+  },
+  {
+    id: 8,
+    name: 'Légumes',
+    slug: 'legumes',
+    image: null,
+  },
+  {
+    id: 9,
+    name: 'Produits transformés',
+    slug: 'produits-transformes',
+    image: null,
+  },
 ];
