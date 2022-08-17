@@ -7,8 +7,8 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     users,
+    logged: false,
     user: {
-      logged: false,
       firstname: '',
       lastName: '',
       phone: '',
@@ -43,10 +43,14 @@ export const userSlice = createSlice({
       const [key, value] = payload;
       state.subscribeForm[key] = value;
     },
+    changeProfilForm: (state, { payload }) => {
+      const [key, value] = payload;
+      state.user[key] = value;
+    },
     setUser: (state, { payload }) => {
       const userLogged = users.find((user) => (
         (user.email === payload.email && user.token === payload.token)));
-      state.user.logged = true;
+      state.logged = true;
       state.user.slug = userLogged.slug;
       state.user.token = userLogged.token;
       state.user.email = userLogged.email;
@@ -56,7 +60,7 @@ export const userSlice = createSlice({
       state.user.phone = userLogged.phone;
     },
     logout: (state) => {
-      state.user.logged = false;
+      state.logged = false;
       state.user.slug = '';
       state.user.token = '';
       state.user.email = '';
@@ -73,7 +77,7 @@ export const userSlice = createSlice({
         (user.email === state.login.email && user.password === state.login.password)));
       if (userLogged) {
         setLocalStorage(userLogged.email, userLogged.slug, userLogged.token);
-        state.user.logged = true;
+        state.logged = true;
         state.user.slug = userLogged.slug;
         state.user.token = userLogged.token;
         state.user.email = userLogged.email;
@@ -104,5 +108,6 @@ export const {
   setIsSubscribeForm,
   setErrorMessage,
   setSecondaryMenu,
+  changeProfilForm,
 } = userSlice.actions;
 export default userSlice.reducer;

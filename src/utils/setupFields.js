@@ -68,3 +68,28 @@ export const selectType = (fieldName) => {
   }
   return false;
 };
+export const selectValueForProfil = (fieldName) => {
+  const {
+    firstname, lastname, email, phone, password, sndPassword,
+  } = useSelector((state) => state.user.user);
+
+  if (fieldName === 'firstname') {
+    return firstname;
+  }
+  if (fieldName === 'lastname') {
+    return lastname;
+  }
+  if (fieldName === 'email') {
+    return email;
+  }
+  if (fieldName === 'phone') {
+    return phone;
+  }
+  if (fieldName === 'password') {
+    return password;
+  }
+  if (fieldName === 'sndPassword') {
+    return sndPassword;
+  }
+  return false;
+};
