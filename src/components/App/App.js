@@ -25,7 +25,7 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
 function App() {
   const loading = useSelector((state) => state.products.loading);
-  const logged = useSelector((state) => state.user.logged);
+  const logged = useSelector((state) => state.user.user.logged);
   const dispatch = useDispatch();
   const loggedUser = JSON.parse(localStorage.getItem('user'));
 

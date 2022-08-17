@@ -7,13 +7,17 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     users,
-    logged: false,
-    slug: '',
-    token: '',
-    firstname: '',
-    email: '',
-    password: '',
-
+    user: {
+      logged: false,
+      firstname: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      slug: '',
+      token: '',
+      password: '',
+      sndPassword: '',
+    },
     login: {
       email: '',
       password: '',
@@ -40,21 +44,26 @@ export const userSlice = createSlice({
       state.subscribeForm[key] = value;
     },
     setUser: (state, { payload }) => {
-      const {
-        firstname, slug, token,
-      } = payload;
-      state.logged = true;
-      state.slug = slug;
-      state.token = token;
-      state.firstname = firstname;
+      const userLogged = users.find((user) => (
+        (user.email === payload.email && user.token === payload.token)));
+      state.user.logged = true;
+      state.user.slug = userLogged.slug;
+      state.user.token = userLogged.token;
+      state.user.email = userLogged.email;
+      state.user.password = userLogged.password;
+      state.user.firstname = userLogged.firstname;
+      state.user.lastname = userLogged.lastname;
+      state.user.phone = userLogged.phone;
     },
     logout: (state) => {
-      state.logged = false;
-      state.slug = '';
-      state.token = '';
-      state.email = '';
-      state.password = '';
-      state.firstname = '';
+      state.user.logged = false;
+      state.user.slug = '';
+      state.user.token = '';
+      state.user.email = '';
+      state.user.password = '';
+      state.user.firstname = '';
+      state.user.lastname = '';
+      state.user.phone = '';
       state.login.email = '';
       state.login.password = '';
       removeLocalStorage('user');
@@ -63,12 +72,15 @@ export const userSlice = createSlice({
       const userLogged = users.find((user) => (
         (user.email === state.login.email && user.password === state.login.password)));
       if (userLogged) {
-        const { firstname, slug, token } = userLogged;
-        setLocalStorage(firstname, slug, token);
-        state.logged = true;
-        state.slug = slug;
-        state.token = token;
-        state.firstname = firstname;
+        setLocalStorage(userLogged.email, userLogged.slug, userLogged.token);
+        state.user.logged = true;
+        state.user.slug = userLogged.slug;
+        state.user.token = userLogged.token;
+        state.user.email = userLogged.email;
+        state.user.password = userLogged.password;
+        state.user.firstname = userLogged.firstname;
+        state.user.lastname = userLogged.lastname;
+        state.user.phone = userLogged.phone;
       }
     },
     setIsSubscribeForm: (state) => {
