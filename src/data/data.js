@@ -2,8 +2,8 @@ export const users = [
   {
     code_user: 12,
     firstname: 'John',
-    lastname: 'Lepremier',
-    slug: 'john-lepremier',
+    lastname: 'Doe',
+    slug: 'john-Doe',
     email: 'test@test.io',
     password: 'test',
     phone: '0706050403',
