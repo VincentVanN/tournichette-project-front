@@ -17,7 +17,6 @@ function SubscribeForm() {
     e.preventDefault();
     dispatch(setIsSubscribeForm());
   };
-
   return (
     <form onSubmit={handleSubscribe}>
       {FieldSubscribeName.map((fieldName) => (
