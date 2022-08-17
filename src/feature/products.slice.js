@@ -1,12 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
-import { products } from '../data/data';
+import { products, categories } from '../data/data';
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
     products: null,
     loading: true,
+    categories,
   },
   reducers: {
     setProductsData: (state) => {
@@ -22,3 +23,7 @@ export const productsSlice = createSlice({
 
 export const { setProductsData, getProduct } = productsSlice.actions;
 export default productsSlice.reducer;
+
+// creer un state categories avec les noms en dur
+// dans products je map une div pour génerer une liste et dessus un onCLik
+// dans mon product je fais un navigate pour quand je clique dessus je sois redirigé
