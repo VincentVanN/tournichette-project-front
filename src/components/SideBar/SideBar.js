@@ -4,8 +4,8 @@ import { logout, setSecondaryMenu } from '../../feature/user.slice';
 import './sideBar.scss';
 
 function SideBar() {
-  const firstname = useSelector((state) => state.user.firstname);
-  const slug = useSelector((state) => state.user.slug);
+  const firstname = useSelector((state) => state.user.user.firstname);
+  const slug = useSelector((state) => state.user.user.slug);
   const isSecondaryMenu = useSelector((state) => state.user.isSecondaryMenu);
   const dispatch = useDispatch();
   const navigate = useNavigate();
