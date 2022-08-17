@@ -4,30 +4,18 @@ import SearchBar from 'src/components/SearchBar/SearchBar';
 import { useNavigate, useParams } from 'react-router';
 import Card from 'src/components/Card/Card';
 import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
+
 import Page from '../Page/Page';
 
 function Products() {
   const products = useSelector((state) => state.products.products);
-  const ploplo = [...products];
   const categories = useSelector((state) => state.products.categories);
   const navigate = useNavigate();
   const handleClickProduct = (slug) => navigate(`/produit/${slug}`);
   const params = useParams();
-  console.log(params);
-  let arrayToDisplay;
-  const productsToDisplay = () => {
-    if (params === {}) {
-      arrayToDisplay = ploplo;
-      return arrayToDisplay;
-    }
-    arrayToDisplay = ploplo.filter((product) => (product.category.slug === params));
-    return arrayToDisplay;
-  };
-  useEffect(() => {
-    productsToDisplay();
-  }, []);
-  console.log(arrayToDisplay);
+  const { slug } = params;
+  const filterProducts = () => products.filter((product) => (product.category.slug === slug));
+  const arrayToDisplay = Object.keys(params).length === 0 ? products : filterProducts();
   return (
     <div className="products">
       <Page>
@@ -35,7 +23,7 @@ function Products() {
         <h1>Liste des produits</h1>
         <SearchBar />
         <ul className="products_items">
-          {products.map((product) => (
+          {arrayToDisplay.map((product) => (
             <Card
               key={product.name}
               onClick={handleClickProduct}

@@ -24,7 +24,10 @@ function ShoppingCart() {
       && (
       <div className="shoppingCart">
         {cartToDisplay.map((item) => (
-          <div className="productLine">
+          <div
+            className="productLine"
+            key={item.name}
+          >
             <p>{item.name}</p>
             <p>{item.quantity}</p>
             <p>x</p>
