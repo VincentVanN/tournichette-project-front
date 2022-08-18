@@ -1,4 +1,8 @@
-.container {
+@use 'src/styles/_vars.scss';
+.nav {
+  z-index: 10;
+}
+.nav {
   max-width: 1050px;
   width: 90%;
   margin: auto;

@@ -13,24 +13,26 @@ function Product() {
   const handleClickCart = () => navigate('/panier');
   return (
     <Page>
-      <div className="product">
-        <article className="product_article">
-          <h2 className="product-title">{oneProduct.name}</h2>
-          <img className="product-img" src={oneProduct.image} alt={oneProduct.name} />
-          <ul className="product-infos">
-            <li>{oneProduct.price}</li>
-            <li>{oneProduct.unity}</li>
-            <li>{oneProduct.stock}</li>
-          </ul>
+      <div className="container">
+        <div className="product">
+          <article className="product_article">
+            <h2 className="product-title">{oneProduct.name}</h2>
+            <img className="product-img" src={oneProduct.image} alt={oneProduct.name} />
+            <ul className="product-infos">
+              <li>{oneProduct.price}</li>
+              <li>{oneProduct.unity}</li>
+              <li>{oneProduct.stock}</li>
+            </ul>
 
-        </article>
-        <button
-          type="button"
-          onClick={handleClickCart}
-          className="product_button"
-        >
-          Mettre dans mon panier
-        </button>
+          </article>
+          <button
+            type="button"
+            onClick={handleClickCart}
+            className="product_button"
+          >
+            Mettre dans mon panier
+          </button>
+        </div>
       </div>
     </Page>
   );

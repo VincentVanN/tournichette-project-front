@@ -1,50 +1,271 @@
-@use 'src/styles/vars';
+@use "src/styles/_vars.scss";
 
-@keyframes fade {
-  0% {
-    opacity: .5;
+$halfCycle: 0.9;
+$timming: ease-in-out;
+$NINJIN: #f05d31;
+$NINJIN2: #bb430f;
+$NINJIN3: #d96b06;
+$NINJIN_LEAF: #356859;
+$NINJIN_LEAF2: #37966f;
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
   }
-  100% {
-    opacity: 1;
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+@mixin animation($animation-name) {
+  -webkit-animation: $animation-name;
+  -moz-animation: $animation-name;
+  animation: $animation-name;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@mixin prefixes($property, $value) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, "" {
+    #{$prefix}#{$property}: $value;
   }
 }
 
-@keyframes load {
-  0% {
-    transform: scaleX(0);
-    transform-origin: 0 0;
+.ninjin {
+  position: absolute;
+  height: 410px;
+  width: 200px;
+  top: calc(50% - 205px);
+  left: calc(50% - 100px);
+  @include animation(ninjin 0.9s infinite $timming);
+
+  z-index: 2;
+  div {
+    position: absolute;
+    @include prefixes(transform-origin, 50% 0);
+  }
+  .head {
+    top: 5px;
+    left: -13px;
+    width: 188px;
+    height: 145px;
+    border-radius: 50%;
+    background: $NINJIN;
+    @include prefixes(transform-origin, 20% 150%);
+    @include prefixes(transform, rotate(5deg));
+
+    span {
+      position: absolute;
+      width: 47px;
+      height: 155px;
+      left: 30px;
+      bottom: 130px;
+      background-color: $NINJIN_LEAF;
+      border-radius: 30% 70% 0% 100% / 35% 60% 30% 65%;
+      z-index: 1;
+      @include prefixes(transform-origin, bottom);
+      @include animation(head 0.9s infinite ease-in-out);
+
+      &:nth-of-type(2) {
+        left: 34px;
+        bottom: 130px;
+        background-color: $NINJIN_LEAF2;
+        @include animation(head2 0.9s infinite ease-in-out);
+
+      }
+      &:nth-of-type(3) {
+        height: 140px;
+        left: 38px;
+        bottom: 130px;
+        background-color: $NINJIN_LEAF;
+        @include animation(head3 0.9s infinite ease-in-out);
+      }
+    }
+  }
+  &__body {
+    left: 0;
+    top: 92px;
+    width: 185px;
+    height: 300px;
+    overflow: hidden;
+    @include prefixes(transform, rotate(5deg));
+
+    &:before {
+      width: 100%;
+      height: 350px;
+      background: $NINJIN;
+      border-radius: 10px 10px 50% 50%;
+      top: -100px;
+    }
+    div {
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 10vh;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      @include animation(body 0.9s infinite ease-in-out);
+      @include prefixes(transform, rotate(5deg));
+    }
+    span {
+      position: absolute;
+      width: 40px;
+      height: 5px;
+      left: 0;
+      top: 0;
+      background: $NINJIN3;
+      &:before {
+        width: 60px;
+        height: 5px;
+        left: 0;
+        top: 25px;
+        background: $NINJIN3;
+      }
+      &:after {
+        width: 40px;
+        height: 5px;
+        left: 137px;
+        top: 143px;
+        background: $NINJIN3;
+      }
+    }
+  }
+  &__leg {
+    top: 300px;
+    left: 2px;
+    width: 120px;
+    height: 20px;
+    > div {
+      width: 100%;
+      height: 180px;
+      top: -40px;
+      left: 25px;
+      overflow: hidden;
+      background: transparent;
+      &:before {
+        width: 0;
+        height: 0;
+        top: 0;
+        left: -7px;
+        background: transparent;
+        border-top: 224px solid $NINJIN;
+        border-left: 70px solid transparent;
+        border-right: 60px solid transparent;
+      }
+    }
+    div {
+      border-radius: 0 0 90% 90%;
+      @include animation(legs 0.9s infinite ease-in-out);
+    }
+    &--r {
+      div {
+        @include prefixes(animation-delay, 0.45s);
+      }
+    }
+    &--l {
+      div {
+        z-index: -1;
+        &:before {
+          border-top-color: $NINJIN2;
+        }
+      }
+    }
+  }
+}
+
+@include keyframes(ninjin) {
+  0%,
+  50%,
+  100% {
+    @include prefixes(transform, translateY(0vh) rotate(0.2deg) scale(0.5));
+  }
+  15%,
+  65% {
+    @include prefixes(transform, translateY(0.15vh) rotate(-0.2deg) scale(0.5));
+  }
+}
+
+@include keyframes(head) {
+  0%,
+  100% {
+    @include prefixes(transform, rotate(10deg));
+  }
+  25%,
+  75% {
+    @include prefixes(transform, rotate(20deg));
   }
   50% {
-    transform: scaleX(1);
-    transform-origin: 0 0;
+    @include prefixes(transform, rotate(14deg));
   }
-  51% {
-    transform-origin: 100% 0;
-  }
+}
+
+@include keyframes(head2) {
+  0%,
   100% {
-    transform: scaleX(0);
-    transform-origin: 100% 0;
+    @include prefixes(transform, rotate(15deg));
   }
+  25%,
+  75% {
+    @include prefixes(transform, rotate(28deg));
+  }
+  50% {
+    @include prefixes(transform, rotate(18deg));
+  }
+}
+
+@include keyframes(head3) {
+  0%,
+  100% {
+    @include prefixes(transform, rotate(20deg));
+  }
+  25%,
+  75% {
+    @include prefixes(transform, rotate(35deg));
+  }
+  50% {
+    @include prefixes(transform, rotate(30deg));
+  }
+}
+
+@include keyframes(body) {
+  0%,
+  100% {
+    @include prefixes(transform, rotate(2deg));
+  }
+  50% {
+    @include prefixes(transform, rotate(-10deg));
+  }
+}
+
+@include keyframes(legs) {
+  0%,
+  100% {
+    @include prefixes(transform, rotate(10deg));
+  }
+  45% {
+    @include prefixes(transform, rotate(-15deg));
+  }
+}
+
+// base
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
 .loading {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: black;
-  font-size: 2em;
-  animation: fade .75s infinite alternate;
+  background: vars.$colorBeige;
+}
 
-  &::after {
+* {
+  margin: 0;
+  padding: 0;
+  &:before,
+  &:after {
     content: "";
-    height: 30%;
-    width: 100%;
-    background-color: blue;
-    opacity: .3;
     position: absolute;
-    top: 70%;
-    left: 0;
-    animation: load 1.5s infinite;
   }
 }

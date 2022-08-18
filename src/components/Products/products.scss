@@ -1,5 +1,9 @@
 @use 'src/styles/_vars.scss';
+
+
 .products{
+
+ 
 
   h1{
     font-family: vars.$fontMontserrat;
@@ -10,8 +14,26 @@
   }
 
   &_items{
+    position: relative;
     display: flex;
     width: 100%;
+    flex-direction: column;
+  
+  
+      
   }
   
 }
+.productsNav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2%;
+  font-family: vars.$fontLekton;
+  color: vars.$colorDarkGreen;
+  
+}
+
+  
+
+

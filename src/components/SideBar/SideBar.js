@@ -18,7 +18,7 @@ function SideBar() {
   return (
     <nav>
       <div className="navbar">
-        <div className="container nav-container">
+        <div className="nav nav-container">
           <input className="checkbox" type="checkbox" name="" id="" />
           <div className="hamburger-lines">
             <span className="line line1" />
@@ -27,28 +27,28 @@ function SideBar() {
           </div>
           {(!isSecondaryMenu && (
 
-          <div className="menu-items">
-            <NavLink className="navlink" to="/">Accueil</NavLink>
-            <NavLink className="navlink" to={`/profil/${slug}`}>Ton profil</NavLink>
-            <div className="shoppingCart">
-              <NavLink className="navlink" to="/produits">Nos produits</NavLink>
-              {countOfProducts !== 0 && <div className="count">{countOfProducts}</div>}
+            <div className="menu-items">
+              <NavLink className="navlink" to="/">Accueil</NavLink>
+              <NavLink className="navlink" to={`/profil/${slug}`}>Mon profil</NavLink>
+              <div className="shoppingCart">
+                <NavLink className="navlink" to="/produits">Nos produits</NavLink>
+                {countOfProducts !== 0 && <div className="count">{countOfProducts}</div>}
+              </div>
+              <NavLink className="navlink" to="/panier">Panier d'achat</NavLink>
+              <NavLink className="navlink" to="/contact">Nous contacter</NavLink>
+              <NavLink className="navlink" to="/apropos">Qui sommes-nous?</NavLink>
+              <div
+                className="logout"
+                onClick={handleLogout}
+              >
+                <ion-icon size="large" name="exit-outline" />
+              </div>
+              <div
+                className="more"
+                onClick={handlerClick}
+              >...
+              </div>
             </div>
-            <NavLink className="navlink" to="/panier">Panier d'achat</NavLink>
-            <NavLink className="navlink" to="/contact">Nous contacter</NavLink>
-            <NavLink className="navlink" to="/apropos">Qui sommes-nous?</NavLink>
-            <div
-              className="logout"
-              onClick={handleLogout}
-            >
-              <ion-icon size="large" name="exit-outline" />
-            </div>
-            <div
-              className="more"
-              onClick={handlerClick}
-            >...
-            </div>
-          </div>
           ))}
           {(isSecondaryMenu && (
 

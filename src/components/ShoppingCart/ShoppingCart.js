@@ -9,7 +9,8 @@ function ShoppingCart() {
   const handleClick = () => navigate('/');
   return (
     <Page>
-      {cartToDisplay.length === 0
+      <div className="container">
+        {cartToDisplay.length === 0
       && (
       <div className="shoppingCart">
         <div>Votre panier est vide</div>
@@ -20,8 +21,9 @@ function ShoppingCart() {
         </div>
       </div>
       )}
-      {cartToDisplay
+        {cartToDisplay
       && (
+
       <div className="shoppingCart">
         {cartToDisplay.map((item) => (
           <div
@@ -38,6 +40,7 @@ function ShoppingCart() {
         ))}
       </div>
       )}
+      </div>
     </Page>
 
   );
