@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 import Page from '../Page/Page';
 
 function Products() {
+  /// /////////////////////////////////////////////////////////////////
   const products = useSelector((state) => state.products.products.data);
   const categories = useSelector((state) => state.products.categories.data);
   const navigate = useNavigate();
