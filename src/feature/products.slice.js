@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
+import { getCategories, getProducts } from '../AsyncChunk/AsyncChunkPoducts';
 import { products, categories } from '../data/data';
 
 export const productsSlice = createSlice({
@@ -7,7 +8,29 @@ export const productsSlice = createSlice({
   initialState: {
     products: null,
     loading: true,
-    categories,
+    categories: null,
+  },
+  extraReducers: {
+    [getProducts.pending]: (state) => {
+      state.loading = true;
+    },
+    [getProducts.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.products = payload;
+    },
+    [getProducts.rejected]: () => {
+      console.log('request rejected');
+    },
+    [getCategories.pending]: (state) => {
+      state.loading = true;
+    },
+    [getCategories.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.categories = payload;
+    },
+    [getCategories.rejected]: () => {
+      console.log('request rejected');
+    },
   },
   reducers: {
     setProductsData: (state) => {
@@ -23,7 +46,3 @@ export const productsSlice = createSlice({
 
 export const { setProductsData, getProduct } = productsSlice.actions;
 export default productsSlice.reducer;
-
-// creer un state categories avec les noms en dur
-// dans products je map une div pour génerer une liste et dessus un onCLik
-// dans mon product je fais un navigate pour quand je clique dessus je sois redirigé
