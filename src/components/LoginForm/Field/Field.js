@@ -46,6 +46,7 @@ function Field({
         && (
         <ion-icon
           name={`eye-${eyeOff}outline`}
+          className="field eye"
           onClick={handleClick}
         />
         )}
