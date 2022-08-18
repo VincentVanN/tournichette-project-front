@@ -1,31 +1,31 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import { getCategories, getProducts } from '../AsyncChunk/AsyncChunkPoducts';
-import { products, categories } from '../data/data';
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
     products: null,
-    loading: true,
+    loadingProducts: true,
+    loadingCategories: true,
     categories: null,
   },
   extraReducers: {
     [getProducts.pending]: (state) => {
-      state.loading = true;
+      state.loadingProducts = true;
     },
     [getProducts.fulfilled]: (state, { payload }) => {
-      state.loading = false;
+      state.loadingProducts = false;
       state.products = payload;
     },
     [getProducts.rejected]: () => {
       console.log('request rejected');
     },
     [getCategories.pending]: (state) => {
-      state.loading = true;
+      state.loadingCategories = true;
     },
     [getCategories.fulfilled]: (state, { payload }) => {
-      state.loading = false;
+      state.loadingCategories = false;
       state.categories = payload;
     },
     [getCategories.rejected]: () => {
@@ -33,10 +33,6 @@ export const productsSlice = createSlice({
     },
   },
   reducers: {
-    setProductsData: (state) => {
-      state.products = products;
-      state.loading = false;
-    },
     getProduct: (state, { payload }) => {
       const item = state.products.find((product) => (product.slug === payload));
       return item;
@@ -44,5 +40,5 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { setProductsData, getProduct } = productsSlice.actions;
+export const { getProduct } = productsSlice.actions;
 export default productsSlice.reducer;
