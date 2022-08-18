@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function SearchBar({ type, placeholder, onChange }) {
   const handleChange = (e) => (onChange(e.target.value));
   return (
@@ -9,5 +11,9 @@ function SearchBar({ type, placeholder, onChange }) {
     />
   );
 }
-
+SearchBar.propTypes = {
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 export default SearchBar;
