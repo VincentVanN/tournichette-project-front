@@ -2,6 +2,7 @@
 import './field.scss';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { isValidEmail } from '../../../utils/formValidation';
 import { setErrorMessage } from '../../../feature/user.slice';
 import Error from '../../Error/Error';
@@ -17,6 +18,7 @@ function Field({
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
   };
+  const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
   const errorMessage = useSelector((state) => state.user.errorMessage);
   const email = useSelector((state) => state.user[stateName].email);
@@ -27,17 +29,27 @@ function Field({
     }
     else (displayErrorMessage(''));
   }
-
+  const eyeOff = (isVisible ? 'off-' : '');
+  const handleClick = () => setIsVisible(!isVisible);
   return (
     <div className="field">
-      <input
-        value={value}
-        onChange={handleChange}
-        type={type}
-        className="field-input"
-        placeholder={placeholder}
-        name={name}
-      />
+      <div className="field field_container">
+        <input
+          value={value}
+          onChange={handleChange}
+          type={isVisible ? 'text' : type}
+          className="field-input"
+          placeholder={placeholder}
+          name={name}
+        />
+        {(name === 'password' || name === 'sndPassword')
+        && (
+        <ion-icon
+          name={`eye-${eyeOff}outline`}
+          onClick={handleClick}
+        />
+        )}
+      </div>
       {(errorMessage && name === 'email' && email) && <Error />}
     </div>
 

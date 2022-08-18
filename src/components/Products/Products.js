@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-/* eslint-disable consistent-return */
 import './products.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
@@ -12,22 +11,29 @@ import Loading from '../Loading/Loading';
 import SearchBar from '../SearchBar/SearchBar';
 
 function Products() {
-  /// /////////////////////////////////
-  // term state for searchBar
-  const [searchTerm, setSearchTerm] = useState('');
+  //
+  // pickup data
+  //
   const products = useSelector((state) => state.products.products.data);
   const categories = useSelector((state) => state.products.categories.data);
+  //
   // booleen for conditional loading display
+  //
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
+  //
   // algorithm to filter products by category
+  //
   const navigate = useNavigate();
   const handleClickProduct = (slug) => navigate(`/produit/${slug}`);
   const params = useParams();
   const { slug } = params;
   const filterProducts = () => products.filter((product) => (product.category.slug === slug));
-  // algorithm to filter products by search bar
   const filteredArrayByCategory = Object.keys(params).length === 0 ? products : filterProducts();
+  //
+  // algorithm to filter products by search bar
+  //
+  const [searchTerm, setSearchTerm] = useState('');
   const handleChange = (item) => (setSearchTerm(item));
   const arrayToDisplay = filteredArrayByCategory
     .filter((value) => (!searchTerm ? value : value.name.toLowerCase().includes(searchTerm.toLowerCase())));
