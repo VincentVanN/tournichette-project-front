@@ -6,7 +6,6 @@ import './app.scss';
 import { setProductsData } from '../../feature/products.slice';
 import { setUser } from '../../feature/user.slice';
 
-import Loading from './Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
 import Home from '../Home/Home';
 import AboutUs from '../AboutUs/AboutUs';
@@ -22,6 +21,7 @@ import NotFound from '../NotFound/NotFound';
 import Orders from '../User/Orders';
 import UserContact from '../User/UserContact';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import Loading from './Loading/Loading';
 
 function App() {
   const loading = useSelector((state) => state.products.loading);
@@ -40,10 +40,11 @@ function App() {
     return <Loading />;
   }
   return (
-    <div className="app">
+    <div className="container">
+      <div className="app">
 
-      {(!logged) && <LoginForm />}
-      {(logged)
+        {(!logged) && <LoginForm />}
+        {(logged)
     && (
       <Routes>
         <Route path="/" element={<Home />} />
@@ -64,6 +65,7 @@ function App() {
       </Routes>
     )}
 
+      </div>
     </div>
   );
 }

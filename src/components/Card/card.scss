@@ -1,31 +1,28 @@
-
-
 @use 'src/styles/_vars.scss';
-
-
 
 .card {
  
   border: solid 1px black;
-  width: 60%;
+  width: 80%;
   margin: 5%;
   display: flex;
-  font-family:vars.$colorDarkGreen;
-  background-color: vars.$colorLightGreen;
-  font-style: vars.$fontMontserrat;
+  // font-family:vars.$colorDarkGreen;
+  // background-color: vars.$colorLightGreen;
+  // font-style: vars.$fontMontserrat;
+  justify-content: space-between;
+  
 
 
 
   &_article{
+    
     width: 90%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    justify-content: flex-start;
-    justify-content: space-around;
+    justify-content: space-between;
    
    
-  
+   
   
   }
   
@@ -38,13 +35,17 @@
     transform: translateY(10px);
     border-radius: 50% 20% / 10% 40%;
     border-color:#fd5523;
+    
+
   }
 
   &_infos{
   
     display: flex;
     flex-direction: row;
-    width: 25px;
+    margin-right: 10%;
+    // width: 25px;
+
 
   
   }

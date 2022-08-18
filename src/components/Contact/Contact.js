@@ -3,8 +3,10 @@ import Page from '../Page/Page';
 function Contact() {
   return (
     <Page>
-      <div>
-        <p>Contact</p>
+      <div className="container">
+        <div>
+          <p>Contact</p>
+        </div>
       </div>
     </Page>
 

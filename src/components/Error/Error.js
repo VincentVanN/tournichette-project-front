@@ -4,8 +4,10 @@ import './error.scss';
 function Error() {
   const errorMessage = useSelector((state) => state.user.errorMessage);
   return (
-    <div className="errorMessage">
-      {errorMessage}
+    <div className="container">
+      <div className="errorMessage">
+        {errorMessage}
+      </div>
     </div>
   );
 }

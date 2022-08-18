@@ -4,8 +4,10 @@ import 'src/components/DevTeam/devTeam.scss';
 function DevTeam() {
   return (
     <Page>
-      <div>
-        <p>Dev Team</p>
+      <div className="container">
+        <div>
+          <p>Dev Team</p>
+        </div>
       </div>
     </Page>
 

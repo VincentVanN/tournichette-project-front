@@ -8,30 +8,32 @@ function Home() {
   const handleClickCart = () => navigate('/panier');
   return (
     <Page>
-      <div className="home">
-        <div className="home_title">
-          <h2>La tournichette-Un maraîcher bio dans l'Avesnois</h2>
-        </div>
-        <div className="home_twoBasket">
-          <div className="home_basket">
-            <h3>Petit Panier</h3>
-            <img src={carottes} className="home-image" alt="carottes" />
-            <button
-              type="button"
-              onClick={handleClickCart}
-            >
-              Mettre dans mon panier
-            </button>
+      <div className="container">
+        <div className="home">
+          <div className="home_title">
+            <h2>La tournichette-Un maraîcher bio dans l'Avesnois</h2>
           </div>
-          <div className="home_basket">
-            <h3>Grand Panier</h3>
-            <img src={carottes} className="home-image" alt="carottes" />
-            <button
-              type="button"
-              onClick={handleClickCart}
-            >
-              Mettre dans mon panier
-            </button>
+          <div className="home_twoBasket">
+            <div className="home_basket">
+              <h3>Petit Panier</h3>
+              <img src={carottes} className="home-image" alt="carottes" />
+              <button
+                type="button"
+                onClick={handleClickCart}
+              >
+                Mettre dans mon panier
+              </button>
+            </div>
+            <div className="home_basket">
+              <h3>Grand Panier</h3>
+              <img src={carottes} className="home-image" alt="carottes" />
+              <button
+                type="button"
+                onClick={handleClickCart}
+              >
+                Mettre dans mon panier
+              </button>
+            </div>
           </div>
         </div>
       </div>

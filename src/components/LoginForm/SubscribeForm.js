@@ -19,6 +19,7 @@ function SubscribeForm() {
   };
 
   return (
+
     <form onSubmit={handleSubscribe}>
       {FieldSubscribeName.map((fieldName) => (
         <Field

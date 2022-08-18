@@ -4,8 +4,10 @@ import 'src/components/LegalNotice/legalNotice.scss';
 function LegalNotice() {
   return (
     <Page>
-      <div>
-        <p>Mentions Légales</p>
+      <div className="container">
+        <div>
+          <p>Mentions Légales</p>
+        </div>
       </div>
     </Page>
 

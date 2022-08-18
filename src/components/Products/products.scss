@@ -3,16 +3,7 @@
 
 .products{
 
-  nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 2%;
-    font-family: vars.$fontLekton;
-    color: vars.$colorDarkGreen;
-    
-  }
-
+ 
   h1{
     font-family: vars.$fontMontserrat;
     font-size: 30px;
@@ -29,9 +20,18 @@
   
   
       
-    }
-  
   }
+  
+}
+.productsNav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2%;
+  font-family: vars.$fontLekton;
+  color: vars.$colorDarkGreen;
+  
+}
 
   
 

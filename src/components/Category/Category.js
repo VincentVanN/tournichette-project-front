@@ -3,9 +3,11 @@ import './category.scss';
 
 function Category() {
   return (
-    <article className="product">
-      <Products />
-    </article>
+    <div className="container">
+      <article className="product">
+        <Products />
+      </article>
+    </div>
   );
 }
 

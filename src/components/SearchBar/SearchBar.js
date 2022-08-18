@@ -1,4 +1,5 @@
 import 'src/components/SearchBar/searchBar.scss';
+
 function SearchBar() {
   return (
     <>
