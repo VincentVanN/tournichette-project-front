@@ -6,6 +6,7 @@ import Page from '../Page/Page';
 function Home() {
   const navigate = useNavigate();
   const handleClickCart = () => navigate('/panier');
+  const handleClickProducts = () => navigate('/produits');
   return (
     <Page>
       <div className="container">
@@ -34,6 +35,14 @@ function Home() {
                 Mettre dans mon panier
               </button>
             </div>
+          </div>
+          <div className="home_redirection">
+            <button
+              type="button"
+              onClick={handleClickProducts}
+            >
+              Voir nos produits
+            </button>
           </div>
         </div>
       </div>
