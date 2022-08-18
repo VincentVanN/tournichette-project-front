@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import 'src/components/Card/card.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import haricotsVert from 'src/components/Products/haricotsVert.jpg';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 
 function Card({
@@ -32,12 +33,13 @@ function Card({
   };
   return (
     <div className="card">
+       <img src={haricotsVert} className="card_image" alt="haricotsVert" />
       <article
         className="card_article"
         onClick={handleClick}
       >
-        <h2 className="card-title">{name}</h2>
-        <ul className="card-infos">
+        <h2 className="card_title">{name}</h2>
+        <ul className="card_infos">
           <li>{price}</li>
           <li>{unity}</li>
           <li>{stock}</li>
@@ -49,7 +51,7 @@ function Card({
         onClick={handleClickCart}
         className="card_button"
       >
-        Mettre dans mon panier
+        +
       </button>
     </div>
   );

@@ -1,4 +1,5 @@
 import Page from '../Page/Page';
+import 'src/components/Cgu/cgu.scss';
 
 function Cgu() {
   return (

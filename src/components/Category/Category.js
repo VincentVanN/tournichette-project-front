@@ -3,9 +3,9 @@ import './category.scss';
 
 function Category() {
   return (
-    <div>
+    <article className="product">
       <Products />
-    </div>
+    </article>
   );
 }
 

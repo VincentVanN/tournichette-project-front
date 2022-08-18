@@ -1,4 +1,6 @@
 @use 'src/styles/_vars.scss';
+
+
 .products{
 
   nav{
@@ -8,6 +10,7 @@
     margin: 2%;
     font-family: vars.$fontLekton;
     color: vars.$colorDarkGreen;
+    
   }
 
   h1{
@@ -19,8 +22,17 @@
   }
 
   &_items{
+    position: relative;
     display: flex;
     width: 100%;
-  }
+    flex-direction: column;
   
-}
+  
+      
+    }
+  
+  }
+
+  
+
+

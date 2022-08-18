@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import karine from 'src/components/LoginForm/Field/karine.jpg';
 import {
   changeLoginForm, login, setIsSubscribeForm,
 } from '../../feature/user.slice';
@@ -26,6 +27,7 @@ function LoginForm() {
   const isSubscribe = useSelector((state) => state.user.isSubscribeForm);
   return (
     <div className="form">
+      <img src={karine} className="karine" alt="form_image" />
       {!isSubscribe && (
       <form onSubmit={handleSubmit}>
         {FieldloginName.map((fieldName) => (

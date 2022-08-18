@@ -1,4 +1,5 @@
 import Page from '../Page/Page';
+import 'src/components/LegalNotice/legalNotice.scss';
 
 function LegalNotice() {
   return (

@@ -1,4 +1,5 @@
 import Page from '../Page/Page';
+import 'src/components/DevTeam/devTeam.scss';
 
 function DevTeam() {
   return (

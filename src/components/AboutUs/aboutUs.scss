@@ -1,0 +1,18 @@
+@use "src/styles/_vars.scss";
+
+.aboutUs {
+  color: #fd5523;
+  width: 45%;
+  text-align: center;
+  margin: 5%;
+
+  &_article{
+    width: 10%;
+  }
+  
+  &_button{
+    width: 100%;
+  }
+  
+  //&_logo{}
+}

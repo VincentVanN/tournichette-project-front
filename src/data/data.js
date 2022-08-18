@@ -84,7 +84,7 @@ export const products = [
     name: 'Concombre',
     slug: 'concombre',
     stock: 30,
-    unity: 'grammes',
+    unity: 'g',
     image: 'src/assets/Haricots vert.jpg',
     price: 2,
     code_product_replace: 44,
