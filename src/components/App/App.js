@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router';
 import './app.scss';
 import { setUser } from '../../feature/user.slice';
 
-import Loading from './Loading/Loading';
+import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
 import Home from '../Home/Home';
 import AboutUs from '../AboutUs/AboutUs';
@@ -23,7 +23,8 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
 
 function App() {
-  const loading = useSelector((state) => state.products.loading);
+  const loadingProducts = useSelector((state) => state.products.loadingProducts);
+  const loadingCategories = useSelector((state) => state.products.loadingCategories);
   const logged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
   const loggedUser = JSON.parse(localStorage.getItem('user'));
@@ -36,7 +37,7 @@ function App() {
     dispatch(getCategories());
   }, []);
 
-  if (loading) {
+  if (loadingProducts || loadingCategories) {
     return <Loading />;
   }
   return (
