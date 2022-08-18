@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import './app.scss';
-import { setProductsData } from '../../feature/products.slice';
 import { setUser } from '../../feature/user.slice';
 
 import Loading from './Loading/Loading';
@@ -21,6 +20,7 @@ import NotFound from '../NotFound/NotFound';
 import Orders from '../User/Orders';
 import UserContact from '../User/UserContact';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import { getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
 
 function App() {
   const loading = useSelector((state) => state.products.loading);
@@ -32,7 +32,8 @@ function App() {
     if (loggedUser) {
       dispatch(setUser(loggedUser));
     }
-    dispatch(setProductsData());
+    dispatch(getProducts());
+    dispatch(getCategories());
   }, []);
 
   if (loading) {
