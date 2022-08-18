@@ -26,31 +26,32 @@ function LoginForm() {
   };
   const isSubscribe = useSelector((state) => state.user.isSubscribeForm);
   return (
+
     <div className="form">
-      <img src={karine} className="karine" alt="form_image" />
+      <img src={karine} className="background" alt="image_karine" />
       {!isSubscribe && (
-      <form onSubmit={handleSubmit}>
-        {FieldloginName.map((fieldName) => (
-          <Field
-            stateName="login"
-            key={fieldName}
-            name={fieldName}
-            type={selectType(fieldName)}
-            placeholder={selectPlaceholder(fieldName)}
-            value={(fieldName === 'email') ? email : password}
-            onChange={handleChangeLogin}
-          />
-        ))}
-        <button
-          type="submit"
-        >Envoyer
-        </button>
-        <div
-          className="signIn"
-          onClick={handleSubscribe}
-        >inscription
-        </div>
-      </form>
+        <form className="form_input" onSubmit={handleSubmit}>
+          {FieldloginName.map((fieldName) => (
+            <Field
+              stateName="login"
+              key={fieldName}
+              name={fieldName}
+              type={selectType(fieldName)}
+              placeholder={selectPlaceholder(fieldName)}
+              value={(fieldName === 'email') ? email : password}
+              onChange={handleChangeLogin}
+            />
+          ))}
+          <button
+            type="submit"
+          >Envoyer
+          </button>
+          <div
+            className="form_signIn"
+            onClick={handleSubscribe}
+          >inscription
+          </div>
+        </form>
       )}
       {isSubscribe && <SubscribeForm />}
     </div>

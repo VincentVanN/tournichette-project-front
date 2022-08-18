@@ -20,7 +20,7 @@ function Products() {
   const { slug } = params;
   const filterProducts = () => products.filter((product) => (product.category.slug === slug));
   const arrayToDisplay = Object.keys(params).length === 0 ? products : filterProducts();
-  
+
   if ((isLoadingProducts || isLoadingCategories)) {
     return (
       <Page>
