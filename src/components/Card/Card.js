@@ -32,29 +32,26 @@ function Card({
     dispatch(pushInCart(incrementProduct()));
   };
   return (
-    <div className="container">
-      <div className="card">
-        <img src={haricotsVert} className="card_image" alt="haricotsVert" />
-        <article
-          className="card_article"
-          onClick={handleClick}
-        >
-          <h2 className="card_title">{name}</h2>
-          <ul className="card_infos">
-            <li>{price}</li>
-            <li>{unity}</li>
-            <li>{stock}</li>
-          </ul>
-
-        </article>
-        <button
-          type="button"
-          onClick={handleClickCart}
-          className="card_button"
-        >
-          +
-        </button>
-      </div>
+    <div className="card">
+      <img src={haricotsVert} className="card_image" alt="haricotsVert" />
+      <article
+        className="card_article"
+        onClick={handleClick}
+      >
+        <h2 className="card_title">{name}</h2>
+        <ul className="card_infos">
+          <li>{price}</li>
+          <li>{unity}</li>
+          <li>{stock}</li>
+        </ul>
+      </article>
+      <button
+        type="button"
+        onClick={handleClickCart}
+        className="card_button"
+      >
+        +
+      </button>
     </div>
   );
 }

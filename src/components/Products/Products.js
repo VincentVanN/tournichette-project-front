@@ -9,6 +9,7 @@ import Page from '../Page/Page';
 import Loading from '../Loading/Loading';
 
 function Products() {
+  const [searchTerm, setsearchTerm] = useState('');
   const products = useSelector((state) => state.products.products.data);
   const categories = useSelector((state) => state.products.categories.data);
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -19,7 +20,7 @@ function Products() {
   const { slug } = params;
   const filterProducts = () => products.filter((product) => (product.category.slug === slug));
   const arrayToDisplay = Object.keys(params).length === 0 ? products : filterProducts();
-  const [searchTerm, setsearchTerm] = useState('');
+  
   if ((isLoadingProducts || isLoadingCategories)) {
     return (
       <Page>
