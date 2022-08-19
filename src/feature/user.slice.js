@@ -13,8 +13,7 @@ export const userSlice = createSlice({
       firstname: '',
       lastname: '',
       phone: '',
-      username: '',
-      slug: '',
+      email: '',
       token: '',
       password: '',
       sndPassword: '',
@@ -23,11 +22,10 @@ export const userSlice = createSlice({
       username: '',
       password: '',
     },
-    isSubscribeForm: false,
     subscribeForm: {
       firstname: '',
       lastname: '',
-      username: '',
+      email: '',
       phone: '',
       password: '',
       sndPassword: '',
@@ -42,8 +40,6 @@ export const userSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       const { token } = payload;
       state.user.token = token;
-      setLocalStorage(state.user.token);
-      setUser(state.user.token);
     },
     [loginUser.rejected]: () => {
       console.log('request rejected');
@@ -72,7 +68,7 @@ export const userSlice = createSlice({
     },
     changeSubscribeForm: (state, { payload }) => {
       const [key, value] = payload;
-      state.subscribeForm[key] = value;
+      state.user[key] = value;
     },
     changeProfilForm: (state, { payload }) => {
       const [key, value] = payload;
@@ -87,12 +83,7 @@ export const userSlice = createSlice({
       state.user.firstname = '';
       state.user.lastname = '';
       state.user.phone = '';
-      state.login.email = '';
-      state.login.password = '';
       removeLocalStorage('user');
-    },
-    setIsSubscribeForm: (state) => {
-      state.isSubscribeForm = !state.isSubscribeForm;
     },
     setErrorMessage: (state, { payload }) => {
       state.errorMessage = payload;
