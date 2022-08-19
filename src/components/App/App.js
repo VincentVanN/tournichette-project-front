@@ -49,9 +49,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorie/:slug" element={<Products />} />
-        <Route path="/profil/:slug" element={<User />} />
-        <Route path="/profil/:slug/commandes" element={<Orders />} />
-        <Route path="/profil/:slug/contact" element={<UserContact />} />
+        <Route path="/profil/" element={<User />} />
+        <Route path="/profil/historique" element={<Orders />} />
+        <Route path="/profil/coordonnees" element={<UserContact />} />
         <Route path="/panier" element={<ShoppingCart />} />
         <Route path="/produit/:slug" element={<Product />} />
         <Route path="/produits" element={<Products />} />

@@ -1,14 +1,13 @@
 /* eslint-disable react/button-has-type */
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import Page from '../Page/Page';
 import './user.scss';
 
 // == Composant
 function User() {
   const navigate = useNavigate();
-  const { slug } = useParams();
-  const handleClickOrders = () => navigate(`/profil/${slug}/commandes`);
-  const handleClickContact = () => navigate(`/profil/${slug}/contact`);
+  const handleClickOrders = () => navigate('/profil/historique');
+  const handleClickContact = () => navigate('/profil/coordonnees');
   return (
     <Page>
       <div className="user">
