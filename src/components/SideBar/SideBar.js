@@ -29,7 +29,7 @@ function SideBar() {
 
             <div className="menu-items">
               <NavLink className="navlink" to="/">Accueil</NavLink>
-              <NavLink className="navlink" to={`/profil/${slug}`}>Mon profil</NavLink>
+              <NavLink className="navlink" to="/profil">Mon profil</NavLink>
               <div className="shoppingCart">
                 <NavLink className="navlink" to="/produits">Nos produits</NavLink>
                 {countOfProducts !== 0 && <div className="count">{countOfProducts}</div>}
