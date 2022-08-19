@@ -5,7 +5,6 @@ import './sideBar.scss';
 
 function SideBar() {
   const firstname = useSelector((state) => state.user.user.firstname);
-  const slug = useSelector((state) => state.user.user.slug);
   const isSecondaryMenu = useSelector((state) => state.user.isSecondaryMenu);
   const dispatch = useDispatch();
   const navigate = useNavigate();

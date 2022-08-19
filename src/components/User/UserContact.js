@@ -59,6 +59,7 @@ function UserContact() {
               className={`updateUserAccount input-item ${hiddenForm}`}
               name="email"
               type="text"
+              autocomplete="username"
               value={email}
               onChange={handleChange}
             />
@@ -68,6 +69,8 @@ function UserContact() {
               className={`updateUserAccount input-item ${hiddenForm}`}
               name="password"
               type="password"
+              placeholder="Ancien mot de passe"
+              autocomplete="current-password"
               value={password}
               onChange={handleChange}
             />
@@ -77,6 +80,17 @@ function UserContact() {
               className={`updateUserAccount input-item ${hiddenForm}`}
               name="sndPassword"
               type="password"
+              placeholder="Nouveau mot de passe"
+              autocomplete="new-password"
+              value={sndPassword}
+              onChange={handleChange}
+            />
+            <Field
+              className={`updateUserAccount input-item ${hiddenForm}`}
+              name="sndPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Confirmez votre mot de passe"
               value={sndPassword}
               onChange={handleChange}
             />
