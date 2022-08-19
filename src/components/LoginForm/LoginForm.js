@@ -31,12 +31,14 @@ function LoginForm() {
             name="username"
             type="email"
             placeholder="Email"
+            autocomplete="username"
             value={username}
             onChange={handleChangeLogin}
           />
           <Field
             name="password"
             type="password"
+            autocomplete="current-password"
             placeholder="Mot de passe"
             value={password}
             onChange={handleChangeLogin}
