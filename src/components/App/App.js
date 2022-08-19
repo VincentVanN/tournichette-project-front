@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="app">
 
-      {(!logged) && <LoginForm />}
+      {(!logged && !loggedUser) && <LoginForm />}
       {(logged)
     && (
       <Routes>
