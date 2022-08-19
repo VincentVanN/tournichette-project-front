@@ -26,7 +26,6 @@ export const loginUser = createAsyncThunk(
     });
     const { token } = result.data;
     setLocalStorage(token);
-    setUser(token);
     return result.data;
   },
 );

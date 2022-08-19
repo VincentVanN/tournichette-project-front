@@ -12,24 +12,27 @@ export const productsSlice = createSlice({
   },
   extraReducers: {
     [getProducts.pending]: () => {
-      console.log('waiting...');
+      console.log('[getProducts]waiting...');
     },
     [getProducts.fulfilled]: (state, { payload }) => {
       state.loadingProducts = false;
       state.products = payload;
+      console.log('[getProducts] OK!');
     },
     [getProducts.rejected]: () => {
-      console.log('request rejected');
+      console.log('[getProducts] request rejected');
     },
     [getCategories.pending]: (state) => {
       state.loadingCategories = true;
+      console.log('[getCategories]waiting...');
     },
     [getCategories.fulfilled]: (state, { payload }) => {
       state.loadingCategories = false;
       state.categories = payload;
+      console.log('[getCategories] OK!');
     },
     [getCategories.rejected]: () => {
-      console.log('request rejected');
+      console.log('[getCategories] request rejected');
     },
   },
   reducers: {

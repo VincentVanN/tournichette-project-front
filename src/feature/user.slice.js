@@ -1,13 +1,11 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUser, setUser } from '../AsyncChunk/AsyncChunkUser';
-import { users } from '../data/data';
-import { setLocalStorage, removeLocalStorage } from '../utils/localStorage';
+import { removeLocalStorage } from '../utils/localStorage';
 
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    users,
     logged: false,
     user: {
       firstname: '',
@@ -22,30 +20,28 @@ export const userSlice = createSlice({
       username: '',
       password: '',
     },
-    subscribeForm: {
-      firstname: '',
-      lastname: '',
-      email: '',
-      phone: '',
-      password: '',
-      sndPassword: '',
-    },
     errorMessage: '',
     isSecondaryMenu: false,
   },
+  //
+  //
+  //
   extraReducers: {
     [loginUser.pending]: () => {
-      console.log('waiting...');
+      console.log('[loginUser]waiting...');
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       const { token } = payload;
       state.user.token = token;
+      console.log('[loginUser] OK!');
     },
     [loginUser.rejected]: () => {
-      console.log('request rejected');
+      console.log('[loginUser] request rejected');
     },
+    //
+    //
     [setUser.pending]: () => {
-      console.log('waiting...');
+      console.log('[setUser]waiting...');
     },
     [setUser.fulfilled]: (state, { payload }) => {
       state.logged = true;
@@ -53,11 +49,15 @@ export const userSlice = createSlice({
       state.user.firstname = payload.firstname;
       state.user.lastname = payload.lastname;
       state.user.phone = payload.phone;
+      console.log('[setUser] OK!');
     },
     [setUser.rejected]: () => {
-      console.log('request rejected');
+      console.log('[setUser] request rejected');
     },
   },
+  //
+  //
+  //
   reducers: {
     setToken: (state, { payload }) => {
       state.user.token = payload;

@@ -29,14 +29,23 @@ function App() {
   const logged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
   const loggedUser = JSON.parse(localStorage.getItem('user'));
+  const token = useSelector((state) => state.user.user.token);
+  //
+  //
   useEffect(() => {
     if (loggedUser) {
-      dispatch(setUser(loggedUser.token));
       dispatch(setToken(loggedUser.token));
     }
+    if (token) {
+      dispatch(setUser(token));
+      console.log('setUser with LocalStorage');
+    }
+  }, [token]);
+  useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategories());
   }, []);
+
   if ((loadingProducts && logged) || (loadingCategories && logged)) {
     return <Loading />;
   }
