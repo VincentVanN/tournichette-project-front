@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
+import { loginUser, setUser } from '../AsyncChunk/AsyncChunkUser';
 import { users } from '../data/data';
 import { setLocalStorage, removeLocalStorage } from '../utils/localStorage';
 
@@ -10,23 +11,23 @@ export const userSlice = createSlice({
     logged: false,
     user: {
       firstname: '',
-      lastName: '',
+      lastname: '',
       phone: '',
-      email: '',
+      username: '',
       slug: '',
       token: '',
       password: '',
       sndPassword: '',
     },
     login: {
-      email: '',
+      username: '',
       password: '',
     },
     isSubscribeForm: false,
     subscribeForm: {
       firstname: '',
       lastname: '',
-      email: '',
+      username: '',
       phone: '',
       password: '',
       sndPassword: '',
@@ -34,7 +35,37 @@ export const userSlice = createSlice({
     errorMessage: '',
     isSecondaryMenu: false,
   },
+  extraReducers: {
+    [loginUser.pending]: () => {
+      console.log('waiting...');
+    },
+    [loginUser.fulfilled]: (state, { payload }) => {
+      const { token } = payload;
+      state.user.token = token;
+      setLocalStorage(state.user.token);
+      setUser(state.user.token);
+    },
+    [loginUser.rejected]: () => {
+      console.log('request rejected');
+    },
+    [setUser.pending]: () => {
+      console.log('waiting...');
+    },
+    [setUser.fulfilled]: (state, { payload }) => {
+      state.logged = true;
+      state.user.email = payload.email;
+      state.user.firstname = payload.firstname;
+      state.user.lastname = payload.lastname;
+      state.user.phone = payload.phone;
+    },
+    [setUser.rejected]: () => {
+      console.log('request rejected');
+    },
+  },
   reducers: {
+    setToken: (state, { payload }) => {
+      state.user.token = payload;
+    },
     changeLoginForm: (state, { payload }) => {
       const [key, value] = payload;
       state.login[key] = value;
@@ -46,18 +77,6 @@ export const userSlice = createSlice({
     changeProfilForm: (state, { payload }) => {
       const [key, value] = payload;
       state.user[key] = value;
-    },
-    setUser: (state, { payload }) => {
-      const userLogged = users.find((user) => (
-        (user.email === payload.email && user.token === payload.token)));
-      state.logged = true;
-      state.user.slug = userLogged.slug;
-      state.user.token = userLogged.token;
-      state.user.email = userLogged.email;
-      state.user.password = userLogged.password;
-      state.user.firstname = userLogged.firstname;
-      state.user.lastname = userLogged.lastname;
-      state.user.phone = userLogged.phone;
     },
     logout: (state) => {
       state.logged = false;
@@ -72,21 +91,6 @@ export const userSlice = createSlice({
       state.login.password = '';
       removeLocalStorage('user');
     },
-    login: (state) => {
-      const userLogged = users.find((user) => (
-        (user.email === state.login.email && user.password === state.login.password)));
-      if (userLogged) {
-        setLocalStorage(userLogged.email, userLogged.slug, userLogged.token);
-        state.logged = true;
-        state.user.slug = userLogged.slug;
-        state.user.token = userLogged.token;
-        state.user.email = userLogged.email;
-        state.user.password = userLogged.password;
-        state.user.firstname = userLogged.firstname;
-        state.user.lastname = userLogged.lastname;
-        state.user.phone = userLogged.phone;
-      }
-    },
     setIsSubscribeForm: (state) => {
       state.isSubscribeForm = !state.isSubscribeForm;
     },
@@ -100,11 +104,10 @@ export const userSlice = createSlice({
 });
 
 export const {
+  setToken,
   changeLoginForm,
   changeSubscribeForm,
-  setUser,
   logout,
-  login,
   setIsSubscribeForm,
   setErrorMessage,
   setSecondaryMenu,

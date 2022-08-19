@@ -11,8 +11,8 @@ export const productsSlice = createSlice({
     categories: null,
   },
   extraReducers: {
-    [getProducts.pending]: (state) => {
-      state.loadingProducts = true;
+    [getProducts.pending]: () => {
+      console.log('waiting...');
     },
     [getProducts.fulfilled]: (state, { payload }) => {
       state.loadingProducts = false;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import './app.scss';
-import { setUser } from '../../feature/user.slice';
+import { setUser } from '../../AsyncChunk/AsyncChunkUser';
 
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
@@ -21,6 +21,7 @@ import Orders from '../User/Orders';
 import UserContact from '../User/UserContact';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
+import { setToken } from '../../feature/user.slice';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -28,16 +29,15 @@ function App() {
   const logged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
   const loggedUser = JSON.parse(localStorage.getItem('user'));
-
   useEffect(() => {
     if (loggedUser) {
-      dispatch(setUser(loggedUser));
+      dispatch(setUser(loggedUser.token));
+      dispatch(setToken(loggedUser.token));
     }
     dispatch(getProducts());
     dispatch(getCategories());
   }, []);
-
-  if (loadingProducts || loadingCategories) {
+  if ((loadingProducts && logged) || (loadingCategories && logged)) {
     return <Loading />;
   }
   return (

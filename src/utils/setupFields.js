@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 export const selectValue = (fieldName) => {
   const {
-    firstname, lastname, email, phone, password, sndPassword,
+    firstname, lastname, username, phone, password, sndPassword,
   } = useSelector((state) => state.user.subscribeForm);
 
   if (fieldName === 'firstname') {
@@ -12,8 +12,8 @@ export const selectValue = (fieldName) => {
   if (fieldName === 'lastname') {
     return lastname;
   }
-  if (fieldName === 'email') {
-    return email;
+  if (fieldName === 'username') {
+    return username;
   }
   if (fieldName === 'phone') {
     return phone;
@@ -33,7 +33,7 @@ export const selectPlaceholder = (fieldName) => {
   if (fieldName === 'lastname') {
     return 'Nom';
   }
-  if (fieldName === 'email') {
+  if (fieldName === 'username') {
     return 'Email';
   }
   if (fieldName === 'phone') {
@@ -54,7 +54,7 @@ export const selectType = (fieldName) => {
   if (fieldName === 'lastname') {
     return 'text';
   }
-  if (fieldName === 'email') {
+  if (fieldName === 'username') {
     return 'Email';
   }
   if (fieldName === 'phone') {
