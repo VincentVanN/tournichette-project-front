@@ -13,6 +13,7 @@ function LoginForm() {
   const loginForm = useSelector((state) => state.user.login);
   const { username, password } = useSelector((state) => state.user.login);
   const FieldloginName = Object.keys(loginForm);
+  console.log(FieldloginName);
   const dispatch = useDispatch();
   const handleChangeLogin = (value, key) => {
     dispatch(changeLoginForm([key, value]));
@@ -36,7 +37,7 @@ function LoginForm() {
               stateName="login"
               key={fieldName}
               name={fieldName}
-              type={selectType(fieldName)}
+              type={selectType((fieldName === 'username') ? username : password)}
               placeholder={selectPlaceholder(fieldName)}
               value={(fieldName === 'username') ? username : password}
               onChange={handleChangeLogin}

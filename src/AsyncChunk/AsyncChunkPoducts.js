@@ -7,7 +7,6 @@ export const getProducts = createAsyncThunk(
   'products/setProducts',
   async (_, { getState }) => {
     const { token } = getState().user.user;
-    console.log(token);
     const result = await axios.get('http://localhost:8000/api/v1/products', {
       headers: {
         Authorization: `Bearer ${token}`,
