@@ -2,18 +2,8 @@
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setLocalStorage } from '../utils/localStorage';
 
-export const loginUser = createAsyncThunk(
-  'user/loginUser',
-  async (_, { getState }) => {
-    const { username, password } = getState().user.login;
-    const result = await axios.post('http://localhost:8000/api/login_check', {
-      username,
-      password,
-    });
-    return result.data;
-  },
-);
 export const setUser = createAsyncThunk(
   'user/setUser',
   async (token) => {
@@ -23,5 +13,20 @@ export const setUser = createAsyncThunk(
       },
     });
     return result.data.data;
+  },
+);
+
+export const loginUser = createAsyncThunk(
+  'user/loginUser',
+  async (_, { getState }) => {
+    const { username, password } = getState().user.login;
+    const result = await axios.post('http://localhost:8000/api/login_check', {
+      username,
+      password,
+    });
+    const { token } = result.data;
+    setLocalStorage(token);
+    setUser(token);
+    return result.data;
   },
 );
