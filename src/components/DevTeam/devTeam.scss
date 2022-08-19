@@ -1,1 +1,39 @@
 @use 'src/styles/_vars.scss';
+
+.devTeam {
+  color: vars.$colorDarkGreen;
+  margin-top: 5%;
+  font-family: vars.$fontLekton;
+
+  h2 {
+    font-family: vars.$fontMontserrat;
+    font-size: 30px;
+    color: vars.$colorOrange;
+    text-align: center;
+    margin: 3%;
+  }
+  &_cards {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_image {
+    width: 100%;
+  }
+  
+
+  &_card {
+    margin-left: 5%;
+    margin-top: 8%;
+    border: 1px solid black;
+    width: 20%;
+
+    h3{
+      font-size: 13px;
+    } 
+  }
+
+  &_info{
+    margin-top: 10%;
+  }
+}

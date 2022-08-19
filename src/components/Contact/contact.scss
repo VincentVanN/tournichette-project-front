@@ -1,1 +1,24 @@
 @use 'src/styles/_vars.scss';
+
+.contact {
+  h2 {
+    font-family: vars.$fontMontserrat;
+    font-size: 30px;
+    color: vars.$colorOrange;
+    text-align: center;
+    margin: 3%;
+  }
+
+  p {
+    color: vars.$colorDarkGreen;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-family: vars.$fontLekton;
+  }
+
+  a {
+    color: vars.$colorDarkGreen;
+    font-family: vars.$fontLekton;
+    margin-bottom: 5%;
+  }
+}
