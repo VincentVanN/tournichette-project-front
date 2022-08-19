@@ -1,25 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
 import karine from 'src/components/LoginForm/Field/karine.jpg';
 import {
-  changeLoginForm, login, setIsSubscribeForm,
+  changeLoginForm, setIsSubscribeForm,
 } from '../../feature/user.slice';
 import Field from './Field/Field';
 import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';
 import { selectPlaceholder, selectType } from '../../utils/setupFields';
+import { loginUser } from '../../AsyncChunk/AsyncChunkUser';
 
 function LoginForm() {
   const loginForm = useSelector((state) => state.user.login);
-  const { email, password } = useSelector((state) => state.user.login);
+  const { username, password } = useSelector((state) => state.user.login);
   const FieldloginName = Object.keys(loginForm);
   const dispatch = useDispatch();
-
   const handleChangeLogin = (value, key) => {
     dispatch(changeLoginForm([key, value]));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login());
+    dispatch(loginUser());
   };
   const handleSubscribe = () => {
     dispatch(setIsSubscribeForm());
@@ -38,7 +38,7 @@ function LoginForm() {
               name={fieldName}
               type={selectType(fieldName)}
               placeholder={selectPlaceholder(fieldName)}
-              value={(fieldName === 'email') ? email : password}
+              value={(fieldName === 'username') ? username : password}
               onChange={handleChangeLogin}
             />
           ))}

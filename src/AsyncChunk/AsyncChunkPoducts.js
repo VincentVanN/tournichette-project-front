@@ -1,12 +1,30 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const getProducts = createAsyncThunk(
   'products/setProducts',
-  async (dispatch, getState) => fetch('http://localhost:8000/api/v1/products').then((res) => res.json()),
+  async (_, { getState }) => {
+    const { token } = getState().user.user;
+    console.log(token);
+    const result = await axios.get('http://localhost:8000/api/v1/products', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return result.data;
+  },
 );
 export const getCategories = createAsyncThunk(
   'products/setCategories',
-  async (dispatch, getState) => fetch('http://localhost:8000/api/v1/categories').then((res) => res.json()),
+  async (_, { getState }) => {
+    const { token } = getState().user.user;
+    const result = await axios.get('http://localhost:8000/api/v1/categories', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return result.data;
+  },
 );
