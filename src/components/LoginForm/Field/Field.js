@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-import './field.scss';
+import '../loginForm.scss';
 import PropTypes from 'prop-types';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -32,7 +32,7 @@ function Field({
   const handleClick = () => setIsVisible(!isVisible);
   return (
     <div className="field">
-      <div className="field field_container">
+      <div className="field field-container">
         <input
           value={value}
           onChange={handleChange}

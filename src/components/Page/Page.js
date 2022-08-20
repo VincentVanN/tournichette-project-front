@@ -3,12 +3,10 @@ import SideBar from 'src/components/SideBar/SideBar';
 
 function Page({ children }) {
   return (
-    <div className="container">
-      <main className="page">
-        <SideBar />
-        {children}
-      </main>
-    </div>
+    <main>
+      <SideBar />
+      {children}
+    </main>
   );
 }
 

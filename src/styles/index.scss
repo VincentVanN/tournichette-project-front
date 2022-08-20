@@ -5,15 +5,12 @@
   font-family:'lekton', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Lekton:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 };
-
-body{
-  background-color: vars.$colorBeige;
+body {
+  font-family: vars.$fontLekton;
 }
-
 h1, h2, h3 {
-  font-weight: bold;
+  font-weight: normal;
 }
-
-img {
-  max-width: 100%;
+input {
+  background: vars.$colorLightGreen;
 }
