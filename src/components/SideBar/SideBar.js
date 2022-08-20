@@ -18,15 +18,15 @@ function SideBar() {
     <nav>
       <div className="navbar">
         <div className="nav nav-container">
-          <input className="checkbox" type="checkbox" name="" id="" />
+          <input className="checkbox" type="checkbox" />
           <div className="hamburger-lines">
             <span className="line line1" />
             <span className="line line2" />
             <span className="line line3" />
           </div>
           {(!isSecondaryMenu && (
-
             <div className="menu-items">
+              <div className="login">{`hello ${firstname}!`}</div>
               <NavLink className="navlink" to="/">Accueil</NavLink>
               <NavLink className="navlink" to="/profil">Mon profil</NavLink>
               <div className="shoppingCart">
@@ -59,7 +59,7 @@ function SideBar() {
                 className="logout"
                 onClick={handleLogout}
               >
-                <ion-icon size="small" name="exit-outline" />
+                <ion-icon size="large" name="exit-outline" />
               </div>
               <div
                 className="more"
@@ -68,9 +68,6 @@ function SideBar() {
               </div>
             </div>
           ))}
-          <div className="log">
-            <div className="login">{`hello ${firstname}!`}</div>
-          </div>
         </div>
       </div>
     </nav>

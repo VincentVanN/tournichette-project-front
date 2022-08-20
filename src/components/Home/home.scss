@@ -1,31 +1,39 @@
 @use 'src/styles/_vars.scss';
 
-.home{
-
-  &_title{
+.home {
+  width: 100vw;
+  height: 100vh;
+  background: vars.$colorBeige;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  &-logo {
+    width: 320px;
+    height: 320px;
+  }
+  &-annoncement{
     font-family: vars.$fontMontserrat;
-    font-size: 30px;
-    color: vars.$colorOrange;
+    font-size: 40px;
     text-align: center;
+    color: vars.$colorDarkGreen;
   }
-
-  img{
-    width: 70%;
-    border-radius: 30px;
-  }
-
-  &_basket{
-    border: solid black 1px;
-    width: 50%;
-    text-align: center;
-    margin: 5%;
-    border-radius: 30px;
-  }
-
-  &_basket h3{
+  &-button {
+    font-family: vars.$fontMontserrat;
     font-size: 20px;
-  
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: vars.$colorBeige;
+    color: vars.$colorDarkGreen;
+    padding: 4px 4px 4px 13px;
+    border-radius: 3px;
   }
+}
+ 
   
-
+ion-icon:active{
+    transform: scale(0.97);
 }

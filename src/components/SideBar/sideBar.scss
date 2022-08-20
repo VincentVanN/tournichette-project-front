@@ -1,17 +1,13 @@
 @use 'src/styles/_vars.scss';
-.nav {
-  z-index: 10;
-}
+
 .nav {
   max-width: 1050px;
-  width: 90%;
+  width: 100%;
   margin: auto;
+  z-index: 10;
 }
 
-.navbar {
-  width: 100%;
-  box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
-}
+
 
 .nav-container {
   display: flex;
@@ -21,8 +17,8 @@
 
 .navbar .menu-items {
   display: flex;
+  
 }
-
 
 .navbar .nav-container a:hover{
     font-weight: bolder;
@@ -31,11 +27,12 @@
 .nav-container {
   display: block;
   position: relative;
-  height: 60px;
+  height: 0;
+  background: vars.$colorBeige;
 }
 
 .nav-container .checkbox {
-  position: absolute;
+  position: fixed;
   display: block;
   height: 32px;
   width: 32px;
@@ -50,7 +47,7 @@
   display: block;
   height: 26px;
   width: 32px;
-  position: absolute;
+  position: fixed;
   top: 17px;
   left: 20px;
   z-index: 2;
@@ -64,9 +61,9 @@
   height: 4px;
   width: 100%;
   border-radius: 10px;
-  background: #0e2431;
+  background: vars.$colorOrange; 
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.94);
 }
-
 .nav-container .hamburger-lines .line1 {
   transform-origin: 0% 0%;
   transition: transform 0.4s ease-in-out;
@@ -82,18 +79,19 @@
 }
 
 .navbar .menu-items {
-  padding-top: 120px;
+  position: fixed;
   height: 100vh;
   width: 100%;
   transform: translate(-150%);
   display: flex;
   flex-direction: column;
-  margin-left: -40px;
+  margin-left: -50px;
   padding-left: 50px;
   transition: transform 0.5s ease-in-out;
   text-align: center;
-  background-color: rgba(206, 206, 206, 0.7);
+  background-color: vars.$colorLightGreen;
   color: rgb(71, 70, 70);
+  
 }
 
 .navbar .menu-items .navlink {
@@ -157,4 +155,16 @@
   border-radius: 50%;
   margin: 0 0 15px 10px;
   
+}
+.login{
+  position: absolute;
+  top: 15px;
+  color: vars.$colorDarkGreen;
+  font-family: vars.$fontMontserrat;
+  font-weight:400;
+}
+.navlink{
+  font-family: vars.$fontMontserrat;
+  color: vars.$colorDarkGreen;
+  text-decoration: none;
 }
