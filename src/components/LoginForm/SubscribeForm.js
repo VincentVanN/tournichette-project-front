@@ -1,4 +1,4 @@
-import './SubscribeForm.scss';
+import './loginForm.scss';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSubscribeForm } from '../../feature/user.slice';
@@ -85,7 +85,14 @@ function SubscribeForm({ handleSubmit }) {
         placeholder="Confirmez votre mot de passe"
         onChange={handleChangeSubscribeForm}
       />
-      <button type="submit">Envoyer</button>
+      <div className="form-button-container">
+        <button
+          type="submit"
+          className="form-button"
+        >
+          <ion-icon name="chevron-down-circle-outline" />
+        </button>
+      </div>
     </form>
   );
 }

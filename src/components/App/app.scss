@@ -1,4 +1,11 @@
 @use 'src/styles/_vars.scss';
-.container {
-  z-index: -10;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input{
+  box-shadow: 0 0 0px 1000px #DEF3E5 inset;
 }
