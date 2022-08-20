@@ -1,62 +1,29 @@
 @use 'src/styles/_vars.scss';
 
 .card {
- 
-  border: solid 1px black;
-  width: 80%;
-  margin: 5%;
-  display: flex;
-  // font-family:vars.$colorDarkGreen;
-  // background-color: vars.$colorLightGreen;
-  // font-style: vars.$fontMontserrat;
-  justify-content: space-between;
-  
-
-
+  width: 100%;
+  margin: 10px;
 
   &_article{
-    
-    width: 90%;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
-   
-   
-  
   }
   
   &_button{
-    width: 20%;
-    height: fit-content;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(10px);
-    border-radius: 50% 20% / 10% 40%;
-    border-color:#fd5523;
-    
-
+    border:none;
+    background: vars.$colorBeige;
   }
 
   &_infos{
-  
     display: flex;
     flex-direction: row;
-    margin-right: 10%;
-    // width: 25px;
-
-
-  
   }
-
-   &_image {
-    display:flex;
-    border-radius:30px;
-    align-content: flex-start;
-    width: 30px;
-    
-
-   }
+  &-leftSide {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
   
 }

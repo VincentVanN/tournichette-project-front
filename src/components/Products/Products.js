@@ -37,6 +37,11 @@ function Products() {
   const handleChange = (item) => (setSearchTerm(item));
   const arrayToDisplay = filteredArrayByCategory
     .filter((value) => (!searchTerm ? value : value.name.toLowerCase().includes(searchTerm.toLowerCase())));
+  const [isSearchBar, setIsSearchBar] = useState(false);
+  const setHiddenSearchBar = !isSearchBar ? 'hidden' : '';
+  const handleClick = () => {
+    setIsSearchBar(!isSearchBar);
+  };
 
   if ((isLoadingProducts || isLoadingCategories)) {
     return (
@@ -48,17 +53,30 @@ function Products() {
   return (
     <Page>
       <div className="products">
-        {categories.map((category) => <NavLink key={category.id} className="categoryName" to={`/categorie/${category.slug}`}>{category.name}</NavLink>)}
-        <h1>Liste des produits</h1>
-        <div className="searchbar">
+        <div className="products-searchBar">
           <SearchBar
             type="text"
             placeholder="Rechercher..."
-            className="searchbar_input"
+            className={`searchBar-input ${setHiddenSearchBar}`}
             onChange={handleChange}
           />
+          <ion-icon
+            name="search-outline"
+            onClick={handleClick}
+          />
         </div>
-        <ul className="products_items">
+        <div className="products-categories">
+          {categories.map((category) => (
+            <NavLink
+              key={category.id}
+              className="categoryName"
+              to={`/categorie/${category.slug}`}
+            >
+              {category.name}
+            </NavLink>
+          ))}
+        </div>
+        <ul className="products-items">
           {arrayToDisplay.map((product) => (
             <Card
               key={product.name}
@@ -67,7 +85,7 @@ function Products() {
               image={product.image}
               price={product.price}
               unity={product.unity}
-              stock={product.stock}
+              quantity={product.quantity}
               slug={product.slug}
               product={product}
               id={product.id}

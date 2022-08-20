@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import 'src/components/Card/card.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import haricotsVert from 'src/components/Products/haricotsVert.jpg';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 
 function Card({
-  name, price, unity, stock, onClick, slug, product,
+  name, price, unity, quantity, onClick, slug, product,
 }) {
   const handleClick = () => onClick(slug);
   const dispatch = useDispatch();
@@ -33,25 +32,27 @@ function Card({
   };
   return (
     <div className="card">
-      <img src={haricotsVert} className="card_image" alt="haricotsVert" />
       <article
         className="card_article"
         onClick={handleClick}
       >
-        <h2 className="card_title">{name}</h2>
+        <div className="card-leftSide">
+          <button
+            type="button"
+            onClick={handleClickCart}
+            className="card_button"
+          >
+            <ion-icon name="add-circle-outline" size="medium" />
+          </button>
+          <h2 className="card_title">{name}</h2>
+        </div>
+
         <ul className="card_infos">
-          <li>{price}</li>
+          <li>{quantity}</li>
           <li>{unity}</li>
-          <li>{stock}</li>
+          <li>{price}</li>
         </ul>
       </article>
-      <button
-        type="button"
-        onClick={handleClickCart}
-        className="card_button"
-      >
-        +
-      </button>
     </div>
   );
 }
@@ -60,7 +61,7 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   unity: PropTypes.string.isRequired,
-  stock: PropTypes.string.isRequired,
+  quantity: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   slug: PropTypes.string.isRequired,
   product: PropTypes.object.isRequired,
