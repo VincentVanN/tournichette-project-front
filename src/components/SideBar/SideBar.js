@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
+import logo from 'src/assets/logo-noName.svg';
 import { logout, setSecondaryMenu } from '../../feature/user.slice';
 import './sideBar.scss';
 
@@ -27,6 +28,7 @@ function SideBar() {
           {(!isSecondaryMenu && (
             <div className="menu-items">
               <div className="login">{`hello ${firstname}!`}</div>
+              <img src={logo} alt="logo tournichette" className="logo" />
               <NavLink className="navlink" to="/">Accueil</NavLink>
               <NavLink className="navlink" to="/profil">Mon profil</NavLink>
               <div className="shoppingCart">

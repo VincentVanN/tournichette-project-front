@@ -18,7 +18,7 @@ function Home() {
           type="button"
           onClick={handleClickProducts}
         >
-          <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f8734a', fontSize: '70px', marginBottom: '100px' }} />
+          <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f88e6d', fontSize: '70px', marginBottom: '100px' }} />
         </button>
       </div>
     </Page>
