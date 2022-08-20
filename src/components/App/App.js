@@ -44,7 +44,7 @@ function App() {
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategories());
-  }, []);
+  }, [token]);
 
   if ((loadingProducts && logged) || (loadingCategories && logged)) {
     return <Loading />;
