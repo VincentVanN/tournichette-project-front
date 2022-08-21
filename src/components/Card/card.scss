@@ -2,8 +2,10 @@
 
 .card {
   width: 90vw;
-  margin: 5px;
+  margin: 10px;
   display: block;
+  font-size: 1.3em;
+  padding-bottom: 13px;
   &_article{
     display: flex;
     align-items: center;
@@ -13,6 +15,7 @@
   &_button{
     border:none;
     background: vars.$colorBeige;
+    padding-left: 10px;
   }
 
   &_infos{
@@ -27,16 +30,17 @@
   }
   &-title{
     color: vars.$colorDarkGreen;
-    font-weight: 600;
+    font-weight: 500;
+    margin-left: 5px;
   }
   &-unity{
     color: vars.$colorMediumGreen;
-    font-weight: 600;
+    font-weight: 500;
     padding-right: 3px;
   }
   &-price{
     color: vars.$colorDarkGreen;
-    font-weight: 600;
+    font-weight: 500;
   }
 }
 .doted {
