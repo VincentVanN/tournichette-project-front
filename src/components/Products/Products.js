@@ -53,32 +53,33 @@ function Products() {
   return (
     <Page>
       <div className="products">
-        <div
-          className="products-searchBar"
-        >
-          <SearchBar
-            type="text"
-            placeholder="Rechercher..."
-            className={`products-searchBar-input ${setHiddenSearchBar}`}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <ion-icon
-            name="search-outline"
-            onClick={handleClick}
-          />
+        <div className="products-header">
+          <div className="products-searchBar">
+            <SearchBar
+              type="text"
+              placeholder="Rechercher..."
+              className={`products-searchBar-input ${setHiddenSearchBar}`}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <ion-icon
+              name="search-outline"
+              onClick={handleClick}
+            />
+          </div>
+          <div className="products-categories">
+            {categories.map((category) => (
+              <NavLink
+                key={category.id}
+                className="products-categoryName"
+                to={`/categorie/${category.slug}`}
+              >
+                {category.name === 'Produits transformés' ? 'Epicerie' : category.name}
+              </NavLink>
+            ))}
+          </div>
         </div>
-        <div className="products-categories">
-          {categories.map((category) => (
-            <NavLink
-              key={category.id}
-              className="products-categoryName"
-              to={`/categorie/${category.slug}`}
-            >
-              {category.name === 'Produits transformés' ? 'Epicerie' : category.name}
-            </NavLink>
-          ))}
-        </div>
+
         <ul className="products-items">
           {arrayToDisplay.map((product) => (
             <Card

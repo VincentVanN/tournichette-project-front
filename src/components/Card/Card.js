@@ -34,22 +34,9 @@ function Card({
     <div className="card">
       <article
         className="card_article"
+        onClick={handleClick}
       >
         <div className="card-leftSide">
-          <button
-            type="button"
-            onClick={handleClickCart}
-            className="card-leftSide card_button"
-          >
-            <ion-icon name="add-circle-outline" size="medium" />
-          </button>
-          <button
-            type="button"
-            onClick={handleClick}
-            className="card-leftSide card_button"
-          >
-            <ion-icon name="eye-outline" size="medium" />
-          </button>
           <h2 className="card-leftSide card-title">{name}</h2>
         </div>
         <div className="doted" />
@@ -59,6 +46,13 @@ function Card({
           <li className="card-unity">/</li>
           <li className="card-price">{`${price}€`}</li>
         </ul>
+        <button
+          type="button"
+          onClick={handleClickCart}
+          className="card-leftSide card_button"
+        >
+          <ion-icon name="add-circle-outline" size="medium" />
+        </button>
       </article>
     </div>
   );
