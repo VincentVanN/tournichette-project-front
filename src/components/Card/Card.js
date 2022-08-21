@@ -62,7 +62,7 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   unity: PropTypes.string.isRequired,
-  quantity: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   slug: PropTypes.string.isRequired,
   product: PropTypes.object.isRequired,

@@ -1,21 +1,21 @@
 @use 'src/styles/_vars.scss';
 
 .card {
-  width: 90vw;
+  width: 95vw;
   margin: 10px;
   display: block;
-  font-size: 1.3em;
+  font-size: 1.2em;
   padding-bottom: 13px;
   &_article{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   
   &_button{
     border:none;
     background: vars.$colorBeige;
-    padding-left: 10px;
+    margin-left: 8px;
   }
 
   &_infos{

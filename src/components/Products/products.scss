@@ -1,11 +1,10 @@
 @use 'src/styles/_vars.scss';
 
 .products{
-width: 100vw;
-height: 100vh;
-display: block;
-overflow: auto;
-margin: 10px;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  overflow: auto;
   &-searchBar {
    width: 100%;
    height: 40px;
@@ -15,32 +14,46 @@ margin: 10px;
    margin-top: 7px;
    &-input{
     border: none;
-    width: 200px;
+    width: 180px;
     height: 30px;
     font-family: vars.$fontLekton;
     }
   }
   &-categories {
-    position: sticky;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
     font-family: vars.$fontMontserrat;
     text-decoration: none;
     font-size: 1.2em;
-    padding-bottom: 20px;
+    
+    background: vars.$colorBeige;
   }
   &-categoryName{
     flex: auto;
     text-decoration: none;
     color: vars.$colorMediumGreen;
-    border-bottom: solid 1px vars.$colorMediumGreen;
-    padding: 0 0 20px 15px;
+    border-bottom: solid 2px vars.$colorMediumGreen;
+    padding: 0 0 25px 25px;
   }
   &-header{
-    position: sticky;
+    position: fixed;
+    height: 100px;
+    margin-bottom: 20px;
+    z-index: 3;
+    background: vars.$colorBeige;
+
+  }
+  &-items{
+    margin-top: 120px;
   }
 }
 .hidden {
   display: none; 
+}
+.active{
+  color: vars.$colorDarkGreen;
+  border-bottom: solid 2px vars.$colorDarkGreen;
+  font-weight: 500;
 }

@@ -1,13 +1,5 @@
 @use 'src/styles/_vars.scss';
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body{
-  min-width: 100vw;
-  min-height: 100vh;
-}
+
 input{
   box-shadow: 0 0 0px 1000px #DEF3E5 inset;
 }
