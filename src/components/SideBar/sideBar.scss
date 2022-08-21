@@ -2,35 +2,28 @@
 
 .nav {
   max-width: 1050px;
-  width: 100%;
+  width: 100vw;
   margin: auto;
   z-index: 10;
 }
-
-
-
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .navbar .menu-items {
   display: flex;
   
 }
-
 .navbar .nav-container a:hover{
     font-weight: bolder;
 }
-
 .nav-container {
   display: block;
   position: relative;
   height: 0;
   background: vars.$colorBeige;
 }
-
 .nav-container .checkbox {
   position: fixed;
   display: block;
@@ -42,7 +35,6 @@
   opacity: 0;
   cursor: pointer;
 }
-
 .nav-container .hamburger-lines {
   display: block;
   height: 26px;
@@ -81,12 +73,13 @@
 .navbar .menu-items {
   position: fixed;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   transform: translate(-150%);
   display: flex;
   flex-direction: column;
-  margin-left: -50px;
-  padding-left: 50px;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
   transition: transform 0.5s ease-in-out;
   text-align: center;
   background-color: vars.$colorLightGreen;

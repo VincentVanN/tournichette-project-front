@@ -1,11 +1,10 @@
 @use 'src/styles/_vars.scss';
 
 .card {
-  width: 100%;
-  margin: 10px;
-
+  width: 90vw;
+  margin: 5px;
+  display: block;
   &_article{
-    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,6 +23,25 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    padding-right: 4px;
   }
-  
+  &-title{
+    color: vars.$colorDarkGreen;
+    font-weight: 600;
+  }
+  &-unity{
+    color: vars.$colorMediumGreen;
+    font-weight: 600;
+    padding-right: 3px;
+  }
+  &-price{
+    color: vars.$colorDarkGreen;
+    font-weight: 600;
+  }
+}
+.doted {
+  flex: 1;
+  height: 15px;
+  border-bottom: dotted 3px vars.$colorMediumGreen;
+  margin-bottom: 5px;
 }

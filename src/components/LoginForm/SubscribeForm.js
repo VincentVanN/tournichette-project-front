@@ -20,46 +20,47 @@ function SubscribeForm({ handleSubmit }) {
     handleSubmit();
   };
   return (
-
-    <form onSubmit={handleSubscribe}>
-      <Field
-        name="email"
-        type="email"
-        value={email}
-        autocomplete="username"
-        placeholder="Email"
-        onChange={handleChangeSubscribeForm}
-      />
-      <Field
-        name="firstname"
-        type="text"
-        value={firstname}
-        placeholder="Prénom"
-        onChange={handleChangeSubscribeForm}
-      />
-      <Field
-        name="lastname"
-        type="text"
-        value={lastname}
-        placeholder="Nom"
-        onChange={handleChangeSubscribeForm}
-      />
-      <Field
-        name="phone"
-        type="text"
-        value={phone}
-        placeholder="Téléphone"
-        onChange={handleChangeSubscribeForm}
-      />
-      <Field
-        name="password"
-        type="password"
-        autocomplete="new-password"
-        value={password}
-        placeholder="Mot de passe"
-        onChange={handleChangeSubscribeForm}
-      />
-      {password && (
+    <>
+      <h1 className="form-title">Inscription</h1>
+      <form onSubmit={handleSubscribe}>
+        <Field
+          name="email"
+          type="email"
+          value={email}
+          autocomplete="username"
+          placeholder="Email"
+          onChange={handleChangeSubscribeForm}
+        />
+        <Field
+          name="firstname"
+          type="text"
+          value={firstname}
+          placeholder="Prénom"
+          onChange={handleChangeSubscribeForm}
+        />
+        <Field
+          name="lastname"
+          type="text"
+          value={lastname}
+          placeholder="Nom"
+          onChange={handleChangeSubscribeForm}
+        />
+        <Field
+          name="phone"
+          type="text"
+          value={phone}
+          placeholder="Téléphone"
+          onChange={handleChangeSubscribeForm}
+        />
+        <Field
+          name="password"
+          type="password"
+          autocomplete="new-password"
+          value={password}
+          placeholder="Mot de passe"
+          onChange={handleChangeSubscribeForm}
+        />
+        {password && (
         <div className="check-password">
           <div>
             <ion-icon name={`${validateLength(password) ? 'checkmark' : 'close'}-outline`} className="poet" style={{ color: validateLength(password) ? 'green' : 'red' }} />
@@ -75,25 +76,27 @@ function SubscribeForm({ handleSubmit }) {
           </div>
 
         </div>
-      )}
+        )}
 
-      <Field
-        name="sndPassword"
-        type="password"
-        autocomplete="new-password"
-        value={sndPassword}
-        placeholder="Confirmez votre mot de passe"
-        onChange={handleChangeSubscribeForm}
-      />
-      <div className="form-button-container">
-        <button
-          type="submit"
-          className="form-button"
-        >
-          <ion-icon name="chevron-down-circle-outline" />
-        </button>
-      </div>
-    </form>
+        <Field
+          name="sndPassword"
+          type="password"
+          autocomplete="new-password"
+          value={sndPassword}
+          placeholder="Confirmez votre mot de passe"
+          onChange={handleChangeSubscribeForm}
+        />
+        <div className="form-button-container">
+          <button
+            type="submit"
+            className="form-button"
+          >
+            <ion-icon name="chevron-down-circle-outline" />
+          </button>
+        </div>
+      </form>
+    </>
+
   );
 }
 SubscribeForm.propTypes = {
