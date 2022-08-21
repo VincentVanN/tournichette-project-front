@@ -1,8 +1,10 @@
 @use 'src/styles/_vars.scss';
 
 input{
-  box-shadow: 0 0 0px 1000px #DEF3E5 inset;
+  box-shadow: 0 0 0px 1000px #F1F5DF inset;
+  background: vars.$colorLightGreen;
 }
-main{
-background: vars.$colorBeige;
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
 }
