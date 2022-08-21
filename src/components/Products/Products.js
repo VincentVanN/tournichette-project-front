@@ -42,7 +42,7 @@ function Products() {
   const handleClick = () => {
     setIsSearchBar(!isSearchBar);
   };
-
+  const handleBlur = () => setIsSearchBar(false);
   if ((isLoadingProducts || isLoadingCategories)) {
     return (
       <Page>
@@ -53,12 +53,15 @@ function Products() {
   return (
     <Page>
       <div className="products">
-        <div className="products-searchBar">
+        <div
+          className="products-searchBar"
+        >
           <SearchBar
             type="text"
             placeholder="Rechercher..."
-            className={`searchBar-input ${setHiddenSearchBar}`}
+            className={`products-searchBar-input ${setHiddenSearchBar}`}
             onChange={handleChange}
+            onBlur={handleBlur}
           />
           <ion-icon
             name="search-outline"
@@ -69,10 +72,10 @@ function Products() {
           {categories.map((category) => (
             <NavLink
               key={category.id}
-              className="categoryName"
+              className="products-categoryName"
               to={`/categorie/${category.slug}`}
             >
-              {category.name}
+              {category.name === 'Produits transformés' ? 'Epicerie' : category.name}
             </NavLink>
           ))}
         </div>

@@ -1,5 +1,8 @@
 @use 'src/styles/_vars.scss';
-
+.home-container{
+  display: block;
+  overflow: auto;
+}
 .home {
   width: 100vw;
   height: 100vh;

@@ -34,23 +34,30 @@ function Card({
     <div className="card">
       <article
         className="card_article"
-        onClick={handleClick}
       >
         <div className="card-leftSide">
           <button
             type="button"
             onClick={handleClickCart}
-            className="card_button"
+            className="card-leftSide card_button"
           >
             <ion-icon name="add-circle-outline" size="medium" />
           </button>
-          <h2 className="card_title">{name}</h2>
+          <button
+            type="button"
+            onClick={handleClick}
+            className="card-leftSide card_button"
+          >
+            <ion-icon name="eye-outline" size="medium" />
+          </button>
+          <h2 className="card-leftSide card-title">{name}</h2>
         </div>
-
+        <div className="doted" />
         <ul className="card_infos">
-          <li>{quantity}</li>
-          <li>{unity}</li>
-          <li>{price}</li>
+          <li className="card-unity">{quantity}</li>
+          <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
+          <li className="card-unity">/</li>
+          <li className="card-price">{`${price}€`}</li>
         </ul>
       </article>
     </div>
