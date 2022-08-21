@@ -32,28 +32,40 @@ function Card({
   };
   return (
     <div className="card">
-      <article
-        className="card_article"
-        onClick={handleClick}
-      >
-        <div className="card-leftSide">
-          <h2 className="card-leftSide card-title">{name}</h2>
-        </div>
-        <div className="doted" />
-        <ul className="card_infos">
-          <li className="card-unity">{quantity}</li>
-          <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
-          <li className="card-unity">/</li>
-          <li className="card-price">{`${price}€`}</li>
-        </ul>
-        <button
-          type="button"
-          onClick={handleClickCart}
-          className="card-leftSide card_button"
+      <div className="card-container">
+        <article
+          className="card_article"
         >
-          <ion-icon name="add-circle-outline" size="medium" />
-        </button>
-      </article>
+          <div className="card-leftSide">
+            <h2 className="card-leftSide card-title">{name}</h2>
+          </div>
+          <div className="doted" />
+          <ul className="card_infos">
+            <li className="card-unity">{quantity}</li>
+            <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
+            <li className="card-unity">/</li>
+            <li className="card-price">{`${price}€`}</li>
+          </ul>
+        </article>
+        <div className="button-group">
+          <button
+            type="button"
+            onClick={handleClickCart}
+            className="card-button"
+          >
+            <ion-icon name="add-circle-outline" size="medium" />
+          </button>
+          <button
+            type="button"
+            onClick={handleClick}
+            className="card-button"
+          >
+            <ion-icon name="reader-outline" size="medium" />
+          </button>
+        </div>
+
+      </div>
+
     </div>
   );
 }
