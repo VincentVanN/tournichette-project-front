@@ -27,14 +27,25 @@ function SideBar() {
           </div>
           {(!isSecondaryMenu && (
             <div className="menu-items">
-              <div className="login">{`hello ${firstname}!`}</div>
+              <div className="header">
+                <div className="login">{`hello ${firstname}!`}</div>
+                {countOfProducts !== 0 && (
+                  <div className="cart">
+                    <div className="count">
+                      <p>
+                        {countOfProducts}
+                      </p>
+                    </div>
+                    <div className="icon">
+                      <ion-icon name="cart-outline" style={{ fontSize: '45px' }} />
+                    </div>
+                  </div>
+                )}
+              </div>
               <img src={logo} alt="logo tournichette" className="logo" />
               <NavLink className="navlink" to="/">Accueil</NavLink>
               <NavLink className="navlink" to="/profil">Mon profil</NavLink>
-              <div className="shoppingCart">
-                <NavLink className="navlink" to="/produits">Nos produits</NavLink>
-                {countOfProducts !== 0 && <div className="count">{countOfProducts}</div>}
-              </div>
+              <NavLink className="navlink" to="/produits">Nos produits</NavLink>
               <NavLink className="navlink" to="/panier">Panier d'achat</NavLink>
               <NavLink className="navlink" to="/contact">Nous contacter</NavLink>
               <NavLink className="navlink" to="/apropos">Qui sommes-nous?</NavLink>
@@ -42,7 +53,7 @@ function SideBar() {
                 className="logout"
                 onClick={handleLogout}
               >
-                <ion-icon size="large" name="exit-outline" />
+                <ion-icon name="exit-outline" style={{ fontSize: '45px' }} />
               </div>
               <div
                 className="more"
@@ -61,7 +72,7 @@ function SideBar() {
                 className="logout"
                 onClick={handleLogout}
               >
-                <ion-icon size="large" name="exit-outline" />
+                <ion-icon name="exit-outline" style={{ fontSize: '45px' }} />
               </div>
               <div
                 className="more"

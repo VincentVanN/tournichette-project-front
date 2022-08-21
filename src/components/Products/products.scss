@@ -10,13 +10,14 @@
    height: 40px;
    display: flex;
    justify-content: center;
-   margin-bottom: 15px;
-   margin-top: 7px;
+   margin: 17px 0 10px;
    &-input{
     border: none;
     width: 180px;
     height: 30px;
     font-family: vars.$fontLekton;
+    margin-left: 30px;
+    animation: opening 0.5s;
     }
   }
   &-categories {
@@ -38,7 +39,7 @@
   }
   &-header{
     position: fixed;
-    height: 100px;
+    height: 90px;
     margin-bottom: 20px;
     z-index: 3;
     background: vars.$colorBeige;
@@ -55,4 +56,12 @@
   color: vars.$colorDarkGreen;
   border-bottom: solid 2px vars.$colorDarkGreen;
   font-weight: 500;
+}
+@keyframes opening {
+  from {
+    width: 0;
+  }
+  to {
+    width: 180px;
+  }
 }

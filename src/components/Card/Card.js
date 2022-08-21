@@ -8,10 +8,7 @@ function Card({
 }) {
   const handleClick = () => onClick(slug);
   const dispatch = useDispatch();
-
   const products = useSelector((state) => state.shoppingCart.shoppingCart);
-  // eslint-disable-next-line no-trailing-spaces
-
   const incrementProduct = () => {
     const productsCopy = [...products];
     if (productsCopy.some((element) => element.id === product.id)) {
@@ -53,7 +50,7 @@ function Card({
             onClick={handleClickCart}
             className="card-button"
           >
-            <ion-icon name="add-circle-outline" size="medium" />
+            <ion-icon name="cart-outline" size="medium" />
           </button>
           <button
             type="button"

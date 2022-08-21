@@ -63,7 +63,7 @@ function SubscribeForm({ handleSubmit }) {
         {password && (
         <div className="check-password">
           <div>
-            <ion-icon name={`${validateLength(password) ? 'checkmark' : 'close'}-outline`} className="poet" style={{ color: validateLength(password) ? 'green' : 'red' }} />
+            <ion-icon name={`${validateLength(password) ? 'checkmark' : 'close'}-outline`} style={{ color: validateLength(password) ? 'green' : 'red' }} />
             <p>6 caractères</p>
           </div>
           <div>
