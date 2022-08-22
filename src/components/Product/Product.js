@@ -26,6 +26,15 @@ function Product() {
   // navigate in product
   const handleNavigateForward = () => navigate(`/produit/${navigationInProduct(products, oneProduct, 1)}`);
   const handleNavigateBackward = () => navigate(`/produit/${navigationInProduct(products, oneProduct, -1)}`);
+  //
+  const getQuantityInCart = () => {
+    const productInCart = cart.find((product) => product.name === oneProduct.name);
+    if (!productInCart) {
+      return 0;
+    }
+    return productInCart.quantity;
+  };
+  const quantityInCart = getQuantityInCart();
   return (
     <Page>
       <div className="container">
@@ -61,7 +70,7 @@ function Product() {
               <span className="product-meta-span span-three">
                 <span className="span-three-title">Panier</span>
                 <div className="container-meta">
-                  <span className="span-three-info">0</span>
+                  <span className="span-three-info">{quantityInCart}</span>
                 </div>
               </span>
             </div>
