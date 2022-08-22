@@ -6,7 +6,7 @@ function LegalNotice() {
     <Page>
       <div className="container">
         <div>
-          <p>Mentions Légales</p>
+          <h2>Mentions Légales</h2>
         </div>
       </div>
     </Page>
