@@ -2,6 +2,7 @@ import './shoppingCart.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Page from '../Page/Page';
+import Card from '../Card/Card';
 
 function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
@@ -28,23 +29,25 @@ function ShoppingCart() {
       )}
         {cartToDisplay
       && (
-
-      <div className="shoppingCart">
-        {cartToDisplay.map((item) => (
-          <div
-            className="productLine"
-            key={item.name}
-          >
-            <p>{item.name}</p>
-            <p>{item.quantity}</p>
-            <p>x</p>
-            <p>{item.parcel}</p>
-            <p>{item.unity}</p>
-            <p>{`${item.quantity * item.price}€`}</p>
-          </div>
-        ))}
-        <p>{`total ${resultToDisplay}€`}</p>
-      </div>
+        <div className="products">
+          <ul className="products-items">
+            {cartToDisplay.map((product) => (
+              <Card
+                related="shoppingCart"
+                key={product.name}
+                name={product.name}
+                image={product.image}
+                price={product.price}
+                unity={product.unity}
+                quantity={product.quantity}
+                slug={product.slug}
+                product={product}
+                id={product.id}
+              />
+            ))}
+          </ul>
+          <p>{`total ${resultToDisplay}€`}</p>
+        </div>
       )}
       </div>
     </Page>
