@@ -6,7 +6,12 @@ import Page from '../Page/Page';
 function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const navigate = useNavigate();
-  const handleClick = () => navigate('/');
+  const handleClick = () => navigate('/produits');
+  const arrayToReduce = [];
+  cartToDisplay.forEach((element) => {
+    arrayToReduce.push(element.quantity * parseFloat(element.price));
+  });
+  const resultToDisplay = arrayToReduce.reduce((x, y) => x + y, 0);
   return (
     <Page>
       <div className="container">
@@ -38,6 +43,7 @@ function ShoppingCart() {
             <p>{`${item.quantity * item.price}€`}</p>
           </div>
         ))}
+        <p>{`total ${resultToDisplay}€`}</p>
       </div>
       )}
       </div>
