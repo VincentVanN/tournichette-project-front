@@ -49,25 +49,18 @@ function Product() {
             </div>
           </div>
           <div className="product-navigation">
-            <div className="product-navigation-backward"></div>
-            <div className="product-navigation-forward"></div>
+            <div className="product-navigation-backward">
+              <ion-icon name="arrow-back-circle-outline" />
+              <p>Précédent</p>
+            </div>
+            <div className="product-navigation-forward">
+              <p>suivant</p>
+              <ion-icon name="arrow-forward-circle-outline" />
+            </div>
+            <div className="product-navigation-cart">
+              <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px' }} />
+            </div>
           </div>
-          {/* <article className="product-article">
-            <h2 className="product-title">{oneProduct.name}</h2>
-            <ul className="product-infos">
-              <li>{oneProduct.quantity}</li>
-              <li>{oneProduct.unity}</li>
-              <li>{oneProduct.price}</li>
-            </ul>
-
-          </article>
-          <button
-            type="button"
-            onClick={handleClickCart}
-            className="product_button"
-          >
-            Mettre dans mon panier
-          </button> */}
         </div>
       </div>
     </Page>
