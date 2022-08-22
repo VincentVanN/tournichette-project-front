@@ -82,6 +82,7 @@ function Products() {
         <ul className="products-items">
           {arrayToDisplay.map((product) => (
             <Card
+              related="products"
               key={product.name}
               onClick={handleClickProduct}
               name={product.name}
