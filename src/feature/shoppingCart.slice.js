@@ -9,7 +9,12 @@ export const shoppingCartSlice = createSlice({
   },
   reducers: {
     setCount: (state, { payload }) => {
-      state.count += payload;
+      if (state.count === 0 && payload < 0) {
+        state.count = 0;
+      }
+      else {
+        state.count += payload;
+      }
     },
     pushInCart: (state, { payload }) => {
       state.shoppingCart = payload;

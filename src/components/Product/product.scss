@@ -82,6 +82,7 @@ background: vars.$colorBeige;
     justify-content: center;
     background: vars.$colorveryLightGreen;
     color: vars.$colorMediumGreen;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     &-backward {
       width: 150px;
       height: 100px;
