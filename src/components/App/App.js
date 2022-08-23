@@ -22,10 +22,12 @@ import UserContact from '../User/UserContact';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
 import { setToken } from '../../feature/user.slice';
+import { setCartAmount } from '../../feature/shoppingCart.slice';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
   const loadingCategories = useSelector((state) => state.products.loadingCategories);
+  const shoppingCart = useSelector((state) => state.shoppingCart.shoppingCart);
   const logged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
   const loggedUser = JSON.parse(localStorage.getItem('user'));
@@ -45,7 +47,9 @@ function App() {
     dispatch(getProducts());
     dispatch(getCategories());
   }, [token]);
-
+  useEffect(() => {
+    dispatch(setCartAmount());
+  }, [shoppingCart]);
   if ((loadingProducts && logged) || (loadingCategories && logged)) {
     return <Loading />;
   }
