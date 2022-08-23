@@ -68,7 +68,7 @@ function Product() {
                 </div>
               </span>
               <span className="product-meta-span span-three">
-                <span className="span-three-title">Dans le Panier</span>
+                <span className="span-three-title">Panier</span>
                 <div className="container-meta">
                   <span className="span-three-info">{quantityInCart}</span>
                 </div>

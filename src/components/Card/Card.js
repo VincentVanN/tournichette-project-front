@@ -66,8 +66,8 @@ function Card({
           <ul className="card_infos">
             <li className="card-unity">{quantity}</li>
             <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
-            <li className="card-unity">/</li>
-            <li className="card-price">{`${price}€`}</li>
+            <li className="card-unity">--</li>
+            <li className="card-price">{`${(quantity * parseFloat(price)).toFixed(2)}€`}</li>
           </ul>
         </article>
         <div className="button-group">
@@ -85,6 +85,9 @@ function Card({
           >
             <ion-icon name="add-circle-outline" size="medium" />
           </button>
+          <div className="button-group-meta">
+            {`${price}€/${unity}`}
+          </div>
         </div>
       </div>
       )}
