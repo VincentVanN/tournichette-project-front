@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, setUser } from '../AsyncChunk/AsyncChunkUser';
+import { loginUser, setUser, createUser } from '../AsyncChunk/AsyncChunkUser';
 import { removeLocalStorage } from '../utils/localStorage';
 
 export const userSlice = createSlice({
@@ -53,6 +53,23 @@ export const userSlice = createSlice({
     },
     [setUser.rejected]: () => {
       console.log('[setUser] request rejected');
+    },
+    //
+    //
+    [createUser.pending]: () => {
+      console.log('[createUser]waiting...');
+    },
+    [createUser.fulfilled]: (state, { payload }) => {
+      state.email = '';
+      state.password = '';
+      state.firstname = null;
+      state.lastname = null;
+      state.phone = null;
+      state.adresse = null;
+      console.log('[createUser] OK!');
+    },
+    [createUser.rejected]: () => {
+      console.log('[createUser] request rejected');
     },
   },
   //

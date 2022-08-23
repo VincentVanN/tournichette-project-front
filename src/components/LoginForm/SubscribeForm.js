@@ -6,8 +6,9 @@ import {
   validateUpperCase, validateLength, validateDigit, validateScdPassword,
 } from '../../feature/validatePassword';
 import Field from './Field/Field';
+import { createUser } from '../../AsyncChunk/AsyncChunkUser';
 
-function SubscribeForm({ handleSubmit }) {
+function SubscribeForm() {
   const {
     firstname, lastname, phone, email, password, sndPassword,
   } = useSelector((state) => state.user.user);
@@ -17,7 +18,8 @@ function SubscribeForm({ handleSubmit }) {
   };
   const handleSubscribe = (e) => {
     e.preventDefault();
-    handleSubmit();
+    // handleSubmit();
+    dispatch(createUser());
   };
   return (
     <>
@@ -99,9 +101,9 @@ function SubscribeForm({ handleSubmit }) {
 
   );
 }
-SubscribeForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-};
+// SubscribeForm.propTypes = {
+//   handleSubmit: PropTypes.func.isRequired,
+// };
 export default SubscribeForm;
 
 // <ion-icon name="close-outline"></ion-icon> false
