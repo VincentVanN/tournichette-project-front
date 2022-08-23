@@ -1,15 +1,24 @@
 @use 'src/styles/_vars.scss';
 
-nav {
+/* -------max 576---------- */
+@media only screen and (max-width: 576px) {
+  nav {
   max-width: 1050px;
   width: 110vw;
   margin: auto;
   z-index: 10;
 }
+ }
+
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  display: block;
+  position: relative;
+  height: 0;
+  background: vars.$colorBeige;
+  
 }
 .navbar .menu-items {
   display: flex;
@@ -17,12 +26,6 @@ nav {
 }
 .navbar .nav-container a:hover{
     font-weight: bolder;
-}
-.nav-container {
-  display: block;
-  position: relative;
-  height: 0;
-  background: vars.$colorBeige;
 }
 .nav-container .checkbox {
   position: fixed;
@@ -180,7 +183,7 @@ nav {
   right: 50px;
 }
 
-/* ----------------- */
+/* -------min 576---------- */
   .nav{
     display: flex;
     height: 100%;
@@ -190,12 +193,6 @@ nav {
     align-items: center;
     position: fixed;
   }
-  //  .container{
-  //   display:flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   z-index: 10;
-  // }
   
   .sidebars{
     background: vars.$colorBeige;

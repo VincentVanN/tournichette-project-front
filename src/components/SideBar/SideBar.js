@@ -53,7 +53,7 @@ function SideBar() {
                   <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/">Accueil</NavLink>
                 </li>
                 <li>
-                  <span className="icon"><ion-icon name="happy-outline" to="/profil" /></span>
+                  <span className="icon"><ion-icon name="happy-outline" /></span>
                   <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/profil">Mon profil</NavLink>
                 </li>
                 <li>
