@@ -39,7 +39,7 @@ function SideBar() {
                     </p>
                   </div>
                   <div className="icon">
-                    <ion-icon name="cart-outline" style={{ fontSize: '45px' }} />
+                    <ion-icon name="cart-outline" style={{ fontSize: '30px' }} />
                   </div>
                 </div>
               )}
