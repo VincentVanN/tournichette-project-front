@@ -8,7 +8,7 @@ import {
 import Field from './Field/Field';
 import { createUser } from '../../AsyncChunk/AsyncChunkUser';
 
-function SubscribeForm() {
+function SubscribeForm({ handleSubmit }) {
   const {
     firstname, lastname, phone, email, password, sndPassword,
   } = useSelector((state) => state.user.user);
@@ -18,8 +18,8 @@ function SubscribeForm() {
   };
   const handleSubscribe = (e) => {
     e.preventDefault();
-    // handleSubmit();
     dispatch(createUser());
+    handleSubmit();
   };
   return (
     <>
@@ -101,9 +101,8 @@ function SubscribeForm() {
 
   );
 }
-// SubscribeForm.propTypes = {
-//   handleSubmit: PropTypes.func.isRequired,
-// };
+SubscribeForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 export default SubscribeForm;
 
-// <ion-icon name="close-outline"></ion-icon> false

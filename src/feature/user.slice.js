@@ -59,13 +59,13 @@ export const userSlice = createSlice({
     [createUser.pending]: () => {
       console.log('[createUser]waiting...');
     },
-    [createUser.fulfilled]: (state, { payload }) => {
+    [createUser.fulfilled]: (state) => {
       state.email = '';
       state.password = '';
-      state.firstname = null;
-      state.lastname = null;
-      state.phone = null;
-      state.adresse = null;
+      state.firstname = '';
+      state.lastname = '';
+      state.phone = '';
+      state.adresse = '';
       console.log('[createUser] OK!');
     },
     [createUser.rejected]: () => {

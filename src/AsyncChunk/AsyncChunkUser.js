@@ -33,13 +33,11 @@ export const loginUser = createAsyncThunk(
 export const createUser = createAsyncThunk(
   'user/createUser',
   async (_, { getState }) => {
-    const { email, password } = getState().user.create;
+    const { email, password } = getState().user.user;
     const result = await axios.post('http://localhost:8000/api/v1/users/create', {
       email,
       password,
     });
-    const { token } = result.data;
-    setLocalStorage(token);
     return result.data;
   },
 );

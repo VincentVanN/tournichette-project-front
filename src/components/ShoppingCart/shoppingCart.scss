@@ -1,15 +1,15 @@
 @use 'src/styles/_vars.scss';
 .container{
   display: flex;
-  justify-content: space-around;
+  // justify-content: space-around;
   align-items: center;
-  flex-direction: column;
+  flex-direction: flex-start;
 }
 .cart-empty{
   width: 1100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex;
   align-items: center;
   flex-direction: column;
   font-family: vars.$fontMontserrat;
@@ -20,5 +20,6 @@
     color: vars.$colorDarkGreen;
     font-weight: 600;
   }
+  margin-top: 20%;
 }
 
