@@ -23,6 +23,7 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
 import { setToken } from '../../feature/user.slice';
 import { setCartAmount } from '../../feature/shoppingCart.slice';
+import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -42,6 +43,7 @@ function App() {
       dispatch(setUser(token));
       console.log('setUser with LocalStorage');
     }
+    dispatch(getDepotsList());
   }, [token]);
   useEffect(() => {
     dispatch(getProducts());
