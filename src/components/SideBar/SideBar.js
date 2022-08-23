@@ -72,10 +72,16 @@ function SideBar() {
                   <span className="icon"><ion-icon name="help-outline" /></span>
                   <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/apropos">Qui sommes-nous?</NavLink>
                 </li>
+                <li>
+                  <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/La-Dev-Team">La Dev Team</NavLink>
+                </li>
+                <li>
+                  <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/CGU">CGU</NavLink>
+                </li>
+                <li>
+                  <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/mentions-legales">Mentions légales</NavLink>
+                </li>
               </ul>
-              <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/La-Dev-Team">La Dev Team</NavLink>
-              <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/CGU">CGU</NavLink>
-              <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/mentions-legales">Mentions légales</NavLink>
               <div
                 className="logout"
                 onClick={handleLogout}

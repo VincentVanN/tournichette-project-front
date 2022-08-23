@@ -199,7 +199,7 @@
     width: 200px;
     height: 100vh;
     transition: all 0.5s;
-    border: 1px solid vars.$colorDarkGreen;
+    border: 2px solid vars.$colorOrange;
     text-align: center;
   }
   
@@ -232,7 +232,6 @@
     transition: all 0.5s;
     color: vars.$colorDarkGreen;
     line-height: 20px;
-    margin-bottom: 20px;
   }
   .navlink-more:hover{
     color: vars.$colorDarkGreen;
@@ -250,24 +249,23 @@
   .icon {
     display: flex ;
     margin-bottom: 20px;
+
   }
   .menu-items {
     margin-bottom: 20px;
     color: vars.$colorDarkGreen;
   }
   li{
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     display: flex;
     justify-content: center;
   }
   
   .count {
     position: relative;
-    // top: 20px;
     left: 2px;
     z-index: 3;
     margin: auto;
-    // text-align: center;
     width: 24px;
     height: 24px;
     font-size: 1.3em;
@@ -283,4 +281,5 @@
   .logins{
     margin-bottom: 10%;
   }
+
   
