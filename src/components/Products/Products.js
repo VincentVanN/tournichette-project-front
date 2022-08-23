@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 import './products.scss';
 import { useSelector } from 'react-redux';

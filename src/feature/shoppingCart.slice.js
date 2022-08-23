@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
+import { getDepotsList } from '../AsyncChunk/AsyncChunkShoppingCart';
 
 export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
@@ -7,6 +8,19 @@ export const shoppingCartSlice = createSlice({
     shoppingCart: [],
     count: 0,
     cartAmount: 0,
+    depots: [],
+  },
+  extraReducers: {
+    [getDepotsList.pending]: () => {
+      console.log('[getDepotsList]waiting...');
+    },
+    [getDepotsList.fulfilled]: (state, { payload }) => {
+      state.depots = payload;
+      console.log('[getDepotsList] OK!');
+    },
+    [getDepotsList.rejected]: () => {
+      console.log('[getDepotsList] request rejected');
+    },
   },
   reducers: {
     setCount: (state, { payload }) => {

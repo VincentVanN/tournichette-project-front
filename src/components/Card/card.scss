@@ -55,4 +55,11 @@
 }
 .button-group {
   margin-top: 5px;
+  display: flex;
+  align-items: center;
+  &-meta {
+    padding-left: 5px;
+    color: vars.$colorMediumGreen;
+    font-weight: 600;
+  }
 }

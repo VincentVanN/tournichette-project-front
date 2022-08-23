@@ -8,59 +8,67 @@ function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const navigate = useNavigate();
   const handleClick = () => navigate('/produits');
-  const arrayToReduce = [];
-  cartToDisplay.forEach((element) => {
-    arrayToReduce.push(element.quantity * parseFloat(element.price));
-  });
-  const resultToDisplay = arrayToReduce.reduce((x, y) => x + y, 0).toFixed(2);
-  return (
-    <Page>
-      <div className="container">
-        {cartToDisplay.length === 0
-      && (
-        <div
-          className="cart-empty"
-          onClick={handleClick}
-        >
+  const cartAmount = useSelector((state) => state.shoppingCart.cartAmount);
+  if (cartToDisplay.length === 0) {
+    return (
+      <Page>
+        <div className="shoppingCart">
           <div
-            className="cart-empty-title"
-          >Votre panier est vide
-          </div>
-          <div
-            className="cart-empty-content"
+            className="shoppingCart-empty"
+            onClick={handleClick}
           >
-            pour vos courses c'est par ici!
+            <div
+              className="shoppingCart-empty-title"
+            >Ton panier est vide
+            </div>
+            <div
+              className="shoppingCart-empty-content"
+            >
+              pour tes courses c'est par ici!
+            </div>
+            <ion-icon name="arrow-forward-circle-outline" size="large" />
           </div>
-          <ion-icon name="arrow-forward-circle-outline" size="large" />
         </div>
-
-      )}
-        {cartToDisplay
-      && (
-        <div className="products">
-          <ul className="products-items">
-            {cartToDisplay.map((product) => (
-              <Card
-                related="shoppingCart"
-                key={product.name}
-                name={product.name}
-                image={product.image}
-                price={product.price}
-                unity={product.unity}
-                quantity={product.quantity}
-                slug={product.slug}
-                product={product}
-                id={product.id}
-              />
-            ))}
-          </ul>
-          <p>{`total ${resultToDisplay}€`}</p>
+      </Page>
+    );
+  }
+  if (cartToDisplay.length !== 0) {
+    return (
+      <Page>
+        <div className="shoppingCart">
+          <div className="shoppingCart-title">
+            <div className="shoppingCart-shoppingCartAmont">
+              <div className="cart-icon">
+                <ion-icon name="cart-outline" style={{ fontSize: '50px', padding: '5px' }} />
+              </div>
+              <div className="cart-amount">
+                <span>Total</span>{` ${cartAmount}€`}
+              </div>
+            </div>
+          </div>
+          <div className="shoppingCart-list">
+            <ul className="shoppingCart-products">
+              {cartToDisplay.map((product) => (
+                <Card
+                  related="shoppingCart"
+                  key={product.name}
+                  name={product.name}
+                  image={product.image}
+                  price={product.price}
+                  unity={product.unity}
+                  quantity={product.quantity}
+                  slug={product.slug}
+                  product={product}
+                  id={product.id}
+                />
+              ))}
+            </ul>
+          </div>
         </div>
-      )}
-      </div>
-    </Page>
+      </Page>
 
-  );
+    );
+  }
 }
 
 export default ShoppingCart;
