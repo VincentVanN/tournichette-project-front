@@ -12,20 +12,28 @@ function ShoppingCart() {
   cartToDisplay.forEach((element) => {
     arrayToReduce.push(element.quantity * parseFloat(element.price));
   });
-  const resultToDisplay = arrayToReduce.reduce((x, y) => x + y, 0);
+  const resultToDisplay = arrayToReduce.reduce((x, y) => x + y, 0).toFixed(2);
   return (
     <Page>
       <div className="container">
         {cartToDisplay.length === 0
       && (
-      <div className="shoppingCart">
-        <div>Votre panier est vide</div>
         <div
+          className="cart-empty"
           onClick={handleClick}
         >
-          pour vos courses c'est par ici!
+          <div
+            className="cart-empty-title"
+          >Votre panier est vide
+          </div>
+          <div
+            className="cart-empty-content"
+          >
+            pour vos courses c'est par ici!
+          </div>
+          <ion-icon name="arrow-forward-circle-outline" size="large" />
         </div>
-      </div>
+
       )}
         {cartToDisplay
       && (

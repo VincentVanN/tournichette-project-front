@@ -42,7 +42,7 @@ function Products() {
   const handleClick = () => {
     setIsSearchBar(!isSearchBar);
   };
-  const handleBlur = () => setIsSearchBar(false);
+  const handleBlur = () => setIsSearchBar(!isSearchBar);
   if ((isLoadingProducts || isLoadingCategories)) {
     return (
       <Page>
