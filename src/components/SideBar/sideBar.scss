@@ -1,15 +1,24 @@
 @use 'src/styles/_vars.scss';
 
-.nav {
+/* -------max 576---------- */
+@media only screen and (max-width: 576px) {
+  nav {
   max-width: 1050px;
   width: 110vw;
   margin: auto;
   z-index: 10;
 }
+ }
+
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  display: block;
+  position: relative;
+  height: 0;
+  background: vars.$colorBeige;
+  
 }
 .navbar .menu-items {
   display: flex;
@@ -17,12 +26,6 @@
 }
 .navbar .nav-container a:hover{
     font-weight: bolder;
-}
-.nav-container {
-  display: block;
-  position: relative;
-  height: 0;
-  background: vars.$colorBeige;
 }
 .nav-container .checkbox {
   position: fixed;
@@ -179,3 +182,105 @@
   top: 30px;
   right: 50px;
 }
+
+/* -------min 576---------- */
+  .nav{
+    display: flex;
+    height: 100%;
+    margin: auto;
+    z-index: 10;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+  }
+  
+  .sidebars{
+    background: vars.$colorBeige;
+    width: 200px;
+    height: 100vh;
+    transition: all 0.5s;
+    border: 1px solid vars.$colorDarkGreen;
+    text-align: center;
+  }
+  
+  .container {
+    display: block;
+    position: relative;
+    height: 0;
+    background: vars.$colorBeige;
+  }
+  
+  .top_section{
+    display: flex;
+    align-items:center;
+    padding:20px 15px;
+    flex-direction: column;
+  }
+  
+  .logo{
+    font-size: 30px;
+  }
+  .bars{
+    display: flex;
+    font-size: 25px;
+    margin-left: 50px;
+  }
+  .navlink-more{
+    display: flex;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+    color: vars.$colorDarkGreen;
+    line-height: 20px;
+    margin-bottom: 20px;
+  }
+  .navlink-more:hover{
+    color: vars.$colorDarkGreen;
+    transition: all 0.5s;
+  }
+  .active{
+    color: vars.$colorDarkGreen;
+  }
+  .icon, .link_text{
+    font-size: 20px;
+  }
+  .more {
+    color: vars.$colorDarkGreen;
+  }
+  .icon {
+    display: flex ;
+    margin-bottom: 20px;
+  }
+  .menu-items {
+    margin-bottom: 20px;
+    color: vars.$colorDarkGreen;
+  }
+  li{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .count {
+    position: relative;
+    // top: 20px;
+    left: 2px;
+    z-index: 3;
+    margin: auto;
+    // text-align: center;
+    width: 24px;
+    height: 24px;
+    font-size: 1.3em;
+    font-weight: bold;
+    border: solid 2px vars.$colorDarkGreen;
+    border-radius: 50px;
+    color: vars.$colorDarkGreen;
+    background-color: vars.$colorLightGreen;
+    & p{
+      padding-top: 3px;
+    }
+  }
+  .logins{
+    margin-bottom: 10%;
+  }
+  
