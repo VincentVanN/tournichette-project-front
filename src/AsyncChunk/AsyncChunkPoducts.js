@@ -36,7 +36,6 @@ export const getCarts = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(result);
     return result.data;
   },
 );

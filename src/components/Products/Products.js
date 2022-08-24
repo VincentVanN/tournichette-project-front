@@ -1,32 +1,36 @@
+/* eslint-disable react/jsx-indent */
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 import './products.scss';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import Card from 'src/components/Card/Card';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-
 import Page from '../Page/Page';
 import Loading from '../Loading/Loading';
 import SearchBar from '../SearchBar/SearchBar';
 
-function Products() {
+function Products({ related }) {
   //
   // pickup data
   //
   const products = useSelector((state) => state.products.products.data);
   const categories = useSelector((state) => state.products.categories.data);
+  const carts = useSelector((state) => state.products.carts.data);
   //
   // booleen for conditional loading display
   //
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
+  const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
   //
   // algorithm to filter products by category
   //
   const navigate = useNavigate();
-  const handleClickProduct = (slug) => navigate(`/produit/${slug}`);
+  const handleClickProduct = (relatedCard, slug) => navigate(`${relatedCard === 'carts' ? '/produit/paniers/' : '/produit/'}${slug}`);
   const params = useParams();
   const { slug } = params;
   const filterProducts = () => products.filter((product) => (product.category.slug === slug));
@@ -44,7 +48,8 @@ function Products() {
     setIsSearchBar(!isSearchBar);
   };
   const handleBlur = () => setIsSearchBar(!isSearchBar);
-  if ((isLoadingProducts || isLoadingCategories)) {
+
+  if ((isLoadingProducts || isLoadingCategories || isLoadingCarts)) {
     return (
       <Page>
         <Loading />
@@ -53,40 +58,46 @@ function Products() {
   }
   return (
     <Page>
+
       <header className="products-header">
-        <div className="products-searchBar">
-          <SearchBar
-            type="text"
-            placeholder="Rechercher..."
-            className={`products-searchBar-input ${setHiddenSearchBar}`}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <ion-icon
-            name="search-outline"
-            onClick={handleClick}
-          />
-        </div>
-        <div className="products-categories">
-          {categories.map((category) => (
-            <NavLink
-              key={category.id}
-              className="products-categoryName"
-              to={`/categorie/${category.slug}`}
-            >
-              {category.name === 'Produits transformés' ? 'Épicerie' : category.name}
-            </NavLink>
-          ))}
-        </div>
+        {related === 'carts' && (<h1 className="title"> Nos paniers de saison</h1>)}
+        {(related === 'products' && (
+          <><div className="products-searchBar">
+            <SearchBar
+              type="text"
+              placeholder="Rechercher..."
+              className={`products-searchBar-input ${setHiddenSearchBar}`}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <ion-icon
+              name="search-outline"
+              onClick={handleClick}
+            />
+            </div>
+            <div className="products-categories">
+              {categories.map((category) => (
+                <NavLink
+                  key={category.id}
+                  className="products-categoryName"
+                  to={`/categorie/${category.slug}`}
+                >
+                  {category.name === 'Produits transformés' ? 'Épicerie' : category.name}
+                </NavLink>
+              ))}
+            </div>
+          </>
+        ))}
       </header>
+
       <div className="products">
         <ul className="products-items">
-          {arrayToDisplay.map((product) => (
+          {(related === 'products' ? arrayToDisplay : carts).map((product) => (
             <Card
-              related="products"
-              key={product.name}
+              related={related === 'products' ? 'products' : 'carts'}
+              key={related === 'products' ? product.name : product.type_cart}
               onClick={handleClickProduct}
-              name={product.name}
+              name={related === 'products' ? product.name : product.type_cart}
               image={product.image}
               price={product.price}
               unity={product.unity}
@@ -101,5 +112,7 @@ function Products() {
     </Page>
   );
 }
-
+Products.propTypes = {
+  related: PropTypes.string,
+};
 export default Products;
