@@ -63,3 +63,17 @@
     font-weight: 600;
   }
 }
+
+@media only screen and (min-width: 576px) {
+  
+  .card{
+    width: 92vw;
+    margin: 10px;
+    display: block;
+    font-size: 1.2em;
+    padding-bottom: 13px;
+    margin-left: 50px;
+  }
+ 
+   
+ }

@@ -71,3 +71,17 @@
     width: 180px;
   }
 }
+
+@media only screen and (min-width: 576px) {
+  
+ .products-header{
+    position: fixed;
+    height: 90px;
+    margin-bottom: 20px;
+    z-index: 3;
+    background: vars.$colorBeige;
+    margin-left: 8%;
+  }
+
+  
+}
