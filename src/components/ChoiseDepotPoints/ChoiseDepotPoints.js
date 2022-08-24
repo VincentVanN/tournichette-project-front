@@ -1,16 +1,32 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { postOrder } from '../../AsyncChunk/AsyncChunkShoppingCart';
+import { getSelectedDepotId, setSelectedDepot } from '../../feature/shoppingCart.slice';
 import './choiseDepotPoints.scss';
 
 function ChoiseDepotPoints() {
+  const dispatch = useDispatch();
   const depots = useSelector((state) => state.shoppingCart.depots.data);
+  const selectedDepot = useSelector((state) => state.shoppingCart.selectedDepot);
+  //
+  // get adress of depots
   const ArrayOfDepotsAdress = [];
   depots.forEach((depot) => ArrayOfDepotsAdress.push(depot.address));
-  const [selectedAdress, setSelectedAdress] = useState('');
+  //
+  // get depot id & adress in state when selectedDepot value change
+  const handleChange = (e) => {
+    dispatch(setSelectedDepot(e.target.id));
+    dispatch(getSelectedDepotId());
+  };
+  const handleClick = () => {
+    dispatch(postOrder());
+  };
+  //
+  // change icon color at selection
+  const ValidateColor = selectedDepot ? '#fd7c55' : '#356859';
   return (
     <div className="depot-container">
       <div className="title">
-        <ion-icon name="bag-add-outline" />
+        <ion-icon name="bag-check-outline" style={{ paddingBottom: '5px' }} />
         <p>Ton point de retrait</p>
       </div>
       <ul className="radio-container">
@@ -22,18 +38,19 @@ function ChoiseDepotPoints() {
               className="radio"
               id={adress}
               name="adressRadio"
-              checked={adress === selectedAdress}
-              onChange={(e) => setSelectedAdress(e.target.id)}
+              checked={adress === selectedDepot}
+              onChange={handleChange}
             />
-            <label className={adress === selectedAdress ? 'selected' : ''} htmlFor={adress}>{adress} </label>
+            <label className={adress === selectedDepot ? 'selected' : ''} htmlFor={adress}>{adress}</label>
           </li>
         ))}
       </ul>
       <div
         className="choiseDepotButton"
+        onClick={handleClick}
       >
         <p>Commander</p>
-        <ion-icon name="checkmark-circle-outline" />
+        <ion-icon name="checkmark-circle-outline" style={{ color: ValidateColor }} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
-import { getDepotsList } from '../AsyncChunk/AsyncChunkShoppingCart';
+import { getDepotsList, postOrder } from '../AsyncChunk/AsyncChunkShoppingCart';
 
 export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
@@ -9,6 +9,8 @@ export const shoppingCartSlice = createSlice({
     count: 0,
     cartAmount: 0,
     depots: [],
+    selectedDepot: '',
+    selectedDepotId: 0,
   },
   extraReducers: {
     [getDepotsList.pending]: () => {
@@ -20,6 +22,15 @@ export const shoppingCartSlice = createSlice({
     },
     [getDepotsList.rejected]: () => {
       console.log('[getDepotsList] request rejected');
+    },
+    [postOrder.pending]: () => {
+      console.log('[postOrder]waiting...');
+    },
+    [postOrder.fulfilled]: () => {
+      console.log('[postOrder] OK!');
+    },
+    [postOrder.rejected]: () => {
+      console.log('[postOrder] request rejected');
     },
   },
   reducers: {
@@ -41,7 +52,16 @@ export const shoppingCartSlice = createSlice({
       });
       state.cartAmount = arrayToReduce.reduce((x, y) => x + y, 0).toFixed(2);
     },
+    setSelectedDepot: (state, { payload }) => {
+      state.selectedDepot = payload;
+    },
+    getSelectedDepotId: (state) => {
+      const depot = state.depots.data.find((element) => element.address === state.selectedDepot);
+      state.selectedDepotId = depot.id;
+    },
   },
 });
-export const { setCount, pushInCart, setCartAmount } = shoppingCartSlice.actions;
+export const {
+  setCount, pushInCart, setCartAmount, setSelectedDepot, getSelectedDepotId,
+} = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;
