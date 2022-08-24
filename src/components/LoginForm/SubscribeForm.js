@@ -19,13 +19,10 @@ function SubscribeForm({ handleSubmit }) {
   const handleChangeSubscribeForm = (value, key) => {
     dispatch(changeSubscribeForm([key, value]));
   };
+
   const handleSubscribe = (e) => {
     e.preventDefault();
     let isError = false;
-    // if (isValidEmail(email) === false) {
-    //   isError = true;
-    //   dispatch(addErrorMessage('email invalide'));
-    // }
     if (validateUpperCase(password) === false) {
       isError = true;
       dispatch(addErrorMessage('il manque une majuscule'));
@@ -47,6 +44,7 @@ function SubscribeForm({ handleSubmit }) {
       handleSubmit();
     }
   };
+
   return (
     <>
       <h1 className="form-title">Inscription</h1>
