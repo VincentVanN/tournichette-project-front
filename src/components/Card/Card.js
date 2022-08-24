@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types';
 import 'src/components/Card/card.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,7 @@ import { changeQuantityProduct } from '../../utils/cartUtils';
 function Card({
   name, price, unity, quantity, onClick, slug, product, related,
 }) {
-  const handleClick = () => onClick(slug);
+  const handleClick = () => onClick(related, slug);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.shoppingCart.shoppingCart);
   const handleClickIncrementCart = () => {
@@ -91,6 +92,40 @@ function Card({
         </div>
       </div>
       )}
+      {related === 'carts' && (
+      <div className="card-container">
+        <article
+          className="card_article"
+        >
+          <div className="card-leftSide">
+            <h2 className="card-leftSide card-title">{name}</h2>
+          </div>
+          <div className="doted" />
+          <ul className="card_infos">
+            <li className="card-unity">{quantity}</li>
+            <li className="card-unity">Pièce</li>
+            <li className="card-unity">/</li>
+            <li className="card-price">{`${price}€`}</li>
+          </ul>
+        </article>
+        <div className="button-group">
+          <button
+            type="button"
+            onClick={handleClickIncrementCart}
+            className="card-button"
+          >
+            <ion-icon name="cart-outline" size="medium" />
+          </button>
+          <button
+            type="button"
+            onClick={handleClick}
+            className="card-button"
+          >
+            <ion-icon name="reader-outline" size="medium" />
+          </button>
+        </div>
+      </div>
+      )}
     </div>
   );
 }
@@ -99,10 +134,10 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   related: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  unity: PropTypes.string.isRequired,
+  unity: PropTypes.string,
   quantity: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
-  slug: PropTypes.string.isRequired,
+  slug: PropTypes.string,
   product: PropTypes.object.isRequired,
 };
 

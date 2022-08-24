@@ -44,8 +44,6 @@ function App() {
       console.log('setUser with LocalStorage');
     }
     dispatch(getDepotsList());
-  }, [token]);
-  useEffect(() => {
     dispatch(getCarts());
     dispatch(getProducts());
     dispatch(getCategories());
@@ -70,7 +68,9 @@ function App() {
         <Route path="/profil/coordonnees" element={<UserContact />} />
         <Route path="/panier" element={<ShoppingCart />} />
         <Route path="/produit/:slug" element={<Product />} />
-        <Route path="/produits" element={<Products />} />
+        <Route path="/produits" element={<Products related="products" />} />
+        <Route path="/produits/paniers" element={<Products related="carts" />} />
+        <Route path="/produit/paniers/:slug" element={<Product />} />
         <Route path="/apropos" element={<AboutUs />} />
         <Route path="/CGU" element={<Cgu />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
