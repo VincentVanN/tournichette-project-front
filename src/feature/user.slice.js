@@ -20,7 +20,7 @@ export const userSlice = createSlice({
       username: '',
       password: '',
     },
-    errorMessage: '',
+    errorMessage: [],
     isSecondaryMenu: false,
   },
   //
@@ -105,6 +105,9 @@ export const userSlice = createSlice({
     setErrorMessage: (state, { payload }) => {
       state.errorMessage = payload;
     },
+    addErrorMessage: (state, { payload }) => {
+      state.errorMessage.push(payload);
+    },
     setSecondaryMenu: (state) => {
       state.isSecondaryMenu = !state.isSecondaryMenu;
     },
@@ -120,5 +123,6 @@ export const {
   setErrorMessage,
   setSecondaryMenu,
   changeProfilForm,
+  addErrorMessage,
 } = userSlice.actions;
 export default userSlice.reducer;
