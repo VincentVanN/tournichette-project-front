@@ -16,7 +16,7 @@ function Home() {
           </h1>
           <div className="home-button-group">
             <div className="home-button-container top">
-              <h2 className="home-button-title">Choisir mon panier</h2>
+              <h2 className="home-button-title">Choisir mon panier de légumes</h2>
               <button
                 className="home-button"
                 type="button"
@@ -26,7 +26,10 @@ function Home() {
               </button>
             </div>
 
-            <div className="home-button-container">
+            <div
+              className="home-button-container"
+              onClick={handleClickProducts}
+            >
               <h2 className="home-button-title"> Choisir au détail</h2>
               <button
                 className="home-button"

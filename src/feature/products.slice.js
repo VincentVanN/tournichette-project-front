@@ -1,22 +1,23 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
-import { getCategories, getProducts } from '../AsyncChunk/AsyncChunkPoducts';
+import { getCarts, getCategories, getProducts } from '../AsyncChunk/AsyncChunkPoducts';
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
-    products: null,
     loadingProducts: true,
     loadingCategories: true,
+    loadingCarts: true,
+    products: null,
     categories: null,
+    carts: null,
   },
   extraReducers: {
     [getProducts.pending]: () => {
       // console.log('[getProducts]waiting...');
     },
     [getProducts.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.loadingProducts = false;
       state.products = payload;
       // console.log('[getProducts] OK!');
@@ -35,6 +36,17 @@ export const productsSlice = createSlice({
     },
     [getCategories.rejected]: () => {
       console.log('[getCategories] request rejected');
+    },
+    [getCarts.pending]: () => {
+      console.log('[getCarts]waiting...');
+    },
+    [getCarts.fulfilled]: (state, { payload }) => {
+      state.loadingCarts = false;
+      state.carts = payload;
+      console.log('[getCarts] OK!');
+    },
+    [getCarts.rejected]: () => {
+      console.log('[getCarts] request rejected');
     },
   },
   reducers: {

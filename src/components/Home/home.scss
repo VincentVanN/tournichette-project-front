@@ -20,6 +20,7 @@
     font-size: 40px;
     text-align: center;
     color: vars.$colorDarkGreen;
+    font-weight: 500;
   }
   &-button {
     font-family: vars.$fontMontserrat;
@@ -44,6 +45,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      &:active {
+        transform: scale(0.97);
+      }
     }
     &-title {
       width: 180px;

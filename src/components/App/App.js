@@ -20,7 +20,7 @@ import NotFound from '../NotFound/NotFound';
 import Orders from '../User/Orders';
 import UserContact from '../User/UserContact';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
-import { getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
+import { getCarts, getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
 import { setToken } from '../../feature/user.slice';
 import { setCartAmount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
@@ -46,6 +46,7 @@ function App() {
     dispatch(getDepotsList());
   }, [token]);
   useEffect(() => {
+    dispatch(getCarts());
     dispatch(getProducts());
     dispatch(getCategories());
   }, [token]);

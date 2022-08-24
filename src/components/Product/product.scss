@@ -4,6 +4,8 @@ body{
 background: vars.$colorBeige;
 }
 .container{
+  width: 425px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
