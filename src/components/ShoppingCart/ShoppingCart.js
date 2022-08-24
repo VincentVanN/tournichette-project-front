@@ -1,14 +1,24 @@
 import './shoppingCart.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 import Page from '../Page/Page';
 import Card from '../Card/Card';
+import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 
 function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
+  //
+  const [isAdressMenu, setIsAdressMenu] = useState(false);
+  const handleClickAdressMenu = () => setIsAdressMenu(!isAdressMenu);
+  //
+  // return on products list when cart's empty
   const navigate = useNavigate();
   const handleClick = () => navigate('/produits');
+  //
+  // get amount of order
   const cartAmount = useSelector((state) => state.shoppingCart.cartAmount);
+
   if (cartToDisplay.length === 0) {
     return (
       <Page>
@@ -36,17 +46,21 @@ function ShoppingCart() {
     return (
       <Page>
         <div className="shoppingCart">
-          <div className="shoppingCart-title">
-            <div className="shoppingCart-shoppingCartAmont">
-              <div className="cart-icon">
-                <ion-icon name="cart-outline" style={{ fontSize: '50px', padding: '5px' }} />
-              </div>
-              <div className="cart-amount">
-                <span>Total</span>{` ${cartAmount}€`}
+          {!isAdressMenu && (
+          <>
+            <div className="shoppingCart-header">
+              <div className="shoppingCart-title">
+                <div className="shoppingCart-shoppingCartAmont">
+                  <div className="cart-icon">
+                    <ion-icon name="cart-outline" style={{ fontSize: '50px', padding: '5px' }} />
+                  </div>
+                  <div className="cart-amount">
+                    <span>Total</span>{` ${cartAmount}€`}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="shoppingCart-list">
+
             <ul className="shoppingCart-products">
               {cartToDisplay.map((product) => (
                 <Card
@@ -63,10 +77,19 @@ function ShoppingCart() {
                 />
               ))}
             </ul>
-          </div>
+            <div
+              className="choiseDepotButton"
+              onClick={handleClickAdressMenu}
+            >
+              <p>Valider</p>
+              <ion-icon name="arrow-forward-circle-outline" />
+            </div>
+          </>
+
+          )}
+          {isAdressMenu && (<ChoiseDepotPoints />)}
         </div>
       </Page>
-
     );
   }
 }
