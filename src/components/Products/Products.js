@@ -95,9 +95,9 @@ function Products({ related }) {
           {(related === 'products' ? arrayToDisplay : carts).map((product) => (
             <Card
               related={related === 'products' ? 'products' : 'carts'}
-              key={related === 'products' ? product.name : product.type_cart}
+              key={product.name}
               onClick={handleClickProduct}
-              name={related === 'products' ? product.name : product.type_cart}
+              name={product.name}
               image={product.image}
               price={product.price}
               unity={product.unity}
