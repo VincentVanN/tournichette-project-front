@@ -27,3 +27,16 @@ export const getCategories = createAsyncThunk(
     return result.data;
   },
 );
+export const getCarts = createAsyncThunk(
+  'products/getCart',
+  async (_, { getState }) => {
+    const { token } = getState().user.user;
+    const result = await axios.get('http://localhost:8000/api/v1/carts', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(result);
+    return result.data;
+  },
+);
