@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeSubscribeForm } from '../../feature/user.slice';
 import {
   validateUpperCase, validateLength, validateDigit, validateScdPassword,
-} from '../../feature/validatePassword';
+} from '../../utils/validatePassword';
 import Field from './Field/Field';
 
 function SubscribeForm({ handleSubmit }) {

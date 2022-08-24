@@ -1,0 +1,38 @@
+@use 'src/styles/_vars.scss';
+.depot-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.radio-container{
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: vars.$fontLekton;
+  color: vars.$colorMediumGreen;
+  font-weight: 500;
+  font-size: 1em;
+  margin-top: 80px;
+}
+.selected {
+  color: vars.$colorOrange;
+}
+.radio {
+  opacity: 0;
+}
+.title {
+  width: 100vw;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: vars.$fontMontserrat;
+  color: vars.$colorDarkGreen;
+  font-weight: 600;
+  font-size: 1.5em;
+  border-bottom: solid 1px vars.$colorMediumGreen;
+}
