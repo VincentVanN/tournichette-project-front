@@ -24,19 +24,23 @@ export const postOrder = createAsyncThunk(
     const orderProducts = getState().shoppingCart.shoppingCart
       .map((product) => ({ quantity: product.quantity.toString(), id: product.id }));
     //
-    let order = {
+    const order = {
       price: getState().shoppingCart.cartAmount.toString(),
       depot: getState().shoppingCart.selectedDepotId,
       orderProducts,
-      cartOrders,
     };
-    order = JSON.stringify(order);
-    const result = await axios.post('http://localhost:8000/api/v1/orders/create', {
+    const config = {
       headers: {
         Authorization: `Bearer ${token}`,
-        order,
       },
-    });
+    };
+    console.log(config, order);
+    const result = await axios
+      .post(
+        'http://localhost:8000/api/v1/orders/create',
+        order,
+        config,
+      );
     console.log(result.data);
     return result.data;
   },

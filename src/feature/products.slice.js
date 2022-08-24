@@ -16,6 +16,7 @@ export const productsSlice = createSlice({
       // console.log('[getProducts]waiting...');
     },
     [getProducts.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.loadingProducts = false;
       state.products = payload;
       // console.log('[getProducts] OK!');
