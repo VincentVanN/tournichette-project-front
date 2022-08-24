@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import logo from 'src/assets/logo.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeLoginForm } from '../../feature/user.slice';
+import { changeLoginForm } from 'src/feature/user.slice';
 import Field from './Field/Field';
 import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';

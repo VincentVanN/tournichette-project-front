@@ -6,7 +6,11 @@ function Error() {
   return (
     <div className="container">
       <div className="errorMessage">
-        {errorMessage}
+        <ul>
+          {errorMessage.map((error) => (
+            <li>{error}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

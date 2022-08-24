@@ -1,7 +1,9 @@
 import './loginForm.scss';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSubscribeForm } from '../../feature/user.slice';
+import Error from 'src/components/Error/Error';
+// import { isValidEmail } from 'src/utils/formValidation';
+import { addErrorMessage, changeSubscribeForm } from '../../feature/user.slice';
 import {
   validateUpperCase, validateLength, validateDigit, validateScdPassword,
 } from '../../utils/validatePassword';
@@ -12,14 +14,38 @@ function SubscribeForm({ handleSubmit }) {
   const {
     firstname, lastname, phone, email, password, sndPassword,
   } = useSelector((state) => state.user.user);
+  const { errorMessage } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleChangeSubscribeForm = (value, key) => {
     dispatch(changeSubscribeForm([key, value]));
   };
   const handleSubscribe = (e) => {
     e.preventDefault();
-    dispatch(createUser());
-    handleSubmit();
+    let isError = false;
+    // if (isValidEmail(email) === false) {
+    //   isError = true;
+    //   dispatch(addErrorMessage('email invalide'));
+    // }
+    if (validateUpperCase(password) === false) {
+      isError = true;
+      dispatch(addErrorMessage('il manque une majuscule'));
+    }
+    if (validateLength(password) === false) {
+      isError = true;
+      dispatch(addErrorMessage('il faut au moins 6 charactères'));
+    }
+    if (validateDigit(password) === false) {
+      isError = true;
+      dispatch(addErrorMessage('il faut un chiffre'));
+    }
+    if (validateScdPassword(password, sndPassword) === false) {
+      isError = true;
+      dispatch(addErrorMessage('ce n\'est pas le même mot de passe'));
+    }
+    if (isError === false) {
+      dispatch(createUser());
+      handleSubmit();
+    }
   };
   return (
     <>
@@ -97,6 +123,9 @@ function SubscribeForm({ handleSubmit }) {
           </button>
         </div>
       </form>
+
+      {errorMessage.length > 0 && <Error />}
+
     </>
 
   );
@@ -105,4 +134,3 @@ SubscribeForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 export default SubscribeForm;
-
