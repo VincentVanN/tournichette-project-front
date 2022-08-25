@@ -7,7 +7,7 @@ export const getDepotsList = createAsyncThunk(
   'shoppingCart/getDepotsList',
   async (_, { getState }) => {
     const { token } = getState().user.user;
-    const result = await axios.get('http://localhost:8000/api/v1/depots', {
+    const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/depots`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -55,7 +55,7 @@ export const postOrder = createAsyncThunk(
     };
     const result = await axios
       .post(
-        'http://localhost:8000/api/v1/orders/create',
+        `${getState().navigation.baseUrl}/api/v1/orders/create`,
         order,
         config,
       );
