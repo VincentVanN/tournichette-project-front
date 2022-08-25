@@ -41,3 +41,34 @@ export const createUser = createAsyncThunk(
     return result.data;
   },
 );
+
+export const updateUser = createAsyncThunk(
+  'user/updateUser',
+  async (_, { getState }) => {
+    const {
+      token, oldPassword, email, firstname, lastname, phone,
+    } = getState().user.user;
+    //
+    const update = {
+      currentpassword: oldPassword,
+      email: email,
+      firstname: firstname,
+      lastname: lastname,
+      phone: phone,
+    };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const result = await axios
+      .patch(
+        'http://localhost:8000/api/v1/users/update',
+        update,
+        config,
+      );
+    console.log(result.data);
+    return result.data;
+  },
+);

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, setUser, createUser } from '../AsyncChunk/AsyncChunkUser';
+import { loginUser, setUser, createUser, updateUser } from '../AsyncChunk/AsyncChunkUser';
 import { removeLocalStorage } from '../utils/localStorage';
 
 export const userSlice = createSlice({
@@ -15,6 +15,7 @@ export const userSlice = createSlice({
       token: '',
       password: '',
       sndPassword: '',
+      oldPassword: '',
     },
     login: {
       username: '',
@@ -71,6 +72,17 @@ export const userSlice = createSlice({
     [createUser.rejected]: () => {
       console.log('[createUser] request rejected');
     },
+    //
+    //
+    [updateUser.pending]: () => {
+      console.log('[updateUser]waiting...');
+    },
+    [updateUser.fulfilled]: () => {
+      console.log('[updateUser] OK!');
+    },
+    [updateUser.rejected]: () => {
+      console.log('[updateUser] request rejected');
+    },
   },
   //
   //
@@ -87,7 +99,7 @@ export const userSlice = createSlice({
       const [key, value] = payload;
       state.user[key] = value;
     },
-    changeProfilForm: (state, { payload }) => {
+    changeEditForm: (state, { payload }) => {
       const [key, value] = payload;
       state.user[key] = value;
     },
@@ -122,7 +134,7 @@ export const {
   setIsSubscribeForm,
   setErrorMessage,
   setSecondaryMenu,
-  changeProfilForm,
+  changeEditForm,
   addErrorMessage,
 } = userSlice.actions;
 export default userSlice.reducer;
