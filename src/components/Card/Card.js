@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types';
 import 'src/components/Card/card.scss';
@@ -66,7 +67,7 @@ function Card({
           <div className="doted" />
           <ul className="card_infos">
             <li className="card-unity">{quantity}</li>
-            <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
+            <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity && unity === 'undefined' ? 'Pce' : unity}</li>
             <li className="card-unity">-</li>
             <li className="card-price">{`${(quantity * parseFloat(price)).toFixed(2)}€`}</li>
           </ul>

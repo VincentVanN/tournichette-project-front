@@ -12,6 +12,7 @@ export const changeQuantityProduct = (list, product, quantity) => {
         .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
     }
     newArrayForState.push(newItem);
+    console.log(newArrayForState);
     return newArrayForState
       .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
   }
@@ -19,7 +20,8 @@ export const changeQuantityProduct = (list, product, quantity) => {
   return productsCopy
     .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
 };
-
+//
+//
 export const navigationInProduct = (products, product, increment) => {
   const indexOfActuallyProduct = products.indexOf(product);
   let nextProduct = products[(indexOfActuallyProduct + increment)];

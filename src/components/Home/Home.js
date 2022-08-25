@@ -6,6 +6,7 @@ import Page from '../Page/Page';
 function Home() {
   const navigate = useNavigate();
   const handleClickProducts = () => navigate('/produits');
+  const handleClickCarts = () => navigate('/produits/paniers');
   return (
     <Page>
       <div className="home-container">
@@ -15,12 +16,14 @@ function Home() {
             Les ventes sont ouvertes
           </h1>
           <div className="home-button-group">
-            <div className="home-button-container top">
+            <div
+              className="home-button-container top"
+              onClick={handleClickCarts}
+            >
               <h2 className="home-button-title">Choisir mon panier de légumes</h2>
               <button
                 className="home-button"
                 type="button"
-                onClick={handleClickProducts}
               >
                 <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f88e6d', fontSize: '50px' }} />
               </button>
