@@ -25,6 +25,7 @@ export const userSlice = createSlice({
     },
     errorMessage: [],
     isSecondaryMenu: false,
+    serverMessageOnSubscribe: '',
   },
   //
   //
@@ -62,7 +63,13 @@ export const userSlice = createSlice({
     [createUser.pending]: () => {
       console.log('[createUser]waiting...');
     },
-    [createUser.fulfilled]: (state) => {
+    [createUser.fulfilled]: (state, { payload }) => {
+      if (!payload.error) {
+        state.serverMessageOnSubscribe = 'Votre compte a été créé, vérifiez vos emails pour terminer votre inscription';
+      }
+      else {
+        state.serverMessageOnSubscribe = payload.message;
+      }
       state.email = '';
       state.password = '';
       state.firstname = '';

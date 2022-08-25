@@ -29,3 +29,4 @@ export const validateScdPassword = (password, scdPassword) => {
   }
   return false;
 };
+export const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);

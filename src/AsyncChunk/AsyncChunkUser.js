@@ -33,10 +33,19 @@ export const loginUser = createAsyncThunk(
 export const createUser = createAsyncThunk(
   'user/createUser',
   async (_, { getState }) => {
-    const { email, password } = getState().user.user;
+    const {
+      firstname,
+      lastname,
+      phone,
+      email,
+      password,
+    } = getState().user.user;
     const result = await axios.post(`${getState().navigation.baseUrl}/api/v1/users/create`, {
       email,
       password,
+      firstname,
+      lastname,
+      phone,
     });
     return result.data;
   },
