@@ -29,7 +29,8 @@ export const shoppingCartSlice = createSlice({
     [postOrder.fulfilled]: () => {
       console.log('[postOrder] OK!');
     },
-    [postOrder.rejected]: () => {
+    [postOrder.rejected]: ({ payload }) => {
+      console.log(payload);
       console.log('[postOrder] request rejected');
     },
   },

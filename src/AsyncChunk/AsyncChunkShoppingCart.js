@@ -19,29 +19,35 @@ export const postOrder = createAsyncThunk(
   'shoppingCart/postOrder',
   async (_, { getState }) => {
     //
-    // get token
     const { token } = getState().user.user;
     //
     // get cart product in shoppingCart
+    //
     const getCartOrders = getState().shoppingCart.shoppingCart
       .filter((cart) => getState().products.carts.data
         .some((cartInShoppingCart) => cart.slug === cartInShoppingCart.slug));
-    const cartOrders = getCartOrders
+    //
     // map request object for carts
-      .map((cart) => ({ quantity: cart.quantity.toString(), id: cart.id }));
+    //
+    const cartOrders = getCartOrders
+      .map((cart) => ({ quantity: cart.quantity, id: cart.id }));
     //
     // map request object for products
-    const orderProducts = getState().shoppingCart.shoppingCart
+    //
+    const getOrderProducts = getState().shoppingCart.shoppingCart
+      .filter((product) => getState().products.products.data
+        .some((productsInShoppingCart) => product.slug === productsInShoppingCart.slug));
+    const orderProducts = getOrderProducts
       .map((product) => ({ quantity: product.quantity.toString(), id: product.id }));
     //
-    // make final object for request
+    // set final object for request
+    //
     const order = {
       price: getState().shoppingCart.cartAmount.toString(),
       depot: getState().shoppingCart.selectedDepotId,
       orderProducts,
       cartOrders,
     };
-    console.log(order);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -53,7 +59,6 @@ export const postOrder = createAsyncThunk(
         order,
         config,
       );
-    console.log(result.data);
     return result.data;
   },
 );
