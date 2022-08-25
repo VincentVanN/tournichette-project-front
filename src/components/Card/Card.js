@@ -137,7 +137,7 @@ Card.propTypes = {
   price: PropTypes.string.isRequired,
   unity: PropTypes.string,
   quantity: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   slug: PropTypes.string,
   product: PropTypes.object.isRequired,
 };
