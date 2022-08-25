@@ -11,6 +11,7 @@ export const shoppingCartSlice = createSlice({
     depots: [],
     selectedDepot: '',
     selectedDepotId: 0,
+    serverMessage: '',
   },
   extraReducers: {
     [getDepotsList.pending]: () => {
@@ -26,8 +27,13 @@ export const shoppingCartSlice = createSlice({
     [postOrder.pending]: () => {
       console.log('[postOrder]waiting...');
     },
-    [postOrder.fulfilled]: () => {
-      console.log('[postOrder] OK!');
+    [postOrder.fulfilled]: (state, { payload }) => {
+      if (!payload.error) {
+        state.serverMessage = ' Commande effectuée, bon appétit!';
+      }
+      else {
+        state.serverMessage = payload.message;
+      }
     },
     [postOrder.rejected]: ({ payload }) => {
       console.log(payload);
@@ -60,9 +66,12 @@ export const shoppingCartSlice = createSlice({
       const depot = state.depots.data.find((element) => element.address === state.selectedDepot);
       state.selectedDepotId = depot.id;
     },
+    deleteServerMessage: (state) => {
+      state.serverMessage = '';
+    },
   },
 });
 export const {
-  setCount, pushInCart, setCartAmount, setSelectedDepot, getSelectedDepotId,
+  setCount, pushInCart, setCartAmount, setSelectedDepot, getSelectedDepotId, deleteServerMessage,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

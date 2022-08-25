@@ -6,17 +6,19 @@
   justify-content: center;
 }
 .radio-container{
-  width: 100vw;
-  height: auto;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: vars.$fontLekton;
-  color: vars.$colorMediumGreen;
-  font-weight: 500;
-  font-size: 1em;
-  margin-top: 80px;
+  justify-content: space-around;
+  & li {
+    padding: 10px;
+    font-family: vars.$fontLekton;
+    color: vars.$colorMediumGreen;
+    font-weight: 500;
+    font-size: 1.2em;
+  }
 }
 .selected {
   color: vars.$colorOrange;
@@ -35,4 +37,16 @@
   font-weight: 600;
   font-size: 1.5em;
   border-bottom: solid 1px vars.$colorMediumGreen;
+}
+.message {
+  font-size: 1.5em;
+  color: vars.$colorOrange;
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    padding: 20px;
+  }
 }

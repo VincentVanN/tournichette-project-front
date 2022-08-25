@@ -58,7 +58,11 @@ function SideBar() {
                 </li>
                 <li>
                   <span className="icon"><ion-icon name="leaf-outline" /></span>
-                  <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/produits">Nos produits</NavLink>
+                  <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/paniers">Les paniers</NavLink>
+                </li>
+                <li>
+                  <span className="icon"><ion-icon name="leaf-outline" /></span>
+                  <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/produits">Le détail</NavLink>
                 </li>
                 <li>
                   <span className="icon"><ion-icon name="cart-outline" /></span>
@@ -128,7 +132,8 @@ function SideBar() {
               <img src={logo} alt="logo tournichette" className="logo" />
               <NavLink className="navlink" to="/">Accueil</NavLink>
               <NavLink className="navlink" to="/profil">Mon profil</NavLink>
-              <NavLink className="navlink" to="/produits">Nos produits</NavLink>
+              <NavLink className="navlink" to="/paniers">Les paniers</NavLink>
+              <NavLink className="navlink" to="/produits">Le détail</NavLink>
               <NavLink className="navlink" to="/panier">Panier d'achat</NavLink>
               <NavLink className="navlink" to="/contact">Nous contacter</NavLink>
               <NavLink className="navlink" to="/apropos">Qui sommes-nous?</NavLink>

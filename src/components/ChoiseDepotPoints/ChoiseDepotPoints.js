@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postOrder } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { getSelectedDepotId, setSelectedDepot } from '../../feature/shoppingCart.slice';
@@ -13,12 +14,26 @@ function ChoiseDepotPoints() {
   depots.forEach((depot) => ArrayOfDepotsAdress.push(depot.address));
   //
   // get depot id & adress in state when selectedDepot value change
+  //
   const handleChange = (e) => {
     dispatch(setSelectedDepot(e.target.id));
     dispatch(getSelectedDepotId());
   };
+  //
+  // set message state
+  //
+  const [message, setMessage] = useState('');
+
   const handleClick = () => {
-    dispatch(postOrder());
+    if (!selectedDepot) {
+      setMessage('Tu dois selectionner une adresse!');
+      setTimeout(() => {
+        setMessage('');
+      }, 2000);
+    }
+    else {
+      dispatch(postOrder());
+    }
   };
   //
   // change icon color at selection
@@ -28,6 +43,9 @@ function ChoiseDepotPoints() {
       <div className="title">
         <ion-icon name="bag-check-outline" style={{ paddingBottom: '5px' }} />
         <p>Ton point de retrait</p>
+      </div>
+      <div className="message-container">
+        {message && (<div className="message">{message}</div>)}
       </div>
       <ul className="radio-container">
         {ArrayOfDepotsAdress.map((adress) => (
