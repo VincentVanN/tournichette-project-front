@@ -2,7 +2,7 @@ import 'src/components/User/userContact.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import './user.scss';
 import { useState } from 'react';
-import { changeEditForm, addErrorMessage } from 'src/feature/user.slice';
+import { changeEditForm, addErrorMessage, deleteErrorMessage } from 'src/feature/user.slice';
 import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
 import Page from '../Page/Page';
 import Field from './Field';
@@ -28,25 +28,44 @@ function UserContact() {
     let isError = false;
     if (validateUpperCase(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('il manque une majuscule'));
+      dispatch(addErrorMessage('Il manque une majuscule'));
     }
     if (validateLength(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('il faut au moins 6 charactères'));
+      dispatch(addErrorMessage('Il faut au moins 6 charactères'));
     }
     if (validateDigit(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('il faut un chiffre'));
+      dispatch(addErrorMessage('Il manque un chiffre'));
     }
     if (validateScdPassword(password, sndPassword) === false) {
       isError = true;
-      dispatch(addErrorMessage('ce n\'est pas le même mot de passe'));
+      dispatch(addErrorMessage('Ce n\'est pas le même mot de passe'));
+    }
+    if (isError === true) {
+      setTimeout(() => {
+        dispatch(deleteErrorMessage());
+      }, 2500);
     }
     if (isError === false) {
       dispatch(updateUser());
     }
-    console.log(isError);
   };
+
+  if (errorMessage.length !== 0) {
+    return (
+      <div className="errorMessage-container">
+        <ul className="errorMessage-list">
+          {errorMessage.map((error) => (
+            <li className="errorMessage-li">
+              <ion-icon name="close-circle-outline" style={{ color: '#f88e6d', fontSize: '40px' }} />
+              <p className="errorMessage">{error}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
   return (
     <Page>
       <form
