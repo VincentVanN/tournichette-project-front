@@ -25,9 +25,11 @@ function LoginForm() {
 
     <div className="form">
       <div className="form-container">
-        <img className="form-logo" src={logo} alt="logo Tournichette" />
+        <div className="image-container">
+          <img className="form-logo" src={logo} alt="logo Tournichette" />
+        </div>
         {!isSubscribe && (
-        <>
+        <div className="form-field-container">
           <h1 className="form-title">Connexion</h1>
           <form onSubmit={handleSubmit}>
             <Field
@@ -60,9 +62,8 @@ function LoginForm() {
                 <ion-icon name="newspaper-outline" />
               </div>
             </div>
-
           </form>
-        </>
+        </div>
 
         )}
         {isSubscribe && <SubscribeForm handleSubmit={handleSubscribe} />}
