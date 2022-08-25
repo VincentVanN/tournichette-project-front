@@ -1,6 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, setUser, createUser, updateUser } from '../AsyncChunk/AsyncChunkUser';
+import {
+  loginUser, setUser, createUser, updateUser,
+} from '../AsyncChunk/AsyncChunkUser';
 import { removeLocalStorage } from '../utils/localStorage';
 
 export const userSlice = createSlice({
@@ -120,6 +122,9 @@ export const userSlice = createSlice({
     addErrorMessage: (state, { payload }) => {
       state.errorMessage.push(payload);
     },
+    deleteErrorMessage: (state) => {
+      state.errorMessage = [];
+    },
     setSecondaryMenu: (state) => {
       state.isSecondaryMenu = !state.isSecondaryMenu;
     },
@@ -136,5 +141,6 @@ export const {
   setSecondaryMenu,
   changeEditForm,
   addErrorMessage,
+  deleteErrorMessage,
 } = userSlice.actions;
 export default userSlice.reducer;

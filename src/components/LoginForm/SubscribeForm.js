@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import Error from 'src/components/Error/Error';
 // import { isValidEmail } from 'src/utils/formValidation';
-import { addErrorMessage, changeSubscribeForm } from '../../feature/user.slice';
+import { addErrorMessage, changeSubscribeForm, deleteErrorMessage } from '../../feature/user.slice';
 import {
   validateUpperCase, validateLength, validateDigit, validateScdPassword,
 } from '../../utils/validatePassword';
@@ -39,12 +39,30 @@ function SubscribeForm({ handleSubmit }) {
       isError = true;
       dispatch(addErrorMessage('ce n\'est pas le même mot de passe'));
     }
+    if (isError === true) {
+      setTimeout(() => {
+        dispatch(deleteErrorMessage());
+      }, 2500);
+    }
     if (isError === false) {
       dispatch(createUser());
       handleSubmit();
     }
   };
-
+  if (errorMessage.length !== 0) {
+    return (
+      <div className="erroMessage-container">
+        <ul className="errorMessage-list">
+          {errorMessage.map((error) => (
+            <li className="errorLi">
+              <ion-icon name="close-circle-outline" style={{ color: '#f88e6d', fontSize: '40px' }} />
+              <p>{error}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
   return (
     <>
       <h1 className="form-title">Inscription</h1>
@@ -121,9 +139,6 @@ function SubscribeForm({ handleSubmit }) {
           </button>
         </div>
       </form>
-
-      {errorMessage.length > 0 && <Error />}
-
     </>
 
   );
