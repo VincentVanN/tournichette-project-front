@@ -2,11 +2,11 @@
 /* eslint-disable import/prefer-default-export */
 export const changeQuantityProduct = (list, product, quantity) => {
   const productsCopy = [...list];
-  if (productsCopy.some((element) => element.id === product.id)) {
-    const item = productsCopy.find((element) => element.id === product.id);
+  if (productsCopy.some((element) => element.slug === product.slug)) {
+    const item = productsCopy.find((element) => element.slug === product.slug);
     const newItem = { ...item };
     newItem.quantity += quantity;
-    const newArrayForState = productsCopy.filter((element) => element.id !== product.id);
+    const newArrayForState = productsCopy.filter((element) => element.slug !== product.slug);
     if (newItem.quantity <= 0) {
       return newArrayForState
         .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
