@@ -59,6 +59,7 @@ export const postOrder = createAsyncThunk(
         order,
         config,
       );
+    console.log(result.data);
     return result.data;
   },
 );

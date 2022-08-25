@@ -26,7 +26,6 @@ function Product() {
   if (carts.some((element) => element.slug === slug)) {
     productsListInCart = oneProduct.cartProducts;
   }
-  console.log(productsListInCart);
   //
   // add product in cart
   //
@@ -63,7 +62,10 @@ function Product() {
             {(carts.some((element) => element.slug === slug)) && (
               <div className="productsListinCart">
                 {productsListInCart.map((product) => (
-                  <div className="productInCart">
+                  <div
+                    className="productInCart"
+                    key={product.product.name}
+                  >
                     <div className="product-name">
                       {product.product.name}
                     </div>
