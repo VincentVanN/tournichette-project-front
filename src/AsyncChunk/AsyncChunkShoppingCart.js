@@ -18,24 +18,30 @@ export const getDepotsList = createAsyncThunk(
 export const postOrder = createAsyncThunk(
   'shoppingCart/postOrder',
   async (_, { getState }) => {
+    //
+    // get token
     const { token } = getState().user.user;
+    //
+    // get cart product in shoppingCart
     const getCartOrders = getState().shoppingCart.shoppingCart
       .filter((cart) => getState().products.carts.data
         .some((cartInShoppingCart) => cart.slug === cartInShoppingCart.slug));
-    const OrderCart = getCartOrders
+    const cartOrders = getCartOrders
+    // map request object for carts
       .map((cart) => ({ quantity: cart.quantity.toString(), id: cart.id }));
-    console.log(OrderCart);
     //
-    //
+    // map request object for products
     const orderProducts = getState().shoppingCart.shoppingCart
       .map((product) => ({ quantity: product.quantity.toString(), id: product.id }));
     //
+    // make final object for request
     const order = {
       price: getState().shoppingCart.cartAmount.toString(),
       depot: getState().shoppingCart.selectedDepotId,
       orderProducts,
-      OrderCart,
+      cartOrders,
     };
+    console.log(order);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
