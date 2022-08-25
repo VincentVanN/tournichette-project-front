@@ -1,10 +1,9 @@
 import './loginForm.scss';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-// import { isValidEmail } from 'src/utils/formValidation';
 import { addErrorMessage, changeSubscribeForm, deleteErrorMessage } from '../../feature/user.slice';
 import {
-  validateUpperCase, validateLength, validateDigit, validateScdPassword,
+  validateUpperCase, validateLength, validateDigit, validateScdPassword, isValidEmail
 } from '../../utils/validatePassword';
 import Field from './Field/Field';
 import { createUser } from '../../AsyncChunk/AsyncChunkUser';
@@ -22,6 +21,22 @@ function SubscribeForm({ handleSubmit }) {
   const handleSubscribe = (e) => {
     e.preventDefault();
     let isError = false;
+    if (firstname === '') {
+      isError = true;
+      dispatch(addErrorMessage('Le prénom est obligatoire'));
+    }
+    if (lastname === '') {
+      isError = true;
+      dispatch(addErrorMessage('Le nom est obligatoire'));
+    }
+    if (phone === '') {
+      isError = true;
+      dispatch(addErrorMessage('Le nom est obligatoire'));
+    }
+    if (isValidEmail(email) === false) {
+      isError = true;
+      dispatch(addErrorMessage('L\'email n\'est pas valide'));
+    }
     if (validateUpperCase(password) === false) {
       isError = true;
       dispatch(addErrorMessage('Il manque une majuscule'));
@@ -41,7 +56,7 @@ function SubscribeForm({ handleSubmit }) {
     if (isError === true) {
       setTimeout(() => {
         dispatch(deleteErrorMessage());
-      }, 2500);
+      }, 3000);
     }
     if (isError === false) {
       dispatch(createUser());
