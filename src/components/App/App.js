@@ -24,6 +24,7 @@ import { getCarts, getCategories, getProducts } from '../../AsyncChunk/AsyncChun
 import { setToken } from '../../feature/user.slice';
 import { setCartAmount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
+import { setHeight, setWidth } from '../../feature/navigation.slice';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -34,6 +35,27 @@ function App() {
   const loggedUser = JSON.parse(localStorage.getItem('user'));
   const token = useSelector((state) => state.user.user.token);
   //
+  // getting screen size in state
+  //
+  function getWindowWidth() {
+    const { width } = window.screen;
+    return width;
+  }
+  function getWindowHeight() {
+    const { height } = window.screen;
+    return height;
+  }
+  dispatch(setWidth(getWindowWidth()));
+  dispatch(setHeight(getWindowHeight()));
+  useEffect(() => {
+    function handleWindowSize() {
+      dispatch(setWidth(getWindowWidth()));
+      dispatch(setHeight(getWindowHeight()));
+    }
+    window.addEventListener('resize', handleWindowSize);
+  }, []);
+  //
+  // set data and user
   //
   useEffect(() => {
     if (loggedUser) {
