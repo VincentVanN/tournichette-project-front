@@ -135,6 +135,9 @@ export const userSlice = createSlice({
     setSecondaryMenu: (state) => {
       state.isSecondaryMenu = !state.isSecondaryMenu;
     },
+    deleteServerMessageOnSubscribe: (state) => {
+      state.serverMessageOnSubscribe = '';
+    },
   },
 });
 
@@ -149,5 +152,6 @@ export const {
   changeEditForm,
   addErrorMessage,
   deleteErrorMessage,
+  deleteServerMessageOnSubscribe,
 } = userSlice.actions;
 export default userSlice.reducer;
