@@ -123,3 +123,30 @@ background: vars.$colorBeige;
 .span-three-info{
   padding-bottom: 10px;
 }
+.productsListinCart {
+  width: 100%;
+  height: 100%;
+  color: vars.$colorDarkGreen;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.productInCart {
+  width: 100%;
+ display: flex;
+ justify-content: space-between;
+ padding: 1px 20px 0 20px;
+}
+.productInCart .doted {
+  flex: 1;
+  height: 15px;
+  border-bottom: dotted 2px vars.$colorMediumGreen;
+}
+.product-name {
+  font-weight: 500;
+}
+.meta {
+  font-size: 0.9em;
+}

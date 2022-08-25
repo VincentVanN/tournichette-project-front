@@ -11,12 +11,25 @@ function Product() {
   const { slug } = useParams();
   const navigate = useNavigate();
   //
-  // select product
-  const products = useSelector((state) => state.products.products.data);
-  const oneProduct = products.find((element) => element.slug === slug);
+  // select product or cart
   //
+  const products = useSelector((state) => state.products.products.data);
+  const carts = useSelector((state) => state.products.carts.data);
+  let oneProduct;
+  if (products.some((element) => element.slug === slug)) {
+    oneProduct = products.find((element) => element.slug === slug);
+  }
+  if (carts.some((element) => element.slug === slug)) {
+    oneProduct = carts.find((element) => element.slug === slug);
+  }
+  let productsListInCart;
+  if (carts.some((element) => element.slug === slug)) {
+    productsListInCart = oneProduct.cartProducts;
+  }
+  console.log(productsListInCart);
   //
   // add product in cart
+  //
   const cart = useSelector((state) => state.shoppingCart.shoppingCart);
   const handleClickCart = () => {
     dispatch(pushInCart(changeQuantityProduct(cart, oneProduct, 1)));
@@ -24,8 +37,9 @@ function Product() {
   };
   //
   // navigate in product
-  const handleNavigateForward = () => navigate(`/produit/${navigationInProduct(products, oneProduct, 1)}`);
-  const handleNavigateBackward = () => navigate(`/produit/${navigationInProduct(products, oneProduct, -1)}`);
+  //
+  const handleNavigateForward = () => navigate(`/produit/${navigationInProduct((products.some((element) => element.slug === slug)) ? products : carts, oneProduct, 1)}`);
+  const handleNavigateBackward = () => navigate(`/produit/${navigationInProduct((products.some((element) => element.slug === slug)) ? products : carts, oneProduct, -1)}`);
   //
   const getQuantityInCart = () => {
     const productInCart = cart.find((product) => product.name === oneProduct.name);
@@ -46,10 +60,29 @@ function Product() {
         <div className="product">
           <img src={background} alt="product" className="product-image" />
           <div className="product-content">
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Magni, esse. Vero aut modi ut. Eveniet eius in voluptatem esse nulla!
-            </p>
+            {(carts.some((element) => element.slug === slug)) && (
+              <div className="productsListinCart">
+                {productsListInCart.map((product) => (
+                  <div className="productInCart">
+                    <div className="product-name">
+                      {product.product.name}
+                    </div>
+                    <div className="doted" />
+                    <div className="meta">
+                      {`${(product.product.unity === 'kg' ? parseInt(product.quantity, 10) : product.quantity)}${product.product.unity}`}
+                    </div>
+                  </div>
+                ))}
+
+              </div>
+            )}
+            {(products.some((element) => element.slug === slug)) && (
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Magni, esse. Vero aut modi ut. Eveniet eius in voluptatem esse nulla!
+              </p>
+            )}
+
           </div>
           <div className="product-info">
             <div className="product-meta">
