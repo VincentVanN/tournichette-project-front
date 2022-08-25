@@ -75,3 +75,33 @@ ion-icon{
 .check-password{
   display: none;
 }
+.errorMessage{
+  font-family: vars.$fontMontserrat;
+  color: vars.$colorDarkGreen;
+  font-size: 1.2em;
+  font-weight: 500;
+ &-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+ }
+ &-li { 
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: flex-start;
+ }
+ &-errorMessage-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+ }
+}

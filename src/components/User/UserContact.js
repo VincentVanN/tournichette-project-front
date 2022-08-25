@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './user.scss';
 import { useState } from 'react';
-import Error from 'src/components/Error/Error';
 import { changeEditForm, addErrorMessage } from 'src/feature/user.slice';
 import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
 import Page from '../Page/Page';
@@ -143,7 +142,7 @@ function UserContact() {
         > {!isForm ? 'Mettre à jour mes informations' : 'Annuler'}
         </button>
       </form>
-      {errorMessage.length > 0 && <Error />}
+      {/* {errorMessage.length > 0 && <Error />} */}
     </Page>
   );
 }

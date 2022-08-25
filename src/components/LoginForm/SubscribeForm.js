@@ -1,7 +1,6 @@
 import './loginForm.scss';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import Error from 'src/components/Error/Error';
 // import { isValidEmail } from 'src/utils/formValidation';
 import { addErrorMessage, changeSubscribeForm, deleteErrorMessage } from '../../feature/user.slice';
 import {
@@ -25,19 +24,19 @@ function SubscribeForm({ handleSubmit }) {
     let isError = false;
     if (validateUpperCase(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('il manque une majuscule'));
+      dispatch(addErrorMessage('Il manque une majuscule'));
     }
     if (validateLength(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('il faut au moins 6 charactères'));
+      dispatch(addErrorMessage('Il faut au moins 6 caractères'));
     }
     if (validateDigit(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('il faut un chiffre'));
+      dispatch(addErrorMessage('Il manque un chiffre'));
     }
     if (validateScdPassword(password, sndPassword) === false) {
       isError = true;
-      dispatch(addErrorMessage('ce n\'est pas le même mot de passe'));
+      dispatch(addErrorMessage('Ce n\'est pas le même mot de passe'));
     }
     if (isError === true) {
       setTimeout(() => {
@@ -51,12 +50,12 @@ function SubscribeForm({ handleSubmit }) {
   };
   if (errorMessage.length !== 0) {
     return (
-      <div className="erroMessage-container">
+      <div className="errorMessage-container">
         <ul className="errorMessage-list">
           {errorMessage.map((error) => (
-            <li className="errorLi">
+            <li className="errorMessage-li">
               <ion-icon name="close-circle-outline" style={{ color: '#f88e6d', fontSize: '40px' }} />
-              <p>{error}</p>
+              <p className="errorMessage">{error}</p>
             </li>
           ))}
         </ul>
