@@ -1,3 +1,4 @@
+import 'src/components/User/userContact.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import './user.scss';
 import { useState } from 'react';
@@ -45,7 +46,6 @@ function UserContact() {
       dispatch(updateUser());
     }
     console.log(isError);
-    // dispatch(changeProfilForm([key, value]));
   };
   return (
     <Page>
