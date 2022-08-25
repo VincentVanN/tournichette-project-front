@@ -8,7 +8,7 @@ import { setUser } from '../../AsyncChunk/AsyncChunkUser';
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
 import Home from '../Home/Home';
-import AboutUs from '../AboutUs/AboutUs';
+// import AboutUs from '../AboutUs/AboutUs';
 import Product from '../Product/Product';
 import Cgu from '../Cgu/Cgu';
 import LegalNotice from '../LegalNotice/LegalNotice';
@@ -93,7 +93,7 @@ function App() {
         <Route path="/produits" element={<Products related="products" />} />
         <Route path="/produits/paniers" element={<Products related="carts" />} />
         <Route path="/produit/paniers/:slug" element={<Product />} />
-        <Route path="/apropos" element={<AboutUs />} />
+        {/* <Route path="/apropos" element={<AboutUs />} /> */}
         <Route path="/CGU" element={<Cgu />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
         <Route path="/contact" element={<Contact />} />
