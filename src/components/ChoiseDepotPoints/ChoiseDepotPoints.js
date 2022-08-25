@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { postOrder } from '../../AsyncChunk/AsyncChunkShoppingCart';
-import { getSelectedDepotId, setSelectedDepot } from '../../feature/shoppingCart.slice';
+import { deleteServerMessage, getSelectedDepotId, setSelectedDepot } from '../../feature/shoppingCart.slice';
 import './choiseDepotPoints.scss';
 
 function ChoiseDepotPoints() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const depots = useSelector((state) => state.shoppingCart.depots.data);
   const selectedDepot = useSelector((state) => state.shoppingCart.selectedDepot);
+  const serverMessage = useSelector((state) => state.shoppingCart.serverMessage);
   //
   // get adress of depots
   const ArrayOfDepotsAdress = [];
@@ -33,11 +36,22 @@ function ChoiseDepotPoints() {
     }
     else {
       dispatch(postOrder());
+      setTimeout(() => {
+        dispatch(deleteServerMessage());
+        navigate('/');
+      }, 3500);
     }
   };
   //
   // change icon color at selection
   const ValidateColor = selectedDepot ? '#fd7c55' : '#356859';
+  if (serverMessage) {
+    return (
+      <div className="serverMessage-container">
+        <div className="serverMessage">{serverMessage}</div>
+      </div>
+    );
+  }
   return (
     <div className="depot-container">
       <div className="title">
