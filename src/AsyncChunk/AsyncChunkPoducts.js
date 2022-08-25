@@ -7,7 +7,7 @@ export const getProducts = createAsyncThunk(
   'products/setProducts',
   async (_, { getState }) => {
     const { token } = getState().user.user;
-    const result = await axios.get('http://localhost:8000/api/v1/products', {
+    const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/products`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,7 +19,7 @@ export const getCategories = createAsyncThunk(
   'products/setCategories',
   async (_, { getState }) => {
     const { token } = getState().user.user;
-    const result = await axios.get('http://localhost:8000/api/v1/categories', {
+    const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/categories`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -31,7 +31,7 @@ export const getCarts = createAsyncThunk(
   'products/getCart',
   async (_, { getState }) => {
     const { token } = getState().user.user;
-    const result = await axios.get('http://localhost:8000/api/v1/carts', {
+    const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/carts`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
