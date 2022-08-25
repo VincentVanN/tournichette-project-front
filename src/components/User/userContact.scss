@@ -1,1 +1,44 @@
 @use 'src/styles/_vars.scss';
+
+.form {
+  width: 100vw;
+  height: 100vh;
+  background: vars.$colorBeige;
+  display: block;
+  overflow: auto;
+}
+.updateUserAccount {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+button{
+  border: none;
+  background-color: vars.$colorBeige;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+.field {
+  background: vars.$colorLightGreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:flex-start;
+  margin: 3px;
+  &-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  &-input{
+    background: vars.$colorLightGreen;
+    border: none;
+    font-family: vars.$fontMontserrat;
+    height: 35px;
+    font-size: 20px;
+  }
+}

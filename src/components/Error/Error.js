@@ -8,10 +8,11 @@ function Error() {
     <div className="container">
       <div className="errorMessage">
         <ul>
-          {errorMessage.map((error) => (
+          {errorMessage.map((error, index) => (
             <li
-              key={error}
-            >{error}
+              key={`error-${index}`}
+            >
+              {error}
             </li>
           ))}
         </ul>
