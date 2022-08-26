@@ -1,7 +1,13 @@
 @use 'src/styles/_vars.scss';
-
+.products-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .products{
-  width: 100vw;
+  width: 425px;
   height: 100vh;
   display: block;
   overflow: auto;
@@ -24,7 +30,7 @@
     }
   }
   &-categories {
-    width: 100vw;
+    width: 425px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -45,6 +51,7 @@
   }
   &-header{
     position: fixed;
+    top: 0;
     height: 90px;
     margin-bottom: 20px;
     z-index: 3;

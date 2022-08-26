@@ -1,10 +1,8 @@
 @use 'src/styles/_vars.scss';
 
 .card {
-  width: 95vw;
+  width: 90%;
   margin: 10px;
-  display: block;
-  font-size: 1em;
   padding-bottom: 13px;
   &_article{
     display: flex;

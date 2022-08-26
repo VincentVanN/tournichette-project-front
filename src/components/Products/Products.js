@@ -58,8 +58,8 @@ function Products({ related }) {
   }
   return (
     <Page>
-
-      <header className="products-header">
+      <div className="products-container">
+         <header className="products-header">
         {related === 'carts' && (<h1 className="title"> Nos paniers de saison</h1>)}
         {(related === 'products' && (
           <><div className="products-searchBar">
@@ -88,7 +88,7 @@ function Products({ related }) {
             </div>
           </>
         ))}
-      </header>
+         </header>
 
       <div className="products">
         <ul className="products-items">
@@ -109,6 +109,8 @@ function Products({ related }) {
           ))}
         </ul>
       </div>
+      </div>
+
     </Page>
   );
 }
