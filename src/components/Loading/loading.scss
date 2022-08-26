@@ -1,267 +1,138 @@
-@use "src/styles/_vars.scss";
-$halfCycle: 0.9;
-$timming: ease-in-out;
-$NINJIN: #e45112;
-$NINJIN2: #bb430f;
-$NINJIN3: #d96b06;
-$NINJIN_LEAF: #689c00;
-$NINJIN_LEAF2: #89c510;
+.chaotic-orbit {
+  --uib-size: 35px;
+  --uib-speed: 1.5s;
+  --uib-color: black;
 
-@mixin keyframes($animation-name) {
-  @-webkit-keyframes #{$animation-name} {
-    @content;
-  }
-  @-moz-keyframes #{$animation-name} {
-    @content;
-  }
-  @keyframes #{$animation-name} {
-    @content;
-  }
-}
-@mixin animation($animation-name) {
-  -webkit-animation: $animation-name;
-  -moz-animation: $animation-name;
-  animation: $animation-name;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  animation-fill-mode: both;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  animation: rotate calc(var(--uib-speed) * 1.667) infinite linear;
 }
 
-@mixin prefixes($property, $value) {
-  @each $prefix in -webkit-, -moz-, -ms-, -o-, "" {
-    #{$prefix}#{$property}: $value;
-  }
-}
-
-.ninjin {
+.chaotic-orbit::before,
+.chaotic-orbit::after {
+  content: '';
   position: absolute;
-  height: 410px;
-  width: 200px;
-  top: calc(50% - 205px);
-  left: calc(50% - 100px);
-  @include animation(ninjin 0.9s infinite $timming);
-
-  z-index: 2;
+  height: 60%;
+  width: 60%;
+  border-radius: 50%;
+  background-color: var(--uib-color);
+  will-change: transform;
+  flex-shrink: 0;
 }
-.ninjin  div {
-    position: absolute;
-    @include prefixes(transform-origin, 50% 0);
+
+.chaotic-orbit::before {
+  animation: orbit var(--uib-speed) linear infinite;
+}
+
+.chaotic-orbit::after {
+  animation: orbit var(--uib-speed) linear calc(var(--uib-speed) / -2)
+    infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
   }
-.ninjin .head {
-    top: 5px;
-    left: -13px;
-    width: 188px;
-    height: 145px;
-    border-radius: 50%;
-    background: $NINJIN;
-    @include prefixes(transform-origin, 20% 150%);
-    @include prefixes(transform, rotate(5deg));
-
-.head span {
-      position: absolute;
-      width: 47px;
-      height: 155px;
-      left: 30px;
-      bottom: 130px;
-      background-color: $NINJIN_LEAF;
-      border-radius: 30% 70% 0% 100% / 35% 60% 30% 65%;
-      z-index: 1;
-      @include prefixes(transform-origin, bottom);
-      @include animation(head 0.9s infinite ease-in-out);
-
-      &:nth-of-type(2) {
-        left: 34px;
-        bottom: 130px;
-        background-color: $NINJIN_LEAF2;
-        @include animation(head2 0.9s infinite ease-in-out);
-
-      }
-      &:nth-of-type(3) {
-        height: 140px;
-        left: 38px;
-        bottom: 130px;
-        background-color: $NINJIN_LEAF;
-        @include animation(head3 0.9s infinite ease-in-out);
-      }
-    }
-  }
-.ninjin__body {
-    left: 0;
-    top: 92px;
-    width: 185px;
-    height: 300px;
-    overflow: hidden;
-    @include prefixes(transform, rotate(5deg));
-
-    &:before {
-      width: 100%;
-      height: 350px;
-      background: $NINJIN;
-      border-radius: 10px 10px 50% 50%;
-      top: -100px;
-    }
-.ninjin__body    div {
-      top: 100%;
-      left: 0;
-      width: 100%;
-      height: 10vh;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      @include animation(body 0.9s infinite ease-in-out);
-      @include prefixes(transform, rotate(5deg));
-    }
-.ninjin__body span {
-      position: absolute;
-      width: 40px;
-      height: 5px;
-      left: 0;
-      top: 0;
-      background: $NINJIN3;
-      &:before {
-        width: 60px;
-        height: 5px;
-        left: 0;
-        top: 25px;
-        background: $NINJIN3;
-      }
-      &:after {
-        width: 40px;
-        height: 5px;
-        left: 137px;
-        top: 143px;
-        background: $NINJIN3;
-      }
-    }
-  }
-.ninjin__leg {
-    top: 300px;
-    left: 2px;
-    width: 120px;
-    height: 20px;
-.ninjin__body div {
-      width: 100%;
-      height: 180px;
-      top: -40px;
-      left: 25px;
-      overflow: hidden;
-      background: transparent;
-      &:before {
-        width: 0;
-        height: 0;
-        top: 0;
-        left: -7px;
-        background: transparent;
-        border-top: 224px solid $NINJIN;
-        border-left: 70px solid transparent;
-        border-right: 60px solid transparent;
-      }
-    }
-    div {
-      border-radius: 0 0 90% 90%;
-      @include animation(legs 0.9s infinite ease-in-out);
-    }
-.ninjin__leg--r {
-      div {
-        @include prefixes(animation-delay, 0.45s);
-      }
-    }
-.ninjin__leg--l {
-      div {
-        z-index: -1;
-        &:before {
-          border-top-color: $NINJIN2;
-        }
-      }
-    }
-  }
-
-
-@include keyframes(ninjin) {
-  0%,
-  50%,
   100% {
-    @include prefixes(transform, translateY(0vh) rotate(0.2deg) scale(0.5));
-  }
-  15%,
-  65% {
-    @include prefixes(transform, translateY(0.15vh) rotate(-0.2deg) scale(0.5));
+    transform: rotate(360deg);
   }
 }
 
-@include keyframes(head) {
-  0%,
-  100% {
-    @include prefixes(transform, rotate(10deg));
+@keyframes orbit {
+  0% {
+    transform: translate(calc(var(--uib-size) * 0.5)) scale(0.73684);
+    opacity: 0.65;
   }
-  25%,
-  75% {
-    @include prefixes(transform, rotate(20deg));
+  5% {
+    transform: translate(calc(var(--uib-size) * 0.4)) scale(0.684208);
+    opacity: 0.58;
   }
-  50% {
-    @include prefixes(transform, rotate(14deg));
+  10% {
+    transform: translate(calc(var(--uib-size) * 0.3)) scale(0.631576);
+    opacity: 0.51;
   }
-}
-
-@include keyframes(head2) {
-  0%,
-  100% {
-    @include prefixes(transform, rotate(15deg));
+  15% {
+    transform: translate(calc(var(--uib-size) * 0.2)) scale(0.578944);
+    opacity: 0.44;
   }
-  25%,
-  75% {
-    @include prefixes(transform, rotate(28deg));
+  20% {
+    transform: translate(calc(var(--uib-size) * 0.1)) scale(0.526312);
+    opacity: 0.37;
   }
-  50% {
-    @include prefixes(transform, rotate(18deg));
+  25% {
+    transform: translate(0%) scale(0.47368);
+    opacity: 0.3;
   }
-}
-
-@include keyframes(head3) {
-  0%,
-  100% {
-    @include prefixes(transform, rotate(20deg));
+  30% {
+    transform: translate(calc(var(--uib-size) * -0.1)) scale(0.526312);
+    opacity: 0.37;
   }
-  25%,
-  75% {
-    @include prefixes(transform, rotate(35deg));
+  35% {
+    transform: translate(calc(var(--uib-size) * -0.2)) scale(0.578944);
+    opacity: 0.44;
   }
-  50% {
-    @include prefixes(transform, rotate(30deg));
-  }
-}
-
-@include keyframes(body) {
-  0%,
-  100% {
-    @include prefixes(transform, rotate(2deg));
-  }
-  50% {
-    @include prefixes(transform, rotate(-10deg));
-  }
-}
-
-@include keyframes(legs) {
-  0%,
-  100% {
-    @include prefixes(transform, rotate(10deg));
+  40% {
+    transform: translate(calc(var(--uib-size) * -0.3)) scale(0.631576);
+    opacity: 0.51;
   }
   45% {
-    @include prefixes(transform, rotate(-15deg));
+    transform: translate(calc(var(--uib-size) * -0.4)) scale(0.684208);
+    opacity: 0.58;
+  }
+  50% {
+    transform: translate(calc(var(--uib-size) * -0.5)) scale(0.73684);
+    opacity: 0.65;
+  }
+  55% {
+    transform: translate(calc(var(--uib-size) * -0.4)) scale(0.789472);
+    opacity: 0.72;
+  }
+  60% {
+    transform: translate(calc(var(--uib-size) * -0.3)) scale(0.842104);
+    opacity: 0.79;
+  }
+  65% {
+    transform: translate(calc(var(--uib-size) * -0.2)) scale(0.894736);
+    opacity: 0.86;
+  }
+  70% {
+    transform: translate(calc(var(--uib-size) * -0.1)) scale(0.947368);
+    opacity: 0.93;
+  }
+  75% {
+    transform: translate(0%) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(calc(var(--uib-size) * 0.1)) scale(0.947368);
+    opacity: 0.93;
+  }
+  85% {
+    transform: translate(calc(var(--uib-size) * 0.2)) scale(0.894736);
+    opacity: 0.86;
+  }
+  90% {
+    transform: translate(calc(var(--uib-size) * 0.3)) scale(0.842104);
+    opacity: 0.79;
+  }
+  95% {
+    transform: translate(calc(var(--uib-size) * 0.4)) scale(0.789472);
+    opacity: 0.72;
+  }
+  100% {
+    transform: translate(calc(var(--uib-size) * 0.5)) scale(0.73684);
+    opacity: 0.65;
   }
 }
 
-// base
-html, body {
-  width: 100%;
-  height: 100%;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-  }
+body {
+  background: #fef9f1;
 }

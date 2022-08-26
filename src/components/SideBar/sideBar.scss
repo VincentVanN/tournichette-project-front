@@ -27,7 +27,7 @@
   width: 32px;
   top: 20px;
   left: 20px;
-  z-index: 5;
+  z-index: 25;
   opacity: 0;
   cursor: pointer;
 }
@@ -38,7 +38,7 @@
   position: fixed;
   top: 17px;
   left: 20px;
-  z-index: 2;
+  z-index: 21;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -121,6 +121,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  z-index: 20;
 }
 .more {
   font-size: xx-large;
@@ -180,14 +181,17 @@
   
 .navigation {
   position:fixed;
+  display: block;
+  overflow: hidden;
   top: 0;
   left: 0;
   background: vars.$colorLightGreen;
-  width: 60px;
+  z-index: 10;
+  width: 70px;
   height: 100vh;
   border-left:solid 10px vars.$colorLightGreen;
   border-radius: 10px;
-  overflow: hidden;
+  
   transition: 0.5s;
 }
 .navigation.active{
@@ -247,8 +251,6 @@
   width: 100%;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  /* background: #fff; */
-
 }
 .navigation ul li a{
 position: relative;
@@ -262,9 +264,7 @@ color: vars.$colorBeige;
   background: vars.$colorBeige;
   color: #222;
 }
-.navigation ul li:hover a {
-  
-}
+
 .navigation ul li a .icon {
   position: relative;
   display: block;
@@ -282,7 +282,6 @@ color: vars.$colorBeige;
   padding: 0 10px;
   height: 60px;
   line-height: 60px;
-  
   text-align: start;
   white-space: nowrap;
 }
@@ -316,4 +315,7 @@ color: vars.$colorBeige;
   &-:hover{
     color: vars.$colorOrange;
   }
+}
+.titleIcon:hover {
+  color: vars.$colorOrange;
 }

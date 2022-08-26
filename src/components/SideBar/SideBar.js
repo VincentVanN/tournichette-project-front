@@ -17,151 +17,82 @@ function SideBar() {
     dispatch(logout());
   };
   const countOfProducts = useSelector((state) => state.shoppingCart.count);
-
-  // if (screen > 576) {
-  //   return (
-  //     <nav className="nav">
-  //       <div className="container">
-  //         <div style={{ width: isOpen ? '200px' : '50px' }} className="sidebars">
-  //           <div className="top_section">
-  //             <div style={{ marginLeft: isOpen ? '100px' : '0px' }} className="bars">
-  //               <ion-icon name="menu-outline" onClick={toggle} />
-  //             </div>
-  //           </div>
-
-  //           <div className="menu-items">
-  //             <div className="header">
-  //               <div className="logins">{`hello ${firstname}!`}</div>
-  //               {countOfProducts !== 0 && (
-  //               <div className="cart">
-  //                 <div className="count">
-  //                   <p>
-  //                     {countOfProducts}
-  //                   </p>
-  //                 </div>
-  //                 <div className="icon">
-  //                   <ion-icon name="cart-outline" style={{ fontSize: '30px' }} />
-  //                 </div>
-  //               </div>
-  //               )}
-  //             </div>
-  //             {/* <img src={logo} alt="logo tournichette" className="logo" /> */}
-  //             <ul>
-  //               <li>
-  //                 <span className="icon"><ion-icon name="home-outline" /></span>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/">Accueil</NavLink>
-  //               </li>
-  //               <li>
-  //                 <span className="icon"><ion-icon name="happy-outline" /></span>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/profil">Mon profil</NavLink>
-  //               </li>
-  //               <li>
-  //                 <span className="icon"><ion-icon name="leaf-outline" /></span>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/paniers">Les paniers</NavLink>
-  //               </li>
-  //               <li>
-  //                 <span className="icon"><ion-icon name="leaf-outline" /></span>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/produits">Le détail</NavLink>
-  //               </li>
-  //               <li>
-  //                 <span className="icon"><ion-icon name="cart-outline" /></span>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/panier">Panier d'achat</NavLink>
-  //               </li>
-  //               <li>
-  //                 <span className="icon"><ion-icon name="mail-outline" /></span>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/contact">Nous contacter</NavLink>
-  //               </li>
-  //               <li>
-  //                 <span className="icon"><ion-icon name="help-outline" /></span>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/apropos">Qui sommes-nous?</NavLink>
-  //               </li>
-  //               <li>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/La-Dev-Team">La Dev Team</NavLink>
-  //               </li>
-  //               <li>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/CGU">CGU</NavLink>
-  //               </li>
-  //               <li>
-  //                 <NavLink className="navlink-more" activeclassName="active" style={{ display: isOpen ? 'block' : 'none' }} to="/mentions-legales">Mentions légales</NavLink>
-  //               </li>
-  //             </ul>
-  //             <div
-  //               className="logout"
-  //               onClick={handleLogout}
-  //             >
-  //               <ion-icon name="exit-outline" style={{ fontSize: '35px' }} />
-  //             </div>
-  //             <div
-  //               className="more"
-  //               onClick={handlerClick}
-  //             />
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </nav>
-  //   );
-  // }
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setIsOpen(!isOpen);
+  const className = ({ isActive }) => (isActive ? 'selected' : '');
+  let classNameLi;
+  if (className === 'selected') {
+    classNameLi = 'selected';
+    return classNameLi;
+  }
   if (width > 576) {
     return (
       <div className={`navigation ${isOpen ? 'active' : ''}`}>
         <ul>
-          <li><a href="#">
-            <span className="icon">
-              <ion-icon name="home-outline" />
-            </span>
-            <span className="titleIcon">Accueil</span>
-              </a>
+          <li className={classNameLi}>
+            <NavLink className={`link ${className}`} to="/">
+              <span className="icon">
+                <ion-icon name="home-outline" />
+              </span>
+              <span className="titleIcon">Accueil</span>
+            </NavLink>
           </li>
-          <li><a href="#">
-            <span className="icon">
-              <ion-icon name="person-outline" />
-            </span>
-            <span className="titleIcon">Profil</span>
-              </a>
+          <li>
+            <NavLink className={`link ${className}`} to="/profil">
+              <span className="icon">
+                <ion-icon name="person-outline" />
+              </span>
+              <span className="titleIcon">Profil</span>
+            </NavLink>
           </li>
-          <li><a href="#">
-            <span className="icon">
-              <ion-icon name="bag-outline" />
-            </span>
-            <span className="titleIcon">Les paniers</span>
-              </a>
+          <li>
+            <NavLink className={`link ${className}`} to="/paniers">
+              <span className="icon">
+                <ion-icon name="bag-outline" />
+              </span>
+              <span className="titleIcon">Les paniers</span>
+            </NavLink>
           </li>
-          <li><a href="#">
-            <span className="icon">
-              <ion-icon name="rose-outline" />
-            </span>
-            <span className="titleIcon">le Détail</span>
-              </a>
+          <li>
+            <NavLink className={`link ${className}`} to="/produits">
+              <span className="icon">
+                <ion-icon name="rose-outline" />
+              </span>
+              <span className="titleIcon">le Détail</span>
+            </NavLink>
           </li>
-          <li><a href="#">
-            <span className="icon">
-              <ion-icon name="cart-outline" />
-            </span>
-            <span className="titleIcon">Ton panier d'achat</span>
-              </a>
+          <li>
+            <NavLink className={`link ${className}`} to="/panier">
+              <span className="icon">
+                <ion-icon name="cart-outline" />
+              </span>
+              <span className="titleIcon">Ton panier d'achat</span>
+            </NavLink>
           </li>
-          <li><a href="#">
-            <span className="icon">
-              <ion-icon name="mail-outline" />
-            </span>
-            <span className="titleIcon">Contact</span>
-              </a>
+          <li>
+            <NavLink className={`link ${className}`} to="/contact">
+              <span className="icon">
+                <ion-icon name="mail-outline" />
+              </span>
+              <span className="titleIcon">Contact</span>
+            </NavLink>
           </li>
-          <li><a href="#">
-            <span className="icon">
-              <ion-icon name="help-outline" />
-            </span>
-            <span className="titleIcon">Qui sommes nous?</span>
-              </a>
+          <li>
+            <NavLink className={`link ${className}`} to="/apropos">
+              <span className="icon">
+                <ion-icon name="help-outline" />
+              </span>
+              <span className="titleIcon">Qui sommes nous?</span>
+            </NavLink>
           </li>
-          <li><a href="#">
-            <span className="icon">
-              <ion-icon name="log-out-outline" />
-            </span>
-            <span className="titleIcon">Se déconnecter</span>
-              </a>
+          <li onClick={handleLogout}>
+            <a href="">
+              <span className="icon">
+                <ion-icon name="log-out-outline" />
+              </span>
+              <span className="titleIcon">Se déconnecter</span>
+            </a>
+
           </li>
         </ul>
         <div
