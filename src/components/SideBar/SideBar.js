@@ -18,6 +18,8 @@ function SideBar() {
   };
   const countOfProducts = useSelector((state) => state.shoppingCart.count);
   const [isOpen, setIsOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheck = () => setIsChecked(!isChecked);
   const handleOpen = () => setIsOpen(!isOpen);
   const className = ({ isActive }) => (isActive ? 'selected' : '');
   let classNameLi;
@@ -106,8 +108,16 @@ function SideBar() {
     <nav>
       <div className="navbar">
         <div className="nav nav-container">
-          <input className="checkbox" type="checkbox" />
-          <div className="hamburger-lines">
+          <input
+            className="checkbox"
+            type="checkbox"
+            checked={isChecked}
+            onClick={handleCheck}
+          />
+          <div
+            className="hamburger-lines"
+            onClick={handleCheck}
+          >
             <span className="line line1" />
             <span className="line line2" />
             <span className="line line3" />
@@ -130,13 +140,13 @@ function SideBar() {
                 )}
               </div>
               <img src={logo} alt="logo tournichette" className="logo" />
-              <NavLink className="navlink" to="/">Accueil</NavLink>
-              <NavLink className="navlink" to="/profil">Mon profil</NavLink>
-              <NavLink className="navlink" to="/paniers">Les paniers</NavLink>
-              <NavLink className="navlink" to="/produits">Le détail</NavLink>
-              <NavLink className="navlink" to="/panier">Panier d'achat</NavLink>
-              <NavLink className="navlink" to="/contact">Nous contacter</NavLink>
-              <NavLink className="navlink" to="/apropos">Qui sommes-nous?</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/">Accueil</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/profil">Mon profil</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/paniers">Les paniers</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/produits">Le détail</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/panier">Panier d'achat</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/contact">Nous contacter</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/apropos">Qui sommes-nous?</NavLink>
               <div
                 className="logout"
                 onClick={handleLogout}
