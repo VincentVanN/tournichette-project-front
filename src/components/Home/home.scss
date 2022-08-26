@@ -14,6 +14,8 @@
   align-items: center;
   justify-content: space-evenly;
   &-logo {
+    position: fixed;
+    top: 0;
     width: 320px;
     height: 320px;
   }
@@ -24,6 +26,7 @@
     text-align: center;
     color: vars.$colorDarkGreen;
     font-weight: 500;
+    padding-top: 150px;
   }
   &-button {
     font-family: vars.$fontMontserrat;
@@ -67,6 +70,7 @@ ion-icon:active{
 .top{
   border-bottom: solid 1px vars.$colorMediumGreen;
 }
+
 ///////////////////// screen > 576
 @media screen and (min-width: 577px) {
   .home-container{
