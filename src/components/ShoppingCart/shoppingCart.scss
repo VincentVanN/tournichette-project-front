@@ -3,7 +3,7 @@
   position: relative;
   display: block;
   overflow: auto;
-  width: 100vw;
+  width: 425px;
   height: 100vh;
   &-empty{
     width: 100%;
@@ -84,4 +84,20 @@
   font-weight: 600;
   font-size: 1.5em;
 }
-
+///////////////////// screen > 576
+@media screen and (min-width: 577px) {
+  .shoppingCart {
+    display: block;
+    overflow: auto;
+    min-width: 576px;
+    padding-left: 60px;
+    &-shoppingCartAmont{
+      margin: auto;
+    }
+  }
+  .shoppingCart-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
