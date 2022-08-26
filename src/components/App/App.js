@@ -45,9 +45,10 @@ function App() {
     const { height } = window.screen;
     return height;
   }
-  dispatch(setWidth(getWindowWidth()));
-  dispatch(setHeight(getWindowHeight()));
+
   useEffect(() => {
+    dispatch(setWidth(getWindowWidth()));
+    dispatch(setHeight(getWindowHeight()));
     function handleWindowSize() {
       dispatch(setWidth(getWindowWidth()));
       dispatch(setHeight(getWindowHeight()));
