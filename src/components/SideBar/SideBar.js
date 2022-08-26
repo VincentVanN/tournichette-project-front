@@ -140,13 +140,13 @@ function SideBar() {
                 )}
               </div>
               <img src={logo} alt="logo tournichette" className="logo" />
-              <NavLink className="navlink" onClick={handleCheck} to="/">Accueil</NavLink>
-              <NavLink className="navlink" onClick={handleCheck} to="/profil">Mon profil</NavLink>
-              <NavLink className="navlink" onClick={handleCheck} to="/paniers">Les paniers</NavLink>
-              <NavLink className="navlink" onClick={handleCheck} to="/produits">Le détail</NavLink>
-              <NavLink className="navlink" onClick={handleCheck} to="/panier">Panier d'achat</NavLink>
-              <NavLink className="navlink" onClick={handleCheck} to="/contact">Nous contacter</NavLink>
-              <NavLink className="navlink" onClick={handleCheck} to="/apropos">Qui sommes-nous?</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/">Accueil</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/profil">Mon profil</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/paniers">Les paniers</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/produits">Le détail</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/panier">Panier d'achat</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/contact">Nous contacter</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/apropos">Qui sommes-nous?</NavLink>
               <div
                 className="logout"
                 onClick={handleLogout}

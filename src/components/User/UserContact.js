@@ -7,7 +7,7 @@ import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
 import Page from '../Page/Page';
 import Field from './Field';
 import {
-  validateUpperCase, validateLength, validateDigit, validateScdPassword,
+  validateUpperCase, validateLength, validateDigit, validateScdPassword, isValidEmail,
 } from '../../utils/validatePassword';
 
 function UserContact() {
@@ -26,21 +26,37 @@ function UserContact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let isError = false;
+    if (firstname === '') {
+      isError = true;
+      dispatch(addErrorMessage('Prénom obligatoire'));
+    }
+    if (lastname === '') {
+      isError = true;
+      dispatch(addErrorMessage('Nom obligatoire'));
+    }
+    if (phone === '') {
+      isError = true;
+      dispatch(addErrorMessage('Téléphone obligatoire'));
+    }
+    if (isValidEmail(email) === false) {
+      isError = true;
+      dispatch(addErrorMessage('L\'email non valide'));
+    }
     if (validateUpperCase(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('Il manque une majuscule'));
+      dispatch(addErrorMessage('une majuscule au mot de passe'));
     }
     if (validateLength(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('Il faut au moins 6 charactères'));
+      dispatch(addErrorMessage('Mot de passe de 6 caractères'));
     }
     if (validateDigit(password) === false) {
       isError = true;
-      dispatch(addErrorMessage('Il manque un chiffre'));
+      dispatch(addErrorMessage('Un chiffre au mot de passe'));
     }
     if (validateScdPassword(password, sndPassword) === false) {
       isError = true;
-      dispatch(addErrorMessage('Ce n\'est pas le même mot de passe'));
+      dispatch(addErrorMessage('Mots de passe différents'));
     }
     if (isError === true) {
       setTimeout(() => {

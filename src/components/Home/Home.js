@@ -12,9 +12,9 @@ function Home() {
       <div className="home-container">
         <div className="home">
           <img className="home-logo" src={logo} alt="logo Tournichette" />
-          <h1 className="home-annoncement">
+          <div className="home-annoncement">
             Les ventes sont ouvertes
-          </h1>
+          </div>
           <div className="home-button-group">
             <div
               className="home-button-container top"
