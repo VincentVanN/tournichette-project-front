@@ -12,9 +12,7 @@ function User() {
   return (
     <Page>
       <div className="user-container">
-        <div className="image-container">
-          <img className="form-logo" src={logo} alt="logo Tournichette" />
-        </div>
+        <img className="user-logo" src={logo} alt="logo Tournichette" />
         <div className="user-button-group">
           <div
             className="user-button-container"
