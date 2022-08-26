@@ -1,16 +1,9 @@
 @use 'src/styles/_vars.scss';
 
-/* -------max 576---------- */
-@media only screen and (max-width: 576px) {
-  nav {
-  max-width: 1050px;
-  width: 110vw;
-  margin: auto;
-  z-index: 10;
-}
- }
 
 .nav-container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -183,104 +176,144 @@
   right: 50px;
 }
 
-/* -------min 576---------- */
-  .nav{
-    display: flex;
-    height: 100%;
-    margin: auto;
-    z-index: 10;
-    justify-content: flex-start;
-    align-items: center;
-    position: fixed;
-  }
+// sideBar > w576px
   
-  .sidebars{
-    background: vars.$colorBeige;
-    width: 200px;
-    height: 100vh;
-    transition: all 0.5s;
-    border: 2px solid vars.$colorOrange;
-    text-align: center;
-  }
-  
-  .container {
-    display: block;
-    position: relative;
-    height: 0;
-    background: vars.$colorBeige;
-  }
-  
-  .top_section{
-    display: flex;
-    align-items:center;
-    padding:20px 15px;
-    flex-direction: column;
-  }
-  
-  .logo{
-    font-size: 30px;
-  }
-  .bars{
-    display: flex;
-    font-size: 25px;
-    margin-left: 50px;
-  }
-  .navlink-more{
-    display: flex;
-    padding: 10px 15px;
-    gap: 15px;
-    transition: all 0.5s;
-    color: vars.$colorDarkGreen;
-    line-height: 20px;
-    text-decoration: none;
-  }
-  .navlink-more:hover{
-    color: vars.$colorDarkGreen;
-    transition: all 0.5s;
-  }
-  .active{
-    color: vars.$colorDarkGreen;
-  }
-  .icon, .link_text{
-    font-size: 20px;
-  }
-  .more {
-    color: vars.$colorDarkGreen;
-  }
-  .icon {
-    display: flex ;
-    margin-bottom: 20px;
+.navigation {
+  position:fixed;
+  top: 0;
+  left: 0;
+  background: vars.$colorLightGreen;
+  width: 60px;
+  height: 100vh;
+  border-left:solid 10px vars.$colorLightGreen;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.navigation.active{
+  width: 300px;
+  z-index: 10;
+}
+.toggle {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  background: vars.$colorBeige;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toggle::before {
+  content: '';
+  position: absolute;
+  border-radius: 3px;
+  width: 26px;
+  height: 3px;
+  background: vars.$colorOrange;
+  transform: translateY(-5px);
+  transition: 1s;
+}
+.toggle::after {
+  content: '';
+  position: absolute;
+  border-radius: 3px;
+  width: 26px;
+  height: 3px;
+  background: vars.$colorOrange;
+  transform: translateY(5px);
+  transition: 1s;
+}
+.navigation.active .toggle::before {
+  transform: translateY(0px) rotate(-405deg);
+}
+.navigation.active .toggle::after {
+  transform: translateY(0px) rotate(225deg);
+}
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 100px;
+}
+.navigation ul li{
+  position: relative;
+  list-style: none;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  /* background: #fff; */
 
-  }
-  .menu-items {
-    margin-bottom: 20px;
-    color: vars.$colorDarkGreen;
-  }
-  li{
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: center;
-  }
+}
+.navigation ul li a{
+position: relative;
+display: block;
+width: 100%;
+display: flex;
+text-decoration: none;
+color: vars.$colorBeige;
+}
+.navigation ul li:hover{
+  background: vars.$colorBeige;
+  color: #222;
+}
+.navigation ul li:hover a {
   
-  .count {
-    position: relative;
-    left: 2px;
-    z-index: 3;
-    margin: auto;
-    width: 24px;
-    height: 24px;
-    font-size: 1.3em;
-    font-weight: bold;
-    border: solid 2px vars.$colorDarkGreen;
-    border-radius: 50px;
-    color: vars.$colorDarkGreen;
-    background-color: vars.$colorLightGreen;
-    & p{
-      padding-top: 3px;
-    }
-  }
-  .logins{
-    margin-bottom: 10%;
-  }
-
+}
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 70px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75em;
+}
+.navigation ul li a .titleIcon {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
   
+  text-align: start;
+  white-space: nowrap;
+}
+.navigation ul li:hover::before{
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-bottom-right-radius: 20px;
+  box-shadow: 7.5px 7.5px 0 7.5px vars.$colorBeige;
+}
+.navigation ul li:hover::after{
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 7.5px -7.5px 0 7.5px vars.$colorBeige;
+}
+.navigation ul li a .icon:hover ion-icon{
+  color: vars.$colorOrange;
+}
+.titleIcon {
+  color: vars.$colorDarkGreen;
+  &-:hover{
+    color: vars.$colorOrange;
+  }
+}
