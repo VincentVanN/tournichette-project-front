@@ -20,7 +20,7 @@ function Home() {
               className="home-button-container top"
               onClick={handleClickCarts}
             >
-              <h2 className="home-button-title">Choisir mon panier de légumes</h2>
+              <h2 className="home-button-title">Mon panier de légumes</h2>
               <button
                 className="home-button"
                 type="button"

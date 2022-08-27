@@ -5,3 +5,13 @@ main {
   justify-content: center;
   margin: auto;
 }
+.smallComponent {
+  width: 450px;
+  height: 700px;
+  border: solid 2px black;
+}
+.largeComponent {
+  width: 940px;
+  height: 700px;
+  border: solid 2px black;
+}

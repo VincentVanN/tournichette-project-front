@@ -61,7 +61,7 @@ function Products({ related }) {
       <div className="products-container">
          <header className="products-header">
         {related === 'carts' && (<h1 className="title"> Nos paniers de saison</h1>)}
-        {(related === 'products' && (
+        {((related === 'products' || slug) && (
           <><div className="products-searchBar">
             <SearchBar
               type="text"
@@ -92,7 +92,7 @@ function Products({ related }) {
 
       <div className="products">
         <ul className="products-items">
-          {(related === 'products' ? arrayToDisplay : carts).map((product) => (
+          {((related === 'products' || slug) ? arrayToDisplay : carts).map((product) => (
             <Card
               related={related === 'products' ? 'products' : 'carts'}
               key={product.name}
