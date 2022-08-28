@@ -1,19 +1,19 @@
 import { useSelector } from 'react-redux';
 import Page from '../Page/Page';
-import Product from './Product';
+import ChoiseDepotPoints from './ChoiseDepotPoints';
 
-function ProductRendering() {
+function ChoiseDepotPointsRendering() {
   const width = useSelector((state) => state.navigation.width);
   if (width >= 1024) {
     return (
-      <Product />
+      <ChoiseDepotPoints />
     );
   }
   return (
     <Page>
-      <Product />
+      <ChoiseDepotPoints />
     </Page>
   );
 }
 
-export default ProductRendering;
+export default ChoiseDepotPointsRendering;

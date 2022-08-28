@@ -4,6 +4,7 @@
   &-container {
     width: 100%;
     display: flex;
+    margin: auto;
   }
   &-article{
     display: flex;
@@ -64,9 +65,16 @@
   }
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 1024px) {
   
-
+.card-article {
+padding: 10px 0;
+margin: 7px 0;
+box-shadow: 3px 12px 9px -8px rgba(0,0,0,0.12);
+font-size: 0.9em;
+&:active {
+  transform: scale(0.99);
+}
+}
  
-  
- }
+}

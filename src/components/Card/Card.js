@@ -9,6 +9,7 @@ import { changeQuantityProduct } from '../../utils/cartUtils';
 function Card({
   name, price, unity, quantity, onClick, slug, product, related,
 }) {
+  const width = useSelector((state) => state.navigation.width);
   const handleClick = () => onClick(related, slug);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.shoppingCart.shoppingCart);
@@ -38,6 +39,7 @@ function Card({
             <li className="card-price">{`${price}€`}</li>
           </ul>
         </div>
+        {width < 1024 && (
         <div className="button-group">
           <button
             type="button"
@@ -54,6 +56,8 @@ function Card({
             <ion-icon name="reader-outline" size="medium" />
           </button>
         </div>
+        )}
+
       </div>
       )}
       {related === 'shoppingCart' && (

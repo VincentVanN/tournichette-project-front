@@ -189,8 +189,8 @@
   width: 70px;
   height: 100vh;
   border-left:solid 10px vars.$colorLightGreen;
-  border-radius: 10px;
-  
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   transition: 0.5s;
 }
 .navigation.active{
@@ -318,4 +318,26 @@ color: vars.$colorBeige;
 }
 .titleIcon:hover {
   color: vars.$colorOrange;
+}
+@media only screen and (min-width: 1024px) {
+  .navigation {
+    background: vars.$colorBeige;
+    border-left:solid 10px vars.$colorBeige;
+    box-shadow: 6px 0px 12px -4px rgba(0,0,0,0.34);
+  }
+  .toggle {
+    background: vars.$colorLightGreen;
+  }
+  .navigation ul li a {
+    color :vars.$colorLightGreen;
+  }
+  .navigation ul li:hover {
+    background: vars.$colorLightGreen;
+  }
+  .navigation ul li:hover::before{
+    box-shadow: 7.5px 7.5px 0 7.5px vars.$colorLightGreen;
+  }
+  .navigation ul li:hover::after{
+    box-shadow: 7.5px -7.5px 0 7.5px vars.$colorLightGreen;
+  }
 }

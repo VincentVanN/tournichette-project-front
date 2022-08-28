@@ -1,4 +1,6 @@
 @use 'src/styles/_vars.scss';
 main {
   display: flex;
+  justify-content: center;
+  align-self: center;
 }

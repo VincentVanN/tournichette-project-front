@@ -4,7 +4,7 @@ import ShoppingCart from './ShoppingCart';
 
 function ShoppingCartRendering() {
   const width = useSelector((state) => state.navigation.width);
-  if (width >= 1280) {
+  if (width >= 1024) {
     return (
       <ShoppingCart />
     );

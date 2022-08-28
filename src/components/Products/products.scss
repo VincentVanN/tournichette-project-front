@@ -1,9 +1,9 @@
 @use 'src/styles/_vars.scss';
 .products-container {
-  position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
+  flex-direction: column;
 }
 .products{
   width: 100%;
@@ -48,17 +48,17 @@
     padding: 0 0 25px 25px;
   }
   &-header{
-    position: fixed;
-    top: 0;
+    position: sticky;
     width: 100%;
     height: 90px;
     margin-bottom: 20px;
     z-index: 3;
     background: vars.$colorBeige;
-    
   }
   &-items{
-    margin-top: 150px;
+    height: 100%;
+    padding-top: 20px;
+    margin: 20px;
   }
 }
 .hidden {
@@ -80,5 +80,13 @@
  @media only screen and (min-width: 577px) {
   .products-container{
     margin-left: 80px;
+  }
+ }
+ @media only screen and (min-width: 1024px) {
+  .products-container{
+    margin: 0;
+  }
+  .products{
+    margin: 0;
   }
  }
