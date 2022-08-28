@@ -1,0 +1,12 @@
+.singlePage-container{
+  display: flex;
+  justify-content: center;
+}
+.largeComponent{
+  flex-basis:66.66%;
+  color: black;
+  padding-top: 200px;
+}
+.smallComponent{
+  flex-basis:33.33%;
+}
