@@ -2,7 +2,6 @@ import './shoppingCart.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
-import Page from '../Page/Page';
 import Card from '../Card/Card';
 import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 
@@ -14,39 +13,36 @@ function ShoppingCart() {
   //
   // return on products list when cart's empty
   const navigate = useNavigate();
-  const handleClick = () => navigate('/produits');
+  const handleClick = () => navigate('/liste');
   //
   // get amount of order
   const cartAmount = useSelector((state) => state.shoppingCart.cartAmount);
 
   if (cartToDisplay.length === 0) {
     return (
-      <Page>
-        <div className="shoppingCart">
+      <div className="shoppingCart">
+        <div
+          className="shoppingCart-empty"
+          onClick={handleClick}
+        >
           <div
-            className="shoppingCart-empty"
-            onClick={handleClick}
-          >
-            <div
-              className="shoppingCart-empty-title"
-            >Ton panier est vide
-            </div>
-            <div
-              className="shoppingCart-empty-content"
-            >
-              pour tes courses c'est par ici!
-            </div>
-            <ion-icon name="arrow-forward-circle-outline" size="large" />
+            className="shoppingCart-empty-title"
+          >Ton panier est vide
           </div>
+          <div
+            className="shoppingCart-empty-content"
+          >
+            pour tes courses c'est par ici!
+          </div>
+          <ion-icon name="arrow-forward-circle-outline" size="large" />
         </div>
-      </Page>
+      </div>
     );
   }
   if (cartToDisplay.length !== 0) {
     return (
-      <Page>
-        <div className="shoppingCart">
-          {!isAdressMenu && (
+      <div className="shoppingCart">
+        {!isAdressMenu && (
           <>
             <div className="shoppingCart-header">
               <div className="shoppingCart-title">
@@ -86,10 +82,9 @@ function ShoppingCart() {
             </div>
           </>
 
-          )}
-          {isAdressMenu && (<ChoiseDepotPoints />)}
-        </div>
-      </Page>
+        )}
+        {isAdressMenu && (<ChoiseDepotPoints />)}
+      </div>
     );
   }
 }

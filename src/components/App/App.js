@@ -9,23 +9,22 @@ import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
 import Home from '../Home/Home';
 // import AboutUs from '../AboutUs/AboutUs';
-import Product from '../Product/Product';
 import Cgu from '../Cgu/Cgu';
 import LegalNotice from '../LegalNotice/LegalNotice';
 import Contact from '../Contact/Contact';
 import DevTeam from '../DevTeam/DevTeam';
-import User from '../User/User';
-import Products from '../Products/Products';
 import NotFound from '../NotFound/NotFound';
-import Orders from '../User/Orders';
-import UserContact from '../User/UserContact';
-import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { getCarts, getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
 import { setToken } from '../../feature/user.slice';
 import { setCartAmount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { setHeight, setWidth } from '../../feature/navigation.slice';
 import SinglePage from '../Page/SinglePage';
+import ProductsRendering from '../Products/ProductsRendering';
+import ProductRendering from '../Product/ProductRendering';
+import ShoppingCartRendering from '../ShoppingCart/ShoppingCartRendering';
+import UserContactRendering from '../User/UserContactRendering';
+import OrdersRendering from '../User/OrdersRendering';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -88,7 +87,11 @@ function App() {
     && (
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/produits" element={<SinglePage />} />
+        <Route path="/liste" element={<SinglePage />} />
+        <Route path="/categorie/:slug" element={<SinglePage />} />
+        <Route path="/profil" element={<SinglePage />} />
+        <Route path="/panier" element={<SinglePage />} />
+        <Route path="/produit/:slug" element={<SinglePage />} />
       </Routes>
     )}
 
@@ -103,15 +106,15 @@ function App() {
     && (
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/categorie/:slug" element={<Products />} />
-        <Route path="/profil/" element={<User />} />
-        <Route path="/profil/historique" element={<Orders />} />
-        <Route path="/profil/coordonnees" element={<UserContact />} />
-        <Route path="/panier" element={<ShoppingCart />} />
-        <Route path="/produit/:slug" element={<Product />} />
-        <Route path="/produits" element={<Products related="products" />} />
-        <Route path="/paniers" element={<Products related="carts" />} />
-        <Route path="/produit/paniers/:slug" element={<Product />} />
+        <Route path="/categorie/:slug" element={<ProductsRendering />} />
+        <Route path="/profil" element={<UserContactRendering />} />
+        <Route path="/profil/historique" element={<OrdersRendering />} />
+        <Route path="/profil/coordonnees" element={<UserContactRendering />} />
+        <Route path="/panier" element={<ShoppingCartRendering />} />
+        <Route path="/produit/:slug" element={<ProductRendering />} />
+        <Route path="/liste" element={<ProductsRendering related="products" />} />
+        <Route path="/paniers" element={<ProductsRendering related="carts" />} />
+        <Route path="/produit/paniers/:slug" element={<ProductRendering />} />
         {/* <Route path="/apropos" element={<AboutUs />} /> */}
         <Route path="/CGU" element={<Cgu />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />

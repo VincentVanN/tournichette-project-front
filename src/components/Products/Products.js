@@ -5,7 +5,7 @@
 import './products.scss';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import Card from 'src/components/Card/Card';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
@@ -30,11 +30,13 @@ function Products({ related }) {
   // algorithm to filter products by category
   //
   const navigate = useNavigate();
+  // check location for dual display when screen > 1280px
+  const location = useLocation();
   const handleClickProduct = (relatedCard, slug) => navigate(`${relatedCard === 'carts' ? '/produit/paniers/' : '/produit/'}${slug}`);
   const params = useParams();
   const { slug } = params;
   const filterProducts = () => products.filter((product) => (product.category.slug === slug));
-  const filteredArrayByCategory = Object.keys(params).length === 0 ? products : filterProducts();
+  const filteredArrayByCategory = (Object.keys(params).length === 0 || location !== '/liste') ? products : filterProducts();
   //
   // algorithm to filter products by search bar
   //
@@ -48,7 +50,6 @@ function Products({ related }) {
     setIsSearchBar(!isSearchBar);
   };
   const handleBlur = () => setIsSearchBar(!isSearchBar);
-
   if ((isLoadingProducts || isLoadingCategories || isLoadingCarts)) {
     return (
       <Page>
@@ -57,7 +58,6 @@ function Products({ related }) {
     );
   }
   return (
-    <Page>
       <div className="products-container">
          <header className="products-header">
         {related === 'carts' && (<h1 className="title"> Nos paniers de saison</h1>)}
@@ -110,8 +110,6 @@ function Products({ related }) {
         </ul>
       </div>
       </div>
-
-    </Page>
   );
 }
 Products.propTypes = {

@@ -4,7 +4,6 @@ import './user.scss';
 import { useState } from 'react';
 import { changeEditForm, addErrorMessage, deleteErrorMessage } from 'src/feature/user.slice';
 import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
-import Page from '../Page/Page';
 import Field from './Field';
 import {
   validateUpperCase, validateLength, validateDigit, validateScdPassword, isValidEmail,
@@ -83,7 +82,7 @@ function UserContact() {
     );
   }
   return (
-    <Page>
+    <>
       <form
         onSubmit={handleSubmit}
         className="form"
@@ -178,7 +177,9 @@ function UserContact() {
         </button>
       </form>
       {/* {errorMessage.length > 0 && <Error />} */}
-    </Page>
+
+    </>
+
   );
 }
 
