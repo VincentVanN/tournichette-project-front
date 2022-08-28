@@ -1,10 +1,11 @@
 @use 'src/styles/_vars.scss';
 
 .card {
-  width: 90%;
-  margin: 10px;
-  padding-bottom: 13px;
-  &_article{
+  &-container {
+    width: 100%;
+    display: flex;
+  }
+  &-article{
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -16,7 +17,7 @@
     margin-left: 8px;
   }
 
-  &_infos{
+  &-infos{
     display: flex;
     flex-direction: row;
   }
@@ -65,14 +66,7 @@
 
 @media only screen and (min-width: 576px) {
   
-  .card{
-    width: 80%;
-    margin: 10px;
-    display: block;
-    font-size: 1.1em;
-    padding-bottom: 13px;
-    margin-left: 50px;
-  }
+
  
   
  }

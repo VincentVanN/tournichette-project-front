@@ -37,8 +37,7 @@ function ShoppingCart() {
                 </div>
               </div>
             </div>
-
-            <ul className="shoppingCart-products">
+            <ul className="shoppingCart-list">
               {cartToDisplay.map((product) => (
                 <Card
                   related="shoppingCart"

@@ -21,23 +21,23 @@ function Card({
     dispatch(setCount(-1));
   };
   return (
-    <div className="card">
+    <>
       {related === 'products' && (
       <div className="card-container">
-        <article
-          className="card_article"
+        <div
+          className="card-article"
         >
           <div className="card-leftSide">
             <h2 className="card-leftSide card-title">{name}</h2>
           </div>
           <div className="doted" />
-          <ul className="card_infos">
+          <ul className="card-infos">
             <li className="card-unity">{quantity}</li>
             <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
             <li className="card-unity">/</li>
             <li className="card-price">{`${price}€`}</li>
           </ul>
-        </article>
+        </div>
         <div className="button-group">
           <button
             type="button"
@@ -58,20 +58,20 @@ function Card({
       )}
       {related === 'shoppingCart' && (
       <div className="card-container">
-        <article
-          className="card_article"
+        <div
+          className="card-article"
         >
           <div className="card-leftSide">
             <h2 className="card-leftSide card-title">{name}</h2>
           </div>
           <div className="doted" />
-          <ul className="card_infos">
+          <ul className="card-infos">
             <li className="card-unity">{quantity}</li>
             <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity && unity === 'undefined' ? 'Pce' : unity}</li>
             <li className="card-unity">-</li>
             <li className="card-price">{`${(quantity * parseFloat(price)).toFixed(2)}€`}</li>
           </ul>
-        </article>
+        </div>
         <div className="button-group">
           <button
             type="button"
@@ -95,20 +95,20 @@ function Card({
       )}
       {related === 'carts' && (
       <div className="card-container">
-        <article
-          className="card_article"
+        <div
+          className="card-article"
         >
           <div className="card-leftSide">
             <h2 className="card-leftSide card-title">{name}</h2>
           </div>
           <div className="doted" />
-          <ul className="card_infos">
+          <ul className="card-infos">
             <li className="card-unity">{quantity}</li>
             <li className="card-unity">Pièce</li>
             <li className="card-unity">/</li>
             <li className="card-price">{`${price}€`}</li>
           </ul>
-        </article>
+        </div>
         <div className="button-group">
           <button
             type="button"
@@ -127,7 +127,8 @@ function Card({
         </div>
       </div>
       )}
-    </div>
+    </>
+
   );
 }
 
