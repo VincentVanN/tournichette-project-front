@@ -5,7 +5,7 @@ export const navigationSlice = createSlice({
   initialState: {
     width: 0,
     height: 0,
-    baseUrl: 'http://localhost:8000',
+    baseUrl: ' http://api.tournichette.fr',
   },
   reducers: {
     setWidth: (state, { payload }) => {

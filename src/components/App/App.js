@@ -25,6 +25,7 @@ import { setToken } from '../../feature/user.slice';
 import { setCartAmount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { setHeight, setWidth } from '../../feature/navigation.slice';
+import SinglePage from '../Page/SinglePage';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -34,6 +35,7 @@ function App() {
   const dispatch = useDispatch();
   const loggedUser = JSON.parse(localStorage.getItem('user'));
   const token = useSelector((state) => state.user.user.token);
+  const stateWidth = useSelector((state) => state.navigation.width);
   //
   // getting screen size in state
   //
@@ -76,6 +78,22 @@ function App() {
   }, [shoppingCart]);
   if ((loadingProducts && logged) || (loadingCategories && logged)) {
     return <Loading />;
+  }
+  if (stateWidth >= 1280) {
+    return (
+      <div className="app">
+
+        {(!logged && !loggedUser) && <LoginForm />}
+        {(logged)
+    && (
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/produits" element={<SinglePage />} />
+      </Routes>
+    )}
+
+      </div>
+    );
   }
   return (
     <div className="app">
