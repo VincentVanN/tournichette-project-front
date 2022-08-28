@@ -93,6 +93,12 @@ function App() {
         <Route path="/produit/:slug" element={<SinglePage />} />
         <Route path="/listePaniers" element={<SinglePage />} />
         <Route path="/produit/paniers/:slug" element={<SinglePage />} />
+        {/* <Route path="/apropos" element={<AboutUs />} /> */}
+        <Route path="/CGU" element={<Cgu />} />
+        <Route path="/mentions-legales" element={<LegalNotice />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/La-Dev-Team" element={<DevTeam />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     )}
 

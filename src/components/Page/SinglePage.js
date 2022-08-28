@@ -4,6 +4,7 @@ import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 import Loading from '../Loading/Loading';
 import ProductRendering from '../Product/ProductRendering';
 import ProductsRendering from '../Products/ProductsRendering';
+import ShoppingCartEmpty from '../ShoppingCart/ShoppingCartEmpty';
 import ShoppingCartRendering from '../ShoppingCart/ShoppingCartRendering';
 import StaticProductsDisplay from '../StaticProductsDisplay/StaticProductsDisplay';
 import OrdersRendering from '../User/OrdersRendering';
@@ -18,6 +19,7 @@ function SinglePage() {
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
+  const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   if ((isLoadingProducts || isLoadingCategories || isLoadingCarts)) {
     return (
       <Page>
@@ -81,7 +83,7 @@ function SinglePage() {
       </Page>
     );
   }
-  if (location.pathname === '/panier') {
+  if (location.pathname === '/panier' && cartToDisplay.length !== 0) {
     return (
       <Page>
         <div className="singlePage-container">
@@ -92,6 +94,13 @@ function SinglePage() {
             <ShoppingCartRendering />
           </LargeComponent>
         </div>
+      </Page>
+    );
+  }
+  if (location.pathname === '/panier' && cartToDisplay.length === 0) {
+    return (
+      <Page>
+        <ShoppingCartEmpty />
       </Page>
     );
   }
