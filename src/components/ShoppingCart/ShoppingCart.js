@@ -1,9 +1,9 @@
 import './shoppingCart.scss';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import Card from '../Card/Card';
 import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
+import ShoppingCartEmpty from './ShoppingCartEmpty';
 
 function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
@@ -11,32 +11,13 @@ function ShoppingCart() {
   const [isAdressMenu, setIsAdressMenu] = useState(false);
   const handleClickAdressMenu = () => setIsAdressMenu(!isAdressMenu);
   //
-  // return on products list when cart's empty
-  const navigate = useNavigate();
-  const handleClick = () => navigate('/liste');
   //
   // get amount of order
   const cartAmount = useSelector((state) => state.shoppingCart.cartAmount);
 
   if (cartToDisplay.length === 0) {
     return (
-      <div className="shoppingCart">
-        <div
-          className="shoppingCart-empty"
-          onClick={handleClick}
-        >
-          <div
-            className="shoppingCart-empty-title"
-          >Ton panier est vide
-          </div>
-          <div
-            className="shoppingCart-empty-content"
-          >
-            pour tes courses c'est par ici!
-          </div>
-          <ion-icon name="arrow-forward-circle-outline" size="large" />
-        </div>
-      </div>
+      <ShoppingCartEmpty />
     );
   }
   if (cartToDisplay.length !== 0) {
