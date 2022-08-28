@@ -27,6 +27,7 @@ function Card({
       <div className="card-container">
         <div
           className="card-article"
+          {...(width >= 1024 && { onClick: handleClick })}
         >
           <div className="card-leftSide">
             <h2 className="card-leftSide card-title">{name}</h2>
