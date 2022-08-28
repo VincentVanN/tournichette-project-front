@@ -5,7 +5,7 @@ import Page from '../Page/Page';
 
 function Home() {
   const navigate = useNavigate();
-  const handleClickProducts = () => navigate('/produits');
+  const handleClickProducts = () => navigate('/liste');
   const handleClickCarts = () => navigate('/paniers');
   return (
     <Page>

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './product.scss';
-import Page from 'src/components/Page/Page';
 import background from 'src/components/Product/fenouils.jpg';
 import { useNavigate, useParams } from 'react-router';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
@@ -49,7 +48,6 @@ function Product() {
   };
   const quantityInCart = getQuantityInCart();
   return (
-    <Page>
       <div className="container">
         <h2 className="product-title">
           <p>
@@ -134,7 +132,6 @@ function Product() {
           </div>
         </div>
       </div>
-    </Page>
   );
 }
 
