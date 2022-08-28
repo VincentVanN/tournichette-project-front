@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import './app.scss';
 import { setUser } from '../../AsyncChunk/AsyncChunkUser';
-
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
 import Home from '../Home/Home';
@@ -92,6 +91,8 @@ function App() {
         <Route path="/profil" element={<SinglePage />} />
         <Route path="/panier" element={<SinglePage />} />
         <Route path="/produit/:slug" element={<SinglePage />} />
+        <Route path="/listePaniers" element={<SinglePage />} />
+        <Route path="/produit/paniers/:slug" element={<SinglePage />} />
       </Routes>
     )}
 
@@ -113,7 +114,7 @@ function App() {
         <Route path="/panier" element={<ShoppingCartRendering />} />
         <Route path="/produit/:slug" element={<ProductRendering />} />
         <Route path="/liste" element={<ProductsRendering related="products" />} />
-        <Route path="/paniers" element={<ProductsRendering related="carts" />} />
+        <Route path="/listePaniers" element={<ProductsRendering related="carts" />} />
         <Route path="/produit/paniers/:slug" element={<ProductRendering />} />
         {/* <Route path="/apropos" element={<AboutUs />} /> */}
         <Route path="/CGU" element={<Cgu />} />

@@ -48,7 +48,7 @@ function SideBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink className={`link ${className}`} to="/paniers">
+            <NavLink className={`link ${className}`} to="/listePaniers">
               <span className="icon">
                 <ion-icon name="bag-outline" />
               </span>
@@ -142,7 +142,7 @@ function SideBar() {
               <img src={logo} alt="logo tournichette" className="logo" />
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/">Accueil</NavLink>
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/profil">Mon profil</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/paniers">Les paniers</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/listePaniers">Les paniers</NavLink>
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/liste">Le détail</NavLink>
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/panier">Panier d'achat</NavLink>
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/contact">Nous contacter</NavLink>
