@@ -18,7 +18,6 @@ function SinglePage() {
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
-  console.log(location);
   if ((isLoadingProducts || isLoadingCategories || isLoadingCarts)) {
     return (
       <Page>
@@ -32,6 +31,20 @@ function SinglePage() {
         <div className="singlePage-container">
           <SmallComponent className="smallComponent">
             <ProductsRendering related="products" />
+          </SmallComponent>
+          <LargeComponent className="largeComponent">
+            <StaticProductsDisplay />
+          </LargeComponent>
+        </div>
+      </Page>
+    );
+  }
+  if (location.pathname === '/listePaniers') {
+    return (
+      <Page>
+        <div className="singlePage-container">
+          <SmallComponent className="smallComponent">
+            <ProductsRendering related="carts" />
           </SmallComponent>
           <LargeComponent className="largeComponent">
             <StaticProductsDisplay />
@@ -88,6 +101,20 @@ function SinglePage() {
         <div className="singlePage-container">
           <SmallComponent className="smallComponent">
             <ProductsRendering related="products" />
+          </SmallComponent>
+          <LargeComponent className="largeComponent">
+            <ProductRendering />
+          </LargeComponent>
+        </div>
+      </Page>
+    );
+  }
+  if (location.pathname.includes('/produit/paniers')) {
+    return (
+      <Page>
+        <div className="singlePage-container">
+          <SmallComponent className="smallComponent">
+            <ProductsRendering related="carts" />
           </SmallComponent>
           <LargeComponent className="largeComponent">
             <ProductRendering />
