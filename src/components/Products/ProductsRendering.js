@@ -5,7 +5,7 @@ import Products from './Products';
 
 function ProductsRendering({ related }) {
   const width = useSelector((state) => state.navigation.width);
-  if (width >= 1280) {
+  if (width >= 1024) {
     return (
       <Products related={related} />
     );

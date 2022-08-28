@@ -1,23 +1,22 @@
 @use 'src/styles/_vars.scss';
 .singlePage-container{
   display: flex;
-  width: 100vw;
+  margin: auto;
+  width: 1024px;
+  height: 768px;
   padding-left: 80px;
   background: vars.$colorLightGreen;
 }
 .largeComponent{
-  min-width: 66.6%;
-  max-height: 80%;
-  flex-basis:66.66%;
+  flex-basis:50%;
   color: black;
   padding-top: 200px;
-  border: solid 2px blueviolet;
-  margin: 20px;
+  margin: 40px 15px;
+  background: vars.$colorBeige;
+  box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
 }
 .smallComponent{
-  max-width: 33.33%;
-  max-height: 80%;
   flex-basis:33.33%;
-  border: solid 2px chartreuse;
-  margin: 20px;
+  margin: 40px 15px;
+  box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
 }

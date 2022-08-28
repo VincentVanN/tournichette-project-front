@@ -77,7 +77,7 @@ function App() {
   if ((loadingProducts && logged) || (loadingCategories && logged)) {
     return <Loading />;
   }
-  if (stateWidth >= 1280) {
+  if (stateWidth >= 1024) {
     return (
       <div className="app">
 
@@ -101,7 +101,6 @@ function App() {
         <Route path="/*" element={<NotFound />} />
       </Routes>
     )}
-
       </div>
     );
   }
