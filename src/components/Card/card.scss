@@ -1,5 +1,4 @@
 @use 'src/styles/_vars.scss';
-
 .card {
   &-container {
     width: 100%;
@@ -11,13 +10,11 @@
     align-items: center;
     justify-content: space-around;
   }
-  
   &-button{
     border:none;
     background: vars.$colorBeige;
     margin-left: 8px;
   }
-
   &-infos{
     display: flex;
     flex-direction: row;
@@ -64,7 +61,6 @@
     font-weight: 600;
   }
 }
-
 @media only screen and (min-width: 1024px) {
   
 .card-article {

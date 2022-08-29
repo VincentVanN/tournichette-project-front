@@ -24,6 +24,7 @@ import ProductRendering from '../Product/ProductRendering';
 import ShoppingCartRendering from '../ShoppingCart/ShoppingCartRendering';
 import UserContactRendering from '../User/UserContactRendering';
 import OrdersRendering from '../User/OrdersRendering';
+import UserRendering from '../User/UserRendering';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -113,7 +114,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorie/:slug" element={<ProductsRendering />} />
-        <Route path="/profil" element={<UserContactRendering />} />
+        <Route path="/profil" element={<UserRendering />} />
         <Route path="/profil/historique" element={<OrdersRendering />} />
         <Route path="/profil/coordonnees" element={<UserContactRendering />} />
         <Route path="/panier" element={<ShoppingCartRendering />} />
