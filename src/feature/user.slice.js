@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  loginUser, setUser, createUser, updateUser,
+  loginUser, setUser, createUser, updateUser, getOrderHistory,
 } from '../AsyncChunk/AsyncChunkUser';
 import { removeLocalStorage } from '../utils/localStorage';
 
@@ -26,6 +26,7 @@ export const userSlice = createSlice({
     errorMessage: [],
     isSecondaryMenu: false,
     serverMessageOnSubscribe: '',
+    orderHistory: [],
   },
   //
   //
@@ -91,6 +92,17 @@ export const userSlice = createSlice({
     },
     [updateUser.rejected]: () => {
       console.log('[updateUser] request rejected');
+    },
+    //
+    [getOrderHistory.pending]: () => {
+      console.log('[getOrderHistory]waiting...');
+    },
+    [getOrderHistory.fulfilled]: (state, { payload }) => {
+      state.orderHistory = payload;
+      console.log('[getOrderHistory] OK!');
+    },
+    [getOrderHistory.rejected]: () => {
+      console.log('[getOrderHistory] request rejected');
     },
   },
   //
