@@ -12,7 +12,9 @@ function ProductsRendering({ related }) {
   }
   return (
     <Page>
-      <Products related={related} />
+      <div className="component">
+        <Products related={related} />
+      </div>
     </Page>
   );
 }

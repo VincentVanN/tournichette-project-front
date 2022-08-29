@@ -77,7 +77,9 @@ function App() {
   useEffect(() => {
     dispatch(setCartAmount());
   }, [shoppingCart]);
-  if ((loadingProducts && logged) || (loadingCategories && logged)) {
+  if ((loadingProducts && logged)
+  || (loadingCategories && logged)
+  ) {
     return <Loading />;
   }
   if (stateWidth >= 1024) {

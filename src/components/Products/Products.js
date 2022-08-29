@@ -71,6 +71,7 @@ function Products({ related }) {
               onBlur={handleBlur}
             />
             <ion-icon
+              className="products-searchBar-icon"
               name="search-outline"
               onClick={handleClick}
             />

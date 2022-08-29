@@ -2,12 +2,15 @@
 .singlePage-container{
   display: flex;
   height: 100vh;
+  align-content: center;
+  justify-content: center;
   padding-left: 80px;
   background: vars.$colorLightGreen;
 }
 .largeComponent{
-  flex-basis:50%;
-  max-height: 80vh;
+  flex-basis:60%;
+  max-width: 720px;
+  max-height: 90vh;
   color: black;
   margin: 40px 20px;
   background: vars.$colorBeige;
@@ -15,7 +18,8 @@
 }
 .smallComponent{
   flex-basis:33.33%;
-  max-height: 80vh;
+  max-width: 400px;
+  max-height: 90vh;
   margin: 40px 15px;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
 }
