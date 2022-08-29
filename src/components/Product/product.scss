@@ -167,18 +167,19 @@
 .meta {
   font-size: 0.9em;
 }
-@media only screen and (min-width: 577px) {
+@media screen and (min-width: 577px) and (max-width: 1023px) {
   .container {
     padding-left: 20px;
   }
 }
 @media only screen and (min-width: 1024px) {
 .product-title {
-  width: 450px;
+  top: 80px;
+  width: 500px;
 }
 .container {
   height: 100%;
-  padding-left: 0;
   padding-left: 30px;
+  
 }
 }

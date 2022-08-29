@@ -1,7 +1,8 @@
 @use 'src/styles/_vars.scss';
 .singlePage-container{
-  display: flex;
+  width: 87%;
   height: 100vh;
+  display: flex;
   align-content: center;
   justify-content: center;
   padding-left: 80px;
@@ -20,6 +21,7 @@
   flex-basis:33.33%;
   max-width: 400px;
   max-height: 90vh;
-  margin: 40px 15px;
+  margin: 40px 40px;
+  background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
 }

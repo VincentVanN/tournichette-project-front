@@ -10,11 +10,18 @@ input{
 }
 .app {
   background: vars.$colorBeige;
-  width: 100vw;
-  height: 100vh;
 }
 @media only screen and (min-width: 1024px) { 
   .app {
     background: vars.$colorLightGreen;
   }
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }

@@ -62,7 +62,7 @@ function Card({
       </div>
       )}
       {related === 'shoppingCart' && (
-      <div className="card-container">
+      <div className="card-container shoppingCart">
         <div
           className="card-article"
         >
