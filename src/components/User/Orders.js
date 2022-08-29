@@ -5,14 +5,10 @@ function Orders() {
   const orderHistory = useSelector((state) => state.user.orderHistory);
   console.log(orderHistory);
 
-  // orderHistory.forEach((element) => newArray.push(element.cartOrders));
-  // console.log(newArray);
-  // const newArray = orderHistory.orderProducts;
-
   if (orderHistory.length === 0) {
     return (
       <>
-        <h2>historique des commandes</h2>
+        <h2>Historique des commandes</h2>
         <p>Vous n'avez pas encore commandé :D </p>
       </>
     );
@@ -20,7 +16,7 @@ function Orders() {
   if (orderHistory.length !== 0) {
     return (
       <div className="orders">
-        <h2>historique des commandes</h2>
+        <h2>Historique des commandes</h2>
         <div className="orderHistory">
           {orderHistory.data.map((order) => (
             <div className="orderHistory-one" key={order.id}>
