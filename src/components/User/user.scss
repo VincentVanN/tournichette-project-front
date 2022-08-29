@@ -69,6 +69,15 @@ ion-icon:active{
   display: none;
 }
 
+.no-orderHistory{
+  color: vars.$colorDarkGreen;
+  font-family: vars.$fontLekton;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .orderHistory {
 
   display: flex;

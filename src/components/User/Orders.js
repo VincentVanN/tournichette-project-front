@@ -7,10 +7,10 @@ function Orders() {
 
   if (orderHistory.length === 0) {
     return (
-      <>
+      <div className="no-orderHistory">
         <h2>Historique des commandes</h2>
         <p>Vous n'avez pas encore commandé :D </p>
-      </>
+      </div>
     );
   }
   if (orderHistory.length !== 0) {
