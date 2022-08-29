@@ -7,6 +7,7 @@ import ShoppingCartEmpty from './ShoppingCartEmpty';
 
 function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
+  console.log(cartToDisplay);
   //
   const [isAdressMenu, setIsAdressMenu] = useState(false);
   const handleClickAdressMenu = () => setIsAdressMenu(!isAdressMenu);

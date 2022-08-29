@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import './app.scss';
-import { setUser } from '../../AsyncChunk/AsyncChunkUser';
+import { setUser, getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
 import Home from '../Home/Home';
@@ -35,6 +35,7 @@ function App() {
   const loggedUser = JSON.parse(localStorage.getItem('user'));
   const token = useSelector((state) => state.user.user.token);
   const stateWidth = useSelector((state) => state.navigation.width);
+
   //
   // getting screen size in state
   //
@@ -71,6 +72,7 @@ function App() {
     dispatch(getCarts());
     dispatch(getProducts());
     dispatch(getCategories());
+    dispatch(getOrderHistory());
   }, [token]);
   useEffect(() => {
     dispatch(setCartAmount());
