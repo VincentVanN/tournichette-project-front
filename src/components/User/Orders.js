@@ -29,16 +29,18 @@ function Orders() {
                 <li className="orderHistory-depot">Déposé au {order.depot.address}</li>
                 { order.orderProducts.map((product) => (
                   <li
+                    className="orderHistory-product"
                     key={product.product.slug}
                   >
-                    {product.quantity} {product.product.name} : {product.product.price}€ par lot
+                    {`${(product.product.unity === 'kg' ? parseInt(product.quantity, 10) : product.quantity)}${product.product.unity}`} {product.product.name}(s) : {product.product.price}€ par lot
                   </li>
                 ))}
                 { order.cartOrders.map((cart) => (
                   <li
+                    className="orderHistory-product"
                     key={cart.cart.name}
                   >
-                    {cart.quantity} {cart.cart.name} : {cart.cart.price}€ par lot
+                    {cart.quantity} {cart.cart.name}(s) : {cart.cart.price}€ par lot
                   </li>
                 ))}
                 <li className="orderHistory-price">Prix total: {order.price}€</li>
