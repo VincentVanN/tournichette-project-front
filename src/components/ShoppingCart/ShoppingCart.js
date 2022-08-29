@@ -6,8 +6,7 @@ import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 import ShoppingCartEmpty from './ShoppingCartEmpty';
 
 function ShoppingCart() {
-  const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
-  console.log(cartToDisplay);
+  const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);;
   //
   const [isAdressMenu, setIsAdressMenu] = useState(false);
   const handleClickAdressMenu = () => setIsAdressMenu(!isAdressMenu);

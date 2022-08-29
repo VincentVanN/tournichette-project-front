@@ -68,3 +68,18 @@ ion-icon:active{
 .hidden {
   display: none;
 }
+
+.orderHistory {
+
+  &-one{
+    margin-top: 20px;
+    background-color: vars.$colorLightGreen;
+    font-family: vars.$fontLekton;
+    color: vars.$colorDarkGreen;
+  }
+
+  &-date, &-depot, &-price{
+    font-weight: bold;
+  }
+
+}

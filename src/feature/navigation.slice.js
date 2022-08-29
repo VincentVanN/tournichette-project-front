@@ -5,7 +5,11 @@ export const navigationSlice = createSlice({
   initialState: {
     width: 0,
     height: 0,
+<<<<<<< HEAD
     baseUrl: 'http://localhost:8000',
+=======
+    baseUrl: ' http://localhost:8000',
+>>>>>>> 5f0e1bee4c69a837c96185fde5f068d9cf77b1d5
   },
   reducers: {
     setWidth: (state, { payload }) => {
