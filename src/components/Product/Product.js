@@ -106,27 +106,30 @@ function Product() {
             </span>
           </div>
         </div>
+        <div
+          className="product-navigation-cart"
+          onClick={handleClickCart}
+        >
+          <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px' }} />
+        </div>
         <div className="product-navigation">
-          <div
-            className="product-navigation-backward"
-            onClick={handleNavigateBackward}
-          >
-            <ion-icon name="arrow-back-circle-outline" />
-            <p>Précédent</p>
+          <div className="product-navigation-buttons">
+            <div
+              className="product-navigation-backward"
+              onClick={handleNavigateBackward}
+            >
+              <ion-icon name="arrow-back-circle-outline" />
+              <p>Précédent</p>
+            </div>
+            <div
+              className="product-navigation-forward"
+              onClick={handleNavigateForward}
+            >
+              <p>suivant</p>
+              <ion-icon name="arrow-forward-circle-outline" />
+            </div>
           </div>
-          <div
-            className="product-navigation-forward"
-            onClick={handleNavigateForward}
-          >
-            <p>suivant</p>
-            <ion-icon name="arrow-forward-circle-outline" />
-          </div>
-          <div
-            className="product-navigation-cart"
-            onClick={handleClickCart}
-          >
-            <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px' }} />
-          </div>
+
         </div>
       </div>
     </div>

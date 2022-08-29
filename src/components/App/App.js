@@ -35,6 +35,8 @@ function App() {
   const loggedUser = JSON.parse(localStorage.getItem('user'));
   const token = useSelector((state) => state.user.user.token);
   const stateWidth = useSelector((state) => state.navigation.width);
+  const loadingWidth = useSelector((state) => state.navigation.loadingWidth);
+  const loadingheight = useSelector((state) => state.navigation.loadingheight);
   //
   // getting screen size in state
   //
@@ -75,7 +77,10 @@ function App() {
   useEffect(() => {
     dispatch(setCartAmount());
   }, [shoppingCart]);
-  if ((loadingProducts && logged) || (loadingCategories && logged)) {
+  if ((loadingProducts && logged)
+  || (loadingCategories && logged)
+  || (loadingWidth && logged)
+  || (loadingheight && logged)) {
     return <Loading />;
   }
   if (stateWidth >= 1024) {
