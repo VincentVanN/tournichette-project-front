@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 import Loading from '../Loading/Loading';
 import ProductRendering from '../Product/ProductRendering';
@@ -35,7 +35,7 @@ function SinglePage() {
             <ProductsRendering related="products" />
           </SmallComponent>
           <LargeComponent className="largeComponent">
-            <StaticProductsDisplay />
+            <StaticProductsDisplay related="detail" />
           </LargeComponent>
         </div>
       </Page>
@@ -49,13 +49,14 @@ function SinglePage() {
             <ProductsRendering related="carts" />
           </SmallComponent>
           <LargeComponent className="largeComponent">
-            <StaticProductsDisplay />
+            <StaticProductsDisplay related="panier" />
           </LargeComponent>
         </div>
       </Page>
     );
   }
   if (location.pathname.includes('/categorie')) {
+    const { slug } = useParams();
     return (
       <Page>
         <div className="singlePage-container">
@@ -63,7 +64,7 @@ function SinglePage() {
             <ProductsRendering related="products" />
           </SmallComponent>
           <LargeComponent className="largeComponent">
-            <StaticProductsDisplay />
+            <StaticProductsDisplay related={slug} />
           </LargeComponent>
         </div>
       </Page>
