@@ -102,5 +102,15 @@ ion-icon:active{
     font-weight: 500;
     color: vars.$colorMediumGreen;
   }
+  &-button{
+    margin-top: 3%;
+    padding: 1%;
+    font-family: vars.$fontLekton;
+    color: vars.$colorDarkGreen;
+    font-weight: bold;
+    background-color: vars.$colorLightGreen;
+    border: none;
+    box-shadow: 5px 5px 5px grey;
+  }
 
 }
