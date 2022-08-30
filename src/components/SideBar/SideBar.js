@@ -21,18 +21,12 @@ function SideBar() {
   const [isChecked, setIsChecked] = useState(false);
   const handleCheck = () => setIsChecked(!isChecked);
   const handleOpen = () => setIsOpen(!isOpen);
-  const className = ({ isActive }) => (isActive ? 'selected' : '');
-  let classNameLi;
-  if (className === 'selected') {
-    classNameLi = 'selected';
-    return classNameLi;
-  }
   if (width > 576) {
     return (
-      <div className={`navigation ${isOpen ? 'active' : ''}`}>
+      <div className="navigation">
         <ul>
-          <li className={classNameLi}>
-            <NavLink className={`link ${className}`} to="/">
+          <li>
+            <NavLink to="/">
               <span className="icon">
                 <ion-icon name="home-outline" />
               </span>
@@ -40,7 +34,7 @@ function SideBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink className={`link ${className}`} to="/profil">
+            <NavLink to="/profil">
               <span className="icon">
                 <ion-icon name="person-outline" />
               </span>
@@ -48,7 +42,7 @@ function SideBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink className={`link ${className}`} to="/listePaniers">
+            <NavLink to="/listePaniers">
               <span className="icon">
                 <ion-icon name="bag-outline" />
               </span>
@@ -56,7 +50,7 @@ function SideBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink className={`link ${className}`} to="/liste">
+            <NavLink to="/liste">
               <span className="icon">
                 <ion-icon name="rose-outline" />
               </span>
@@ -64,7 +58,7 @@ function SideBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink className={`link ${className}`} to="/panier">
+            <NavLink to="/panier">
               <span className="icon">
                 <ion-icon name="cart-outline" />
               </span>
@@ -72,7 +66,7 @@ function SideBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink className={`link ${className}`} to="/contact">
+            <NavLink to="/contact">
               <span className="icon">
                 <ion-icon name="mail-outline" />
               </span>
@@ -80,7 +74,7 @@ function SideBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink className={`link ${className}`} to="/apropos">
+            <NavLink to="/apropos">
               <span className="icon">
                 <ion-icon name="help-outline" />
               </span>
@@ -140,13 +134,13 @@ function SideBar() {
                 )}
               </div>
               <img src={logo} alt="logo tournichette" className="logo" />
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/">Accueil</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/profil">Mon profil</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/listePaniers">Les paniers</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/liste">Le détail</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/panier">Panier d'achat</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/contact">Nous contacter</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/apropos">Qui sommes-nous?</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/">Accueil</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/profil">Mon profil</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/listePaniers">Les paniers</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/liste">Le détail</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/panier">Panier d'achat</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/contact">Nous contacter</NavLink>
+              <NavLink className="navlink" onClick={handleCheck} to="/apropos">Qui sommes-nous?</NavLink>
               <div
                 className="logout"
                 onClick={handleLogout}
