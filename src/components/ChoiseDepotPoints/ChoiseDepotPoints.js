@@ -77,13 +77,15 @@ function ChoiseDepotPoints() {
           </li>
         ))}
       </ul>
+
       <div
-        className="choiseDepotButton"
+        className="validOrderButton"
         onClick={handleClick}
       >
         <p>Commander</p>
         <ion-icon name="checkmark-circle-outline" style={{ color: ValidateColor }} />
       </div>
+
     </div>
   );
 }

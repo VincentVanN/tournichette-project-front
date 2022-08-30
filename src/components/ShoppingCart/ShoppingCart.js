@@ -7,6 +7,7 @@ import ShoppingCartEmpty from './ShoppingCartEmpty';
 
 function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
+  const width = useSelector((state) => state.navigation.width);
   //
   const [isAdressMenu, setIsAdressMenu] = useState(false);
   const handleClickAdressMenu = () => setIsAdressMenu(!isAdressMenu);
@@ -53,6 +54,7 @@ function ShoppingCart() {
                 />
               ))}
             </ul>
+            {width < 1024 && (
             <div
               className="choiseDepotButton"
               onClick={handleClickAdressMenu}
@@ -60,6 +62,8 @@ function ShoppingCart() {
               <p>Valider</p>
               <ion-icon name="arrow-forward-circle-outline" />
             </div>
+            )}
+
           </div>
         )}
         {isAdressMenu && (<ChoiseDepotPoints />)}
