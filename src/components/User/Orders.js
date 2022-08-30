@@ -12,7 +12,7 @@ function Orders() {
     return (
       <div className="no-orderHistory">
         <h2>Historique des commandes</h2>
-        <p>Vous n'avez pas encore commandé :D </p>
+        <p>Tu n'as pas encore commandé :D </p>
       </div>
     );
   }
@@ -32,7 +32,9 @@ function Orders() {
                       className="orderHistory-product"
                       key={product.product.slug}
                     >
-                      {`${(product.product.unity === 'kg' ? parseInt(product.quantity, 10) : product.quantity)}${product.product.unity}`} {product.product.name}(s) : {product.product.price}€ par lot
+                      {`${(product.product.unity === 'kg' ? parseInt(product.quantity, 10) : product.quantity)}${product.product.unity}`} {product.product.name} : {product.product.price}€
+                      {/* {`${(product.quantity !== '1.000' ? (product.product.name) : (product.product.name)(s))}`} */}
+
                     </li>
                   ))}
                   { order.cartOrders.map((cart) => (
@@ -40,7 +42,7 @@ function Orders() {
                       className="orderHistory-product"
                       key={cart.cart.name}
                     >
-                      {cart.quantity} {cart.cart.name}(s) : {cart.cart.price}€ par lot
+                      {cart.quantity} {cart.cart.name}: {cart.cart.price}€
                     </li>
                   ))}
                 </div>
