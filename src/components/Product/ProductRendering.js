@@ -11,7 +11,10 @@ function ProductRendering() {
   }
   return (
     <Page>
-      <Product />
+      <div className="component">
+        <Product />
+      </div>
+
     </Page>
   );
 }

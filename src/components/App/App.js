@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import './app.scss';
-import { setUser } from '../../AsyncChunk/AsyncChunkUser';
+import { setUser, getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
 import Home from '../Home/Home';
@@ -24,6 +24,7 @@ import ProductRendering from '../Product/ProductRendering';
 import ShoppingCartRendering from '../ShoppingCart/ShoppingCartRendering';
 import UserContactRendering from '../User/UserContactRendering';
 import OrdersRendering from '../User/OrdersRendering';
+import UserRendering from '../User/UserRendering';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -34,6 +35,7 @@ function App() {
   const loggedUser = JSON.parse(localStorage.getItem('user'));
   const token = useSelector((state) => state.user.user.token);
   const stateWidth = useSelector((state) => state.navigation.width);
+
   //
   // getting screen size in state
   //
@@ -70,11 +72,14 @@ function App() {
     dispatch(getCarts());
     dispatch(getProducts());
     dispatch(getCategories());
+    dispatch(getOrderHistory());
   }, [token]);
   useEffect(() => {
     dispatch(setCartAmount());
   }, [shoppingCart]);
-  if ((loadingProducts && logged) || (loadingCategories && logged)) {
+  if ((loadingProducts && logged)
+  || (loadingCategories && logged)
+  ) {
     return <Loading />;
   }
   if (stateWidth >= 1024) {
@@ -113,7 +118,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorie/:slug" element={<ProductsRendering />} />
-        <Route path="/profil" element={<UserContactRendering />} />
+        <Route path="/profil" element={<UserRendering />} />
         <Route path="/profil/historique" element={<OrdersRendering />} />
         <Route path="/profil/coordonnees" element={<UserContactRendering />} />
         <Route path="/panier" element={<ShoppingCartRendering />} />

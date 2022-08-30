@@ -7,7 +7,7 @@
 }
 .home {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: vars.$colorBeige;
   display: flex;
   flex-direction: column;
@@ -22,11 +22,11 @@
   &-annoncement{
     width: 100%;
     font-family: vars.$fontMontserrat;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
     color: vars.$colorDarkGreen;
     font-weight: 500;
-    padding-top: 150px;
+    padding-top: 200px;
   }
   &-button {
     font-family: vars.$fontMontserrat;

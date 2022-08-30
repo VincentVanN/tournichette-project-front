@@ -77,7 +77,19 @@ export const updateUser = createAsyncThunk(
         update,
         config,
       );
-    console.log(result.data);
+    return result.data;
+  },
+);
+
+export const getOrderHistory = createAsyncThunk(
+  'user/getOrderHistory',
+  async (_, { getState }) => {
+    const { token } = getState().user.user;
+    const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/orders/user`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return result.data;
   },
 );

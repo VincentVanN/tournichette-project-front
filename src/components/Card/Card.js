@@ -10,7 +10,9 @@ function Card({
   name, price, unity, quantity, onClick, slug, product, related,
 }) {
   const width = useSelector((state) => state.navigation.width);
-  const handleClick = () => onClick(related, slug);
+  const handleClick = () => {
+    onClick(related, slug);
+  };
   const dispatch = useDispatch();
   const products = useSelector((state) => state.shoppingCart.shoppingCart);
   const handleClickIncrementCart = () => {
@@ -62,7 +64,7 @@ function Card({
       </div>
       )}
       {related === 'shoppingCart' && (
-      <div className="card-container">
+      <div className="card-container shoppingCart">
         <div
           className="card-article"
         >

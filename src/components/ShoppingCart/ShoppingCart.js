@@ -24,7 +24,7 @@ function ShoppingCart() {
     return (
       <div className="shoppingCart">
         {!isAdressMenu && (
-          <>
+          <div className="shoppingCart-container">
             <div className="shoppingCart-header">
               <div className="shoppingCart-title">
                 <div className="shoppingCart-shoppingCartAmont">
@@ -60,8 +60,7 @@ function ShoppingCart() {
               <p>Valider</p>
               <ion-icon name="arrow-forward-circle-outline" />
             </div>
-          </>
-
+          </div>
         )}
         {isAdressMenu && (<ChoiseDepotPoints />)}
       </div>

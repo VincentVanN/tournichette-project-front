@@ -13,7 +13,9 @@ function Home() {
         <div className="home">
           <img className="home-logo" src={logo} alt="logo Tournichette" />
           <div className="home-annoncement">
+
             Les ventes sont ouvertes
+
           </div>
           <div className="home-button-group">
             <div
