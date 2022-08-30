@@ -4,6 +4,10 @@
   color: vars.$colorDarkGreen;
   margin-top: 5%;
   font-family: vars.$fontLekton;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 
   h2 {
     font-family: vars.$fontMontserrat;
@@ -12,9 +16,12 @@
     text-align: center;
     margin: 3%;
   }
+  p{
+    font-weight: 600;
+  }
   &_cards {
-    display: flex;
-    justify-content: center;
+    display: block;
+    text-align: center;
   }
 
   &_image {
@@ -25,11 +32,14 @@
   &_card {
     margin-left: 5%;
     margin-top: 8%;
-    border: 1px solid black;
-    width: 20%;
+    box-shadow: 5px 5px 5px vars.$colorOrange;
+    border-radius: 50%;
+    padding: 25%;
 
     h3{
-      font-size: 13px;
+      font-size: 1em;
+      font-weight: bold;
+      margin-bottom: 10%;
     } 
   }
 
