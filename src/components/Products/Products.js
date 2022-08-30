@@ -36,7 +36,7 @@ function Products({ related }) {
   const params = useParams();
   const { slug } = params;
   const filterProducts = () => products.filter((product) => (product.category.slug === slug));
-  const filteredArrayByCategory = (Object.keys(params).length === 0 || location !== '/liste') ? products : filterProducts();
+  const filteredArrayByCategory = (Object.keys(params).length === 0 || location.pathname === '/liste' || location.pathname.includes('/produit')) ? products : filterProducts();
   //
   // algorithm to filter products by search bar
   //
