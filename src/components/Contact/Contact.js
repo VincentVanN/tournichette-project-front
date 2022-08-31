@@ -7,7 +7,7 @@ function Contact() {
     <Page>
       <div className="contact">
         <h2>CONTACTEZ-NOUS !</h2>
-        <p>
+        <p className="contact-paragraph">
           Vous avez faim de bio légumes ? Vous voulez plus de renseignement sur nos paniers ? nous faire part d’une idée,  d’une critique ou de votre admiration sans bornes ? nous soutenir ou nous encourager ? Ou alors vous aimeriez partager vos propres aventures ? 🙂 Écrivez-nous, nous nous ferons un plaisir de vous répondre !
           Pour une réponse rapide (commande, etc.), privilégiez toutefois le téléphone:
         </p>

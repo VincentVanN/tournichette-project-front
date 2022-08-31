@@ -1,6 +1,11 @@
 @use "src/styles/_vars.scss";
 
 .aboutUs {
+  display: flex;
+  flex-direction: column;
+  // align-items: ;
+  height: 100vh;
+  color: vars.$colorDarkGreen;
 
   h2{
     font-family: vars.$fontMontserrat;
@@ -11,9 +16,10 @@
   }
 
   p{
-    color: vars.$colorDarkGreen;
     margin-top: 5%;
     font-family: vars.$fontLekton;
+    font-weight: 600;
+    margin: 5% 17%;
     
   }
   span {

@@ -4,6 +4,7 @@ import Cgu from '../Cgu/Cgu';
 import Contact from '../Contact/Contact';
 import DevTeam from '../DevTeam/DevTeam';
 import Home from '../Home/Home';
+import AboutUs from '../AboutUs/AboutUs';
 import LegalNotice from '../LegalNotice/LegalNotice';
 import NotFound from '../NotFound/NotFound';
 import SinglePage from '../Page/SinglePage';
@@ -22,7 +23,7 @@ function AnimatedRoutesLargeScreen() {
         <Route path="/produit/:slug" element={<SinglePage />} />
         <Route path="/NosPaniers" element={<SinglePage />} />
         <Route path="/paniers/:slug" element={<SinglePage />} />
-        {/* <Route path="/apropos" element={<AboutUs />} /> */}
+        <Route path="/apropos" element={<AboutUs />} />
         <Route path="/CGU" element={<Cgu />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
         <Route path="/contact" element={<Contact />} />
