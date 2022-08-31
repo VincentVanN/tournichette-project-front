@@ -6,7 +6,7 @@ function AboutUs() {
   return (
     <Page>
       <div className="aboutUs">
-        <h2>Qui nous sommes ?</h2>
+        <h2>Qui sommes nous ?</h2>
         <p className="aboutUs-paragraph">
           Originaire de Valenciennes où il s’illustra dans sa jeunesse comme lanceur de marteau et perchiste dans le club d’athlétisme local, <span>Mathias</span> a été photographe et responsable de numérisation de fonds photo à Chalon-sur-Saône pendant une dizaine d’années. En créant le Panier de la Tournichette, il revient sur la terre de ses ancêtres, qu’il compte bien soigner avec tout le respect qui lui est dû, tout en contribuant à nourrir ses habitants avec les meilleurs légumes possibles.
 

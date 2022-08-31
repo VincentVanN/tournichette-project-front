@@ -1,0 +1,96 @@
+@use 'src/styles/_vars.scss';
+
+.orders{
+  height: 100vh;
+}
+
+.no-orderHistory{
+  color: vars.$colorDarkGreen;
+  font-family: vars.$fontLekton;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-header{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    top: 0;
+    width: 90%;
+    height: 90px;
+    margin-bottom: 20px;
+    z-index: 3;
+    background: vars.$colorBeige;
+  }
+}
+
+.orderHistory {
+
+  display: block;
+  overflow: auto;
+  width: 100%;
+  background: vars.$colorBeige;
+  scrollbar-width: none;
+  
+  &-header{
+    // position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  //   top: 0;
+  //   width: 90%;
+  //   height: 90px;
+    margin-bottom: 20px;
+    z-index: 3;
+    background: vars.$colorBeige;
+    border-bottom: 1px solid #70bd9d;
+
+  }
+  &-title {
+    font-size: 1.5em;
+    width: 100%;
+    color: #356859;
+    margin-bottom: 30px;
+  }
+
+  &-one{
+    margin-top: 30px;
+    background-color: vars.$colorLightGreen;
+    font-family: vars.$fontLekton;
+    color: vars.$colorDarkGreen;
+    font-weight: 400;
+    box-shadow: 2px 2px 2px grey;
+    margin-left: 14%;
+    width: 79%;
+    padding: 2% 1%;
+  }
+
+  &-date, &-depot, &-price{
+    font-weight: bold;
+  }
+  &-product{
+    font-weight: 500;
+    color: vars.$colorMediumGreen;
+  }
+  &-button{
+    margin-top: 3%;
+    padding: 1%;
+    font-family: vars.$fontLekton;
+    color: vars.$colorDarkGreen;
+    font-weight: bold;
+    background-color: vars.$colorLightGreen;
+    border: none;
+    box-shadow: 5px 5px 5px grey;
+  }
+
+}
+@media only screen and (min-width: 1024px) {
+
+  .orderHistory-one{
+    margin-left: 10%;
+    width: 79%;
+  }
+}

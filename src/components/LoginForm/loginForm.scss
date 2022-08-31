@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   &-field-container {
-  margin-top: 200px;
+  margin-top: 300px;
   }
   &-container{
     display: flex;
@@ -135,3 +135,11 @@ ion-icon{
   align-items: center;
 }
 
+@media only screen and (min-width: 1024px) {
+  .form-container{
+    height: 100vh;
+  }
+  .form-signIn {
+    margin-left: 60px;
+  }
+}

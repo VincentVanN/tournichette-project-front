@@ -1,8 +1,23 @@
 @use 'src/styles/_vars.scss';
 
+.form-header {
+  // position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  //   top: 0;
+  //   width: 90%;
+  //   height: 90px;
+  margin-bottom: 20px;
+  z-index: 3;
+  background: vars.$colorBeige;
+  border-bottom: 1px solid vars.$colorMediumGreen;
+    
+}
 
-h2{
-  margin-bottom: 11%;
+.form-title{
+  padding: 5%;
 }
 p.updateUserAccount.input-item{
   background-color: vars.$colorBeige;
