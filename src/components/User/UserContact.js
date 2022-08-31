@@ -86,7 +86,9 @@ function UserContact() {
       onSubmit={handleSubmit}
       className="form"
     >
-      <h2>Profil</h2>
+      <header className="form-header">
+        <h2 className="form-title">Profil</h2>
+      </header>
       <ul className="updateUserAccount">
         <div className="updateUserAccount container">
           <li className={`updateUserAccount list-item ${hiddenLi}`}>{firstname}</li>

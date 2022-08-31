@@ -65,7 +65,8 @@ function Products({ related }) {
          <header className="products-header">
         {related === 'carts' && (<h1 className="title"> Nos paniers de saison</h1>)}
         {(((related === 'products' || slug)) && (!location.pathname.includes('/paniers')) && (
-          <><div className="products-searchBar">
+          <>
+          <div className="products-searchBar">
             <SearchBar
               type="text"
               placeholder="Rechercher..."
@@ -78,7 +79,7 @@ function Products({ related }) {
               name="search-outline"
               onClick={handleClick}
             />
-            </div>
+          </div>
             <div className="products-categories">
               {categories.map((category) => (
                 <NavLink
