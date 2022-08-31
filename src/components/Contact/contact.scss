@@ -1,6 +1,12 @@
 @use 'src/styles/_vars.scss';
 
 .contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  color: vars.$colorDarkGreen;
+
   h2 {
     font-family: vars.$fontMontserrat;
     font-size: 30px;
@@ -10,18 +16,31 @@
   }
 
   p {
-    color: vars.$colorDarkGreen;
-    margin-top: 5%;
-    margin-bottom: 5%;
     font-family: vars.$fontLekton;
+    font-weight: bold;
+    margin: 5% 5% 10%;
   }
 
   a {
-    color: vars.$colorDarkGreen;
     font-family: vars.$fontLekton;
     margin-bottom: 5%;
   }
   &_info{
     font-weight: bold;
+    color: vars.$colorMediumGreen;
+  }
+}
+@media only screen and (min-width: 577px) {
+  .contact-paragraph {
+    width: 70%;
+    text-align: center;  
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .contact {  
+    p {
+      margin: 4%;
+    }
   }
 }
