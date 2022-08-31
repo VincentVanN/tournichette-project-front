@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import './product.scss';
 import background from 'src/components/Product/fenouils.jpg';
 import { useNavigate, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
 import Page from '../Page/Page';
@@ -15,6 +17,7 @@ function Product() {
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
   const categories = ['legumes', 'fruits', 'epicerie'];
+  const width = useSelector((state) => state.navigation.width);
   //
   // select product or cart
   //
@@ -31,7 +34,6 @@ function Product() {
   if (carts.some((element) => element.slug === slug)) {
     productsListInCart = oneProduct.cartProducts;
   }
-  console.log(slug);
   //
   // add product in cart
   //
@@ -43,7 +45,14 @@ function Product() {
   //
   // navigate in product
   //
-  const handleNavigateForward = () => navigate(`/produit/${navigationInProduct((products.some((element) => element.slug === slug)) ? products : carts, oneProduct, 1)}`);
+  const [isForward, setIsForward] = useState(false);
+  useEffect(() => () => {
+    setIsForward(false);
+  }, []);
+  const handleNavigateForward = () => {
+    setIsForward(true);
+    navigate(`/produit/${navigationInProduct((products.some((element) => element.slug === slug)) ? products : carts, oneProduct, 1)}`);
+  };
   const handleNavigateBackward = () => navigate(`/produit/${navigationInProduct((products.some((element) => element.slug === slug)) ? products : carts, oneProduct, -1)}`);
   //
   const getQuantityInCart = () => {
@@ -66,11 +75,23 @@ function Product() {
     );
   }
   return (
-    <div className="container">
-      <h2 className="product-title">
-        {oneProduct.name}
-      </h2>
-      <div className="product">
+    <div
+      className="container"
+    >
+      <motion.div
+        className="product"
+        initial={{ width: 0 }}
+        animate={{ width: '70%' }}
+        exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.20 } }}
+      >
+        <motion.h2
+          className="product-title"
+          initial={{ top: 0 }}
+          animate={{ top: width > 1024 ? '80px' : '60px' }}
+          exit={{ opacity: 0, transition: { duration: 0.5 } }}
+        >
+          {oneProduct.name}
+        </motion.h2>
         <img src={background} alt="product" className="product-image" />
         <div className="product-content">
           {(carts.some((element) => element.slug === slug)) && (
@@ -149,7 +170,7 @@ function Product() {
           </div>
 
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
