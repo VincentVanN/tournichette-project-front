@@ -1,6 +1,6 @@
 import 'src/components/User/userContact.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import './user.scss';
+// import './user.scss';
 import { useState } from 'react';
 import { changeEditForm, addErrorMessage, deleteErrorMessage } from 'src/feature/user.slice';
 import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
@@ -130,6 +130,7 @@ function UserContact() {
           />
         </div>
         <div className="updateUserAccount container">
+          <p className={`updateUserAccount input-item ${hiddenForm}`}>Ancien mot de passe</p>
           <Field
             className={`updateUserAccount input-item ${hiddenForm}`}
             name="oldPassword"
@@ -141,6 +142,7 @@ function UserContact() {
           />
         </div>
         <div className="updateUserAccount container">
+          <p className={`updateUserAccount input-item ${hiddenForm}`}>Nouveau mot de passe</p>
           <Field
             className={`updateUserAccount input-item ${hiddenForm}`}
             name="password"
@@ -150,6 +152,9 @@ function UserContact() {
             value={password}
             onChange={handleChangeEditForm}
           />
+        </div>
+        <div className="updateUserAccount container">
+          <p className={`updateUserAccount input-item ${hiddenForm}`}>Confirmez votre mot de passe</p>
           <Field
             className={`updateUserAccount input-item ${hiddenForm}`}
             name="sndPassword"
@@ -159,15 +164,16 @@ function UserContact() {
             value={sndPassword}
             onChange={handleChangeEditForm}
           />
-          <div className={`form-button-container ${hiddenForm}`}>
-            <button
-              type="submit"
-              className="form-button"
-            >
-              <ion-icon name="chevron-down-circle-outline" />
-            </button>
-          </div>
         </div>
+        <div className={`form-button-container ${hiddenForm}`}>
+          <button
+            type="submit"
+            className="form-button"
+          >
+            <ion-icon name="chevron-down-circle-outline" />
+          </button>
+        </div>
+
       </ul>
       <button
         className="updateUserAccount button"
