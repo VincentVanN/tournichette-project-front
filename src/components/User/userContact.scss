@@ -1,14 +1,13 @@
 @use 'src/styles/_vars.scss';
 
-.form {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  // display: block;
-  overflow: auto;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+
+h2{
+  margin-bottom: 11%;
+}
+p.updateUserAccount.input-item{
+  background-color: vars.$colorBeige;
+  border: none;
+  color: vars.$colorDarkGreen;
 }
 .updateUserAccount {
   background: vars.$colorBeige;
@@ -18,22 +17,28 @@
   margin-bottom: 10px;
   font-family: vars.$fontLekton;
 
-
+  &.container{
+    height: 8vh;
+  }
   &.button{
-    border: 1px solid vars.$colorMediumGreen;
-    background-color: vars.$colorBeige;
-    font-size: 1.5em;
-    padding: 2%;
-    font-family: vars.$fontLekton;
+    font-size: 0.9em;
+    width: 80%;
+    margin-inline: 10%;
+    border: 1px solid vars.$colorBeige;
   }
 
 }
 .updateUserAccount .input-item {
-  color: vars.$colorDarkGreen;
   font-family: vars.$fontLekton;
   border: 0.1px solid vars.$colorveryLightGreen;
   background-color: vars.$colorMediumGreen;
   padding: 4%;
+  font-size: 0.7em;
+  padding: 2%;
+  margin: 0 30px;
+  left: 10;
+  color: vars.$colorMediumGreen;
+  text-align: center;
 }
 .errorMessage{
   font-family: vars.$fontMontserrat;
@@ -75,10 +80,9 @@
     margin: 0;
     text-align: center;
 
-    // &-button {
-    //   margin-left: 5%;
-    // }
-
+    &-button{
+      margin-right: -50px;
+    }
   }
   h2{
     margin-bottom: 8%;
@@ -86,32 +90,24 @@
   input {
     margin-left: 10px;
   }
+  ul.updateUserAccount{
+    margin-right: 17%;
+  }
   .updateUserAccount {
+
+    text-align: center;
 
     &.list-item{
 
       width: 70%;
-      margin: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-right: 20%;
-      font-size: 0.8em;
+      font-size: 0.7em;
     }
 
     &.input-item{
-      font-size: 0.7em;
       padding: 2%;
-      margin: 0 30px;
-      left: 10;
-    }
-
-    &.button {
-      font-size: 0.9em;
-      width: 80%;
-      margin-inline: 10%;
-      border: none;
-      box-shadow: 1px 2px 2px grey;
     }
   }
 }
