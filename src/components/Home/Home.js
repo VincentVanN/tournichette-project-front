@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router';
+import { motion } from 'framer-motion';
 import logo from 'src/assets/logo.svg';
 import './home.scss';
 import Page from '../Page/Page';
@@ -23,12 +24,17 @@ function Home() {
               onClick={handleClickCarts}
             >
               <h2 className="home-button-title">Mon panier de légumes</h2>
-              <button
+              <motion.button
                 className="home-button"
                 type="button"
+                animate={{
+                  x: [0, 90, 0],
+                  rotate: [0, 360, 0],
+                  transition: { duration: 1, delay: 0.2 },
+                }}
               >
                 <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f88e6d', fontSize: '50px' }} />
-              </button>
+              </motion.button>
             </div>
 
             <div
@@ -36,13 +42,17 @@ function Home() {
               onClick={handleClickProducts}
             >
               <h2 className="home-button-title"> Choisir au détail</h2>
-              <button
+              <motion.button
                 className="home-button"
                 type="button"
-                onClick={handleClickProducts}
+                animate={{
+                  x: [0, 90, 0],
+                  rotate: [0, 360, 0],
+                  transition: { duration: 1, delay: 0.2 },
+                }}
               >
                 <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f88e6d', fontSize: '50px' }} />
-              </button>
+              </motion.button>
             </div>
 
           </div>

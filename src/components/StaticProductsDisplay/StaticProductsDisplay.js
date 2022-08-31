@@ -1,11 +1,14 @@
 /* eslint-disable consistent-return */
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import './staticProductsDisplay.scss';
 import panier from 'src/components/StaticProductsDisplay/Brouette.jpg';
 import epicerie from './produitsVerres.jpg';
 import legumes from './HaricotsVert.jpg';
 import detail from './detail.jpg';
 import fruits from './fraises.jpg';
+import Page from '../Page/Page';
+import Loading from '../Loading/Loading';
 
 function StaticProductsDisplay({ related }) {
   const image = () => {
@@ -25,17 +28,45 @@ function StaticProductsDisplay({ related }) {
       return fruits;
     }
   };
+  if (!related) {
+    return (
+      <Page>
+        <Loading />
+      </Page>
+    );
+  }
   return (
     <div className="static-container">
       <div className="static-title-container">
-        <div className="static-title">{related.toUpperCase()}</div>
+        <motion.div
+          className="static-title"
+          initial={{ height: 0 }}
+          animate={{ height: '70%' }}
+          exit={{ opacity: 0, transition: { duration: 0.4 } }}
+        >
+          {related.toUpperCase()}
+        </motion.div>
       </div>
-      <img src={image()} alt={related} className="static-image" />
-      <div className="static-subtitle-container">
-        <div className="static-subtitle">
+      <motion.img
+        src={image()}
+        alt={related}
+        className="static-image"
+        initial={{ y: window.innerHeight }}
+        animate={{ y: 0, transition: { duration: 0.30 } }}
+        exit={{ y: -window.innerHeight, opacity: 0, transition: { duration: 0.4 } }}
+      />
+      <motion.div
+        className="static-subtitle-container"
+        initial={{ y: window.innerHeight }}
+        animate={{ y: 0, transition: { duration: 0.30 } }}
+        exit={{ y: -window.innerHeight, opacity: 0, transition: { duration: 0.4 } }}
+      >
+        <div
+          className="static-subtitle"
+        >
           Fais ton choix!
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

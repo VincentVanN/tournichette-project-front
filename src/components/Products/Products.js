@@ -6,6 +6,7 @@ import './products.scss';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router';
+import { motion } from 'framer-motion';
 import Card from 'src/components/Card/Card';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
@@ -58,7 +59,9 @@ function Products({ related }) {
     );
   }
   return (
-      <div className="products-container">
+      <div
+        className="products-container"
+      >
          <header className="products-header">
         {related === 'carts' && (<h1 className="title"> Nos paniers de saison</h1>)}
         {(((related === 'products' || slug)) && (!location.pathname.includes('/paniers')) && (
@@ -91,7 +94,11 @@ function Products({ related }) {
         ))}
          </header>
 
-      <div className="products">
+      <motion.div
+        className="products"
+        initial={{ x: -200 }}
+        animate={{ x: 0 }}
+      >
         <ul className="products-items">
           {((related === 'products' || slug) && (!location.pathname.includes('/paniers')) ? arrayToDisplay : carts).map((product) => (
             <Card
@@ -109,7 +116,7 @@ function Products({ related }) {
             />
           ))}
         </ul>
-      </div>
+      </motion.div>
       </div>
   );
 }

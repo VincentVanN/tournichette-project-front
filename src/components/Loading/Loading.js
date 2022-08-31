@@ -2,7 +2,10 @@ import './loading.scss';
 
 function Loading() {
   return (
-    <div className="chaotic-orbit" />
+    <div className="loading-container">
+      <div className="chaotic-orbit" />
+    </div>
+
   );
 }
 

@@ -82,13 +82,13 @@ function Product() {
         className="product"
         initial={{ width: 0 }}
         animate={{ width: '70%' }}
-        exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.20 } }}
+        exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.25 } }}
       >
         <motion.h2
           className="product-title"
           initial={{ top: 0 }}
           animate={{ top: width > 1024 ? '80px' : '60px' }}
-          exit={{ opacity: 0, transition: { duration: 0.5 } }}
+          exit={{ opacity: 0, transition: { duration: 0.4 } }}
         >
           {oneProduct.name}
         </motion.h2>
