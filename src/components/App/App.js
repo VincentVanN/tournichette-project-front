@@ -1,30 +1,17 @@
 // == Import
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { Route, Routes } from 'react-router';
 import './app.scss';
 import { setUser, getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
-import Home from '../Home/Home';
-// import AboutUs from '../AboutUs/AboutUs';
-import Cgu from '../Cgu/Cgu';
-import LegalNotice from '../LegalNotice/LegalNotice';
-import Contact from '../Contact/Contact';
-import DevTeam from '../DevTeam/DevTeam';
-import NotFound from '../NotFound/NotFound';
 import { getCarts, getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
 import { setToken } from '../../feature/user.slice';
 import { setCartAmount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { setHeight, setWidth } from '../../feature/navigation.slice';
-import SinglePage from '../Page/SinglePage';
-import ProductsRendering from '../Products/ProductsRendering';
-import ProductRendering from '../Product/ProductRendering';
-import ShoppingCartRendering from '../ShoppingCart/ShoppingCartRendering';
-import UserContactRendering from '../User/UserContactRendering';
-import OrdersRendering from '../User/OrdersRendering';
-import UserRendering from '../User/UserRendering';
+import AnimatedRoutesSmallScreen from '../AnimationComponents/AnimatedRoutesSmallScreen';
+import AnimatedRoutesLargeScreen from '../AnimationComponents/AnimatedRoutesLargeScreen';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -89,22 +76,7 @@ function App() {
         {(!logged && !loggedUser) && <LoginForm />}
         {(logged)
     && (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/liste" element={<SinglePage />} />
-        <Route path="/categorie/:slug" element={<SinglePage />} />
-        <Route path="/profil" element={<SinglePage />} />
-        <Route path="/panier" element={<SinglePage />} />
-        <Route path="/produit/:slug" element={<SinglePage />} />
-        <Route path="/listePaniers" element={<SinglePage />} />
-        <Route path="/produit/paniers/:slug" element={<SinglePage />} />
-        {/* <Route path="/apropos" element={<AboutUs />} /> */}
-        <Route path="/CGU" element={<Cgu />} />
-        <Route path="/mentions-legales" element={<LegalNotice />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/La-Dev-Team" element={<DevTeam />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+    <AnimatedRoutesLargeScreen />
     )}
       </div>
     );
@@ -115,24 +87,7 @@ function App() {
       {(!logged && !loggedUser) && <LoginForm />}
       {(logged)
     && (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/categorie/:slug" element={<ProductsRendering />} />
-        <Route path="/profil" element={<UserRendering />} />
-        <Route path="/profil/historique" element={<OrdersRendering />} />
-        <Route path="/profil/coordonnees" element={<UserContactRendering />} />
-        <Route path="/panier" element={<ShoppingCartRendering />} />
-        <Route path="/produit/:slug" element={<ProductRendering />} />
-        <Route path="/liste" element={<ProductsRendering related="products" />} />
-        <Route path="/listePaniers" element={<ProductsRendering related="carts" />} />
-        <Route path="/produit/paniers/:slug" element={<ProductRendering />} />
-        {/* <Route path="/apropos" element={<AboutUs />} /> */}
-        <Route path="/CGU" element={<Cgu />} />
-        <Route path="/mentions-legales" element={<LegalNotice />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/La-Dev-Team" element={<DevTeam />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+      <AnimatedRoutesSmallScreen />
     )}
 
     </div>

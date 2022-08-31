@@ -4,11 +4,17 @@ import background from 'src/components/Product/fenouils.jpg';
 import { useNavigate, useParams } from 'react-router';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
+import Page from '../Page/Page';
+import Loading from '../Loading/Loading';
 
 function Product() {
-  const dispatch = useDispatch();
   const { slug } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
+  const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
+  const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
+  const categories = ['legumes', 'fruits', 'epicerie'];
   //
   // select product or cart
   //
@@ -25,6 +31,7 @@ function Product() {
   if (carts.some((element) => element.slug === slug)) {
     productsListInCart = oneProduct.cartProducts;
   }
+  console.log(slug);
   //
   // add product in cart
   //
@@ -47,6 +54,17 @@ function Product() {
     return productInCart.quantity;
   };
   const quantityInCart = getQuantityInCart();
+  if ((isLoadingProducts
+    || isLoadingCategories
+    || isLoadingCarts
+    || !slug
+    || categories.includes(slug))) {
+    return (
+      <Page>
+        <Loading />
+      </Page>
+    );
+  }
   return (
     <div className="container">
       <h2 className="product-title">
