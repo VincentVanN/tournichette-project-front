@@ -9,13 +9,12 @@ import ShoppingCartRendering from '../ShoppingCart/ShoppingCartRendering';
 import StaticProductsDisplay from '../StaticProductsDisplay/StaticProductsDisplay';
 import OrdersRendering from '../User/OrdersRendering';
 import UserContactRendering from '../User/UserContactRendering';
-import LargeComponent from './LargeComponent';
 import Page from './Page';
 import './singlePage.scss';
-import SmallComponent from './SmallComponent';
 
 function SinglePage() {
   const location = useLocation();
+  const { slug } = useParams();
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
@@ -31,41 +30,40 @@ function SinglePage() {
     return (
       <Page>
         <div className="singlePage-container">
-          <SmallComponent className="smallComponent">
+          <div className="smallComponent">
             <ProductsRendering related="products" />
-          </SmallComponent>
-          <LargeComponent className="largeComponent">
+          </div>
+          <div className="largeComponent">
             <StaticProductsDisplay related="detail" />
-          </LargeComponent>
+          </div>
         </div>
       </Page>
     );
   }
-  if (location.pathname === '/listePaniers') {
+  if (location.pathname === '/NosPaniers') {
     return (
       <Page>
         <div className="singlePage-container">
-          <SmallComponent className="smallComponent">
+          <div className="smallComponent">
             <ProductsRendering related="carts" />
-          </SmallComponent>
-          <LargeComponent className="largeComponent">
+          </div>
+          <div className="largeComponent">
             <StaticProductsDisplay related="panier" />
-          </LargeComponent>
+          </div>
         </div>
       </Page>
     );
   }
   if (location.pathname.includes('/categorie')) {
-    const { slug } = useParams();
     return (
       <Page>
         <div className="singlePage-container">
-          <SmallComponent className="smallComponent">
+          <div className="smallComponent">
             <ProductsRendering related="products" />
-          </SmallComponent>
-          <LargeComponent className="largeComponent">
+          </div>
+          <div className="largeComponent">
             <StaticProductsDisplay related={slug} />
-          </LargeComponent>
+          </div>
         </div>
       </Page>
     );
@@ -74,31 +72,31 @@ function SinglePage() {
     return (
       <Page>
         <div className="singlePage-container">
-          <SmallComponent className="smallComponent">
+          <div className="smallComponent">
             <UserContactRendering />
-          </SmallComponent>
-          <LargeComponent className="largeComponent">
+          </div>
+          <div className="largeComponent">
             <OrdersRendering />
-          </LargeComponent>
+          </div>
         </div>
       </Page>
     );
   }
-  if (location.pathname === '/panier' && cartToDisplay.length !== 0) {
+  if (location.pathname === '/MesAchats' && cartToDisplay.length !== 0) {
     return (
       <Page>
         <div className="singlePage-container">
-          <SmallComponent className="smallComponent">
+          <div className="smallComponent">
             <ChoiseDepotPoints />
-          </SmallComponent>
-          <LargeComponent className="largeComponent">
+          </div>
+          <div className="largeComponent">
             <ShoppingCartRendering />
-          </LargeComponent>
+          </div>
         </div>
       </Page>
     );
   }
-  if (location.pathname === '/panier' && cartToDisplay.length === 0) {
+  if (location.pathname === '/MesAchats' && cartToDisplay.length === 0) {
     return (
       <Page>
         <ShoppingCartEmpty />
@@ -109,26 +107,26 @@ function SinglePage() {
     return (
       <Page>
         <div className="singlePage-container">
-          <SmallComponent className="smallComponent">
+          <div className="smallComponent">
             <ProductsRendering related="products" />
-          </SmallComponent>
-          <LargeComponent className="largeComponent">
+          </div>
+          <div className="largeComponent">
             <ProductRendering />
-          </LargeComponent>
+          </div>
         </div>
       </Page>
     );
   }
-  if (location.pathname.includes('/produit/paniers')) {
+  if (location.pathname.includes('/paniers')) {
     return (
       <Page>
         <div className="singlePage-container">
-          <SmallComponent className="smallComponent">
+          <div className="smallComponent">
             <ProductsRendering related="carts" />
-          </SmallComponent>
-          <LargeComponent className="largeComponent">
+          </div>
+          <div className="largeComponent">
             <ProductRendering />
-          </LargeComponent>
+          </div>
         </div>
       </Page>
     );

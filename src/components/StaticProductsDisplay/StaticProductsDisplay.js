@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import PropTypes from 'prop-types';
 import './staticProductsDisplay.scss';
-import panier from './Brouette.jpg';
+import panier from 'src/components/StaticProductsDisplay/Brouette.jpg';
 import epicerie from './produitsVerres.jpg';
 import legumes from './HaricotsVert.jpg';
 import detail from './detail.jpg';

@@ -32,7 +32,7 @@ function Products({ related }) {
   const navigate = useNavigate();
   // check location for dual display when screen > 1280px
   const location = useLocation();
-  const handleClickProduct = (relatedCard, slug) => navigate(`${(relatedCard === 'carts') || (location.pathname.includes('/produit/paniers')) ? '/produit/paniers/' : '/produit/'}${slug}`);
+  const handleClickProduct = (relatedCard, slug) => navigate(`${(relatedCard === 'carts') || (location.pathname.includes('/paniers')) ? '/paniers/' : '/produit/'}${slug}`);
   const params = useParams();
   const { slug } = params;
   const filterProducts = () => products.filter((product) => (product.category.slug === slug));
@@ -61,7 +61,7 @@ function Products({ related }) {
       <div className="products-container">
          <header className="products-header">
         {related === 'carts' && (<h1 className="title"> Nos paniers de saison</h1>)}
-        {(((related === 'products' || slug)) && (!location.pathname.includes('/produit/paniers')) && (
+        {(((related === 'products' || slug)) && (!location.pathname.includes('/paniers')) && (
           <><div className="products-searchBar">
             <SearchBar
               type="text"
@@ -93,7 +93,7 @@ function Products({ related }) {
 
       <div className="products">
         <ul className="products-items">
-          {((related === 'products' || slug) && (!location.pathname.includes('/produit/paniers')) ? arrayToDisplay : carts).map((product) => (
+          {((related === 'products' || slug) && (!location.pathname.includes('/paniers')) ? arrayToDisplay : carts).map((product) => (
             <Card
               related={related === 'products' ? 'products' : 'carts'}
               key={product.name}
