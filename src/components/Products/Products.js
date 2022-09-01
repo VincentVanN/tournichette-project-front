@@ -1,7 +1,3 @@
-/* eslint-disable react/jsx-indent */
-/* eslint-disable react/require-default-props */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable max-len */
 import './products.scss';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router';
@@ -43,7 +39,8 @@ function Products() {
   };
   const handleClickProduct = (related, slug) => navigate(selectedRoute(related, slug));
 
-  const filterProducts = () => products.filter((product) => (product.category.slug === slugCategory));
+  const filterProducts = () => products
+    .filter((product) => (product.category.slug === slugCategory));
 
   let filteredArray;
   if (Object.keys(params).length === 0 || location.pathname === '/liste' || slugProduct) {
@@ -61,7 +58,8 @@ function Products() {
   const handleChange = (item) => (setSearchTerm(item));
   let arrayToDisplay;
   if (searchTerm) {
-    arrayToDisplay = filteredArray.filter((value) => (value.name.toLowerCase().includes(searchTerm.toLowerCase())));
+    arrayToDisplay = filteredArray
+      .filter((value) => (value.name.toLowerCase().includes(searchTerm.toLowerCase())));
   }
   else {
     arrayToDisplay = filteredArray;
@@ -92,24 +90,25 @@ function Products() {
     );
   }
   return (
-      <div
-        className="products-container"
-      >
-         <header className="products-header">
+    <div
+      className="products-container"
+    >
+      <header className="products-header">
         {(location.pathname === '/NosPaniers' || slugCart) && (<h1 className="title"> Nos paniers de saison</h1>)}
         {((location.pathname === '/liste' || slugProduct || location.pathname.includes('/categorie')) && (
-          <><div className="products-searchBar">
-            <SearchBar
-              type="text"
-              placeholder="Rechercher..."
-              className={`products-searchBar-input ${setHiddenSearchBar}`}
-              onChange={handleChange}
-            />
-            <ion-icon
-              className="products-searchBar-icon"
-              name="search-outline"
-              onClick={handleClick}
-            />
+          <>
+            <div className="products-searchBar">
+              <SearchBar
+                type="text"
+                placeholder="Rechercher..."
+                className={`products-searchBar-input ${setHiddenSearchBar}`}
+                onChange={handleChange}
+              />
+              <ion-icon
+                className="products-searchBar-icon"
+                name="search-outline"
+                onClick={handleClick}
+              />
             </div>
             <div className="products-categories">
               {categories.map((category) => (
@@ -124,7 +123,7 @@ function Products() {
             </div>
           </>
         ))}
-         </header>
+      </header>
 
       <div
         className="products"
@@ -147,7 +146,7 @@ function Products() {
           ))}
         </ul>
       </div>
-      </div>
+    </div>
   );
 }
 export default Products;
