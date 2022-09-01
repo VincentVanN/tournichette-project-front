@@ -1,14 +1,10 @@
 @use 'src/styles/_vars.scss';
 
 .form-header {
-  // position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  //   top: 0;
-  //   width: 90%;
-  //   height: 90px;
   margin-bottom: 20px;
   z-index: 3;
   background: vars.$colorBeige;
@@ -118,7 +114,7 @@ p.updateUserAccount.input-item{
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 0.7em;
+      font-size: 0.8em;
     }
 
     &.input-item{
