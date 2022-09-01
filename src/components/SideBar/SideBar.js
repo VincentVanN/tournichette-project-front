@@ -52,7 +52,7 @@ function SideBar() {
               <span className="icon">
                 <ion-icon name="bag-outline" />
               </span>
-              <span className="titleIcon">Les paniers</span>
+              <span className="titleIcon">Paniers</span>
             </NavLink>
           </li>
           <li>
@@ -60,7 +60,7 @@ function SideBar() {
               <span className="icon">
                 <ion-icon name="rose-outline" />
               </span>
-              <span className="titleIcon">le Détail</span>
+              <span className="titleIcon">Au détail</span>
             </NavLink>
           </li>
           <li>
@@ -68,7 +68,7 @@ function SideBar() {
               <span className="icon">
                 <ion-icon name="cart-outline" />
               </span>
-              <span className="titleIcon">Ton panier d'achat</span>
+              <span className="titleIcon">Tes achats</span>
             </NavLink>
           </li>
           <li>
@@ -94,7 +94,6 @@ function SideBar() {
               </span>
               <span className="titleIcon">Se déconnecter</span>
             </a>
-
           </li>
         </ul>
         <div
@@ -142,9 +141,9 @@ function SideBar() {
               <img src={logo} alt="logo tournichette" className="logo" />
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/">Accueil</NavLink>
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/profil">Mon profil</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/NosPaniers">Les paniers</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/liste">Le détail</NavLink>
-              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/MesAchats">Panier d'achat</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/NosPaniers">Paniers</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/liste">Au détail</NavLink>
+              <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/MesAchats">Tes achats</NavLink>
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/contact">Nous contacter</NavLink>
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/apropos">Qui sommes-nous?</NavLink>
               <div

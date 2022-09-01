@@ -17,12 +17,13 @@ function AnimatedRoutesLargeScreen() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/liste" element={<SinglePage />} />
-        <Route path="/categorie/:slug" element={<SinglePage />} />
+        <Route path="/produit/:slugProduct" element={<SinglePage />} />
+        <Route path="/categorie/:slugCategory" element={<SinglePage />} />
+        <Route path="/categorie/:slugCategory/:slugProduct" element={<SinglePage />} />
+        <Route path="/paniers/:slugCart" element={<SinglePage />} />
+        <Route path="/NosPaniers" element={<SinglePage />} />
         <Route path="/profil" element={<SinglePage />} />
         <Route path="/MesAchats" element={<SinglePage />} />
-        <Route path="/produit/:slug" element={<SinglePage />} />
-        <Route path="/NosPaniers" element={<SinglePage />} />
-        <Route path="/paniers/:slug" element={<SinglePage />} />
         <Route path="/apropos" element={<AboutUs />} />
         <Route path="/CGU" element={<Cgu />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
