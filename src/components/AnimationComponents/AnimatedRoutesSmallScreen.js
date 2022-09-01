@@ -20,15 +20,15 @@ function AnimatedRoutesSmallScreen() {
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
-        <Route path="/categorie/:slug" element={<ProductsRendering />} />
+        <Route path="/categorie/:slugCategory" element={<ProductsRendering />} />
         <Route path="/profil" element={<UserRendering />} />
         <Route path="/profil/historique" element={<OrdersRendering />} />
         <Route path="/profil/coordonnees" element={<UserContactRendering />} />
         <Route path="/MesAchats" element={<ShoppingCartRendering />} />
-        <Route path="/produit/:slug" element={<ProductRendering />} />
+        <Route path="/produit/:slugProduct" element={<ProductRendering />} />
         <Route path="/liste" element={<ProductsRendering related="products" />} />
         <Route path="/NosPaniers" element={<ProductsRendering related="carts" />} />
-        <Route path="/paniers/:slug" element={<ProductRendering />} />
+        <Route path="/paniers/:slugCart" element={<ProductRendering />} />
         <Route path="/apropos" element={<AboutUs />} />
         <Route path="/CGU" element={<Cgu />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
