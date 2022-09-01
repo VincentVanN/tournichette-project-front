@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import './product.scss';
-import background from 'src/components/Product/fenouils.jpg';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
