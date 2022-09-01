@@ -7,7 +7,7 @@ function Orders() {
   const orderHistory = useSelector((state) => state.user.orderHistory);
   return (
     <div className="orderHistory-container">
-      <h2 className="orderHistory-title">Historique des commandes</h2>
+      <div className="orderHistory-title">Historique des commandes</div>
       <div className="orderHistory">
         {orderHistory.length === 0 && (
           <p>Tu n'as pas encore commandé </p>
