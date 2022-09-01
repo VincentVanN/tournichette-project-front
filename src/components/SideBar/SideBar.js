@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from 'src/assets/logo-noName.svg';
 import { logout, setSecondaryMenu } from '../../feature/user.slice';
+import CartWithCount from '../CartWithCount/CartWithCount';
 import './sideBar.scss';
 
 function SideBar() {
-  const firstname = useSelector((state) => state.user.user.firstname);
   const isSecondaryMenu = useSelector((state) => state.user.isSecondaryMenu);
   const width = useSelector((state) => state.navigation.width);
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ function SideBar() {
     navigate('/');
     dispatch(logout());
   };
-  const countOfProducts = useSelector((state) => state.shoppingCart.count);
   const [isOpen, setIsOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const handleCheck = () => setIsChecked(!isChecked);
@@ -123,21 +122,7 @@ function SideBar() {
           </div>
           {(!isSecondaryMenu && (
             <div className="menu-items">
-              <div className="header">
-                <div className="login">{`hello ${firstname}!`}</div>
-                {countOfProducts !== 0 && (
-                  <div className="cart">
-                    <div className="count">
-                      <p>
-                        {countOfProducts}
-                      </p>
-                    </div>
-                    <div className="icon">
-                      <ion-icon name="cart-outline" style={{ fontSize: '45px' }} />
-                    </div>
-                  </div>
-                )}
-              </div>
+              <CartWithCount />
               <img src={logo} alt="logo tournichette" className="logo" />
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/">Accueil</NavLink>
               <NavLink className={`navlink ${className}`} onClick={handleCheck} to="/profil">Mon profil</NavLink>

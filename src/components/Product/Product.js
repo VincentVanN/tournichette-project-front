@@ -80,8 +80,15 @@ function Product() {
     >
       <motion.div
         className="product"
-        initial={{ width: 0 }}
-        animate={{ width: '70%' }}
+        initial={{
+          width: 0,
+        }}
+        animate={{
+          width: '70%',
+          transition: {
+            duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+          },
+        }}
         exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.25 } }}
       >
         <motion.h2
@@ -92,7 +99,7 @@ function Product() {
         >
           {oneProduct.name}
         </motion.h2>
-        <img src={background} alt="product" className="product-image" />
+        <img src={oneProduct.image} alt="product" className="product-image" />
         <div className="product-content">
           {slugCart && (
           <div className="productsListinCart">

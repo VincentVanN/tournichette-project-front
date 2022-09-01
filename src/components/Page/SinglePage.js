@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router';
+import CartWithCount from '../CartWithCount/CartWithCount';
 import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 import Loading from '../Loading/Loading';
 import ProductRendering from '../Product/ProductRendering';
@@ -19,6 +20,7 @@ function SinglePage() {
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
+  const count = useSelector((state) => state.shoppingCart.count);
   if ((isLoadingProducts || isLoadingCategories || isLoadingCarts)) {
     return (
       <Page>
@@ -29,6 +31,7 @@ function SinglePage() {
   if (location.pathname === '/liste') {
     return (
       <Page>
+        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
@@ -43,6 +46,7 @@ function SinglePage() {
   if (location.pathname === '/NosPaniers') {
     return (
       <Page>
+        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
@@ -57,6 +61,7 @@ function SinglePage() {
   if (location.pathname.includes('/categorie') && !slugProduct) {
     return (
       <Page>
+        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
@@ -71,6 +76,7 @@ function SinglePage() {
   if (location.pathname.includes('/categorie') && slugProduct) {
     return (
       <Page>
+        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
@@ -120,6 +126,7 @@ function SinglePage() {
   if (location.pathname.includes('/produit')) {
     return (
       <Page>
+        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
@@ -134,6 +141,7 @@ function SinglePage() {
   if (location.pathname.includes('/paniers')) {
     return (
       <Page>
+        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />

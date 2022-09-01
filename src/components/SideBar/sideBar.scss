@@ -111,6 +111,11 @@
 .nav-container input[type="checkbox"]:checked ~ .logo{
   display: none;
 }
+.headerCart {
+  width: 90px;
+  height: 90px;
+  margin-right: 40px;
+}
 .menu-items {
   display: flex;
   justify-content: center;
