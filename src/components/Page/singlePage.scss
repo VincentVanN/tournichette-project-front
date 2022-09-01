@@ -9,10 +9,10 @@
   background: vars.$colorLightGreen;
 }
 .largeComponent{
-  position: relative;
+  
   display: block;
   flex-basis:60%;
-  max-width: 720px;
+  max-width: 780px;
   max-height: 90vh;
   color: black;
   margin: 40px 20px;
@@ -22,9 +22,15 @@
 }
 .smallComponent{
   flex-basis:33.33%;
-  max-width: 400px;
+  max-width: 490px;
   max-height: 90vh;
   margin: 40px 40px;
   background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+}
+@media only screen and (min-width: 1024px) {
+  .headerCart {
+    position: absolute;
+    right: 5%;
+  }
 }
