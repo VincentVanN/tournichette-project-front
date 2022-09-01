@@ -11,7 +11,6 @@ import SinglePage from '../Page/SinglePage';
 
 function AnimatedRoutesLargeScreen() {
   const location = useLocation();
-
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
