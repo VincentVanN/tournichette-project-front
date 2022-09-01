@@ -12,7 +12,6 @@ import Loading from '../Loading/Loading';
 function Product() {
   const params = useParams();
   const { slugProduct, slugCart } = params;
-  console.log(slugProduct, slugCart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -31,12 +30,10 @@ function Product() {
   if (slugCart) {
     oneProduct = carts.find((element) => element.slug === slugCart);
   }
-  console.log(oneProduct);
   let productsListInCart;
   if (carts.some((element) => element.slug === slugCart)) {
     productsListInCart = oneProduct.cartProducts;
   }
-  console.log(productsListInCart);
   //
   // add product in cart
   //

@@ -79,7 +79,7 @@ function Products() {
   //
   const related = () => {
     if (slugCart || location.pathname === '/NosPaniers') {
-      return 'cart';
+      return 'carts';
     }
     return 'products';
   };
