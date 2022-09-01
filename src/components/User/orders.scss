@@ -1,62 +1,9 @@
 @use 'src/styles/_vars.scss';
 
-.orders{
-  height: 100vh;
-}
-
-.no-orderHistory{
-  color: vars.$colorDarkGreen;
-  font-family: vars.$fontLekton;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-
-  &-header{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    margin-bottom: 20px;
-    z-index: 3;
-    background: vars.$colorBeige;
-    border-bottom: 1px solid #70bd9d;
-  }
-  &-title {
-    font-size: 1.5em;
-    width: 100%;
-    color: vars.$colorDarkGreen;;
-    margin-bottom: 30px;
-    font-weight: 500;
-    padding: 4px;
-  }
-  p{
-    text-align: center;
-  }
-}
-
 .orderHistory {
-
-  display: block;
-  overflow: auto;
-  // width: 100%;
-  // height: 100vh;
-  background: vars.$colorBeige;
-  overflow-y: scroll;
-  // scrollbar-width: thin;
-
-  &-header{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    margin-bottom: 20px;
-    z-index: 3;
-    background: vars.$colorBeige;
-    border-bottom: 1px solid #70bd9d;
-    
-
-  }
+position: relative;
   &-title {
+    position: sticky;
     font-size: 1.5em;
     width: 100%;
     color: vars.$colorDarkGreen;

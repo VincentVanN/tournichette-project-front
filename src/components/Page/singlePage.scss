@@ -9,6 +9,8 @@
   background: vars.$colorLightGreen;
 }
 .largeComponent{
+  position: relative;
+  display: block;
   flex-basis:60%;
   max-width: 720px;
   max-height: 90vh;
@@ -16,6 +18,7 @@
   margin: 40px 20px;
   background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+  overflow: auto;
 }
 .smallComponent{
   flex-basis:33.33%;
