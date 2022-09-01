@@ -13,10 +13,11 @@
   margin-top: 300px;
   }
   &-container{
+    width: 100vw;
+    height: 100vh;
     display: flex;
-    align-items: center;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
   &-logo {
     width: 300px;
@@ -134,12 +135,15 @@ ion-icon{
   justify-content: center;
   align-items: center;
 }
-
+.subscribe-button {
+  width: 30px;
+  height: 30px;
+}
+.form-signIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @media only screen and (min-width: 1024px) {
-  .form-container{
-    height: 100vh;
-  }
-  .form-signIn {
-    margin-left: 60px;
-  }
+
 }
