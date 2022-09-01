@@ -104,6 +104,7 @@ function Card({
       <div className="card-container">
         <div
           className="card-article"
+          {...(width >= 1024 && { onClick: handleClick })}
         >
           <div className="card-leftSide">
             <h2 className="card-leftSide card-title">{name}</h2>
@@ -116,6 +117,7 @@ function Card({
             <li className="card-price">{`${price}€`}</li>
           </ul>
         </div>
+        {width < 1024 && (
         <div className="button-group">
           <button
             type="button"
@@ -132,6 +134,7 @@ function Card({
             <ion-icon name="reader-outline" size="medium" />
           </button>
         </div>
+        )}
       </div>
       )}
     </>

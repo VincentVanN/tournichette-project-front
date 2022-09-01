@@ -14,7 +14,7 @@ import './singlePage.scss';
 
 function SinglePage() {
   const location = useLocation();
-  const { slug } = useParams();
+  const { slugCategory, slugProduct } = useParams();
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
@@ -31,7 +31,7 @@ function SinglePage() {
       <Page>
         <div className="singlePage-container">
           <div className="smallComponent">
-            <ProductsRendering related="products" />
+            <ProductsRendering />
           </div>
           <div className="largeComponent">
             <StaticProductsDisplay related="detail" />
@@ -45,7 +45,7 @@ function SinglePage() {
       <Page>
         <div className="singlePage-container">
           <div className="smallComponent">
-            <ProductsRendering related="carts" />
+            <ProductsRendering />
           </div>
           <div className="largeComponent">
             <StaticProductsDisplay related="panier" />
@@ -54,15 +54,29 @@ function SinglePage() {
       </Page>
     );
   }
-  if (location.pathname.includes('/categorie')) {
+  if (location.pathname.includes('/categorie') && !slugProduct) {
     return (
       <Page>
         <div className="singlePage-container">
           <div className="smallComponent">
-            <ProductsRendering related="products" />
+            <ProductsRendering />
           </div>
           <div className="largeComponent">
-            <StaticProductsDisplay related={slug} />
+            <StaticProductsDisplay related={slugCategory} />
+          </div>
+        </div>
+      </Page>
+    );
+  }
+  if (location.pathname.includes('/categorie') && slugProduct) {
+    return (
+      <Page>
+        <div className="singlePage-container">
+          <div className="smallComponent">
+            <ProductsRendering />
+          </div>
+          <div className="largeComponent">
+            <ProductRendering />
           </div>
         </div>
       </Page>
@@ -108,7 +122,7 @@ function SinglePage() {
       <Page>
         <div className="singlePage-container">
           <div className="smallComponent">
-            <ProductsRendering related="products" />
+            <ProductsRendering />
           </div>
           <div className="largeComponent">
             <ProductRendering />
@@ -122,7 +136,7 @@ function SinglePage() {
       <Page>
         <div className="singlePage-container">
           <div className="smallComponent">
-            <ProductsRendering related="carts" />
+            <ProductsRendering />
           </div>
           <div className="largeComponent">
             <ProductRendering />
