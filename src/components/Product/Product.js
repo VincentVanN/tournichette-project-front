@@ -10,13 +10,14 @@ import Page from '../Page/Page';
 import Loading from '../Loading/Loading';
 
 function Product() {
-  const { slug } = useParams();
+  const params = useParams();
+  const { slugProduct, slugCart } = params;
+  console.log(slugProduct, slugCart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
-  const categories = ['legumes', 'fruits', 'epicerie'];
   const width = useSelector((state) => state.navigation.width);
   //
   // select product or cart
@@ -24,16 +25,18 @@ function Product() {
   const products = useSelector((state) => state.products.products.data);
   const carts = useSelector((state) => state.products.carts.data);
   let oneProduct;
-  if (products.some((element) => element.slug === slug)) {
-    oneProduct = products.find((element) => element.slug === slug);
+  if (slugProduct) {
+    oneProduct = products.find((element) => element.slug === slugProduct);
   }
-  if (carts.some((element) => element.slug === slug)) {
-    oneProduct = carts.find((element) => element.slug === slug);
+  if (slugCart) {
+    oneProduct = carts.find((element) => element.slug === slugCart);
   }
+  console.log(oneProduct);
   let productsListInCart;
-  if (carts.some((element) => element.slug === slug)) {
+  if (carts.some((element) => element.slug === slugCart)) {
     productsListInCart = oneProduct.cartProducts;
   }
+  console.log(productsListInCart);
   //
   // add product in cart
   //
@@ -51,9 +54,9 @@ function Product() {
   }, []);
   const handleNavigateForward = () => {
     setIsForward(true);
-    navigate(`/produit/${navigationInProduct((products.some((element) => element.slug === slug)) ? products : carts, oneProduct, 1)}`);
+    navigate(`${slugProduct ? '/produit/' : '/paniers/'}${navigationInProduct(slugProduct ? products : carts, oneProduct, 1)}`);
   };
-  const handleNavigateBackward = () => navigate(`/produit/${navigationInProduct((products.some((element) => element.slug === slug)) ? products : carts, oneProduct, -1)}`);
+  const handleNavigateBackward = () => navigate(`${slugProduct ? '/produit/' : '/paniers/'}${navigationInProduct(slugProduct ? products : carts, oneProduct, -1)}`);
   //
   const getQuantityInCart = () => {
     const productInCart = cart.find((product) => product.name === oneProduct.name);
@@ -66,8 +69,8 @@ function Product() {
   if ((isLoadingProducts
     || isLoadingCategories
     || isLoadingCarts
-    || !slug
-    || categories.includes(slug))) {
+    || Object.keys(params).length === 0
+  )) {
     return (
       <Page>
         <Loading />
@@ -94,7 +97,7 @@ function Product() {
         </motion.h2>
         <img src={background} alt="product" className="product-image" />
         <div className="product-content">
-          {(carts.some((element) => element.slug === slug)) && (
+          {slugCart && (
           <div className="productsListinCart">
             {productsListInCart.map((product) => (
               <div
@@ -113,7 +116,7 @@ function Product() {
 
           </div>
           )}
-          {(products.some((element) => element.slug === slug)) && (
+          {(products.some((element) => element.slug === slugProduct)) && (
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Magni, esse. Vero aut modi ut. Eveniet eius in voluptatem esse nulla!

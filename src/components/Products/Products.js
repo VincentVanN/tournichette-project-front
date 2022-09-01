@@ -17,7 +17,6 @@ function Products() {
   const params = useParams();
   const location = useLocation();
   const { slugCategory, slugProduct, slugCart } = params;
-  console.log(slugCategory, slugProduct, slugCart);
   //
   // pickup data
   //
@@ -33,7 +32,6 @@ function Products() {
   //
   // algorithm to filter products by category
   //
-  // check location for dual display when screen > 1280px
   const selectedRoute = (related, slug) => {
     if (related === 'products' && slugCategory) {
       return `/categorie/${slugCategory}/${slug}`;
@@ -43,40 +41,49 @@ function Products() {
     }
     return `/produit/${slug}`;
   };
-
   const handleClickProduct = (related, slug) => navigate(selectedRoute(related, slug));
-
 
   const filterProducts = () => products.filter((product) => (product.category.slug === slugCategory));
 
   let filteredArray;
-  if (Object.keys(params).length === 0 || location.pathname === '/liste') {
+  if (Object.keys(params).length === 0 || location.pathname === '/liste' || slugProduct) {
     filteredArray = products;
   }
   if (slugCart || location.pathname === '/NosPaniers') {
     filteredArray = carts;
   }
-  if (slugCategory) {
-    console.log('plop');
+  if (slugCategory || (slugCategory && slugProduct)) {
     filteredArray = filterProducts();
   }
   // algorithm to filter products by search bar
   //
   const [searchTerm, setSearchTerm] = useState('');
   const handleChange = (item) => (setSearchTerm(item));
-  const arrayToDisplay = filteredArray
-    .filter((value) => (!searchTerm ? value : value.name.toLowerCase().includes(searchTerm.toLowerCase())));
+  let arrayToDisplay;
+  if (searchTerm) {
+    arrayToDisplay = filteredArray.filter((value) => (value.name.toLowerCase().includes(searchTerm.toLowerCase())));
+  }
+  else {
+    arrayToDisplay = filteredArray;
+  }
+  //
+  // display for searchBar
+  //
   const [isSearchBar, setIsSearchBar] = useState(false);
   const setHiddenSearchBar = !isSearchBar ? 'hidden' : '';
   const handleClick = () => {
     setIsSearchBar(!isSearchBar);
   };
+  //
+  // send a parent to card
+  //
   const related = () => {
     if (slugCart || location.pathname === '/NosPaniers') {
-      return 'cart';
+      return 'carts';
     }
     return 'products';
   };
+  //
   if ((isLoadingProducts || isLoadingCategories || isLoadingCarts)) {
     return (
       <Page>
@@ -90,7 +97,7 @@ function Products() {
       >
          <header className="products-header">
         {(location.pathname === '/NosPaniers' || slugCart) && (<h1 className="title"> Nos paniers de saison</h1>)}
-        {((location.pathname === '/liste' || slugProduct) && ((!location.pathname === '/NosPaniers' || !slugCart)) && (
+        {((location.pathname === '/liste' || slugProduct || location.pathname.includes('/categorie')) && (
           <><div className="products-searchBar">
             <SearchBar
               type="text"
