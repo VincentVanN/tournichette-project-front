@@ -126,8 +126,7 @@ function Product() {
             <span className="product-meta-span span-one">
               <span className="span-one-title">Quantité</span>
               <div className="container-meta">
-                <span className="span-one-info">{oneProduct.quantity}</span>
-                <span className="span-one-info">{oneProduct.unity}</span>
+                <span className="span-one-info">{oneProduct.quantity} {oneProduct.unity}</span>
               </div>
             </span>
 

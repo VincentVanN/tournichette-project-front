@@ -20,6 +20,13 @@ flex-direction: column;
     font-weight: 500;
     border-bottom: solid 1px vars.$colorMediumGreen;
   }
+  p{
+    font-family: vars.$fontLekton;
+    color: vars.$colorDarkGreen;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10%;
+  }
 
   &-one{
     margin-top: 30px;
