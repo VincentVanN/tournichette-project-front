@@ -10,7 +10,7 @@ function Orders() {
       <div className="orderHistory-title">Historique des commandes</div>
       <div className="orderHistory">
         {orderHistory.length === 0 && (
-          <p>Tu n'as pas encore commandé </p>
+          <p>Tu n'as pas encore commandé !</p>
         )}
         {orderHistory.length !== 0 && (
           orderHistory.data.map((order) => (
