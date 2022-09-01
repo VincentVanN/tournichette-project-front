@@ -30,7 +30,30 @@
 }
 @media only screen and (min-width: 1024px) {
   .headerCart {
+    height: 130px;
+    width: 150px;
     position: absolute;
+    top: 3%;
     right: 5%;
+    background: vars.$colorMediumGreen;
+    z-index: 20;
+    margin-right: 0;
+    color: vars.$colorLightGreen;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+  }
+  .login {
+    font-size: 0.9em;
+    color: vars.$colorLightGreen;
+    padding-top: 10px;
+    text-align: center;
+  }
+  .count {
+    color: vars.$colorMediumGreen;
+    padding-bottom: 1px;
+    border: solid 2px  vars.$colorOrange;
   }
 }
