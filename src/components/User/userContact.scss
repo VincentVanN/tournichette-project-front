@@ -1,20 +1,28 @@
 @use 'src/styles/_vars.scss';
 
-.form-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  margin-bottom: 20px;
-  z-index: 3;
-  background: vars.$colorBeige;
-  border-bottom: 1px solid vars.$colorMediumGreen;
-    
+.form{
+  &-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 20px;
+    z-index: 3;
+    background: vars.$colorBeige;
+    border-bottom: 1px solid vars.$colorMediumGreen;
+  }
+
+  &-title{
+  padding: 5%;
+  }
+  
+  &-button {
+    margin-right: 3px;
+  }
 }
 
-.form-title{
-  padding: 5%;
-}
+
+
 p.updateUserAccount.input-item{
   background-color: vars.$colorBeige;
   border: none;
@@ -27,6 +35,7 @@ p.updateUserAccount.input-item{
   overflow: auto;
   margin-bottom: 10px;
   font-family: vars.$fontLekton;
+  
 
   &.container{
     height: 8vh;
@@ -81,6 +90,22 @@ p.updateUserAccount.input-item{
   align-items: center;
  }
 }
+@media only screen and (min-width: 576px) {
+  .form-button {
+    margin-right: -34px;
+  }
+
+  .updateUserAccount.button {
+    margin-left: 13%;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+
+  .updateUserAccount.button {
+    margin-left: 12%;
+  }
+}
 
 @media only screen and (min-width: 1024px) {
   .form {
@@ -90,6 +115,10 @@ p.updateUserAccount.input-item{
     overflow: auto;
     margin: 0;
     text-align: center;
+
+    &-button {
+      margin-left: 27px;
+    }
 
   }
   h2{
