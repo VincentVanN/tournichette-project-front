@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './cartWithCount.scss';
 import { useNavigate } from 'react-router';
 
@@ -11,36 +11,51 @@ function CartWithCount() {
   const navigate = useNavigate();
   const handleClick = () => navigate('/MesAchats');
   return (
-    <div
-      className="headerCart"
-      onClick={handleClick}
-    >
-      <div className="login">{`Hello ${firstname}!`}</div>
-      {countOfProducts !== 0 && (
-      <div className="cart">
-        <motion.div
-          className="count"
-          key={countOfProducts}
-          initial={{
-            scale: 0,
-          }}
-          animate={{
-            scale: 1,
-            transition: {
-              duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
-            },
-          }}
-        >
-          <p>
-            {countOfProducts}
-          </p>
-        </motion.div>
-        <div className="icon">
-          <ion-icon name="cart-outline" style={{ fontSize: '45px', color: `${color}` }} />
+    <AnimatePresence>
+      <motion.div
+        className="headerCart"
+        onClick={handleClick}
+        key={countOfProducts}
+        initial={{
+          scale: 0,
+        }}
+        animate={{
+          scale: 1,
+          transition: {
+            duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+          },
+        }}
+        exit={{ scale: 0 }}
+      >
+        <div className="login">{`Hello ${firstname}!`}</div>
+        {countOfProducts !== 0 && (
+        <div className="cart">
+          <motion.div
+            className="count"
+            key={countOfProducts}
+            initial={{
+              scale: 0,
+            }}
+            animate={{
+              scale: 1,
+              transition: {
+                duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+              },
+            }}
+            exit={{ scale: 0 }}
+          >
+            <p>
+              {countOfProducts}
+            </p>
+          </motion.div>
+          <div className="icon">
+            <ion-icon name="cart-outline" style={{ fontSize: '45px', color: `${color}` }} />
+          </div>
         </div>
-      </div>
-      )}
-    </div>
+        )}
+      </motion.div>
+    </AnimatePresence>
+
   );
 }
 
