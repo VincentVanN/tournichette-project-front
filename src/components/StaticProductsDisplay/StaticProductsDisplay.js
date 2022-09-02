@@ -40,6 +40,7 @@ function StaticProductsDisplay({ related }) {
       <div className="static-container">
         <div className="static-title-container">
           <motion.div
+            key="static-title"
             className="static-title"
             initial={{ height: 0 }}
             animate={{ height: '70%' }}

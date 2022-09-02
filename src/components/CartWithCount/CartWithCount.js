@@ -1,34 +1,30 @@
 import { useSelector } from 'react-redux';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import './cartWithCount.scss';
 import { useNavigate } from 'react-router';
 
 function CartWithCount() {
-  const firstname = useSelector((state) => state.user.user.firstname);
   const countOfProducts = useSelector((state) => state.shoppingCart.count);
   const width = useSelector((state) => state.navigation.width);
   const color = width > 1024 ? '#f2f5df' : '#356859';
   const navigate = useNavigate();
   const handleClick = () => navigate('/MesAchats');
   return (
-    <AnimatePresence>
-      <motion.div
-        className="headerCart"
-        onClick={handleClick}
-        key={countOfProducts}
-        initial={{
-          scale: 0,
-        }}
-        animate={{
-          scale: 1,
-          transition: {
-            duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
-          },
-        }}
-        exit={{ scale: 0 }}
-      >
-        <div className="login">{`Hello ${firstname}!`}</div>
-        {countOfProducts !== 0 && (
+    <motion.div
+      className="headerCart"
+      onClick={handleClick}
+      key="headerCart"
+      initial={{
+        scale: 0,
+      }}
+      animate={{
+        scale: 1,
+        transition: {
+          duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+        },
+      }}
+    >
+      {countOfProducts !== 0 && (
         <div className="cart">
           <motion.div
             className="count"
@@ -52,9 +48,8 @@ function CartWithCount() {
             <ion-icon name="cart-outline" style={{ fontSize: '45px', color: `${color}` }} />
           </div>
         </div>
-        )}
-      </motion.div>
-    </AnimatePresence>
+      )}
+    </motion.div>
 
   );
 }
