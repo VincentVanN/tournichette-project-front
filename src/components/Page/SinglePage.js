@@ -31,12 +31,12 @@ function SinglePage() {
   if (location.pathname === '/liste') {
     return (
       <Page>
-        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
           </div>
           <div className="largeComponent">
+            {count !== 0 && <CartWithCount />}
             <StaticProductsDisplay related="detail" />
           </div>
         </div>
@@ -46,12 +46,12 @@ function SinglePage() {
   if (location.pathname === '/NosPaniers') {
     return (
       <Page>
-        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
           </div>
           <div className="largeComponent">
+            {count !== 0 && <CartWithCount />}
             <StaticProductsDisplay related="panier" />
           </div>
         </div>
@@ -61,12 +61,13 @@ function SinglePage() {
   if (location.pathname.includes('/categorie') && !slugProduct) {
     return (
       <Page>
-        {count && <CartWithCount />}
+
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
           </div>
           <div className="largeComponent">
+            {count !== 0 && <CartWithCount />}
             <StaticProductsDisplay related={slugCategory} />
           </div>
         </div>
@@ -76,12 +77,12 @@ function SinglePage() {
   if (location.pathname.includes('/categorie') && slugProduct) {
     return (
       <Page>
-        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
           </div>
           <div className="largeComponent">
+            {count !== 0 && <CartWithCount />}
             <ProductRendering />
           </div>
         </div>
@@ -126,12 +127,12 @@ function SinglePage() {
   if (location.pathname.includes('/produit')) {
     return (
       <Page>
-        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
           </div>
           <div className="largeComponent">
+            {count && <CartWithCount />}
             <ProductRendering />
           </div>
         </div>
@@ -141,12 +142,12 @@ function SinglePage() {
   if (location.pathname.includes('/paniers')) {
     return (
       <Page>
-        {count && <CartWithCount />}
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
           </div>
           <div className="largeComponent">
+            {count !== 0 && <CartWithCount />}
             <ProductRendering />
           </div>
         </div>

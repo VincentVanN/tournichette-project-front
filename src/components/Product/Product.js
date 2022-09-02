@@ -145,7 +145,20 @@ function Product() {
             <span className="product-meta-span span-three">
               <span className="span-three-title">Panier</span>
               <div className="container-meta">
-                <span className="span-three-info">{quantityInCart}</span>
+                <motion.span
+                  className="span-three-info"
+                  key={quantityInCart}
+                  initial={{
+                    scale: 0,
+                  }}
+                  animate={{
+                    scale: 1,
+                    transition: {
+                      duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+                    },
+                  }}
+                >{quantityInCart}
+                </motion.span>
               </div>
             </span>
           </div>
