@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './product.scss';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
@@ -74,123 +74,129 @@ function Product() {
     );
   }
   return (
-    <div
-      className="container"
-    >
-      <motion.div
-        className="product"
-        initial={{
-          width: 0,
-        }}
-        animate={{
-          width: '70%',
-          transition: {
-            duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
-          },
-        }}
-        exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.25 } }}
+    <AnimatePresence>
+      <div
+        className="container"
       >
-        <motion.h2
-          className="product-title"
-          initial={{ top: 0 }}
-          animate={{ top: width > 1024 ? '80px' : '60px' }}
-          exit={{ opacity: 0, transition: { duration: 0.4 } }}
+        <motion.div
+          className="product"
+          initial={{
+            width: 0,
+          }}
+          animate={{
+            width: '70%',
+            transition: {
+              duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+            },
+          }}
+          exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.25 } }}
         >
-          {oneProduct.name}
-        </motion.h2>
-        <img src={oneProduct.image} alt="product" className="product-image" />
-        <div className="product-content">
-          {slugCart && (
-          <div className="productsListinCart">
-            {productsListInCart.map((product) => (
+          <motion.h2
+            className="product-title"
+            initial={{ top: 0 }}
+            animate={{ top: width > 1024 ? '80px' : '60px' }}
+            exit={{ opacity: 0, transition: { duration: 0.4 } }}
+          >
+            {oneProduct.name}
+          </motion.h2>
+          <img src={oneProduct.image} alt="product" className="product-image" />
+          <div className="product-content">
+            {slugCart && (
+            <div className="productsListinCart">
+              {productsListInCart.map((product) => (
+                <div
+                  className="productInCart"
+                  key={product.product.name}
+                >
+                  <div className="product-name">
+                    {product.product.name}
+                  </div>
+                  <div className="doted" />
+                  <div className="meta">
+                    {`${(product.product.unity === 'kg' ? parseInt(product.quantity, 10) : product.quantity)}${product.product.unity}`}
+                  </div>
+                </div>
+              ))}
+
+            </div>
+            )}
+            {(products.some((element) => element.slug === slugProduct)) && (
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Magni, esse. Vero aut modi ut. Eveniet eius in voluptatem esse nulla!
+            </p>
+            )}
+
+          </div>
+          <div className="product-info">
+            <div className="product-meta">
+              <span className="product-meta-span span-one">
+                <span className="span-one-title">Quantité</span>
+                <div className="container-meta">
+                  <span className="span-one-info">{oneProduct.quantity}</span>
+                  <span className="span-one-info">{oneProduct.unity}</span>
+                </div>
+              </span>
+
+              <span className="product-meta-span span-two">
+                <span className="span-two-title">Prix</span>
+                <div className="container-meta">
+                  <span className="span-two-info">{`${oneProduct.price}€`}</span>
+                </div>
+              </span>
+              <span className="product-meta-span span-three">
+                <span className="span-three-title">Panier</span>
+                <div className="container-meta">
+                  <motion.span
+                    className="span-three-info"
+                    key={quantityInCart}
+                    initial={{
+                      scale: 0,
+                    }}
+                    animate={{
+                      scale: 1,
+                      transition: {
+                        duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+                      },
+                    }}
+                    exit={{
+                      scale: 0,
+                    }}
+                  >{quantityInCart}
+                  </motion.span>
+                </div>
+              </span>
+            </div>
+          </div>
+          <div
+            className="product-navigation-cart"
+            onClick={handleClickCart}
+          >
+            <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px' }} />
+          </div>
+          <div className="product-navigation">
+            <div className="product-navigation-buttons">
               <div
-                className="productInCart"
-                key={product.product.name}
+                className="product-navigation-backward"
+                onClick={handleNavigateBackward}
               >
-                <div className="product-name">
-                  {product.product.name}
-                </div>
-                <div className="doted" />
-                <div className="meta">
-                  {`${(product.product.unity === 'kg' ? parseInt(product.quantity, 10) : product.quantity)}${product.product.unity}`}
-                </div>
+                <ion-icon name="arrow-back-circle-outline" />
+                <p>Précédent</p>
               </div>
-            ))}
-
-          </div>
-          )}
-          {(products.some((element) => element.slug === slugProduct)) && (
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Magni, esse. Vero aut modi ut. Eveniet eius in voluptatem esse nulla!
-          </p>
-          )}
-
-        </div>
-        <div className="product-info">
-          <div className="product-meta">
-            <span className="product-meta-span span-one">
-              <span className="span-one-title">Quantité</span>
-              <div className="container-meta">
-                <span className="span-one-info">{oneProduct.quantity}</span>
-                <span className="span-one-info">{oneProduct.unity}</span>
+              <div
+                className="product-navigation-forward"
+                onClick={handleNavigateForward}
+              >
+                <p>suivant</p>
+                <ion-icon name="arrow-forward-circle-outline" />
               </div>
-            </span>
-
-            <span className="product-meta-span span-two">
-              <span className="span-two-title">Prix</span>
-              <div className="container-meta">
-                <span className="span-two-info">{`${oneProduct.price}€`}</span>
-              </div>
-            </span>
-            <span className="product-meta-span span-three">
-              <span className="span-three-title">Panier</span>
-              <div className="container-meta">
-                <motion.span
-                  className="span-three-info"
-                  key={quantityInCart}
-                  initial={{
-                    scale: 0,
-                  }}
-                  animate={{
-                    scale: 1,
-                    transition: {
-                      duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
-                    },
-                  }}
-                >{quantityInCart}
-                </motion.span>
-              </div>
-            </span>
-          </div>
-        </div>
-        <div
-          className="product-navigation-cart"
-          onClick={handleClickCart}
-        >
-          <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px' }} />
-        </div>
-        <div className="product-navigation">
-          <div className="product-navigation-buttons">
-            <div
-              className="product-navigation-backward"
-              onClick={handleNavigateBackward}
-            >
-              <ion-icon name="arrow-back-circle-outline" />
-              <p>Précédent</p>
             </div>
-            <div
-              className="product-navigation-forward"
-              onClick={handleNavigateForward}
-            >
-              <p>suivant</p>
-              <ion-icon name="arrow-forward-circle-outline" />
-            </div>
-          </div>
 
-        </div>
-      </motion.div>
-    </div>
+          </div>
+        </motion.div>
+      </div>
+    </AnimatePresence>
+
   );
 }
 

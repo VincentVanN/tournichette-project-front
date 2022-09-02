@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './staticProductsDisplay.scss';
 import panier from 'src/components/StaticProductsDisplay/Brouette.jpg';
 import epicerie from './produitsVerres.jpg';
@@ -36,38 +36,41 @@ function StaticProductsDisplay({ related }) {
     );
   }
   return (
-    <div className="static-container">
-      <div className="static-title-container">
+    <AnimatePresence>
+      <div className="static-container">
+        <div className="static-title-container">
+          <motion.div
+            className="static-title"
+            initial={{ height: 0 }}
+            animate={{ height: '70%' }}
+            exit={{ opacity: 0, transition: { duration: 0.4 } }}
+          >
+            {related.toUpperCase()}
+          </motion.div>
+        </div>
+        <motion.img
+          src={image()}
+          alt={related}
+          className="static-image"
+          initial={{ y: window.innerHeight }}
+          animate={{ y: 0, transition: { duration: 0.30 } }}
+          exit={{ y: -window.innerHeight, opacity: 0, transition: { duration: 0.4 } }}
+        />
         <motion.div
-          className="static-title"
-          initial={{ height: 0 }}
-          animate={{ height: '70%' }}
-          exit={{ opacity: 0, transition: { duration: 0.4 } }}
+          className="static-subtitle-container"
+          initial={{ y: window.innerHeight }}
+          animate={{ y: 0, transition: { duration: 0.30 } }}
+          exit={{ y: -window.innerHeight, opacity: 0, transition: { duration: 0.4 } }}
         >
-          {related.toUpperCase()}
+          <div
+            className="static-subtitle"
+          >
+            Fais ton choix!
+          </div>
         </motion.div>
       </div>
-      <motion.img
-        src={image()}
-        alt={related}
-        className="static-image"
-        initial={{ y: window.innerHeight }}
-        animate={{ y: 0, transition: { duration: 0.30 } }}
-        exit={{ y: -window.innerHeight, opacity: 0, transition: { duration: 0.4 } }}
-      />
-      <motion.div
-        className="static-subtitle-container"
-        initial={{ y: window.innerHeight }}
-        animate={{ y: 0, transition: { duration: 0.30 } }}
-        exit={{ y: -window.innerHeight, opacity: 0, transition: { duration: 0.4 } }}
-      >
-        <div
-          className="static-subtitle"
-        >
-          Fais ton choix!
-        </div>
-      </motion.div>
-    </div>
+    </AnimatePresence>
+
   );
 }
 StaticProductsDisplay.propTypes = {

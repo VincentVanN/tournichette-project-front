@@ -1,4 +1,3 @@
-import { AnimatePresence } from 'framer-motion';
 import { Route, Routes, useLocation } from 'react-router';
 import Cgu from '../Cgu/Cgu';
 import Contact from '../Contact/Contact';
@@ -15,10 +14,8 @@ import UserContactRendering from '../User/UserContactRendering';
 import UserRendering from '../User/UserRendering';
 
 function AnimatedRoutesSmallScreen() {
-  const location = useLocation();
   return (
-    <AnimatePresence>
-      <Routes location={location} key={location.pathname}>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categorie/:slugCategory" element={<ProductsRendering />} />
         <Route path="/profil" element={<UserRendering />} />
@@ -37,8 +34,6 @@ function AnimatedRoutesSmallScreen() {
         <Route path="/La-Dev-Team" element={<DevTeam />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
-    </AnimatePresence>
-
   );
 }
 
