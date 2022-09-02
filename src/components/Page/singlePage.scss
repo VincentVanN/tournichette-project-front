@@ -36,10 +36,13 @@
   }
   .headerCart {
    position: absolute;
+   display: flex;
+   justify-content: center;
+   align-items: center;
     right: -40px;
     top: -30px;
-    min-height: 130px;
-    min-width: 130px;
+    min-height: 80px;
+    min-width: 80px;
     z-index: 20;
     margin: 0;
     background: vars.$colorMediumGreen;
@@ -51,14 +54,17 @@
     box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
     cursor: pointer;
   }
-  .login {
-    font-size: 0.9em;
-    color: vars.$colorLightGreen;
-    padding-top: 10px;
-    text-align: center;
-    
-  }
+.cart {
+  position: static;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   .count {
+    position: absolute;
+    right: -10px;
+    top: 10px;
     color: vars.$colorMediumGreen;
     padding-bottom: 1px;
     border: solid 2px  vars.$colorOrange;

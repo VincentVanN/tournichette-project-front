@@ -61,7 +61,6 @@ function SinglePage() {
   if (location.pathname.includes('/categorie') && !slugProduct) {
     return (
       <Page>
-
         <div className="singlePage-container">
           <div className="smallComponent">
             <ProductsRendering />
@@ -86,6 +85,7 @@ function SinglePage() {
             <ProductRendering />
           </div>
         </div>
+
       </Page>
     );
   }
@@ -136,6 +136,7 @@ function SinglePage() {
             <ProductRendering />
           </div>
         </div>
+
       </Page>
     );
   }
@@ -149,8 +150,10 @@ function SinglePage() {
           <div className="largeComponent">
             {count !== 0 && <CartWithCount />}
             <ProductRendering />
+
           </div>
         </div>
+
       </Page>
     );
   }

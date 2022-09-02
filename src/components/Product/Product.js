@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import './product.scss';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import background from 'src/components/Product/fenouils.jpg';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
 import Page from '../Page/Page';
@@ -16,7 +17,6 @@ function Product() {
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
-  const width = useSelector((state) => state.navigation.width);
   //
   // select product or cart
   //
@@ -52,8 +52,12 @@ function Product() {
     setIsForward(true);
     navigate(`${slugProduct ? '/produit/' : '/paniers/'}${navigationInProduct(slugProduct ? products : carts, oneProduct, 1)}`);
   };
-  const handleNavigateBackward = () => navigate(`${slugProduct ? '/produit/' : '/paniers/'}${navigationInProduct(slugProduct ? products : carts, oneProduct, -1)}`);
+  const handleNavigateBackward = () => {
+    setIsForward(false);
+    navigate(`${slugProduct ? '/produit/' : '/paniers/'}${navigationInProduct(slugProduct ? products : carts, oneProduct, -1)}`);
+  };
   //
+  console.log(isForward);
   const getQuantityInCart = () => {
     const productInCart = cart.find((product) => product.name === oneProduct.name);
     if (!productInCart) {
@@ -62,6 +66,23 @@ function Product() {
     return productInCart.quantity;
   };
   const quantityInCart = getQuantityInCart();
+  const variants = {
+    enter: () => ({
+      x: isForward ? 1000 : -1000,
+      opacity: 0.5,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: () => ({
+      zIndex: 0,
+      x: isForward ? -1000 : 1000,
+      opacity: 0,
+    }),
+  };
+
   if ((isLoadingProducts
     || isLoadingCategories
     || isLoadingCarts
@@ -80,26 +101,25 @@ function Product() {
       >
         <motion.div
           className="product"
-          initial={{
-            width: 0,
+          key={oneProduct.name}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: 'spring', stiffness: 300, damping: 30 },
+            opacity: { duration: 0.6 },
           }}
-          animate={{
-            width: '70%',
-            transition: {
-              duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
-            },
-          }}
-          exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.25 } }}
         >
           <motion.h2
             className="product-title"
-            initial={{ top: 0 }}
-            animate={{ top: width > 1024 ? '80px' : '60px' }}
-            exit={{ opacity: 0, transition: { duration: 0.4 } }}
+            initial={{ y: 900 }}
+            animate={{ y: 0 }}
+            exit={{ y: -300, opacity: 0, transition: { duration: 0.9 } }}
           >
             {oneProduct.name}
           </motion.h2>
-          <img src={oneProduct.image} alt="product" className="product-image" />
+          <img src={background} alt="product" className="product-image" />
           <div className="product-content">
             {slugCart && (
             <div className="productsListinCart">
@@ -192,9 +212,9 @@ function Product() {
 
           </div>
         </motion.div>
+
       </div>
     </AnimatePresence>
-
   );
 }
 
