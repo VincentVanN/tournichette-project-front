@@ -1,59 +1,75 @@
 @use 'src/styles/_vars.scss';
 .singlePage-container{
-  width: 87%;
+  width: 100%;
   height: 100vh;
+  top: 0;
   display: flex;
   align-content: center;
   justify-content: center;
-  padding-left: 80px;
   background: vars.$colorLightGreen;
+  
 }
 .largeComponent{
-  
   display: block;
   flex-basis:60%;
   max-width: 780px;
+  min-width: 500px;
   max-height: 90vh;
   color: black;
-  margin: 40px 20px;
+  margin: 40px 150px 40px 20px;
   background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
-  overflow: auto;
+  //overflow: auto;
 }
 .smallComponent{
   flex-basis:33.33%;
-  max-width: 490px;
+  max-width: 600px;
   max-height: 90vh;
-  margin: 40px 40px;
+  margin: 40px;
+  margin-left: 200px;
   background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
 }
 @media only screen and (min-width: 1024px) {
+  .largeComponent{
+    position: relative;
+  }
   .headerCart {
-    height: 130px;
-    width: 150px;
-    position: absolute;
-    top: 3%;
-    right: 5%;
-    background: vars.$colorMediumGreen;
+   position: absolute;
+    right: -40px;
+    top: -30px;
+    min-height: 130px;
+    min-width: 130px;
     z-index: 20;
-    margin-right: 0;
+    margin: 0;
+    background: vars.$colorMediumGreen;
     color: vars.$colorLightGreen;
-    border-radius: 20px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+    cursor: pointer;
   }
   .login {
     font-size: 0.9em;
     color: vars.$colorLightGreen;
     padding-top: 10px;
     text-align: center;
+    
   }
   .count {
     color: vars.$colorMediumGreen;
     padding-bottom: 1px;
     border: solid 2px  vars.$colorOrange;
   }
+}
+@media only screen and (min-width: 1290px) {
+ 
+  // .singlePage-container {
+  //   background-image: url('src/assets/logo.svg');
+  //   background-repeat: repeat;
+  //   background-position: center;
+  //   background-size: 5%;
+  // }
 }

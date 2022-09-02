@@ -12,7 +12,7 @@ import SinglePage from '../Page/SinglePage';
 function AnimatedRoutesLargeScreen() {
   const location = useLocation();
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/liste" element={<SinglePage />} />
