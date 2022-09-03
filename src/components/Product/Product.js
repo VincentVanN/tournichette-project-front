@@ -17,9 +17,6 @@ function Product() {
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
-  const [isHover, setIsHover] = useState(false);
-  const toggleHover = () => setIsHover(!isHover);
-  const hoverColor = isHover ? '#fd7c55' : '#356859';
   //
   // select product or cart
   //
@@ -188,14 +185,6 @@ function Product() {
               </span>
             </div>
           </div>
-          <div
-            className="product-navigation-cart"
-            onClick={handleClickCart}
-            onMouseEnter={toggleHover}
-            onMouseLeave={toggleHover}
-          >
-            <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px', color: hoverColor }} />
-          </div>
           <div className="product-navigation">
             <div className="product-navigation-buttons">
               <div
@@ -204,6 +193,12 @@ function Product() {
               >
                 <ion-icon name="arrow-back-circle-outline" />
                 <p>Précédent</p>
+              </div>
+              <div
+                className="product-navigation-cart"
+                onClick={handleClickCart}
+              >
+                <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px' }} />
               </div>
               <div
                 className="product-navigation-forward"

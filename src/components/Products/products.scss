@@ -72,6 +72,7 @@
   color: vars.$colorDarkGreen;
   font-weight: 500;
   border-bottom: solid 2px vars.$colorDarkGreen;
+  box-shadow: 0 4px 2px -3px vars.$colorDarkGreen;
 }
 @keyframes opening {
   from {
