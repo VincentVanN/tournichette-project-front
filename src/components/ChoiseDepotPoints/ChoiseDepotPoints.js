@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { motion } from 'framer-motion';
 import { postOrder } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { deleteServerMessage, getSelectedDepotId, setSelectedDepot } from '../../feature/shoppingCart.slice';
 import './choiseDepotPoints.scss';
@@ -56,7 +57,7 @@ function ChoiseDepotPoints() {
     <div className="depot-container">
       <div className="title">
         <ion-icon name="bag-check-outline" style={{ paddingBottom: '5px' }} />
-        <p>Ton point de retrait</p>
+        <p>Clique sur ton point de retrait</p>
       </div>
       <div className="message-container">
         {message && (<div className="message">{message}</div>)}
@@ -77,14 +78,17 @@ function ChoiseDepotPoints() {
           </li>
         ))}
       </ul>
-
-      <div
+      {selectedDepot && (
+      <motion.div
         className="validOrderButton"
         onClick={handleClick}
+        initial={{ x: '-100vw' }}
+        animate={{ x: 0 }}
       >
         <p>Commander</p>
         <ion-icon name="checkmark-circle-outline" style={{ color: ValidateColor }} />
-      </div>
+      </motion.div>
+      )}
 
     </div>
   );

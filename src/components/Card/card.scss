@@ -46,6 +46,9 @@
    display: block;
   }
 }
+ion-icon {
+  padding: 2px;
+}
 .doted {
   flex: 1;
   height: 15px;
@@ -53,7 +56,6 @@
   margin-bottom: 5px;
 }
 .button-group {
-  margin-top: 5px;
   display: flex;
   align-items: center;
   &-meta {
@@ -66,8 +68,8 @@
   
 .card-article {
 width: 100%;
-padding: 10px 0;
 margin: 7px 0;
+padding-top: 9px;
 font-size: 0.9em;
 &:active {
   transform: scale(0.99);
@@ -79,6 +81,7 @@ font-size: 0.9em;
 .card-container .shoppingCart{
   width: 100%;
   display: flex;
+
   
 }
 }

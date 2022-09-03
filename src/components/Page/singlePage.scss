@@ -1,6 +1,6 @@
 @use 'src/styles/_vars.scss';
 .singlePage-container{
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   top: 0;
   display: flex;
@@ -56,7 +56,7 @@
   }
 .cart {
   position: static;
-  margin: auto;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +64,7 @@
   .count {
     position: absolute;
     right: -10px;
-    top: 10px;
+    top: 15px;
     color: vars.$colorMediumGreen;
     padding-bottom: 1px;
     border: solid 2px  vars.$colorOrange;

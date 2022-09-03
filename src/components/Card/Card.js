@@ -76,7 +76,11 @@ function Card({
             <li className="card-unity">{quantity}</li>
             <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity && unity === 'undefined' ? 'Pce' : unity}</li>
             <li className="card-unity">-</li>
-            <li className="card-price">{`${(quantity * parseFloat(price)).toFixed(2)}€`}</li>
+            <li
+              className="card-price"
+            >
+              {`${(quantity * parseFloat(price)).toFixed(2)}€`}
+            </li>
           </ul>
         </div>
         <div className="button-group">
