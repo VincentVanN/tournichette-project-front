@@ -13,7 +13,6 @@ function CartWithCount() {
     <motion.div
       className="headerCart"
       onClick={handleClick}
-      key="headerCart"
       initial={{
         scale: 0,
       }}

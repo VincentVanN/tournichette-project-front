@@ -132,7 +132,7 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            {count && <CartWithCount />}
+            {count !== 0 && <CartWithCount />}
             <ProductRendering />
           </div>
         </div>

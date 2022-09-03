@@ -1,24 +1,24 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
-function Modal() {
-  const serverMessage = useSelector((state) => state.navigation.serverMessage);
+function Modal({ message, handler }) {
   const backdrop = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
   };
   return (
     <AnimatePresence mode="wait">
-      {serverMessage && (
       <motion.div
         className="backdrop"
         variants={backdrop}
         initial="hidden"
         animate="visible"
       />
-      )}
     </AnimatePresence>
   );
 }
-
+Modal.propTypes = {
+  message: PropTypes.string.isRequired,
+  handler: PropTypes.func.isRequired,
+};
 export default Modal;
