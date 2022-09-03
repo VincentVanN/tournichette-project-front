@@ -22,6 +22,9 @@
     color: vars.$colorMediumGreen;
     font-weight: 500;
     font-size: 1.2em;
+    & :hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -90,6 +93,9 @@
   font-weight: 600;
   font-size: 1.2em;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+  & :hover {
+    cursor: pointer;
+  }
   }
   @media screen and (min-width: 577px) and (max-width: 1023px){
     .radio-container{

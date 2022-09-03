@@ -67,6 +67,7 @@ export const shoppingCartSlice = createSlice({
     },
     deleteShoppingCart: (state) => {
       state.shoppingCart = [];
+      state.count = 0;
     },
     setSelectedDepot: (state, { payload }) => {
       state.selectedDepot = payload;

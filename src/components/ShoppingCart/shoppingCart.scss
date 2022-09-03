@@ -104,6 +104,9 @@ main {
   & p {
     padding-left: 5px;
   }
+  & :hover {
+    cursor: pointer;
+  }
 }
 .depotButtonsContainer {
   display: flex;
