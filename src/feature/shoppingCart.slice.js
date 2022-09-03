@@ -65,6 +65,9 @@ export const shoppingCartSlice = createSlice({
       });
       state.cartAmount = arrayToReduce.reduce((x, y) => x + y, 0).toFixed(2);
     },
+    deleteShoppingCart: (state) => {
+      state.shoppingCart = [];
+    },
     setSelectedDepot: (state, { payload }) => {
       state.selectedDepot = payload;
     },
@@ -78,6 +81,12 @@ export const shoppingCartSlice = createSlice({
   },
 });
 export const {
-  setCount, pushInCart, setCartAmount, setSelectedDepot, getSelectedDepotId, deleteServerMessage,
+  setCount,
+  pushInCart,
+  setCartAmount,
+  setSelectedDepot,
+  getSelectedDepotId,
+  deleteServerMessage,
+  deleteShoppingCart,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

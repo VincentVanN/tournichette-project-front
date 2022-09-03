@@ -1,16 +1,20 @@
 import './shoppingCart.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Card from '../Card/Card';
 import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 import ShoppingCartEmpty from './ShoppingCartEmpty';
+import { deleteShoppingCart } from '../../feature/shoppingCart.slice';
 
 function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const width = useSelector((state) => state.navigation.width);
+  const dispatch = useDispatch();
   //
   const [isAdressMenu, setIsAdressMenu] = useState(false);
   const handleClickAdressMenu = () => setIsAdressMenu(!isAdressMenu);
+  const handleDeleteCart = () => dispatch(deleteShoppingCart());
   //
   //
   // get amount of order
@@ -32,8 +36,25 @@ function ShoppingCart() {
                   <div className="cart-icon">
                     <ion-icon name="cart-outline" style={{ fontSize: '50px', padding: '5px' }} />
                   </div>
-                  <div className="cart-amount">
-                    <span>Total</span>{` ${cartAmount}€`}
+                  <div
+                    className="cart-amount"
+                  >
+                    <span>Total</span>
+                    <motion.div
+                      className="amount"
+                      key={cartAmount}
+                      initial={{
+                        scale: 0,
+                      }}
+                      animate={{
+                        scale: 1,
+                        transition: {
+                          duration: 0.1, type: 'spring', damping: 10, stiffness: 500,
+                        },
+                      }}
+                    >
+                      {` ${cartAmount}€`}
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -54,15 +75,28 @@ function ShoppingCart() {
                 />
               ))}
             </ul>
-            {width < 1024 && (
-            <div
-              className="choiseDepotButton"
-              onClick={handleClickAdressMenu}
+            <motion.div
+              className="depotButtonsContainer"
+              initial={{ y: '100vh' }}
+              animate={{ y: 0 }}
             >
-              <p>Valider</p>
-              <ion-icon name="arrow-forward-circle-outline" />
-            </div>
-            )}
+              {width < 1024 && (
+              <div
+                className="choiseDepotButton"
+                onClick={handleClickAdressMenu}
+              >
+                <p>Valider</p>
+                <ion-icon name="arrow-forward-circle-outline" style={{ color: '#fd7c55' }} />
+              </div>
+              )}
+              <div
+                className="choiseDepotButton"
+                onClick={handleDeleteCart}
+              >
+                <p>Vider</p>
+                <ion-icon name="close-circle-outline" style={{ color: '#fd7c55' }} />
+              </div>
+            </motion.div>
 
           </div>
         )}

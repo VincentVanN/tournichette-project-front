@@ -57,7 +57,6 @@ function Product() {
     navigate(`${slugProduct ? '/produit/' : '/paniers/'}${navigationInProduct(slugProduct ? products : carts, oneProduct, -1)}`);
   };
   //
-  console.log(isForward);
   const getQuantityInCart = () => {
     const productInCart = cart.find((product) => product.name === oneProduct.name);
     if (!productInCart) {

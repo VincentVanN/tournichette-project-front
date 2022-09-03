@@ -38,7 +38,6 @@ function CartWithCount() {
                 duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
               },
             }}
-            exit={{ scale: 0 }}
           >
             <p>
               {countOfProducts}
