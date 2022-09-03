@@ -26,13 +26,18 @@ function Card({
   return (
     <>
       {related === 'products' && (
-      <div className="card-container">
+      <div
+        className="card-container"
+      >
         <div
           className="card-article"
           {...(width >= 1024 && { onClick: handleClick })}
         >
           <div className="card-leftSide">
-            <h2 className="card-leftSide card-title">{name}</h2>
+            <h2
+              className="card-leftSide card-title"
+            >{name}
+            </h2>
           </div>
           <div className="doted" />
           <ul className="card-infos">
