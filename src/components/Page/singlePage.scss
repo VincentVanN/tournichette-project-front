@@ -53,6 +53,7 @@
     align-items: center;
     box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
     cursor: pointer;
+    border: solid 2px vars.$colorDarkGreen;
   }
 .cart {
   position: static;
