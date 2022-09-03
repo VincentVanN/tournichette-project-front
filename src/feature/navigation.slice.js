@@ -6,6 +6,7 @@ export const navigationSlice = createSlice({
     width: 0,
     height: 0,
     baseUrl: 'http://localhost:8000',
+    navigationMessage: '',
   },
   reducers: {
     setWidth: (state, { payload }) => {
@@ -14,7 +15,18 @@ export const navigationSlice = createSlice({
     setHeight: (state, { payload }) => {
       state.height = payload;
     },
+    setNavigationMessage: (state, { payload }) => {
+      state.navigationMessage = payload;
+    },
+    deleteNavigationMessage: (state) => {
+      state.navigationMessage = '';
+    },
   },
 });
-export const { setWidth, setHeight } = navigationSlice.actions;
+export const {
+  setWidth,
+  setHeight,
+  deleteNavigationMessage,
+  setNavigationMessage,
+} = navigationSlice.actions;
 export default navigationSlice.reducer;
