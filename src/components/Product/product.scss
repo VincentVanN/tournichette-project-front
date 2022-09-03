@@ -168,12 +168,18 @@
 .meta {
   font-size: 0.9em;
 }
+.product-navigation-cart:hover {
+    color: vars.$colorOrange;
+    scale: 1.2;
+    border-color: vars.$colorOrange;
+}
 @media screen and (min-width: 577px) and (max-width: 1023px) {
   .container {
     padding-left: 20px;
   }
   .product-navigation-cart {
     bottom: 15%;
+    
   }
 }
 @media only screen and (min-width: 1024px) {

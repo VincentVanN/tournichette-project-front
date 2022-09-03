@@ -79,6 +79,7 @@ function ShoppingCart() {
               className="depotButtonsContainer"
               initial={{ y: '100vh' }}
               animate={{ y: 0 }}
+              transition={{ delay: 0.3 }}
             >
               {width < 1024 && (
               <div
