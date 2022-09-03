@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import PropTypes from 'prop-types';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import './staticProductsDisplay.scss';
 import panier from 'src/components/StaticProductsDisplay/Brouette.jpg';
 import epicerie from './produitsVerres.jpg';
@@ -36,42 +36,35 @@ function StaticProductsDisplay({ related }) {
     );
   }
   return (
-    <AnimatePresence>
-      <div className="static-container">
-        <div className="static-title-container">
-          <motion.div
-            key="static-title"
-            className="static-title"
-            initial={{ height: 0 }}
-            animate={{ height: '70%' }}
-            exit={{ opacity: 0, transition: { duration: 0.4 } }}
-          >
-            {related.toUpperCase()}
-          </motion.div>
-        </div>
-        <motion.img
-          src={image()}
-          alt={related}
-          className="static-image"
-          initial={{ y: window.innerHeight }}
-          animate={{ y: 0, transition: { duration: 0.30 } }}
-          exit={{ y: -window.innerHeight, opacity: 0, transition: { duration: 0.4 } }}
-        />
+    <div className="static-container">
+      <div className="static-title-container">
         <motion.div
-          className="static-subtitle-container"
-          initial={{ y: window.innerHeight }}
-          animate={{ y: 0, transition: { duration: 0.30 } }}
-          exit={{ y: -window.innerHeight, opacity: 0, transition: { duration: 0.4 } }}
+          key={related.toUpperCase()}
+          className="static-title"
+          initial={{ height: 0 }}
+          animate={{ height: '70%' }}
         >
-          <div
-            className="static-subtitle"
-          >
-            Fais ton choix!
-          </div>
+          {related.toUpperCase()}
         </motion.div>
       </div>
-    </AnimatePresence>
-
+      <motion.img
+        key={image()}
+        src={image()}
+        alt={related}
+        className="static-image"
+        initial={{ y: window.innerHeight }}
+        animate={{ y: 0, transition: { duration: 0.30 } }}
+      />
+      <div
+        className="static-subtitle-container"
+      >
+        <div
+          className="static-subtitle"
+        >
+          Fais ton choix!
+        </div>
+      </div>
+    </div>
   );
 }
 StaticProductsDisplay.propTypes = {
