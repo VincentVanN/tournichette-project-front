@@ -2,18 +2,23 @@ import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import logo from 'src/assets/logo.svg';
 import './home.scss';
+import { useSelector } from 'react-redux';
 import Page from '../Page/Page';
 
 function Home() {
   const navigate = useNavigate();
   const handleClickProducts = () => navigate('/liste');
   const handleClickCarts = () => navigate('/NosPaniers');
+  const name = useSelector((state) => state.user.user.firstname);
   return (
     <Page>
       <div className="home-container">
         <div className="home">
           <img className="home-logo" src={logo} alt="logo Tournichette" />
           <div className="home-annoncement">
+            <div className="home-hello">
+              {`Hello ${name}!`}
+            </div>
             Les ventes sont ouvertes
           </div>
           <div className="home-button-group">

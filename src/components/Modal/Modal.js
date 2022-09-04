@@ -8,22 +8,42 @@ import {
   setShowModal,
 } from '../../feature/navigation.slice';
 import { deleteServerMessage } from '../../feature/shoppingCart.slice';
+import { deleteErrorMessage, deleteServerMessageOnSubscribe, setIsSubscribe } from '../../feature/user.slice';
 
 function Modal() {
   const showModal = useSelector((state) => state.navigation.showModal);
   const navigationMessage = useSelector((state) => state.navigation.navigationMessage);
-  const serverMessage = useSelector((state) => state.shoppingCart.serverMessage);
+  const serverMessageShoppingCart = useSelector((state) => state.shoppingCart.serverMessage);
+  const serverMessageUser = useSelector((state) => state.user.serverMessageOnSubscribe);
+  const errorUserMessage = useSelector((state) => state.user.errorMessage);
+  const isSubscribe = useSelector((state) => state.user.isSubscribe);
+
   const buttonText = useSelector((state) => state.navigation.buttonText);
   const redirection = useSelector((state) => state.navigation.redirection);
   const height = useSelector((state) => state.navigation.height);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const deleteMessage = () => (
-    navigationMessage ? dispatch(deleteNavigationMessage()) : dispatch(deleteServerMessage())
-  );
-  console.log(serverMessage, serverMessage);
+  const deleteMessage = () => {
+    if (navigationMessage) {
+      dispatch(deleteNavigationMessage());
+    }
+    if (serverMessageShoppingCart) {
+      dispatch(deleteServerMessage());
+    }
+    if (serverMessageUser) {
+      dispatch(deleteServerMessageOnSubscribe());
+    }
+    if (errorUserMessage.length !== 0) {
+      dispatch(deleteErrorMessage([]));
+    }
+  };
   const handleModal = () => {
-    navigate(redirection);
+    if (redirection) {
+      navigate(redirection);
+    }
+    if (isSubscribe && errorUserMessage.length === 0) {
+      dispatch(setIsSubscribe(false));
+    }
     dispatch(deleteButtonText());
     dispatch(deleteRedirection());
     deleteMessage();
@@ -66,13 +86,20 @@ function Modal() {
               animate="visible"
               exit="exit"
             >
-              <p>{navigationMessage || serverMessage}</p>
+              {(navigationMessage || serverMessageShoppingCart || serverMessageUser) && (
+                <p>{navigationMessage || serverMessageShoppingCart || serverMessageUser}</p>
+              )}
+              {(errorUserMessage.length !== 0) && (
+                <ul className="error-message-container">
+                  {errorUserMessage.map((error) => <li>{error}</li>)}
+                </ul>
+              )}
               <button
                 type="button"
                 onClick={handleModal}
               >
                 <p>{buttonText}</p>
-                <ion-icon name="arrow-forward-circle-outline" />
+                <ion-icon name="arrow-forward-circle-outline" style={{ color: '#fd7c55', fontSize: '3em' }} />
               </button>
             </motion.div>
           </motion.div>
