@@ -1,8 +1,9 @@
 import './loginForm.scss';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-  addErrorMessage, changeSubscribeForm,
+  addErrorMessage, changeSubscribeForm, setIsSubscribe,
 } from '../../feature/user.slice';
 import {
   validateUpperCase, validateLength, validateDigit, validateScdPassword, isValidEmail,
@@ -11,7 +12,7 @@ import Field from './Field/Field';
 import { createUser } from '../../AsyncChunk/AsyncChunkUser';
 import { setButtonText, setRedirection, setShowModal } from '../../feature/navigation.slice';
 
-function SubscribeForm({ handleSubmit }) {
+function SubscribeForm() {
   const {
     firstname, lastname, phone, email, password, sndPassword,
   } = useSelector((state) => state.user.user);
@@ -19,8 +20,10 @@ function SubscribeForm({ handleSubmit }) {
   const handleChangeSubscribeForm = (value, key) => {
     dispatch(changeSubscribeForm([key, value]));
   };
+  const [isFocusPassword, setIsFocusPassword] = useState(false);
+  const [isFocusScdPassword, setIsFocusScdPassword] = useState(false);
   const width = useSelector((state) => state.navigation.width);
-  const handleReturn = () => handleSubmit();
+  const handleReturn = () => dispatch(setIsSubscribe(false));
   const handleSubscribe = (e) => {
     e.preventDefault();
     let isError = false;
@@ -67,9 +70,9 @@ function SubscribeForm({ handleSubmit }) {
       dispatch(setShowModal(true));
     }
   };
-
+  console.log(isFocusPassword);
   return (
-    <div className="subscribe-container">
+    <div className="form-container">
       <h1 className="form-title">Inscription</h1>
       <div className="form-field-container">
         <form onSubmit={handleSubscribe}>
@@ -106,6 +109,8 @@ function SubscribeForm({ handleSubmit }) {
             name="password"
             type="password"
             autocomplete="new-password"
+            onFocus={() => setIsFocusPassword(true)}
+            onBlur={() => setIsFocusPassword(false)}
             value={password}
             placeholder="Mot de passe"
             onChange={handleChangeSubscribeForm}
@@ -114,6 +119,8 @@ function SubscribeForm({ handleSubmit }) {
             name="sndPassword"
             type="password"
             autocomplete="new-password"
+            onFocus={() => setIsFocusScdPassword(true)}
+            onBlur={() => setIsFocusScdPassword(false)}
             value={sndPassword}
             placeholder="Confirmation mdp"
             onChange={handleChangeSubscribeForm}
@@ -121,39 +128,59 @@ function SubscribeForm({ handleSubmit }) {
           <div className="form-button-container">
             <ion-icon
               name="arrow-undo-circle-outline"
+              style={{ fontSize: '3em' }}
               onClick={handleReturn}
             />
             <button
               type="submit"
               className="form-button"
             >
-              <ion-icon name="chevron-down-circle-outline" />
+              <ion-icon name="chevron-down-circle-outline" style={{ fontSize: '3.5em' }} />
             </button>
           </div>
         </form>
-        {(password && width > 1024) && (
-        <div className="check-password">
-          <div className="checkbox">
-            <ion-icon name={`${validateLength(password) ? 'checkmark' : 'close'}-outline`} style={{ color: validateLength(password) ? 'green' : 'red' }} />
-            <p>6 caractères</p>
-          </div>
-          <div className="checkbox">
-            <ion-icon name={`${validateUpperCase(password) ? 'checkmark' : 'close'}-outline`} style={{ color: validateUpperCase(password) ? 'green' : 'red' }} />
-            <p>1 majuscule</p>
-          </div>
-          <div className="checkbox">
-            <ion-icon name={`${validateDigit(password) ? 'checkmark' : 'close'}-outline`} style={{ color: validateDigit(password) ? 'green' : 'red' }} />
-            <p>1 chiffre</p>
-          </div>
-
-        </div>
-        )}
+        <AnimatePresence mode="wait">
+          {(isFocusPassword && width > 1024) && (
+          <motion.div
+            className="check-password"
+            key="password"
+            initial={{ x: -170, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -170, opacity: 0 }}
+          >
+            <div className="checkbox">
+              <ion-icon name={`${validateLength(password) ? 'checkmark' : 'close'}-outline`} style={{ color: validateLength(password) ? 'green' : 'red' }} />
+              <p>6 caractères</p>
+            </div>
+            <div className="checkbox">
+              <ion-icon name={`${validateUpperCase(password) ? 'checkmark' : 'close'}-outline`} style={{ color: validateUpperCase(password) ? 'green' : 'red' }} />
+              <p>1 majuscule</p>
+            </div>
+            <div className="checkbox">
+              <ion-icon name={`${validateDigit(password) ? 'checkmark' : 'close'}-outline`} style={{ color: validateDigit(password) ? 'green' : 'red' }} />
+              <p>1 chiffre</p>
+            </div>
+          </motion.div>
+          )}
+          {(isFocusScdPassword && width > 1024) && (
+          <motion.div
+            className="check-password"
+            key="scdPassword"
+            initial={{ x: -170, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -170, opacity: 0 }}
+          >
+            <div className="checkbox">
+              <ion-icon name={`${validateScdPassword(password, sndPassword) ? 'checkmark' : 'close'}-outline`} style={{ color: validateScdPassword(password, sndPassword) ? 'green' : 'red' }} />
+              <p>{validateScdPassword(password, sndPassword) ? 'Mdp identiques!' : 'Mdp différents'}</p>
+            </div>
+          </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>
   );
 }
-SubscribeForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-};
+
 export default SubscribeForm;

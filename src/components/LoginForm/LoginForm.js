@@ -23,50 +23,49 @@ function LoginForm() {
   return (
 
     <div className="form">
-      <div className="form-container">
-        <div className="image-container">
-          <img className="form-logo" src={logo} alt="logo Tournichette" />
-        </div>
-        {!isSubscribe && (
-        <div className="form-field-container">
+      <img className="form-logo" src={logo} alt="logo Tournichette" />
+      {!isSubscribe && (
+        <div className="form-container">
           <h1 className="form-title">Connexion</h1>
-          <form onSubmit={handleSubmit}>
-            <Field
-              name="username"
-              type="text"
-              placeholder="Email"
-              autocomplete="username"
-              value={username}
-              onChange={handleChangeLogin}
-            />
-            <Field
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              placeholder="Mot de passe"
-              value={password}
-              onChange={handleChangeLogin}
-            />
-            <div className="form-button-container">
-              <button
-                type="submit"
-                className="form-button"
-              >
-                <ion-icon name="chevron-down-circle-outline" />
-              </button>
-              <div
-                className="form-signIn"
-                onClick={handleSubscribe}
-              >
-                <ion-icon name="newspaper-outline" />
+          <div className="form-field-container">
+            <form onSubmit={handleSubmit}>
+              <Field
+                name="username"
+                type="text"
+                placeholder="Email"
+                autocomplete="username"
+                value={username}
+                onChange={handleChangeLogin}
+              />
+              <Field
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Mot de passe"
+                value={password}
+                onChange={handleChangeLogin}
+              />
+              <div className="form-button-container">
+                <button
+                  type="submit"
+                  className="form-button"
+                >
+                  <ion-icon name="chevron-down-circle-outline" style={{ fontSize: '3.5em' }} />
+                </button>
+                <div
+                  className="form-signIn"
+                  onClick={handleSubscribe}
+                >
+                  <ion-icon name="newspaper-outline" style={{ fontSize: '2.8em' }} />
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
+
         </div>
 
-        )}
-        {isSubscribe && <SubscribeForm handleSubmit={handleSubscribe} />}
-      </div>
+      )}
+      {isSubscribe && <SubscribeForm />}
 
     </div>
   );

@@ -67,7 +67,7 @@ export const userSlice = createSlice({
     },
     [createUser.fulfilled]: (state, { payload }) => {
       if (!payload.error) {
-        state.serverMessageOnSubscribe = 'tout est ok! tu peux te connecter';
+        state.serverMessageOnSubscribe = 'Tout est ok! Tu peux te connecter';
       }
       else {
         state.serverMessageOnSubscribe = payload.message;
