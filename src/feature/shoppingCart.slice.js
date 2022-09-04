@@ -39,7 +39,6 @@ export const shoppingCartSlice = createSlice({
       state.cartAmount = 0;
       state.selectedDepot = '';
       state.selectedDepotId = 0;
-      state.serverMessage = '';
     },
     [postOrder.rejected]: ({ payload }) => {
       console.log(payload);

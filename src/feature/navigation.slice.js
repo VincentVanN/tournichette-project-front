@@ -7,6 +7,9 @@ export const navigationSlice = createSlice({
     height: 0,
     baseUrl: 'http://localhost:8000',
     navigationMessage: '',
+    buttonText: '',
+    redirection: '',
+    showModal: false,
   },
   reducers: {
     setWidth: (state, { payload }) => {
@@ -21,6 +24,21 @@ export const navigationSlice = createSlice({
     deleteNavigationMessage: (state) => {
       state.navigationMessage = '';
     },
+    setButtonText: (state, { payload }) => {
+      state.buttonText = payload;
+    },
+    deleteButtonText: (state) => {
+      state.buttonText = '';
+    },
+    setRedirection: (state, { payload }) => {
+      state.redirection = payload;
+    },
+    deleteRedirection: (state) => {
+      state.redirection = '';
+    },
+    setShowModal: (state, { payload }) => {
+      state.showModal = payload;
+    },
   },
 });
 export const {
@@ -28,5 +46,10 @@ export const {
   setHeight,
   deleteNavigationMessage,
   setNavigationMessage,
+  setShowModal,
+  setButtonText,
+  deleteButtonText,
+  setRedirection,
+  deleteRedirection,
 } = navigationSlice.actions;
 export default navigationSlice.reducer;
