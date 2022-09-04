@@ -52,18 +52,18 @@ body {
   & button {
     width: auto;
     height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  margin: auto;
-  border: solid 1px vars.$colorMediumGreen;
-  background: vars.$colorMediumGreen;
-  font-family: vars.$fontMontserrat;
-  color: vars.$colorBeige;
-  font-weight: 600;
-  font-size: 1em;
-  box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin: auto;
+    border: solid 1px vars.$colorMediumGreen;
+    background: vars.$colorMediumGreen;
+    font-family: vars.$fontMontserrat;
+    color: vars.$colorBeige;
+    font-weight: 600;
+    font-size: 1em;
+    box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
     & :hover {
       cursor: pointer;
     }
@@ -74,4 +74,10 @@ body {
     font-weight: 600;
     padding: 15px;
   }
+}
+.error-message-container{
+  text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 15px;
 }

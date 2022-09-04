@@ -1,14 +1,13 @@
-import { useState } from 'react';
 import logo from 'src/assets/logo.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeLoginForm } from 'src/feature/user.slice';
+import { changeLoginForm, setIsSubscribe } from 'src/feature/user.slice';
 import Field from './Field/Field';
 import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';
 import { loginUser } from '../../AsyncChunk/AsyncChunkUser';
 
 function LoginForm() {
-  const [isSubscribe, setIsSubscribe] = useState(false);
+  const isSubscribe = useSelector((state) => state.user.isSubscribe);
   const { username, password } = useSelector((state) => state.user.login);
   const dispatch = useDispatch();
   const handleChangeLogin = (value, key) => {
@@ -19,7 +18,7 @@ function LoginForm() {
     dispatch(loginUser());
   };
   const handleSubscribe = () => {
-    dispatch(setIsSubscribe(!isSubscribe));
+    dispatch(setIsSubscribe(true));
   };
   return (
 

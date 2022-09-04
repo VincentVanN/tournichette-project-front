@@ -2,6 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './app.scss';
+import { AnimatePresence } from 'framer-motion';
 import { setUser, getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
@@ -9,9 +10,10 @@ import { getCarts, getCategories, getProducts } from '../../AsyncChunk/AsyncChun
 import { setToken } from '../../feature/user.slice';
 import { setCartAmount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
-import { setHeight, setWidth } from '../../feature/navigation.slice';
+import { setHeight, setShowModal, setWidth } from '../../feature/navigation.slice';
 import AnimatedRoutesSmallScreen from '../AnimationComponents/AnimatedRoutesSmallScreen';
 import AnimatedRoutesLargeScreen from '../AnimationComponents/AnimatedRoutesLargeScreen';
+import Modal from '../Modal/Modal';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -72,8 +74,14 @@ function App() {
   if (stateWidth >= 1024) {
     return (
       <div className="app">
-
-        {(!logged && !loggedUser) && <LoginForm />}
+        {(!logged && !loggedUser) && (
+          <>
+            <Modal />
+            <AnimatePresence mode="wait" onExitComplete={() => dispatch(setShowModal(false))}>
+              <LoginForm />
+            </AnimatePresence>
+          </>
+        )}
         {(logged)
     && (
     <AnimatedRoutesLargeScreen />

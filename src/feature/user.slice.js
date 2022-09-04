@@ -27,6 +27,7 @@ export const userSlice = createSlice({
     isSecondaryMenu: false,
     serverMessageOnSubscribe: '',
     orderHistory: [],
+    isSubscribe: false,
   },
   //
   //
@@ -66,7 +67,7 @@ export const userSlice = createSlice({
     },
     [createUser.fulfilled]: (state, { payload }) => {
       if (!payload.error) {
-        state.serverMessageOnSubscribe = 'Votre compte a été créé, vérifiez vos emails pour terminer votre inscription';
+        state.serverMessageOnSubscribe = 'tout est ok! tu peux te connecter';
       }
       else {
         state.serverMessageOnSubscribe = payload.message;
@@ -150,6 +151,9 @@ export const userSlice = createSlice({
     deleteServerMessageOnSubscribe: (state) => {
       state.serverMessageOnSubscribe = '';
     },
+    setIsSubscribe: (state, { payload }) => {
+      state.isSubscribe = payload;
+    },
   },
 });
 
@@ -165,5 +169,6 @@ export const {
   addErrorMessage,
   deleteErrorMessage,
   deleteServerMessageOnSubscribe,
+  setIsSubscribe,
 } = userSlice.actions;
 export default userSlice.reducer;
