@@ -1,5 +1,6 @@
 @use 'src/styles/vars';
 .form-field-container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,23 +12,26 @@
   justify-content: center;
 }
 .form {
-  
+  width: 100vw;
+  height: 100vh;
   background: vars.$colorBeige;
-  display: block;
-  overflow: auto;
-  align-items: center;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  
   justify-content: center;
   &-container{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
   }
   &-logo {
     width: 300px;
     height: 300px;
+    margin: auto;
   }
   &-input {
     display: flex;
@@ -74,6 +78,7 @@ ion-icon{
   &-container{
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     flex-direction: row;
   }
@@ -85,15 +90,24 @@ ion-icon{
     font-size: 20px;
   }
 }
-// .check-password{
-//   display: none;
-// }
 .checkbox {
+  width: 200px;
   color: vars.$colorDarkGreen;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   font-size: 1.5em;
   font-weight: 600;
+}
+.check-password {
+  width: auto;
+  height: auto;
+  position:absolute;
+  left: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 .errorMessage{
   font-family: vars.$fontMontserrat;
@@ -139,15 +153,7 @@ ion-icon{
     align-items: center;
   }
 }
-.image-container {
-  position: fixed;
-  top: 0;
-  width: 310px;
-  height: 310px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .subscribe-button {
   width: 30px;
   height: 30px;
@@ -157,6 +163,15 @@ ion-icon{
   justify-content: center;
   align-items: center;
 }
-@media only screen and (min-width: 1024px) {
-
+@media screen and (min-height: 0) and (max-height: 765px) {
+.form-logo {
+  width: 200px;
+  height: 200px;
+}
+}
+@media screen and (min-width: 760px) {
+  .form-logo {
+    width: 380px;
+    height: 380px;
+  }
 }

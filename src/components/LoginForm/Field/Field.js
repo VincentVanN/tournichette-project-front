@@ -13,21 +13,13 @@ function Field({
   value,
   placeholder,
   onChange,
+  onFocus,
+  onBlur,
 }) {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
   };
   const [isVisible, setIsVisible] = useState(false);
-  // const dispatch = useDispatch();
-  // const errorMessage = useSelector((state) => state.user.errorMessage);
-  // const email = useSelector((state) => state.user[stateName].email);
-  // const displayErrorMessage = (message) => dispatch(setErrorMessage(message));
-  // if (name === 'email') {
-  //   if (!isValidEmail(stateName)) {
-  //     displayErrorMessage('email invalide');
-  //   }
-  //   else (displayErrorMessage(''));
-  // }
   const eyeOff = (isVisible ? 'off-' : '');
   const handleClick = () => setIsVisible(!isVisible);
   return (
@@ -40,6 +32,8 @@ function Field({
           className="field-input"
           placeholder={placeholder}
           name={name}
+          {...((name === 'password' || name === 'sndPassword') && { onFocus: onFocus })}
+          {...((name === 'password' || name === 'sndPassword') && { onBlur: onBlur })}
         />
         {(name === 'password' || name === 'sndPassword')
         && (
@@ -61,6 +55,8 @@ Field.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 Field.defaultProps = {
   placeholder: '',
