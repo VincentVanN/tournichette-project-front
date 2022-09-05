@@ -70,7 +70,6 @@ function SubscribeForm() {
       dispatch(setShowModal(true));
     }
   };
-  console.log(isFocusPassword);
   return (
     <div className="form-container">
       <h1 className="form-title">Inscription</h1>
