@@ -23,6 +23,7 @@ function Product() {
     };
   }, []);
   const { slugProduct, slugCart, slugCategory } = params;
+  const baseUrl = useSelector((state) => state.navigation.baseUrl);
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
@@ -122,7 +123,7 @@ function Product() {
         >
           {oneProduct.name}
         </motion.h2>
-        <img src={background} alt="product" className="product-image" />
+        <img src={oneProduct.image} alt="product" className="product-image" />
         <div className="product-content">
           {slugCart && (
             <div className="productsListinCart">
