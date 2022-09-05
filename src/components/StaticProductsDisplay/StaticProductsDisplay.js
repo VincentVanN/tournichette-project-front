@@ -1,73 +1,78 @@
 /* eslint-disable consistent-return */
-import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import './staticProductsDisplay.scss';
 import panier from 'src/components/StaticProductsDisplay/Brouette.jpg';
+import { useLocation, useParams } from 'react-router';
 import epicerie from './produitsVerres.jpg';
 import legumes from './HaricotsVert.jpg';
 import detail from './detail.jpg';
 import fruits from './fraises.jpg';
-import Page from '../Page/Page';
-import Loading from '../Loading/Loading';
 
-function StaticProductsDisplay({ related }) {
+function StaticProductsDisplay() {
+  const params = useParams();
+  const location = useLocation();
+  const { slugCategory } = params;
+
   const image = () => {
-    if (related === 'panier') {
+    if (location.pathname === '/NosPaniers') {
       return panier;
     }
-    if (related === 'epicerie') {
+    if (slugCategory === 'epicerie') {
       return epicerie;
     }
-    if (related === 'legumes') {
+    if (slugCategory === 'legumes') {
       return legumes;
     }
-    if (related === 'detail') {
+    if (location.pathname === '/liste') {
       return detail;
     }
-    if (related === 'fruits') {
+    if (slugCategory === 'fruits') {
       return fruits;
     }
   };
-  if (!related) {
-    return (
-      <Page>
-        <Loading />
-      </Page>
-    );
-  }
+  const titleToDisplay = () => {
+    if (location.pathname === '/liste') {
+      return 'detail';
+    }
+    if (location.pathname === '/NosPaniers') {
+      return 'panier';
+    }
+    return slugCategory;
+  };
   return (
     <div className="static-container">
       <div className="static-title-container">
         <motion.div
-          key={related.toUpperCase()}
+          key={location.pathname}
           className="static-title"
           initial={{ height: 0 }}
           animate={{ height: '70%' }}
         >
-          {related.toUpperCase()}
+          {titleToDisplay().toUpperCase()}
         </motion.div>
       </div>
       <motion.img
         key={image()}
         src={image()}
-        alt={related}
+        alt="staticProduct"
         className="static-image"
         initial={{ y: window.innerHeight }}
-        animate={{ y: 0, transition: { duration: 0.30 } }}
+        animate={{ y: 0, transition: { duration: 0.3 } }}
       />
       <div
         className="static-subtitle-container"
       >
-        <div
+        <motion.div
           className="static-subtitle"
+          initial={{ x: window.innerWidth }}
+          animate={{ x: 0 }}
+          transition={{ delay: 0.3 }}
         >
           Fais ton choix!
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 }
-StaticProductsDisplay.propTypes = {
-  related: PropTypes.string.isRequired,
-};
+
 export default StaticProductsDisplay;

@@ -14,7 +14,7 @@ import './singlePage.scss';
 
 function SinglePage() {
   const location = useLocation();
-  const { slugCategory, slugProduct } = useParams();
+  const { slugProduct } = useParams();
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const count = useSelector((state) => state.shoppingCart.count);
   if (location.pathname === '/liste') {
@@ -25,7 +25,7 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            <StaticProductsDisplay related="detail" />
+            <StaticProductsDisplay />
           </div>
           {count !== 0 && <CartWithCount />}
         </div>
@@ -40,7 +40,7 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            <StaticProductsDisplay related="panier" />
+            <StaticProductsDisplay />
           </div>
           {count !== 0 && <CartWithCount />}
         </div>
@@ -55,7 +55,7 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            <StaticProductsDisplay related={slugCategory} />
+            <StaticProductsDisplay />
           </div>
           {count !== 0 && <CartWithCount />}
         </div>
