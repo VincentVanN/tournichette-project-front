@@ -209,7 +209,6 @@ function Product() {
 
         </div>
       </motion.div>
-
     </div>
   );
 }

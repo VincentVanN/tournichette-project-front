@@ -10,20 +10,21 @@ function CartWithCount() {
   const navigate = useNavigate();
   const handleClick = () => navigate('/MesAchats');
   return (
-    <motion.div
-      className="headerCart"
-      onClick={handleClick}
-      initial={{
-        scale: 0,
-      }}
-      animate={{
-        scale: 1,
-        transition: {
-          duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
-        },
-      }}
-    >
-      {countOfProducts !== 0 && (
+    <div className="countCart-container">
+      <motion.div
+        className="headerCart"
+        onClick={handleClick}
+        initial={{
+          scale: 0,
+        }}
+        animate={{
+          scale: 1,
+          transition: {
+            duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+          },
+        }}
+      >
+        {countOfProducts !== 0 && (
         <div className="cart">
           <motion.div
             className="count"
@@ -46,8 +47,10 @@ function CartWithCount() {
             <ion-icon name="cart-outline" style={{ fontSize: '45px', color: `${color}` }} />
           </div>
         </div>
-      )}
-    </motion.div>
+        )}
+      </motion.div>
+
+    </div>
 
   );
 }

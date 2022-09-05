@@ -1,4 +1,9 @@
 @use 'src/styles/_vars.scss';
+main {
+  width: 100vw;
+  height: 100vh;
+  background: vars.$colorLightGreen;
+}
 .singlePage-container{
   width: 100vw;
   height: 100vh;
@@ -33,16 +38,22 @@
 @media only screen and (min-width: 1024px) {
   .largeComponent{
     position: relative;
+    display: block;
+  }
+  .countCart-container{
+    position: relative;
+    width: 0;
+    height: 0;
   }
   .headerCart {
-   position: absolute;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-    right: -40px;
-    top: -30px;
-    min-height: 80px;
-    min-width: 80px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 20px;
+    right: 120px;
+    height: 80px;
+    width: 80px;
     z-index: 20;
     margin: 0;
     background: vars.$colorMediumGreen;

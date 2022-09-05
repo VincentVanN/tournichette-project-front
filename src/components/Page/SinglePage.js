@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router';
 import CartWithCount from '../CartWithCount/CartWithCount';
 import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
-import Loading from '../Loading/Loading';
 import ProductRendering from '../Product/ProductRendering';
 import ProductsRendering from '../Products/ProductsRendering';
 import ShoppingCartEmpty from '../ShoppingCart/ShoppingCartEmpty';
@@ -16,18 +15,8 @@ import './singlePage.scss';
 function SinglePage() {
   const location = useLocation();
   const { slugCategory, slugProduct } = useParams();
-  const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
-  const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
-  const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const count = useSelector((state) => state.shoppingCart.count);
-  if ((isLoadingProducts || isLoadingCategories || isLoadingCarts)) {
-    return (
-      <Page>
-        <Loading />
-      </Page>
-    );
-  }
   if (location.pathname === '/liste') {
     return (
       <Page>
@@ -36,9 +25,9 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            {count !== 0 && <CartWithCount />}
             <StaticProductsDisplay related="detail" />
           </div>
+          {count !== 0 && <CartWithCount />}
         </div>
       </Page>
     );
@@ -51,9 +40,9 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            {count !== 0 && <CartWithCount />}
             <StaticProductsDisplay related="panier" />
           </div>
+          {count !== 0 && <CartWithCount />}
         </div>
       </Page>
     );
@@ -66,9 +55,9 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            {count !== 0 && <CartWithCount />}
             <StaticProductsDisplay related={slugCategory} />
           </div>
+          {count !== 0 && <CartWithCount />}
         </div>
       </Page>
     );
@@ -81,9 +70,9 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            {count !== 0 && <CartWithCount />}
             <ProductRendering />
           </div>
+          {count !== 0 && <CartWithCount />}
         </div>
 
       </Page>
@@ -132,11 +121,10 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            {count !== 0 && <CartWithCount />}
             <ProductRendering />
           </div>
+          {count !== 0 && <CartWithCount />}
         </div>
-
       </Page>
     );
   }
@@ -148,12 +136,9 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            {count !== 0 && <CartWithCount />}
             <ProductRendering />
-
           </div>
         </div>
-
       </Page>
     );
   }
