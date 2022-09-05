@@ -8,20 +8,24 @@ import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
 import { getCarts, getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
 import { setToken } from '../../feature/user.slice';
-import { setCartAmount } from '../../feature/shoppingCart.slice';
+import { pushInCart, setCartAmount, setCount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { setHeight, setShowModal, setWidth } from '../../feature/navigation.slice';
 import AnimatedRoutesSmallScreen from '../AnimationComponents/AnimatedRoutesSmallScreen';
 import AnimatedRoutesLargeScreen from '../AnimationComponents/AnimatedRoutesLargeScreen';
 import Modal from '../Modal/Modal';
+import { setLocalStorageCount, setLocalStorageShoppingCart } from '../../utils/localStorage';
 
 function App() {
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
   const loadingCategories = useSelector((state) => state.products.loadingCategories);
   const shoppingCart = useSelector((state) => state.shoppingCart.shoppingCart);
+  const count = useSelector((state) => state.shoppingCart.count);
   const logged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
   const loggedUser = JSON.parse(localStorage.getItem('user'));
+  const localStorageShoppingCart = JSON.parse(localStorage.getItem('shoppingCart'));
+  const localStorageCount = JSON.parse(localStorage.getItem('count'));
   const token = useSelector((state) => state.user.user.token);
   const stateWidth = useSelector((state) => state.navigation.width);
 
@@ -64,8 +68,18 @@ function App() {
     dispatch(getOrderHistory());
   }, [token]);
   useEffect(() => {
+    if (localStorageShoppingCart && localStorageShoppingCart.lenght !== 0) {
+      dispatch(pushInCart(localStorageShoppingCart.shoppingCart));
+    }
+    if (localStorageCount && localStorageCount !== 0) {
+      dispatch(setCount(localStorageCount.count));
+    }
+  }, []);
+  useEffect(() => {
     dispatch(setCartAmount());
-  }, [shoppingCart]);
+    setLocalStorageShoppingCart(shoppingCart);
+    setLocalStorageCount(count);
+  }, [shoppingCart, count]);
   if ((loadingProducts && logged)
   || (loadingCategories && logged)
   ) {

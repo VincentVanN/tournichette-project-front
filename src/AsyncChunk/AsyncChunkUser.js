@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { setLocalStorage } from '../utils/localStorage';
+import { setLocalStorageToken } from '../utils/localStorage';
 
 export const setUser = createAsyncThunk(
   'user/setUser',
@@ -25,7 +25,7 @@ export const loginUser = createAsyncThunk(
       password,
     });
     const { token } = result.data;
-    setLocalStorage(token);
+    setLocalStorageToken(token);
     return result.data;
   },
 );
