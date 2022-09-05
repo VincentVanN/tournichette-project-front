@@ -2,6 +2,7 @@
 @use 'sass:math';
 
 .container{
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
@@ -224,6 +225,7 @@
 }
 .container {
   height: 100%;
+  top: 0;
 }
 .product-navigation-cart {
   bottom: 15%;

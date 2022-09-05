@@ -7,10 +7,11 @@ input{
 
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  // hidden blue highlight on selection
   -moz-user-select: none; /* Firefox */
-  -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
-  -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
-  user-select: none; /* Propriété standard */ 
+  -webkit-user-select: none; /* Chrome */
+  -ms-user-select: none; /* Edge */
+  user-select: none; /* standard */ 
 }
 .app {
   background: vars.$colorBeige;
