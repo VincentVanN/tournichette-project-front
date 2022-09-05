@@ -13,7 +13,10 @@
   }
 
   &-title{
-  padding: 5%;
+    font-size: 1.5em;
+    margin-top: 10%;
+    margin-bottom: 11%;
+    font-family: vars.$fontLekton;
   }
   
   &-button {
@@ -121,9 +124,9 @@ p.updateUserAccount.input-item{
     }
 
   }
-  h2{
-    margin-bottom: 8%;
-  }
+  // h2{
+  //   margin-bottom: 8%;
+  // }
   input {
     margin-left: 10px;
   }
