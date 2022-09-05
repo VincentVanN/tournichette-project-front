@@ -109,6 +109,7 @@ function Product() {
           animate={{ y: 0 }}
           transition={{ duration: 0.4 }}
           exit={{ y: -300, opacity: 0, transition: { duration: 0.2 } }}
+          style={{ color: `${oneProduct.colorimetry === 'hot' ? '#356859' : '#fd7c55'}` }}
         >
           {oneProduct.name}
         </motion.h2>
@@ -133,14 +134,13 @@ function Product() {
 
             </div>
           )}
-          {(products.some((element) => element.slug === slugProduct)) && (
+          {(products.find((element) => element.slug === slugProduct)) && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 1 }}
             >
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Magni, esse. Vero aut modi ut. Eveniet eius in voluptatem esse nulla!
+              {oneProduct.description}
             </motion.p>
           )}
         </div>
