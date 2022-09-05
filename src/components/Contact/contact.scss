@@ -19,16 +19,16 @@
 
   p {
     font-family: vars.$fontLekton;
-    font-weight: 600;
-    margin: 5% 5% 10%;
+    font-weight: 700;
+    margin: 5% 8%;
   }
 
   a {
     font-family: vars.$fontLekton;
-    margin: 5% 8%;
+    margin: 2% 7%;
   }
   &_info{
-    font-weight: bold;
+    font-weight: 700;
     color: vars.$colorMediumGreen;
   }
 }
