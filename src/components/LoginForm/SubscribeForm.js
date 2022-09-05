@@ -72,7 +72,7 @@ function SubscribeForm() {
   };
   return (
     <div className="form-container">
-      <h1 className="form-title">Inscription</h1>
+      <h1 className="form-titles">Inscription</h1>
       <div className="form-field-container">
         <form onSubmit={handleSubscribe}>
           <Field
