@@ -3,6 +3,7 @@
 import PropTypes from 'prop-types';
 import 'src/components/Card/card.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct } from '../../utils/cartUtils';
 
@@ -14,6 +15,8 @@ function Card({
     onClick(related, slug);
   };
   const dispatch = useDispatch();
+  const params = useParams();
+  const { slugProduct, slugCart } = params;
   const products = useSelector((state) => state.shoppingCart.shoppingCart);
   const handleClickIncrementCart = () => {
     dispatch(pushInCart(changeQuantityProduct(products, product, 1)));
@@ -36,6 +39,7 @@ function Card({
           <div className="card-leftSide">
             <h2
               className="card-leftSide card-title"
+              {...((slugProduct === slug) && { style: { color: '#fd7c55' } })}
             >{name}
             </h2>
           </div>
@@ -116,7 +120,12 @@ function Card({
           {...(width >= 1024 && { onClick: handleClick })}
         >
           <div className="card-leftSide">
-            <h2 className="card-leftSide card-title">{name}</h2>
+            <h2
+              className="card-leftSide card-title"
+              {...((slugCart === slug) && { style: { color: '#fd7c55' } })}
+            >
+              {name}
+            </h2>
           </div>
           <div className="doted" />
           <ul className="card-infos">
