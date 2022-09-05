@@ -11,7 +11,7 @@ import Loading from '../Loading/Loading';
 
 function Product() {
   const params = useParams();
-  const { slugProduct, slugCart } = params;
+  const { slugProduct, slugCart, slugCategory } = params;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -48,13 +48,28 @@ function Product() {
   useEffect(() => () => {
     setIsForward(false);
   }, []);
+  const selectRoute = () => {
+    if (slugProduct && slugCategory) {
+      return `/categorie/${slugCategory}/`;
+    }
+    if (slugCart) {
+      return '/paniers/';
+    }
+    return '/produit/';
+  };
+  const filteredArrayFunction = () => {
+    if (slugCategory) {
+      return products.filter((product) => (product.category.slug === slugCategory));
+    }
+    return products;
+  };
   const handleNavigateForward = () => {
     setIsForward(true);
-    navigate(`${slugProduct ? '/produit/' : '/paniers/'}${navigationInProduct(slugProduct ? products : carts, oneProduct, 1)}`);
+    navigate(`${selectRoute()}${navigationInProduct(slugProduct ? filteredArrayFunction() : carts, oneProduct, 1)}`);
   };
   const handleNavigateBackward = () => {
     setIsForward(false);
-    navigate(`${slugProduct ? '/produit/' : '/paniers/'}${navigationInProduct(slugProduct ? products : carts, oneProduct, -1)}`);
+    navigate(`${selectRoute()}${navigationInProduct(slugProduct ? products : carts, oneProduct, -1)}`);
   };
   //
   const getQuantityInCart = () => {
@@ -68,9 +83,9 @@ function Product() {
 
   if ((isLoadingProducts
     || isLoadingCategories
-    || isLoadingCarts
+    || isLoadingCarts)
     || Object.keys(params).length === 0
-  )) {
+  ) {
     return (
       <Page>
         <Loading />
