@@ -8,16 +8,25 @@ import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
 import Page from '../Page/Page';
 import Loading from '../Loading/Loading';
+import { setParamsLoading } from '../../feature/navigation.slice';
 
 function Product() {
-  const params = useParams();
-  const { slugProduct, slugCart, slugCategory } = params;
-  console.log(Object.keys(params).length);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
+  useEffect(() => {
+    if (Object.keys(params).length !== 0) {
+      dispatch(setParamsLoading(false));
+    }
+    return () => {
+      dispatch(setParamsLoading(true));
+    };
+  }, []);
+  const { slugProduct, slugCart, slugCategory } = params;
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
+  const isLoadingParams = useSelector((state) => state.navigation.paramsLoading);
   //
   // select product or cart
   //
@@ -81,10 +90,10 @@ function Product() {
     return productInCart.quantity;
   };
   const quantityInCart = getQuantityInCart();
-
   if ((isLoadingProducts
     || isLoadingCategories
-    || isLoadingCarts)
+    || isLoadingCarts
+    || isLoadingParams)
   ) {
     return (
       <Page>
@@ -92,31 +101,30 @@ function Product() {
       </Page>
     );
   }
-  if (Object.keys(params).length !== 0) {
-    return (
-      <div
-        className="container"
+  return (
+    <div
+      className="container"
+    >
+      <motion.div
+        className="product"
+        key={oneProduct.name}
+        initial={{ width: 0 }}
+        animate={{ width: '70%' }}
+        exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.20 } }}
       >
-        <motion.div
-          className="product"
-          key={oneProduct.name}
-          initial={{ width: 0 }}
-          animate={{ width: '70%' }}
-          exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.20 } }}
+        <motion.h2
+          className="product-title"
+          initial={{ y: -900 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.4 }}
+          exit={{ y: -300, opacity: 0, transition: { duration: 0.2 } }}
+          style={{ color: `${oneProduct.colorimetry === 'hot' ? '#356859' : '#fd7c55'}` }}
         >
-          <motion.h2
-            className="product-title"
-            initial={{ y: -900 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.4 }}
-            exit={{ y: -300, opacity: 0, transition: { duration: 0.2 } }}
-            style={{ color: `${oneProduct.colorimetry === 'hot' ? '#356859' : '#fd7c55'}` }}
-          >
-            {oneProduct.name}
-          </motion.h2>
-          <img src={background} alt="product" className="product-image" />
-          <div className="product-content">
-            {slugCart && (
+          {oneProduct.name}
+        </motion.h2>
+        <img src={background} alt="product" className="product-image" />
+        <div className="product-content">
+          {slugCart && (
             <div className="productsListinCart">
               {productsListInCart.map((product) => (
                 <div
@@ -134,8 +142,8 @@ function Product() {
               ))}
 
             </div>
-            )}
-            {(products.find((element) => element.slug === slugProduct)) && (
+          )}
+          {(products.find((element) => element.slug === slugProduct)) && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -143,76 +151,75 @@ function Product() {
             >
               {oneProduct.description}
             </motion.p>
-            )}
+          )}
+        </div>
+        <div className="product-info">
+          <div className="product-meta">
+            <span className="product-meta-span span-one">
+              <span className="span-one-title">Quantité</span>
+              <div className="container-meta">
+                <span className="span-one-info">{oneProduct.quantity}</span>
+                <span className="span-one-info">{oneProduct.unity}</span>
+              </div>
+            </span>
+            <span className="product-meta-span span-two">
+              <span className="span-two-title">Prix</span>
+              <div className="container-meta">
+                <span className="span-two-info">{`${oneProduct.price}€`}</span>
+              </div>
+            </span>
+            <span className="product-meta-span span-three">
+              <span className="span-three-title">Panier</span>
+              <div className="container-meta">
+                <motion.span
+                  className="span-three-info"
+                  key={quantityInCart}
+                  initial={{
+                    scale: 0,
+                  }}
+                  animate={{
+                    scale: 1,
+                    transition: {
+                      duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
+                    },
+                  }}
+                  exit={{
+                    scale: 0,
+                  }}
+                >{quantityInCart}
+                </motion.span>
+              </div>
+            </span>
           </div>
-          <div className="product-info">
-            <div className="product-meta">
-              <span className="product-meta-span span-one">
-                <span className="span-one-title">Quantité</span>
-                <div className="container-meta">
-                  <span className="span-one-info">{oneProduct.quantity}</span>
-                  <span className="span-one-info">{oneProduct.unity}</span>
-                </div>
-              </span>
-              <span className="product-meta-span span-two">
-                <span className="span-two-title">Prix</span>
-                <div className="container-meta">
-                  <span className="span-two-info">{`${oneProduct.price}€`}</span>
-                </div>
-              </span>
-              <span className="product-meta-span span-three">
-                <span className="span-three-title">Panier</span>
-                <div className="container-meta">
-                  <motion.span
-                    className="span-three-info"
-                    key={quantityInCart}
-                    initial={{
-                      scale: 0,
-                    }}
-                    animate={{
-                      scale: 1,
-                      transition: {
-                        duration: 0.1, type: 'spring', damping: 12, stiffness: 500,
-                      },
-                    }}
-                    exit={{
-                      scale: 0,
-                    }}
-                  >{quantityInCart}
-                  </motion.span>
-                </div>
-              </span>
+        </div>
+        <div className="product-navigation">
+          <div className="product-navigation-buttons">
+            <div
+              className="product-navigation-backward"
+              onClick={handleNavigateBackward}
+            >
+              <ion-icon name="arrow-back-circle-outline" />
+              <p>Précédent</p>
+            </div>
+            <div
+              className="product-navigation-cart"
+              onClick={handleClickCart}
+            >
+              <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px' }} />
+            </div>
+            <div
+              className="product-navigation-forward"
+              onClick={handleNavigateForward}
+            >
+              <p>suivant</p>
+              <ion-icon name="arrow-forward-circle-outline" />
             </div>
           </div>
-          <div className="product-navigation">
-            <div className="product-navigation-buttons">
-              <div
-                className="product-navigation-backward"
-                onClick={handleNavigateBackward}
-              >
-                <ion-icon name="arrow-back-circle-outline" />
-                <p>Précédent</p>
-              </div>
-              <div
-                className="product-navigation-cart"
-                onClick={handleClickCart}
-              >
-                <ion-icon name="cart-outline" style={{ fontSize: '30px', padding: '3px' }} />
-              </div>
-              <div
-                className="product-navigation-forward"
-                onClick={handleNavigateForward}
-              >
-                <p>suivant</p>
-                <ion-icon name="arrow-forward-circle-outline" />
-              </div>
-            </div>
 
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
+        </div>
+      </motion.div>
+    </div>
+  );
 }
 
 export default Product;

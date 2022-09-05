@@ -10,8 +10,12 @@ export const navigationSlice = createSlice({
     buttonText: '',
     redirection: '',
     showModal: false,
+    paramsLoading: true,
   },
   reducers: {
+    setParamsLoading: (state, { payload }) => {
+      state.paramsLoading = payload;
+    },
     setWidth: (state, { payload }) => {
       state.width = payload;
     },
@@ -51,5 +55,6 @@ export const {
   deleteButtonText,
   setRedirection,
   deleteRedirection,
+  setParamsLoading,
 } = navigationSlice.actions;
 export default navigationSlice.reducer;
