@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import { getDepotsList, postOrder } from '../AsyncChunk/AsyncChunkShoppingCart';
+import { removeLocalStorage } from '../utils/localStorage';
 
 export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
@@ -67,6 +68,8 @@ export const shoppingCartSlice = createSlice({
     deleteShoppingCart: (state) => {
       state.shoppingCart = [];
       state.count = 0;
+      removeLocalStorage('shoppingCart');
+      removeLocalStorage('count');
     },
     setSelectedDepot: (state, { payload }) => {
       state.selectedDepot = payload;

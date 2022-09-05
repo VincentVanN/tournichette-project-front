@@ -135,6 +135,8 @@ export const userSlice = createSlice({
       state.user.lastname = '';
       state.user.phone = '';
       removeLocalStorage('user');
+      removeLocalStorage('shoppingCart');
+      removeLocalStorage('count');
     },
     setErrorMessage: (state, { payload }) => {
       state.errorMessage = payload;
