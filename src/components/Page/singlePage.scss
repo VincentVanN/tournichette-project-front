@@ -19,7 +19,7 @@
   margin: 40px 150px 40px 20px;
   background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
-  //overflow: auto;
+  overflow: auto;
 }
 .smallComponent{
   flex-basis:33.33%;
@@ -73,10 +73,10 @@
 }
 @media only screen and (min-width: 1290px) {
  
-  // .singlePage-container {
-  //   background-image: url('src/assets/logo.svg');
-  //   background-repeat: repeat;
-  //   background-position: center;
-  //   background-size: 5%;
-  // }
+  .singlePage-container {
+    background-image: url('src/assets/logo.svg');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 5%;
+  }
 }

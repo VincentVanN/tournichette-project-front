@@ -1,6 +1,6 @@
 import Page from '../Page/Page';
 import './notFound.scss';
-// import ParallaxText from './ParallaxText';
+import ParallaxText from './ParallaxText';
 
 function NotFound() {
   return (
@@ -8,7 +8,7 @@ function NotFound() {
       <div className="notFound">
         404
       </div>
-      {/* <div className="container-notFound">
+      <div className="container-notFound">
         <div className="notF">404</div>
         <section>
           <div className="container">
@@ -38,7 +38,7 @@ function NotFound() {
           <ParallaxText className="paraOne" baseVelocity={4}>CARROT NOT FOUND</ParallaxText>
         </section>
 
-      </div> */}
+      </div>
     </Page>
 
   );
