@@ -10,14 +10,15 @@
     z-index: 3;
     background: vars.$colorBeige;
     border-bottom: 1px solid vars.$colorMediumGreen;
+    width: 100%;
+    margin-top: -10%;
   }
 
   &-title{
     font-size: 1.5em;
-    margin-top: 10%;
-    margin-bottom: 11%;
     font-family: vars.$fontLekton;
     color: vars.$colorDarkGreen;
+
   }
   
   &-button {
@@ -97,6 +98,13 @@ p.updateUserAccount.input-item{
 @media only screen and (min-width: 576px) {
   .form-button {
     margin-right: -34px;
+    &-header {
+      margin-top: 0;
+    }
+  }
+
+  .updateUserAccount {
+    margin-left: -4%;
   }
 
   .updateUserAccount.button {
@@ -123,16 +131,19 @@ p.updateUserAccount.input-item{
     &-button {
       margin-left: -24px;
     }
+    &-header {
+      margin-top: 0;
+    }
 
   }
-  // h2{
-  //   margin-bottom: 8%;
-  // }
+  h2{
+    margin: 11% 0;
+  }
   input {
     margin-left: 10px;
   }
   .updateUserAccount {
-
+    margin-left: 0%;
     text-align: center;
 
     &.list-item{
