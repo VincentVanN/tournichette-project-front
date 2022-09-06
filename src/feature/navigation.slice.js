@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const navigationSlice = createSlice({
   name: 'navigation',
   initialState: {
+    paramsLoading: true,
     width: 0,
     height: 0,
     baseUrl: 'http://localhost:8000',
@@ -10,7 +11,6 @@ export const navigationSlice = createSlice({
     buttonText: '',
     redirection: '',
     showModal: false,
-    paramsLoading: true,
   },
   reducers: {
     setParamsLoading: (state, { payload }) => {
