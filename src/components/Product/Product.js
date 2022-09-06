@@ -4,6 +4,7 @@ import './product.scss';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import background from 'src/components/Product/fenouils.jpg';
+import cartvegetable from 'src/components/Product/Brouette.jpg';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
 import Page from '../Page/Page';
@@ -123,7 +124,9 @@ function Product() {
         >
           {oneProduct.name}
         </motion.h2>
-        <img src={oneProduct.image} alt="product" className="product-image" />
+        {!slugCart && (
+          <img src={oneProduct.image} alt="product" className="product-image" />
+        )}
         <div className="product-content">
           {slugCart && (
             <div className="productsListinCart">
