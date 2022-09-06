@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import './product.scss';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import background from 'src/components/Product/fenouils.jpg';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
 import Page from '../Page/Page';
