@@ -21,15 +21,13 @@ function StaticProductsDisplay() {
   const { slugCategory } = params;
   const [isLocation, setisLocation] = useState(false);
   useEffect(() => {
-    dispatch(setParamsLoading(false));
     if (location.pathname === '/liste' || location.pathname === '/NosPaniers') {
       setisLocation(true);
     }
     return () => {
-      dispatch(setParamsLoading(true));
       setisLocation(false);
     };
-  }, [isLoadingParams]);
+  }, [isLocation]);
   const image = () => {
     if (location.pathname === '/NosPaniers') {
       return panier;

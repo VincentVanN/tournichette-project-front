@@ -109,7 +109,9 @@ function App() {
       {(!logged && !loggedUser) && <LoginForm />}
       {(logged)
     && (
-      <AnimatedRoutesSmallScreen />
+
+    <AnimatedRoutesSmallScreen />
+
     )}
 
     </div>
