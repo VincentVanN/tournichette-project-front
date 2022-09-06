@@ -59,7 +59,7 @@ function App() {
     }
     if (token) {
       dispatch(setUser(token));
-      console.log('setUser with LocalStorage');
+      // console.log('setUser with LocalStorage');
     }
     dispatch(getDepotsList());
     dispatch(getCarts());
@@ -106,7 +106,15 @@ function App() {
   return (
     <div className="app">
 
-      {(!logged && !loggedUser) && <LoginForm />}
+      {(!logged && !loggedUser)
+      && (
+      <>
+        <Modal />
+        <AnimatePresence mode="wait" onExitComplete={() => dispatch(setShowModal(false))}>
+          <LoginForm />
+        </AnimatePresence>
+      </>
+      )}
       {(logged)
     && (
 

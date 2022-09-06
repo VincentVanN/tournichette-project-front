@@ -134,12 +134,12 @@ function SubscribeForm() {
               type="submit"
               className="form-button"
             >
-              <ion-icon name="chevron-down-circle-outline" style={{ fontSize: '3.5em' }} />
+              <ion-icon name="checkmark-circle-outline" style={{ fontSize: '3.5em' }} />
             </button>
           </div>
         </form>
         <AnimatePresence mode="wait">
-          {(isFocusPassword && width > 1024) && (
+          {(isFocusPassword && width > 724) && (
           <motion.div
             className="check-password"
             key="password"
@@ -161,7 +161,7 @@ function SubscribeForm() {
             </div>
           </motion.div>
           )}
-          {(isFocusScdPassword && width > 1024) && (
+          {(isFocusScdPassword && width > 724) && (
           <motion.div
             className="check-password"
             key="scdPassword"

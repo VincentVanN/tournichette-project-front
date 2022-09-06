@@ -24,6 +24,7 @@ export const userSlice = createSlice({
       password: '',
     },
     errorMessage: [],
+    serverMessage: '',
     isSecondaryMenu: false,
     serverMessageOnSubscribe: '',
     orderHistory: [],
@@ -39,10 +40,10 @@ export const userSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       const { token } = payload;
       state.user.token = token;
-      console.log('[loginUser] OK!');
+      state.serverMessage = 'connexion réussie!';
     },
-    [loginUser.rejected]: () => {
-      console.log('[loginUser] request rejected');
+    [loginUser.rejected]: (state, action) => {
+      console.log(action.error, action.payload);
     },
     //
     //
@@ -83,8 +84,6 @@ export const userSlice = createSlice({
     [createUser.rejected]: () => {
       console.log('[createUser] request rejected');
     },
-    //
-    //
     [updateUser.pending]: () => {
       console.log('[updateUser]waiting...');
     },

@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router';
+import { Route, Routes } from 'react-router';
 import { AnimatePresence } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import Cgu from '../Cgu/Cgu';
@@ -18,13 +18,12 @@ import Modal from '../Modal/Modal';
 import { setShowModal } from '../../feature/navigation.slice';
 
 function AnimatedRoutesSmallScreen() {
-  const location = useLocation();
   const dispatch = useDispatch();
   return (
     <>
       <Modal />
       <AnimatePresence mode="wait" onExitComplete={() => dispatch(setShowModal(false))}>
-        <Routes location={location} key={location.pathname}>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/categorie/:slugCategory" element={<ProductsRendering />} />
           <Route path="/profil" element={<UserRendering />} />

@@ -18,15 +18,20 @@ export const setUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   'user/loginUser',
-  async (_, { getState }) => {
+  async (_, { getState, rejectWithValue }) => {
     const { username, password } = getState().user.login;
-    const result = await axios.post(`${getState().navigation.baseUrl}/api/login_check`, {
-      username,
-      password,
-    });
-    const { token } = result.data;
-    setLocalStorageToken(token);
-    return result.data;
+    try {
+      const result = await axios.post(`${getState().navigation.baseUrl}/api/login_check`, {
+        username,
+        password,
+      });
+      const { token } = result.data;
+      setLocalStorageToken(token);
+      return result.data;
+    }
+    catch (error) {
+      return rejectWithValue(error.response.data);
+    }
   },
 );
 
