@@ -22,6 +22,7 @@ export const changeQuantityProduct = (list, product, quantity) => {
 //
 //
 export const navigationInProduct = (products, product, increment) => {
+  console.log(product);
   const indexOfActuallyProduct = products.indexOf(product);
   let nextProduct = products[(indexOfActuallyProduct + increment)];
   if (products.indexOf(nextProduct) === -1) {
@@ -32,5 +33,6 @@ export const navigationInProduct = (products, product, increment) => {
       nextProduct = products[(products.length - 1)];
     }
   }
+  console.log(nextProduct);
   return nextProduct.slug;
 };

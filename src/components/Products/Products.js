@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import './products.scss';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router';
@@ -37,8 +38,11 @@ function Products() {
     }
     return `/produit/${slug}`;
   };
-  const handleClickProduct = (related, slug) => navigate(selectedRoute(related, slug));
-
+  const productToDisplay = (related, slug) => {
+    const product = related === 'carts' ? carts.find((item) => item.slug === slug) : products.find((item) => item.slug === slug);
+    return product;
+  };
+  const handleClickProduct = (related, slug) => navigate(selectedRoute(related, slug), { state: { currentProduct: productToDisplay(related, slug) } });
   const filterProducts = () => products
     .filter((product) => (product.category.slug === slugCategory));
 

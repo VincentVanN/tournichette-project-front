@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux';
-import { useLocation, useParams } from 'react-router';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
+import { setParamsLoading } from '../../feature/navigation.slice';
 import CartWithCount from '../CartWithCount/CartWithCount';
 import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 import ProductRendering from '../Product/ProductRendering';
@@ -14,9 +16,18 @@ import './singlePage.scss';
 
 function SinglePage() {
   const location = useLocation();
-  const { slugProduct } = useParams();
+  const dispatch = useDispatch();
+  const params = useParams();
+  const { slugProduct } = params;
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const count = useSelector((state) => state.shoppingCart.count);
+  const paramsLoading = useSelector((state) => state.navigation.paramsLoading);
+  useEffect(() => {
+    dispatch(setParamsLoading(false));
+    return () => {
+      dispatch(setParamsLoading(true));
+    };
+  }, [params]);
   if (location.pathname === '/liste') {
     return (
       <Page>
@@ -70,7 +81,7 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            <ProductRendering />
+            {!paramsLoading && <ProductRendering />}
           </div>
           {count !== 0 && <CartWithCount />}
         </div>
@@ -121,7 +132,7 @@ function SinglePage() {
             <ProductsRendering />
           </div>
           <div className="largeComponent">
-            <ProductRendering />
+            { !paramsLoading && <ProductRendering />}
           </div>
           {count !== 0 && <CartWithCount />}
         </div>

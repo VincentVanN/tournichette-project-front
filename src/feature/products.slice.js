@@ -18,13 +18,12 @@ export const productsSlice = createSlice({
       // console.log('[getProducts]waiting...');
     },
     [getProducts.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.loadingProducts = false;
       state.products = payload;
       // console.log('[getProducts] OK!');
     },
     [getProducts.rejected]: () => {
-      console.log('[getProducts] request rejected');
+      // console.log('[getProducts] request rejected');
     },
     [getCategories.pending]: (state) => {
       state.loadingCategories = true;
@@ -36,18 +35,18 @@ export const productsSlice = createSlice({
       // console.log('[getCategories] OK!');
     },
     [getCategories.rejected]: () => {
-      console.log('[getCategories] request rejected');
+      // console.log('[getCategories] request rejected');
     },
     [getCarts.pending]: () => {
-      console.log('[getCarts]waiting...');
+      // console.log('[getCarts]waiting...');
     },
     [getCarts.fulfilled]: (state, { payload }) => {
       state.loadingCarts = false;
       state.carts = payload;
-      console.log('[getCarts] OK!');
+      // console.log('[getCarts] OK!');
     },
     [getCarts.rejected]: () => {
-      console.log('[getCarts] request rejected');
+      // console.log('[getCarts] request rejected');
     },
   },
   reducers: {

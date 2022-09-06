@@ -4,31 +4,19 @@ import './product.scss';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import background from 'src/components/Product/fenouils.jpg';
-import cartvegetable from 'src/components/Product/Brouette.jpg';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
 import Page from '../Page/Page';
 import Loading from '../Loading/Loading';
-import { setParamsLoading } from '../../feature/navigation.slice';
 
 function Product() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
-  useEffect(() => {
-    if (Object.keys(params).length !== 0) {
-      dispatch(setParamsLoading(false));
-    }
-    return () => {
-      dispatch(setParamsLoading(true));
-    };
-  }, []);
   const { slugProduct, slugCart, slugCategory } = params;
-  const baseUrl = useSelector((state) => state.navigation.baseUrl);
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
-  const isLoadingParams = useSelector((state) => state.navigation.paramsLoading);
   //
   // select product or cart
   //
@@ -92,11 +80,9 @@ function Product() {
     return productInCart.quantity;
   };
   const quantityInCart = getQuantityInCart();
-  if ((isLoadingProducts
+  if (isLoadingProducts
     || isLoadingCategories
-    || isLoadingCarts
-    || isLoadingParams)
-  ) {
+    || isLoadingCarts) {
     return (
       <Page>
         <Loading />
