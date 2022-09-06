@@ -172,7 +172,7 @@ function UserContact() {
             type="submit"
             className="form-button"
           >
-            <ion-icon name="chevron-down-circle-outline" />
+            <ion-icon name="checkmark-circle-outline" />
           </button>
         </div>
 

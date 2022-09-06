@@ -50,7 +50,7 @@ function LoginForm() {
                   type="submit"
                   className="form-button"
                 >
-                  <ion-icon name="chevron-down-circle-outline" style={{ fontSize: '3.5em' }} />
+                  <ion-icon name="checkmark-circle-outline" style={{ fontSize: '3.5em' }} />
                 </button>
                 <div
                   className="form-signIn"
