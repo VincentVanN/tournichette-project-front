@@ -83,7 +83,7 @@ function Card({
           <div className="doted" />
           <ul className="card-infos">
             <li className="card-unity">{quantity}</li>
-            <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity && unity === 'undefined' ? 'Pce' : unity}</li>
+            <li className="card-unity">{ unity === undefined ? 'Pce' : unity}</li>
             <li className="card-unity">-</li>
             <li
               className="card-price"
@@ -108,7 +108,7 @@ function Card({
             <ion-icon name="add-circle-outline" size="medium" />
           </button>
           <div className="button-group-meta">
-            {`${price}€/${unity}`}
+            {`${price}€/${unity === undefined ? 'Pce' : unity}`}
           </div>
         </div>
       </div>
