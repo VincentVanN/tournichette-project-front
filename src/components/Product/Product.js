@@ -16,6 +16,7 @@ function Product() {
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
+  const width = useSelector((state) => state.navigation.width);
   //
   // select product or cart
   //
@@ -78,6 +79,13 @@ function Product() {
     }
     return productInCart.quantity;
   };
+  const widthForAnimationFunction = () => {
+    if (width <= 577) {
+      return '90%';
+    }
+    return '80%';
+  };
+  const widthForAnimation = widthForAnimationFunction();
   const quantityInCart = getQuantityInCart();
   if (isLoadingProducts
     || isLoadingCategories
@@ -96,8 +104,8 @@ function Product() {
         className="product"
         key={oneProduct.name}
         initial={{ width: 0 }}
-        animate={{ width: '70%' }}
-        exit={{ x: isForward ? '-70%' : '70%', opacity: 0, transition: { duration: 0.20 } }}
+        animate={{ width: `${widthForAnimation}` }}
+        exit={{ x: isForward ? `-${widthForAnimation}` : `${widthForAnimation}`, opacity: 0, transition: { duration: 0.20 } }}
       >
         <motion.h2
           className="product-title"
