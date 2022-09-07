@@ -1,6 +1,6 @@
 @use 'src/styles/_vars.scss';
 
-.form{
+.contactForm{
   &-header {
     display: flex;
     flex-direction: column;
@@ -20,7 +20,6 @@
     color: vars.$colorDarkGreen;
 
   }
-  
   &-button {
     margin-right: 3px;
   }
@@ -96,7 +95,7 @@ p.updateUserAccount.input-item{
  }
 }
 @media only screen and (min-width: 576px) {
-  .form-button {
+  .contactForm-button {
     margin-right: -34px;
     &-header {
       margin-top: 0;
@@ -120,7 +119,7 @@ p.updateUserAccount.input-item{
 }
 
 @media only screen and (min-width: 1024px) {
-  .form {
+  .contactForm {
     width: 100%;
     height: 100%;
     display: block;

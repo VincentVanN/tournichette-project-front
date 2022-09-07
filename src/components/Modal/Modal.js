@@ -104,7 +104,7 @@ function Modal() {
                 onClick={handleModal}
               >
                 <p>{buttonText}</p>
-                <ion-icon name="arrow-forward-circle-outline" style={{ color: '#fd7c55', fontSize: '3em' }} />
+                <ion-icon name="arrow-forward-circle-outline" style={{ color: '#fd7c55', fontSize: '2em' }} />
               </button>
             </motion.div>
           </motion.div>
