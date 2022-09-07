@@ -73,9 +73,3 @@ ion-icon:active{
   border-bottom: solid 1px vars.$colorMediumGreen;
 }
 
-///////////////////// screen > 576
-@media screen and (min-width: 577px) and (max-width: 1024px){
-  .home-container{
-   padding-left:50px;
-  }
-}
