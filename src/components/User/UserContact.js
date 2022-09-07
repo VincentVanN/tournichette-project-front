@@ -84,10 +84,10 @@ function UserContact() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="form"
+      className="contactForm"
     >
-      <header className="form-header">
-        <h2 className="form-title">Profil</h2>
+      <header className="contactForm-header">
+        <h2 className="contactForm-title">Profil</h2>
       </header>
       <ul className="updateUserAccount">
         <div className="updateUserAccount container">
@@ -167,10 +167,10 @@ function UserContact() {
             onChange={handleChangeEditForm}
           />
         </div>
-        <div className={`form-button-container ${hiddenForm}`}>
+        <div className={`contactForm-button-container ${hiddenForm}`}>
           <button
             type="submit"
-            className="form-button"
+            className="contactForm-button"
           >
             <ion-icon name="checkmark-circle-outline" />
           </button>

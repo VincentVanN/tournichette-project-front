@@ -91,30 +91,31 @@ body {
 
 @media only screen and (min-width: 576px) {
   .modal {
-    margin: -50px auto;
-    
+    margin: -50px auto; 
     & button {
       font-size: 1em;
     }
   }
-
   .error-message-container{
       font-size: 1.1em;
   }
-  
 }
 
 @media only screen and (min-width: 1024px) {
   .modal {
     margin: -50px auto;
-    
     & button {
+      height: 2.5em;
       font-size: 1.2em;
     }
+    & p {
+      font-size: 1.5em;
+    }
   }
-
   .error-message-container{
       font-size: 1.4em;
   }
-  
+  p {
+    font-size: 1.5em;
+  }
 }

@@ -1,3 +1,4 @@
+import logo from 'src/assets/logo.svg';
 import './loginForm.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -72,7 +73,8 @@ function SubscribeForm() {
   };
   return (
     <div className="form-container">
-      <h1 className="form-titles">Inscription</h1>
+      <img className="form-logo" src={logo} alt="logo Tournichette" />
+      <h1 className="form-title">Inscription</h1>
       <div className="form-field-container">
         <form onSubmit={handleSubscribe}>
           <Field
@@ -143,9 +145,9 @@ function SubscribeForm() {
           <motion.div
             className="check-password"
             key="password"
-            initial={{ x: -170, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -170, opacity: 0 }}
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1, zIndex: 0 }}
+            exit={{ x: 120, opacity: 0, zIndex: 0 }}
           >
             <div className="checkbox">
               <ion-icon name={`${validateLength(password) ? 'checkmark' : 'close'}-outline`} style={{ color: validateLength(password) ? 'green' : 'red' }} />
@@ -165,9 +167,9 @@ function SubscribeForm() {
           <motion.div
             className="check-password"
             key="scdPassword"
-            initial={{ x: -170, opacity: 0 }}
+            initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -170, opacity: 0 }}
+            exit={{ x: 120, opacity: 0 }}
           >
             <div className="checkbox">
               <ion-icon name={`${validateScdPassword(password, sndPassword) ? 'checkmark' : 'close'}-outline`} style={{ color: validateScdPassword(password, sndPassword) ? 'green' : 'red' }} />
