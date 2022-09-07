@@ -34,7 +34,7 @@
     height: auto;
     z-index: 1;
     margin: auto;
-    font-size: 48px;
+    font-size: 2em;
     font-family: vars.$fontMontserrat;
     font-weight: 500;
     text-align: center;
@@ -234,6 +234,7 @@
   top: 20px;
   width: 500px;
   height: auto;
+  font-size: 3em;
 }
 .container {
   width: 100%;

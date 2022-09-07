@@ -211,3 +211,12 @@ ion-icon{
     }
   }
 }
+@media only screen and (min-width: 1290px) {
+ 
+  .form {
+    background-image: url('src/assets/logo.svg');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 5%;
+  }
+}
