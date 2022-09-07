@@ -121,7 +121,7 @@ function Products() {
                   className="products-categoryName"
                   to={`/categorie/${category.slug}`}
                 >
-                  {category.name === 'Produits transformés' ? 'Épicerie' : category.name}
+                  {category.name}
                 </NavLink>
               ))}
             </div>

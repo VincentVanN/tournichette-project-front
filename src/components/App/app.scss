@@ -13,8 +13,10 @@ input{
   -ms-user-select: none; /* Edge */
   user-select: none; /* standard */ 
 }
+
 .app {
   background: vars.$colorBeige;
+  height: 100vh;
 }
 @media only screen and (min-width: 1024px) { 
   .app {
@@ -118,4 +120,7 @@ body {
   p {
     font-size: 1.5em;
   }
+}
+ion-icon {
+  pointer-events: none;
 }
