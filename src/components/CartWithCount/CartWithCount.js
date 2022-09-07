@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import './cartWithCount.scss';
 import { useNavigate } from 'react-router';
 
 function CartWithCount() {
   const countOfProducts = useSelector((state) => state.shoppingCart.count);
   const width = useSelector((state) => state.navigation.width);
   const color = width > 1024 ? '#f2f5df' : '#356859';
+  const size = width >= 1024 ? '55px' : '45px';
   const navigate = useNavigate();
   const handleClick = () => navigate('/MesAchats');
   return (
@@ -44,7 +44,7 @@ function CartWithCount() {
             </p>
           </motion.div>
           <div className="icon">
-            <ion-icon name="cart-outline" style={{ fontSize: '45px', color: `${color}` }} />
+            <ion-icon name="cart-outline" style={{ fontSize: `${size}`, color: `${color}` }} />
           </div>
         </div>
         )}
