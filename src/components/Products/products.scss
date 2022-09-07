@@ -8,7 +8,7 @@
   scrollbar-width: none;
 }
 .products{
-  width: 90%;
+  width: 100%;
   height: 100%;
   &-searchBar {
    width: 100%;
@@ -34,7 +34,7 @@
     text-decoration: none;
     font-size: 1.2em;
     background: vars.$colorBeige;
-    
+   
   }
   &-categoryName{
     flex: 1 1 0;
@@ -52,7 +52,7 @@
     justify-content: center;
     align-content: center;
     top: 0;
-    width: 90%;
+    width: 100%;
     height: 90px;
     margin-bottom: 20px;
     z-index: 3;
@@ -93,7 +93,11 @@
     max-width: 900px;
   }
   .products-header {
-    width: 85%;
+    width: 90%;
+  }
+
+  .products-items{
+    margin: 30px 8px;
   }
  }
  @media only screen and (min-width: 1024px) {
