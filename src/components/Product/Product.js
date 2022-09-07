@@ -113,7 +113,7 @@ function Product() {
           animate={{ y: 0 }}
           transition={{ duration: 0.4 }}
           exit={{ y: -300, opacity: 0, transition: { duration: 0.2 } }}
-          style={{ color: `${oneProduct.colorimetry === 'hot' ? '#356859' : '#fd7c55'}` }}
+          style={{ color: `${oneProduct.colorimetry === 'hot' ? '#70bd9d' : '#fd7c55'}` }}
         >
           {oneProduct.name}
         </motion.h2>
