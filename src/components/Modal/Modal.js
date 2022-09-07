@@ -7,16 +7,18 @@ import {
   deleteRedirection,
   setShowModal,
 } from '../../feature/navigation.slice';
+import { deleteMessageProductsServer } from '../../feature/products.slice';
 import { deleteServerMessage } from '../../feature/shoppingCart.slice';
-import { deleteErrorMessage, deleteServerMessageOnSubscribe, setIsSubscribe } from '../../feature/user.slice';
+import { deleteErrorMessage, deleteServerMessageUser, setIsSubscribe } from '../../feature/user.slice';
 
 function Modal() {
   const showModal = useSelector((state) => state.navigation.showModal);
   const navigationMessage = useSelector((state) => state.navigation.navigationMessage);
   const serverMessageShoppingCart = useSelector((state) => state.shoppingCart.serverMessage);
-  const serverMessageUser = useSelector((state) => state.user.serverMessageOnSubscribe);
+  const serverMessageUser = useSelector((state) => state.user.serverMessageUser);
   const errorUserMessage = useSelector((state) => state.user.errorMessage);
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
+  const messageProductsServer = useSelector((state) => state.products.messageProductsServer);
 
   const buttonText = useSelector((state) => state.navigation.buttonText);
   const redirection = useSelector((state) => state.navigation.redirection);
@@ -24,6 +26,9 @@ function Modal() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const deleteMessage = () => {
+    if (messageProductsServer) {
+      dispatch(deleteMessageProductsServer());
+    }
     if (navigationMessage) {
       dispatch(deleteNavigationMessage());
     }
@@ -31,7 +36,7 @@ function Modal() {
       dispatch(deleteServerMessage());
     }
     if (serverMessageUser) {
-      dispatch(deleteServerMessageOnSubscribe());
+      dispatch(deleteServerMessageUser());
     }
     if (errorUserMessage.length !== 0) {
       dispatch(deleteErrorMessage([]));

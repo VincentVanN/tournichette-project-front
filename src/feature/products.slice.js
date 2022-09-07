@@ -2,6 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import { getCarts, getCategories, getProducts } from '../AsyncChunk/AsyncChunkPoducts';
+import { removeLocalStorage } from '../utils/localStorage';
 
 export const productsSlice = createSlice({
   name: 'products',
@@ -12,6 +13,7 @@ export const productsSlice = createSlice({
     products: null,
     categories: null,
     carts: null,
+    messageProductsServer: '',
   },
   extraReducers: {
     [getProducts.pending]: () => {
@@ -22,8 +24,9 @@ export const productsSlice = createSlice({
       state.products = payload;
       // console.log('[getProducts] OK!');
     },
-    [getProducts.rejected]: () => {
-      // console.log('[getProducts] request rejected');
+    [getProducts.rejected]: (state) => {
+      removeLocalStorage('user');
+      state.messageProductsServer = 'Veuillez vous reconnecter';
     },
     [getCategories.pending]: (state) => {
       state.loadingCategories = true;
@@ -54,8 +57,11 @@ export const productsSlice = createSlice({
       const item = state.products.find((product) => (product.slug === payload));
       return item;
     },
+    deleteMessageProductsServer: (state) => {
+      state.messageProductsServer = '';
+    },
   },
 });
 
-export const { getProduct } = productsSlice.actions;
+export const { getProduct, deleteMessageProductsServer } = productsSlice.actions;
 export default productsSlice.reducer;

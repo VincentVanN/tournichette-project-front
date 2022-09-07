@@ -2,17 +2,32 @@
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setButtonText, setRedirection, setShowModal } from '../feature/navigation.slice';
 
 export const getProducts = createAsyncThunk(
   'products/setProducts',
-  async (_, { getState }) => {
+  async (_, { getState, dispatch, rejectWithValue }) => {
     const { token } = getState().user.user;
-    const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/products`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return result.data;
+    let isError = false;
+    try {
+      const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/products`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return result.data;
+    }
+    catch (error) {
+      dispatch(setRedirection('/'));
+      dispatch(setButtonText('Connexion'));
+      isError = true;
+      return rejectWithValue(error.response.data);
+    }
+    finally {
+      if (isError) {
+        dispatch(setShowModal(true));
+      }
+    }
   },
 );
 export const getCategories = createAsyncThunk(
