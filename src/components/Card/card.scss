@@ -69,6 +69,14 @@ ion-icon {
     font-weight: 600;
   }
 }
+@media only screen and (min-width: 700px) {
+  .card-container{
+    width: 93%;
+  }
+  
+  
+}
+
 @media only screen and (min-width: 1024px) {
   
 .card-article {
