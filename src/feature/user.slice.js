@@ -24,9 +24,8 @@ export const userSlice = createSlice({
       password: '',
     },
     errorMessage: [],
-    serverMessage: '',
     isSecondaryMenu: false,
-    serverMessageOnSubscribe: '',
+    serverMessageUser: '',
     orderHistory: [],
     isSubscribe: false,
   },
@@ -40,10 +39,16 @@ export const userSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       const { token } = payload;
       state.user.token = token;
-      state.serverMessage = 'connexion réussie!';
+      state.serverMessageUser = 'Identifiants invalides!';
     },
-    [loginUser.rejected]: (state, action) => {
-      console.log(action.error, action.payload);
+    [loginUser.rejected]: (state, { payload }) => {
+      if (payload.message === 'Invalid credentials.') {
+        state.serverMessageUser = 'Identifiants invalides!';
+      }
+      if (payload.message === 'Invalid JWT Token') {
+        removeLocalStorage('user');
+        state.serverMessageUser = 'Veuillez vous reconnecter';
+      }
     },
     //
     //
@@ -58,8 +63,11 @@ export const userSlice = createSlice({
       state.user.phone = payload.phone;
       console.log('[setUser] OK!');
     },
-    [setUser.rejected]: () => {
-      console.log('[setUser] request rejected');
+    [setUser.rejected]: (state, { payload }) => {
+      if (payload.code === 401) {
+        removeLocalStorage('user');
+        state.serverMessageUser = 'Veuillez vous reconnecter';
+      }
     },
     //
     //
@@ -68,10 +76,10 @@ export const userSlice = createSlice({
     },
     [createUser.fulfilled]: (state, { payload }) => {
       if (!payload.error) {
-        state.serverMessageOnSubscribe = 'Tout est ok! Tu peux te connecter';
+        state.serverMessageUser = 'Tout est ok! Tu peux te connecter';
       }
       else {
-        state.serverMessageOnSubscribe = payload.message;
+        state.serverMessageUser = payload.message;
       }
       state.email = '';
       state.password = '';
@@ -84,6 +92,8 @@ export const userSlice = createSlice({
     [createUser.rejected]: () => {
       console.log('[createUser] request rejected');
     },
+    //
+    //
     [updateUser.pending]: () => {
       console.log('[updateUser]waiting...');
     },
@@ -93,6 +103,7 @@ export const userSlice = createSlice({
     [updateUser.rejected]: () => {
       console.log('[updateUser] request rejected');
     },
+    //
     //
     [getOrderHistory.pending]: () => {
       console.log('[getOrderHistory]waiting...');
@@ -149,8 +160,8 @@ export const userSlice = createSlice({
     setSecondaryMenu: (state) => {
       state.isSecondaryMenu = !state.isSecondaryMenu;
     },
-    deleteServerMessageOnSubscribe: (state) => {
-      state.serverMessageOnSubscribe = '';
+    deleteServerMessageUser: (state) => {
+      state.serverMessageUser = '';
     },
     setIsSubscribe: (state, { payload }) => {
       state.isSubscribe = payload;
@@ -169,7 +180,7 @@ export const {
   changeEditForm,
   addErrorMessage,
   deleteErrorMessage,
-  deleteServerMessageOnSubscribe,
+  deleteServerMessageUser,
   setIsSubscribe,
 } = userSlice.actions;
 export default userSlice.reducer;

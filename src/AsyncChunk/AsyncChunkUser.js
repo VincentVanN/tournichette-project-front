@@ -2,24 +2,40 @@
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setButtonText, setRedirection, setShowModal } from '../feature/navigation.slice';
 import { setLocalStorageToken } from '../utils/localStorage';
 
 export const setUser = createAsyncThunk(
   'user/setUser',
-  async (token, { getState }) => {
-    const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/users`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return result.data.data;
+  async (token, { getState, rejectWithValue, dispatch }) => {
+    let isError = false;
+    try {
+      const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return result.data.data;
+    }
+    catch (error) {
+      dispatch(setRedirection('/'));
+      dispatch(setButtonText('Connexion'));
+      isError = true;
+      return rejectWithValue(error.response.data) && dispatch(setShowModal(true));
+    }
+    finally {
+      if (isError) {
+        dispatch(setShowModal(true));
+      }
+    }
   },
 );
 
 export const loginUser = createAsyncThunk(
   'user/loginUser',
-  async (_, { getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue, dispatch }) => {
     const { username, password } = getState().user.login;
+    let isError = false;
     try {
       const result = await axios.post(`${getState().navigation.baseUrl}/api/login_check`, {
         username,
@@ -27,10 +43,19 @@ export const loginUser = createAsyncThunk(
       });
       const { token } = result.data;
       setLocalStorageToken(token);
+      dispatch(setRedirection('/'));
+      dispatch(setButtonText('Par ici'));
       return result.data;
     }
     catch (error) {
+      dispatch(setButtonText('Connexion'));
+      isError = true;
       return rejectWithValue(error.response.data);
+    }
+    finally {
+      if (isError) {
+        dispatch(setShowModal(true));
+      }
     }
   },
 );

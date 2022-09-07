@@ -28,10 +28,10 @@ function App() {
   const localStorageCount = JSON.parse(localStorage.getItem('count'));
   const token = useSelector((state) => state.user.user.token);
   const stateWidth = useSelector((state) => state.navigation.width);
-
   //
   // getting screen size in state
   //
+
   function getWindowWidth() {
     const { width } = window.screen;
     return width;
@@ -56,16 +56,15 @@ function App() {
   useEffect(() => {
     if (loggedUser) {
       dispatch(setToken(loggedUser.token));
+      dispatch(getDepotsList());
+      dispatch(getCarts());
+      dispatch(getProducts());
+      dispatch(getCategories());
+      dispatch(getOrderHistory());
     }
     if (token) {
       dispatch(setUser(token));
-      // console.log('setUser with LocalStorage');
     }
-    dispatch(getDepotsList());
-    dispatch(getCarts());
-    dispatch(getProducts());
-    dispatch(getCategories());
-    dispatch(getOrderHistory());
   }, [token]);
   useEffect(() => {
     if (localStorageShoppingCart && localStorageShoppingCart.lenght !== 0) {
@@ -80,11 +79,15 @@ function App() {
     setLocalStorageShoppingCart(shoppingCart);
     setLocalStorageCount(count);
   }, [shoppingCart, count]);
+  //
+  //
   if ((loadingProducts && logged)
   || (loadingCategories && logged)
   ) {
     return <Loading />;
   }
+  //
+  //
   if (stateWidth >= 1024) {
     return (
       <div className="app">
@@ -103,6 +106,8 @@ function App() {
       </div>
     );
   }
+  //
+  //
   return (
     <div className="app">
 
@@ -117,9 +122,7 @@ function App() {
       )}
       {(logged)
     && (
-
     <AnimatedRoutesSmallScreen />
-
     )}
 
     </div>
