@@ -1,14 +1,12 @@
 @use 'src/styles/_vars.scss';
 
-form{
+.contactForm{
   background: vars.$colorBeige;
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-content: center;
-}
-.contactForm{
   &-header {
     margin-bottom: 20px;
     z-index: 3;
