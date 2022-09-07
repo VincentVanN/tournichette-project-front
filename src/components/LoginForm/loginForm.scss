@@ -177,7 +177,7 @@ ion-icon{
     height: 380px;
   }
 }
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 1024px) {
   body {
     background: vars.$colorLightGreen;
   }
@@ -186,9 +186,9 @@ ion-icon{
   }
   .form{
     background: vars.$colorLightGreen;
-    width: 100vw;
-    height: 100%;
     &-container {
+      position: relative;
+      min-width: 400px;
       width: 40%;
       height: 70vh;
       background: vars.$colorBeige;
@@ -199,8 +199,8 @@ ion-icon{
     }
     &-logo {
       position: absolute;
-      left: 43%;
-      top: 0;
+      margin: auto;
+      top: -22%;
     }
   }
 }

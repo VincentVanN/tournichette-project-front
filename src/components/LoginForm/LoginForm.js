@@ -23,9 +23,10 @@ function LoginForm() {
   return (
 
     <div className="form">
-      <img className="form-logo" src={logo} alt="logo Tournichette" />
       {!isSubscribe && (
         <div className="form-container">
+          <img className="form-logo" src={logo} alt="logo Tournichette" />
+
           <h1 className="form-title">Connexion</h1>
           <div className="form-field-container">
             <form onSubmit={handleSubmit}>
