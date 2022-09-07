@@ -198,6 +198,8 @@
 .navigation.active{
   width: 300px;
   z-index: 10;
+  box-shadow: none;
+  border: none;
 }
 .toggle {
   position: absolute;

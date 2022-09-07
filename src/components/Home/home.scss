@@ -1,7 +1,6 @@
 @use 'src/styles/_vars.scss';
 .home-container{
   display: block;
-  overflow: auto;
   width: 100vw;
   height: 100vh;
 }
@@ -75,7 +74,7 @@ ion-icon:active{
 }
 
 ///////////////////// screen > 576
-@media screen and (min-width: 577px) {
+@media screen and (min-width: 577px) and (max-width: 1024px){
   .home-container{
    padding-left:50px;
   }
