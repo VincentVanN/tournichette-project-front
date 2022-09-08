@@ -15,6 +15,7 @@ function ChoiseDepotPoints() {
   const selectedDepot = useSelector((state) => state.shoppingCart.selectedDepot);
   //
   // get adress of depots
+  //
   const ArrayOfDepotsAdress = [];
   depots.forEach((depot) => ArrayOfDepotsAdress.push(depot.address));
   //
