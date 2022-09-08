@@ -69,7 +69,7 @@ function Product() {
   };
   const handleNavigateBackward = () => {
     setIsForward(false);
-    navigate(`${selectRoute()}${navigationInProduct(slugProduct ? products : carts, oneProduct, -1)}`);
+    navigate(`${selectRoute()}${navigationInProduct(slugProduct ? filteredArrayFunction() : carts, oneProduct, -1)}`);
   };
   //
   const getQuantityInCart = () => {
@@ -113,7 +113,7 @@ function Product() {
           animate={{ y: 0 }}
           transition={{ duration: 0.4 }}
           exit={{ y: -300, opacity: 0, transition: { duration: 0.2 } }}
-          style={{ color: `${oneProduct.colorimetry === 'hot' ? '#70bd9d' : '#fd7c55'}` }}
+          style={{ color: '#fd7c55' }}
         >
           {oneProduct.name}
         </motion.h2>
