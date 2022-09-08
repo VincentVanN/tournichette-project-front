@@ -11,14 +11,14 @@ import { wrap } from '@motionone/utils';
 
 function ParallaxText({ children, baseVelocity = 100 }) {
   const baseX = useMotionValue(0);
-  const smoothVelocity = useSpring(40, {
+  const smoothVelocity = useSpring(10, {
     damping: 50,
     stiffness: 400,
   });
-  const velocityFactor = useTransform(smoothVelocity, [0, 800], [0, 5], {
+  const velocityFactor = useTransform(smoothVelocity, [50, 800], [0, 2], {
     clamp: false,
   });
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+  const x = useTransform(baseX, (v) => `${wrap(-20, -50, v)}%`);
 
   const directionFactor = useRef(1);
   const prevT = useRef(0);
@@ -44,11 +44,6 @@ function ParallaxText({ children, baseVelocity = 100 }) {
   return (
     <div className="parallax">
       <motion.div className="scroller" style={{ x }}>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
         <span>{children} </span>
         <span>{children} </span>
         <span>{children} </span>

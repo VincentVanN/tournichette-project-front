@@ -28,7 +28,6 @@
     }
   }
 }
-
 .selected {
   color: vars.$colorOrange;
 }
@@ -61,7 +60,6 @@
     justify-content: center;
     width: 95%;
     height: 50px;
-
   }
 }
 .serverMessage {
@@ -102,12 +100,13 @@
     .radio-container{
       width: 80%;
       margin-left: 50px;
-      
     }
   }
   @media only screen and (min-width: 1024px) {
     .depot-container {
       height: 100%; 
     }
-    
+    .radio-container li {
+      margin-bottom: 20px;
+    }
   }
