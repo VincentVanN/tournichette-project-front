@@ -1,5 +1,5 @@
 {
-  "name": "react-modele",
+  "name": "tournichette",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
@@ -53,9 +53,12 @@
     "@reduxjs/toolkit": "^1.8.4",
     "axios": "^0.27.2",
     "framer-motion": "^7.2.1",
+    "jwt-decode": "^3.1.2",
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
+    "react-google-login": "^5.2.2",
+    "react-google-signin": "^1.0.3",
     "react-ion-icon": "^4.0.0",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
