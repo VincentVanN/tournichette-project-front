@@ -59,9 +59,9 @@ function LoginForm() {
                   <ion-icon name="newspaper-outline" style={{ fontSize: '2.8em' }} />
                 </div>
               </div>
+              <div id="signInDiv" />
             </form>
           </div>
-
         </div>
 
       )}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './app.scss';
 import { AnimatePresence } from 'framer-motion';
+import jwtDecode from 'jwt-decode';
 import { setUser, getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
@@ -28,10 +29,10 @@ function App() {
   const localStorageCount = JSON.parse(localStorage.getItem('count'));
   const token = useSelector((state) => state.user.user.token);
   const stateWidth = useSelector((state) => state.navigation.width);
+
   //
   // getting screen size in state
   //
-
   function getWindowWidth() {
     const { width } = window.screen;
     return width;
@@ -40,7 +41,6 @@ function App() {
     const { height } = window.screen;
     return height;
   }
-
   useEffect(() => {
     dispatch(setWidth(getWindowWidth()));
     dispatch(setHeight(getWindowHeight()));
@@ -49,6 +49,26 @@ function App() {
       dispatch(setHeight(getWindowHeight()));
     }
     window.addEventListener('resize', handleWindowSize);
+  }, []);
+  //
+  // globale google
+  //
+  function handleCallbackResponse(response) {
+    console.log(`jwt Token:${response.credential}`);
+    const googleUser = jwtDecode(response.credential);
+    console.log(googleUser);
+  }
+  useEffect(() => {
+    // eslint-disable-next-line no-undef
+    google.accounts.id.initialize({
+      client_id: '1095458830535-c9ctnmdqptdrtre3ivfo2tkl78r0flom.apps.googleusercontent.com',
+      callback: handleCallbackResponse,
+    });
+    // eslint-disable-next-line no-undef
+    google.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      { theme: 'outline', size: 'large' },
+    );
   }, []);
   //
   // set data and user
