@@ -4,6 +4,7 @@ import logo from 'src/assets/logo.svg';
 import './home.scss';
 import { useSelector } from 'react-redux';
 import Page from '../Page/Page';
+import Stripe from '../../stripe/StripeContainer';
 
 function Home() {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ function Home() {
               </motion.button>
             </div>
           </div>
+          <Stripe />
         </div>
       </div>
     </Page>
