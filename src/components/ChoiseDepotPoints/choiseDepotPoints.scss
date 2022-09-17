@@ -28,9 +28,9 @@
     }
   }
 }
-.selected {
-  color: vars.$colorOrange;
-}
+// .selected {
+//   color: vars.$colorOrange;
+// }
 .radio {
   opacity: 0;
 }
@@ -43,7 +43,7 @@
   font-family: vars.$fontMontserrat;
   color: vars.$colorDarkGreen;
   font-weight: 600;
-  font-size: 1.5em;
+  font-size: 1.2em;
   border-bottom: solid 1px vars.$colorMediumGreen;
 }
 .message {
@@ -60,19 +60,6 @@
     justify-content: center;
     width: 95%;
     height: 50px;
-  }
-}
-.serverMessage {
-  font-family: vars.$fontMontserrat;
-  color: vars.$colorDarkGreen;
-  font-weight: 600;
-  font-size: 1.5em;
-  &-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 .validOrderButton {
@@ -96,6 +83,21 @@
     cursor: pointer;
   }
   }
+  .paymentLine {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  & label{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: vars.$colorDarkGreen;
+  }
+}
+.ionicon {
+  margin-left: 20px;
+}
   @media screen and (min-width: 577px) and (max-width: 1023px){
     .radio-container{
       width: 80%;

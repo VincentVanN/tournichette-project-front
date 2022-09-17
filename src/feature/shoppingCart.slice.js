@@ -81,6 +81,9 @@ export const shoppingCartSlice = createSlice({
     deleteServerMessage: (state) => {
       state.serverMessage = '';
     },
+    setServerMessage: (state, { payload }) => {
+      state.serverMessage = payload;
+    },
   },
 });
 export const {
@@ -91,5 +94,6 @@ export const {
   getSelectedDepotId,
   deleteServerMessage,
   deleteShoppingCart,
+  setServerMessage,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

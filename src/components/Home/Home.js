@@ -4,7 +4,6 @@ import logo from 'src/assets/logo.svg';
 import './home.scss';
 import { useSelector } from 'react-redux';
 import Page from '../Page/Page';
-import Stripe from '../../stripe/StripeContainer';
 
 function Home() {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ function Home() {
           </div>
           <div className="home-button-group">
             <div
-              className="home-button-container top"
+              className="home-button-container"
               onClick={handleClickCarts}
             >
               <h2 className="home-button-title">Mon panier de légumes</h2>
@@ -61,7 +60,6 @@ function Home() {
               </motion.button>
             </div>
           </div>
-          <Stripe />
         </div>
       </div>
     </Page>

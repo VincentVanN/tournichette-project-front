@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { postOrder } from '../../AsyncChunk/AsyncChunkShoppingCart';
@@ -8,11 +9,16 @@ import {
   setRedirection,
   setShowModal,
 } from '../../feature/navigation.slice';
+import Stripe from '../../stripe/StripeContainer';
 
 function ChoiseDepotPoints() {
   const dispatch = useDispatch();
   const depots = useSelector((state) => state.shoppingCart.depots.data);
   const selectedDepot = useSelector((state) => state.shoppingCart.selectedDepot);
+  const [isSelectDepotLayout, setIsSelectDepotLayout] = useState(true);
+  const [isPaymentchoiseLayout, setIsPaymentChoiseLayout] = useState(false);
+  const [isCreditCardLayout, setIsCreditCardLayout] = useState(false);
+  const [selectedPayment, setSelectedPayment] = useState('');
   //
   // get adress of depots
   //
@@ -24,6 +30,8 @@ function ChoiseDepotPoints() {
   const handleChange = (e) => {
     dispatch(setSelectedDepot(e.target.id));
     dispatch(getSelectedDepotId());
+    setIsSelectDepotLayout(false);
+    setIsPaymentChoiseLayout(true);
   };
   //
   // set message state and modal
@@ -37,17 +45,36 @@ function ChoiseDepotPoints() {
   //
   // change icon color at selection
   const ValidateColor = selectedDepot ? '#fd7c55' : '#356859';
+  //
+  const handleChangePayment = (e) => {
+    setSelectedPayment(e.target.id);
+  };
+  const handleCreditCardLayout = () => {
+    setIsPaymentChoiseLayout(false);
+    setIsCreditCardLayout(true);
+  };
+  const title = () => {
+    if (isPaymentchoiseLayout) {
+      return 'choisis ton moyen de paiement';
+    }
+    if (isCreditCardLayout) {
+      return 'Informations bancaires';
+    }
+    return 'Clique sur ton point de retrait';
+  };
   return (
     <div className="depot-container">
       <div className="title">
         <ion-icon name="bag-check-outline" style={{ paddingBottom: '5px' }} />
-        <p>Clique sur ton point de retrait</p>
+        <p>{title()}</p>
       </div>
+      {isSelectDepotLayout && (
       <ul className="radio-container">
         {ArrayOfDepotsAdress.map((adress) => (
-          <li>
+          <li
+            key={adress}
+          >
             <input
-              key={adress}
               type="radio"
               className="radio"
               id={adress}
@@ -59,16 +86,113 @@ function ChoiseDepotPoints() {
           </li>
         ))}
       </ul>
-      {selectedDepot && (
-      <motion.div
-        className="validOrderButton"
-        onClick={handleClick}
-        initial={{ x: '-100vw' }}
-        animate={{ x: 0 }}
-      >
-        <p>Commander</p>
-        <ion-icon name="checkmark-circle-outline" style={{ color: ValidateColor }} />
-      </motion.div>
+      )}
+      {isPaymentchoiseLayout && (
+      <ul className="radio-container">
+
+        <li
+          className="paymentLine"
+        >
+          <label
+            htmlFor="onSite"
+            className={selectedPayment === 'onSite' ? 'selected' : ''}
+          >
+            <input
+              type="radio"
+              className="radio"
+              id="onSite"
+              name="paymentChoiseRadio"
+              checked={selectedPayment === 'onSite'}
+              onChange={handleChangePayment}
+            />
+            <ion-icon name="cash-outline" style={{ marginRight: '10px' }} />
+            Paiement au retrait de la commande
+            {selectedPayment === 'onSite' && (
+              <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" width="32" height="32" viewBox="0 0 512 512" color="#fd7c55"><title>Checkmark Circle</title>
+                <motion.path
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.4 }}
+                  d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeMiterlimit="10"
+                  strokeWidth="32"
+                />
+                <motion.path
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.4 }}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="32"
+                  d="M352 176L217.6 336 160 272"
+                />
+              </svg>
+            )}
+          </label>
+        </li>
+        <li
+          className="paymentLine"
+        >
+          <label
+            htmlFor="creditCard"
+            className={selectedPayment === 'creditCard' ? 'selected' : ''}
+          >
+            <input
+              type="radio"
+              className="radio"
+              id="creditCard"
+              name="paymentChoiseRadio"
+              checked={selectedPayment === 'creditCard'}
+              onChange={handleChangePayment}
+            />
+            <ion-icon name="card-outline" style={{ marginRight: '10px' }} />
+            Paiement par carte bancaire
+            {selectedPayment === 'creditCard' && (
+              <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" width="32" height="32" viewBox="0 0 512 512" color="#fd7c55"><title>Checkmark Circle</title>
+                <motion.path
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.4 }}
+                  d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeMiterlimit="10"
+                  strokeWidth="32"
+                />
+                <motion.path
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.4 }}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="32"
+                  d="M352 176L217.6 336 160 272"
+                />
+              </svg>
+            )}
+          </label>
+        </li>
+        {selectedPayment && (
+        <motion.div
+          className="validOrderButton"
+          onClick={selectedPayment === 'onSite' ? handleClick : handleCreditCardLayout}
+          initial={{ x: '-100vw' }}
+          animate={{ x: 0 }}
+        >
+          <p>Valider</p>
+          <ion-icon name="checkmark-circle-outline" style={{ color: ValidateColor }} />
+        </motion.div>
+        )}
+      </ul>
+      )}
+      {isCreditCardLayout && (
+        <Stripe />
       )}
     </div>
   );

@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 const calculateOrderAmount = (amount) => amount * 100;
-app.post('/create-payment-intent', cors(), async (req, res) => {
+app.post('/create-payment-intent', async (req, res) => {
   const { amount } = req.body;
 
   // Create a PaymentIntent with the order amount and currency
