@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { postOrder } from '../../AsyncChunk/AsyncChunkShoppingCart';
-import { getSelectedDepotId, setSelectedDepot } from '../../feature/shoppingCart.slice';
+import { getSelectedDepotId, setIsCreditCardLayout, setSelectedDepot } from '../../feature/shoppingCart.slice';
 import './choiseDepotPoints.scss';
 import {
   setButtonText,
@@ -13,12 +13,18 @@ import Stripe from '../../stripe/StripeContainer';
 
 function ChoiseDepotPoints() {
   const dispatch = useDispatch();
+  const isCreditCardLayout = useSelector((state) => state.shoppingCart.isCreditCardLayout);
   const depots = useSelector((state) => state.shoppingCart.depots.data);
   const selectedDepot = useSelector((state) => state.shoppingCart.selectedDepot);
   const [isSelectDepotLayout, setIsSelectDepotLayout] = useState(true);
   const [isPaymentchoiseLayout, setIsPaymentChoiseLayout] = useState(false);
-  const [isCreditCardLayout, setIsCreditCardLayout] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState('');
+  useEffect(() => {
+    setIsSelectDepotLayout(true);
+    setIsPaymentChoiseLayout(false);
+    dispatch(setIsCreditCardLayout(false));
+    setSelectedPayment('');
+  }, []);
   //
   // get adress of depots
   //
@@ -51,7 +57,7 @@ function ChoiseDepotPoints() {
   };
   const handleCreditCardLayout = () => {
     setIsPaymentChoiseLayout(false);
-    setIsCreditCardLayout(true);
+    dispatch(setIsCreditCardLayout(true));
   };
   const title = () => {
     if (isPaymentchoiseLayout) {

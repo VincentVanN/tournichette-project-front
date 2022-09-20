@@ -1,5 +1,7 @@
 /* eslint-disable no-shadow */
-import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import {
+  PaymentElement, useStripe, useElements,
+} from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowModal } from '../feature/navigation.slice';
@@ -16,7 +18,6 @@ function CheckoutForm() {
     if (!stripe) {
       return;
     }
-
     const clientSecret = new URLSearchParams(window.location.search).get(
       'payment_intent_client_secret',
     );
@@ -24,7 +25,6 @@ function CheckoutForm() {
     if (!clientSecret) {
       return;
     }
-
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case 'succeeded':
@@ -53,7 +53,6 @@ function CheckoutForm() {
     }
 
     setIsLoading(true);
-
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
@@ -68,7 +67,6 @@ function CheckoutForm() {
       dispatch(setServerMessage('Erreur inattendue'));
       dispatch(setShowModal(true));
     }
-
     setIsLoading(false);
   };
 
