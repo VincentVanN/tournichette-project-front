@@ -10,6 +10,7 @@ import { changeQuantityProduct } from '../../utils/cartUtils';
 function Card({
   name, price, unity, quantity, onClick, slug, product, related,
 }) {
+  const isCreditCardLayout = useSelector((state) => state.shoppingCart.isCreditCardLayout);
   const width = useSelector((state) => state.navigation.width);
   const handleClick = () => {
     onClick(related, slug);
@@ -92,6 +93,7 @@ function Card({
             </li>
           </ul>
         </div>
+        {!isCreditCardLayout && (
         <div className="button-group">
           <button
             type="button"
@@ -111,6 +113,8 @@ function Card({
             {`${price}€/${unity === undefined ? 'Pce' : unity}`}
           </div>
         </div>
+        )}
+
       </div>
       )}
       {related === 'carts' && (
