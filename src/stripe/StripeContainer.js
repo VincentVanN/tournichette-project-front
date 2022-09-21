@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable array-callback-return */
 import './stripeContainer.scss';
 import { loadStripe } from 'react-stripe-js';
@@ -5,8 +6,10 @@ import { motion } from 'framer-motion';
 import { Elements } from '@stripe/react-stripe-js';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import CheckoutForm from './CheckoutForm';
-import { setpaymentCustomerId } from '../feature/shoppingCart.slice';
+import { setpaymentCustomerId, setServerMessage } from '../feature/shoppingCart.slice';
+import { setShowModal } from '../feature/navigation.slice';
 
 const PUBLIC_KEY = 'pk_test_51Lg4rDEUfQPSV59kZLzUyYVz3DHuJprHXB7Nv6PozToLr3ddyVlyj8NoEndy4Z1qdLkGRo3TWUnyN7Y4SA9Kz4TI00PnqOc0yx';
 const stripePromise = loadStripe(PUBLIC_KEY);
@@ -18,20 +21,11 @@ function Stripe() {
   const email = useSelector((state) => state.user.user.email);
   const dispatch = useDispatch();
   const [paymentMethods, setPaymentMethods] = useState([]);
-  const [paymentIntentId, setpaymentIntentId] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
-  const handleChangePaymentMethod = (e) => {
-    setPaymentMethod(e.target.id);
-    fetch('http://localhost:5000/update-payment-intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ paymentMethod: e.target.id, paymentIntentId }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setClientSecret(data.clientSecret);
-      });
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  //
+  //
   useEffect(() => {
     if (!paymentCustomerId) {
       fetch('http://localhost:5000/create-customer', {
@@ -41,7 +35,6 @@ function Stripe() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.customer);
           dispatch(setpaymentCustomerId(data.customer.id));
         });
     }
@@ -53,22 +46,49 @@ function Stripe() {
       })
         .then((res) => res.json())
         .then((data) => {
-          setpaymentIntentId(data.paymentIntentId);
           setPaymentMethods(data.paymentMethods.data);
           setClientSecret(data.clientSecret);
         });
     }
   }, [paymentCustomerId]);
+  //
+  //
+  const handleChangePaymentMethod = (e) => {
+    setPaymentMethod(e.target.id);
+  };
+  //
+  //
+  const handleSubmitPayment = () => {
+    setIsLoading(true);
+    fetch('http://localhost:5000/charge-existing-card', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount, paymentCustomerId, paymentMethod }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          dispatch(setServerMessage(data.error));
+          setIsLoading(false);
+          dispatch(setShowModal(true));
+        }
+        else {
+          setIsLoading(false);
+          navigate('/commande-ok', { state: { origin: 'creditCard' } });
+        }
+      });
+  };
   const appearance = {
     theme: 'stripe',
-  }
+  };
   const options = {
     clientSecret,
     appearance,
   };
-  console.log(paymentIntentId);
   const paymentMethodArray = paymentMethods
-    .filter((method, index) => method.card.last4[index + 1] === method.card.last4[index]);
+    .filter((element, index) => element.card.last4[index] === element.card.last4[index + 1]);
+  //
+  //
   return (
     <div className="stripe">
       {(paymentMethods.length !== 0) && (
@@ -131,6 +151,21 @@ function Stripe() {
               </li>
             ))}
           </ul>
+          {paymentMethod && (
+            <motion.button
+              className="creditCard-button paymentMethod"
+              type="button"
+              onClick={handleSubmitPayment}
+              initial={{ x: '-100vw' }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span id="button-text">
+                {isLoading ? <div className="spinner" id="spinner" /> : `Payer maintenant ${amount}€`}
+              </span>
+            </motion.button>
+          )}
+
         </>
 
       )}

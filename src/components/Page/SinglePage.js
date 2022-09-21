@@ -13,6 +13,7 @@ import OrdersRendering from '../User/OrdersRendering';
 import UserContactRendering from '../User/UserContactRendering';
 import Page from './Page';
 import './singlePage.scss';
+import ShoppingCartPaymentSuccess from '../ShoppingCart/ShoppingCartPaymentSuccess';
 
 function SinglePage() {
   const location = useLocation();
@@ -121,6 +122,13 @@ function SinglePage() {
     return (
       <Page>
         <ShoppingCartEmpty />
+      </Page>
+    );
+  }
+  if (location.pathname === '/commande-ok') {
+    return (
+      <Page>
+        <ShoppingCartPaymentSuccess />
       </Page>
     );
   }

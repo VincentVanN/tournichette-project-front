@@ -30,6 +30,7 @@ function AnimatedRoutesLargeScreen() {
           <Route path="/NosPaniers" element={<SinglePage />} />
           <Route path="/profil" element={<SinglePage />} />
           <Route path="/MesAchats" element={<SinglePage />} />
+          <Route path="/commande-ok" element={<SinglePage />} />
           <Route path="/apropos" element={<AboutUs />} />
           <Route path="/CGU" element={<Cgu />} />
           <Route path="/mentions-legales" element={<LegalNotice />} />
