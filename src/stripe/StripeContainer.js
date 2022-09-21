@@ -85,13 +85,18 @@ function Stripe() {
     clientSecret,
     appearance,
   };
-  const paymentMethodArray = paymentMethods
-    .filter((element, index) => element.card.last4[index] === element.card.last4[index + 1]);
+
+  const paymentMethodArray = [];
+  paymentMethods.forEach((element) => {
+    if (!paymentMethodArray.some((method) => element.card.fingerprint === method.card.fingerprint)) {
+      paymentMethodArray.push(element);
+    }
+  });
   //
   //
   return (
     <div className="stripe">
-      {(paymentMethods.length !== 0) && (
+      {(paymentMethodArray.length !== 0) && (
         <>
           <h2 className="title-paymentMethod">
             selectionne une carte
