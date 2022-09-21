@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import { postOrder } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { getSelectedDepotId, setIsCreditCardLayout, setSelectedDepot } from '../../feature/shoppingCart.slice';
 import './choiseDepotPoints.scss';
-import {
-  setButtonText,
-  setRedirection,
-  setShowModal,
-} from '../../feature/navigation.slice';
 import Stripe from '../../stripe/StripeContainer';
 
 function ChoiseDepotPoints() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isCreditCardLayout = useSelector((state) => state.shoppingCart.isCreditCardLayout);
   const depots = useSelector((state) => state.shoppingCart.depots.data);
   const selectedDepot = useSelector((state) => state.shoppingCart.selectedDepot);
@@ -24,6 +21,7 @@ function ChoiseDepotPoints() {
     setIsPaymentChoiseLayout(false);
     dispatch(setIsCreditCardLayout(false));
     setSelectedPayment('');
+    dispatch(setSelectedDepot(''));
   }, []);
   //
   // get adress of depots
@@ -43,10 +41,8 @@ function ChoiseDepotPoints() {
   // set message state and modal
   //
   const handleClick = () => {
-    dispatch(setRedirection('/'));
-    dispatch(setButtonText('Retour à l\'accueil'));
     dispatch(postOrder());
-    dispatch(setShowModal(true));
+    navigate('/commande-ok', { state: { origin: 'cash' } });
   };
   //
   // change icon color at selection
@@ -190,6 +186,7 @@ function ChoiseDepotPoints() {
           onClick={selectedPayment === 'onSite' ? handleClick : handleCreditCardLayout}
           initial={{ x: '-100vw' }}
           animate={{ x: 0 }}
+
         >
           <p>Valider</p>
           <ion-icon name="checkmark-circle-outline" style={{ color: ValidateColor }} />

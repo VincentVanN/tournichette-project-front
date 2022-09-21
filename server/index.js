@@ -25,12 +25,10 @@ app.post('/create-customer', async (req, res) => {
 });
 app.post('/update-payment-intent', async (req, res) => {
   const { paymentMethod, paymentIntentId } = req.body;
-  console.log(paymentMethod);
   const paymentIntent = await stripe.paymentIntents.update(
     paymentIntentId,
     { payment_method: paymentMethod },
   );
-  console.log(paymentIntent);
   res.send(
     {
       clientSecret: paymentIntent.client_secret,
@@ -51,7 +49,7 @@ app.post('/create-payment-intent', async (req, res) => {
       enabled: true,
     },
     customer: customer,
-    setup_future_usage: 'on_session',
+    setup_future_usage: 'off_session',
   });
   res.send(
     {
@@ -61,7 +59,41 @@ app.post('/create-payment-intent', async (req, res) => {
     },
   );
 });
-
+app.post('/charge-existing-card', async (req, res) => {
+  const { amount, paymentCustomerId, paymentMethod } = req.body;
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: calculateOrderAmount(amount),
+      currency: 'EUR',
+      description: 'La Tournichette',
+      payment_method: paymentMethod,
+      customer: paymentCustomerId,
+      off_session: true,
+      confirm: true,
+    });
+    res.send(
+      {
+        succeeded: true,
+        clientSecret: paymentIntent.client_secret,
+      },
+    );
+  }
+  catch (err) {
+    if (err.code === 'authentication_required') {
+      res.send({
+        error: 'authentication nécessaire, saisir la carte',
+      });
+    }
+    else if (err.code) {
+      res.send({
+        error: err.code,
+      });
+    }
+    else {
+      console.log('une erreur est survenue', err);
+    }
+  }
+});
 app.listen(process.env.PORT || 5000, () => {
   console.log('serveur démarré...');
 });

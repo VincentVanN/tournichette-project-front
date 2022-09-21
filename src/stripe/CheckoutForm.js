@@ -56,7 +56,7 @@ function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: 'http://localhost:8080/liste',
+        return_url: 'http://localhost:8080/commande-ok',
       },
     });
     if (error.type === 'card_error' || error.type === 'validation_error') {
@@ -72,6 +72,9 @@ function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
+      <h2 className="title-paymentMethod">
+        Saisis ta nouvelle carte
+      </h2>
       <PaymentElement id="payment-element" />
       <button className="creditCard-button" type="submit" disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">

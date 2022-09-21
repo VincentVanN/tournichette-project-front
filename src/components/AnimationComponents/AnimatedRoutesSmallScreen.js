@@ -16,6 +16,7 @@ import UserContactRendering from '../User/UserContactRendering';
 import UserRendering from '../User/UserRendering';
 import Modal from '../Modal/Modal';
 import { setShowModal } from '../../feature/navigation.slice';
+import ShoppingCartPaymentSuccess from '../ShoppingCart/ShoppingCartPaymentSuccess';
 
 function AnimatedRoutesSmallScreen() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function AnimatedRoutesSmallScreen() {
           <Route path="/liste" element={<ProductsRendering related="products" />} />
           <Route path="/NosPaniers" element={<ProductsRendering related="carts" />} />
           <Route path="/paniers/:slugCart" element={<ProductRendering />} />
+          <Route path="/commande-ok" element={<ShoppingCartPaymentSuccess />} />
           <Route path="/categorie/:slugCategory/:slugProduct" element={<ProductRendering />} />
           <Route path="/apropos" element={<AboutUs />} />
           <Route path="/CGU" element={<Cgu />} />
