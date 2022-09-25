@@ -1,19 +1,23 @@
 /* eslint-disable no-shadow */
+import PropTypes from 'prop-types';
 import {
   PaymentElement, useStripe, useElements,
 } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { setShowModal } from '../feature/navigation.slice';
 import { setServerMessage } from '../feature/shoppingCart.slice';
+import { postOrder } from '../AsyncChunk/AsyncChunkShoppingCart';
 
-function CheckoutForm() {
+function CheckoutForm({ paymentIntentId, paymentCustomerId }) {
   const amount = useSelector((state) => state.shoppingCart.cartAmount);
   const stripe = useStripe();
   const elements = useElements();
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     if (!stripe) {
       return;
@@ -51,21 +55,22 @@ function CheckoutForm() {
     if (!stripe || !elements) {
       return;
     }
-
     setIsLoading(true);
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         return_url: 'http://localhost:8080/commande-ok',
       },
+      redirect: 'if_required',
     });
-    if (error.type === 'card_error' || error.type === 'validation_error') {
-      dispatch(setServerMessage('Erreur de saisie'));
+    if (error) {
+      console.log(error);
+      dispatch(setServerMessage(error.message));
       dispatch(setShowModal(true));
     }
-    else {
-      dispatch(setServerMessage('Erreur inattendue'));
-      dispatch(setShowModal(true));
+    if (!error) {
+      dispatch(postOrder({ stripeCustomerId: paymentCustomerId, paymentId: paymentIntentId }));
+      navigate('/commande-ok', { state: { origin: 'creditCard' } });
     }
     setIsLoading(false);
   };
@@ -85,5 +90,8 @@ function CheckoutForm() {
     </form>
   );
 }
-
+CheckoutForm.propTypes = {
+  paymentIntentId: PropTypes.string.isRequired,
+  paymentCustomerId: PropTypes.string.isRequired,
+};
 export default CheckoutForm;

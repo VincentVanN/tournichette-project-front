@@ -135,7 +135,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 2%;
+  
   & :hover{
     cursor: pointer;
   }
@@ -161,4 +161,13 @@
 }
 .selected {
   font-weight: 600;
+}
+.paymentMethod-line {
+  display: flex;
+ justify-content: space-around;
+  align-items: center;
+}
+.paymentMethod-label {
+  display: flex;
+  flex-grow: 1;
 }

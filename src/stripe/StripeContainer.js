@@ -10,19 +10,21 @@ import { useNavigate } from 'react-router';
 import CheckoutForm from './CheckoutForm';
 import { setpaymentCustomerId, setServerMessage } from '../feature/shoppingCart.slice';
 import { setShowModal } from '../feature/navigation.slice';
+import { postOrder } from '../AsyncChunk/AsyncChunkShoppingCart';
 
 const PUBLIC_KEY = 'pk_test_51Lg4rDEUfQPSV59kZLzUyYVz3DHuJprHXB7Nv6PozToLr3ddyVlyj8NoEndy4Z1qdLkGRo3TWUnyN7Y4SA9Kz4TI00PnqOc0yx';
 const stripePromise = loadStripe(PUBLIC_KEY);
 
 function Stripe() {
   const [clientSecret, setClientSecret] = useState('');
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [paymentIntentId, setPaymentIntentId] = useState('');
   const amount = useSelector((state) => state.shoppingCart.cartAmount);
   const paymentCustomerId = useSelector((state) => state.shoppingCart.paymentCustomerId);
   const email = useSelector((state) => state.user.user.email);
   const dispatch = useDispatch();
-  const [paymentMethods, setPaymentMethods] = useState([]);
-  const [paymentMethod, setPaymentMethod] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   //
   //
@@ -47,6 +49,7 @@ function Stripe() {
         .then((res) => res.json())
         .then((data) => {
           setPaymentMethods(data.paymentMethods.data);
+          setPaymentIntentId(data.paymentIntentId);
           setClientSecret(data.clientSecret);
         });
     }
@@ -74,8 +77,25 @@ function Stripe() {
         }
         else {
           setIsLoading(false);
+          dispatch(postOrder({ stripeCustomerId: paymentCustomerId, paymentId: data.paymentIntentId }));
           navigate('/commande-ok', { state: { origin: 'creditCard' } });
         }
+      });
+  };
+  const handleClickDeletePaymentMethod = (e) => {
+    const paymentMethodList = paymentMethods.filter((method) => method.card.fingerprint === e.target.id);
+    const paymentMethodIdList = [];
+    paymentMethodList.forEach((method) => paymentMethodIdList.push(method.id));
+    console.log(paymentMethodIdList);
+    fetch('http://localhost:5000/delete-card', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ paymentMethodIdList }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        const newArrayOfPaymentMethod = paymentMethods.filter((method) => method.card.fingerprint !== e.target.id);
+        setPaymentMethods(newArrayOfPaymentMethod);
       });
   };
   const appearance = {
@@ -85,18 +105,18 @@ function Stripe() {
     clientSecret,
     appearance,
   };
-
   const paymentMethodArray = [];
   paymentMethods.forEach((element) => {
     if (!paymentMethodArray.some((method) => element.card.fingerprint === method.card.fingerprint)) {
       paymentMethodArray.push(element);
     }
   });
+
   //
   //
   return (
     <div className="stripe">
-      {(paymentMethodArray.length !== 0) && (
+      {(paymentMethods.length !== 0) && (
         <>
           <h2 className="title-paymentMethod">
             selectionne une carte
@@ -105,10 +125,17 @@ function Stripe() {
             {paymentMethodArray.map((method) => (
               <li
                 key={method.id}
+                className="paymentMethod-line"
               >
+                <ion-icon
+                  name="trash-outline"
+                  style={{ fontSize: '1.3em' }}
+                  id={method.card.fingerprint}
+                  onClick={handleClickDeletePaymentMethod}
+                />
                 <label
                   htmlFor={method.id}
-                  className={paymentMethod === method.id ? 'selected' : ''}
+                  className={`paymentMethod-label ${paymentMethod === method.id ? 'selected' : ''}`}
                 >
                   <input
                     type="radio"
@@ -124,7 +151,7 @@ function Stripe() {
                     >{method.card.brand}
                     </p>
                     <p>**** **** **** {method.card.last4}</p>
-                    <p>expire le {method.card.exp_month}/{method.card.exp_year}</p>
+                    <p>exp {method.card.exp_month}/{method.card.exp_year}</p>
                     {paymentMethod === method.id && (
                     <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" width="32" height="32" viewBox="0 0 512 512" color="#fd7c55"><title>Checkmark Circle</title>
                       <motion.path
@@ -176,7 +203,7 @@ function Stripe() {
       )}
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm paymentIntentId={paymentIntentId} paymentCustomerId={paymentCustomerId} />
         </Elements>
       )}
     </div>
