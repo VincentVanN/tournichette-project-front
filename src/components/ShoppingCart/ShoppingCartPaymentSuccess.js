@@ -1,11 +1,18 @@
 import { useLocation, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 
 function ShoppingCartPaymentSuccess() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleClickHome = () => navigate('/');
   const handleClickProfil = () => navigate('/profil');
   const { state } = useLocation();
+  useEffect(() => {
+    dispatch(getOrderHistory());
+  }, []);
   return (
     <div className="shoppingCart">
       <motion.div

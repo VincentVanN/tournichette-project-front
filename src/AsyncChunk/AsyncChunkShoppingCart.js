@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -17,9 +18,12 @@ export const getDepotsList = createAsyncThunk(
 );
 export const postOrder = createAsyncThunk(
   'shoppingCart/postOrder',
-  async (_, { getState }) => {
+  async (paymentObject = null, { getState }) => {
+    //
+    // get token & payment element
     //
     const { token } = getState().user.user;
+    const { stripeCustomerId, paymentIntentId } = paymentObject;
     //
     // get cart product in shoppingCart
     //
@@ -45,6 +49,8 @@ export const postOrder = createAsyncThunk(
     const order = {
       price: getState().shoppingCart.cartAmount.toString(),
       depot: getState().shoppingCart.selectedDepotId,
+      stripeCustomerId: stripeCustomerId || null,
+      paymentIntentId: paymentIntentId || null,
       orderProducts,
       cartOrders,
     };
