@@ -6,6 +6,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  &-top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 #payment-form {
   width: 90%;
@@ -106,24 +113,6 @@
   -webkit-animation: loading 2s infinite ease;
   animation: loading 2s infinite ease;
 }
-
-@keyframes loading {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  form {
-    width: 80vw;
-    min-width: initial;
-  }
-}
 .title-paymentMethod {
   color: vars.$colorDarkGreen;
   font-size: 1.2em;
@@ -170,4 +159,21 @@
 .paymentMethod-label {
   display: flex;
   flex-grow: 1;
+}
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  form {
+    width: 80vw;
+    min-width: initial;
+  }
 }

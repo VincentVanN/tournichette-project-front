@@ -6,11 +6,14 @@ import {
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { motion } from 'framer-motion';
 import { setShowModal } from '../feature/navigation.slice';
 import { setServerMessage } from '../feature/shoppingCart.slice';
 import { postOrder } from '../AsyncChunk/AsyncChunkShoppingCart';
 
-function CheckoutForm({ paymentIntentId, paymentCustomerId }) {
+function CheckoutForm({
+  paymentIntentId, paymentCustomerId, isStripeTop, setIsFocus,
+}) {
   const amount = useSelector((state) => state.shoppingCart.cartAmount);
   const stripe = useStripe();
   const elements = useElements();
@@ -76,22 +79,38 @@ function CheckoutForm({ paymentIntentId, paymentCustomerId }) {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <h2 className="title-paymentMethod">
-        Saisis ta nouvelle carte
-      </h2>
-      <PaymentElement id="payment-element" />
-      <button className="creditCard-button" type="submit" disabled={isLoading || !stripe || !elements} id="submit">
+    <form
+      id="payment-form"
+      onSubmit={handleSubmit}
+    >
+      <PaymentElement
+        id="payment-element"
+        onFocus={() => setIsFocus(false)}
+      />
+      {!isStripeTop && (
+      <motion.button
+        className="creditCard-button"
+        type="submit"
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+        initial={{ x: '-100vw' }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.2 }}
+      >
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner" /> : `Payer maintenant ${amount}€`}
+          {isLoading ? <motion.div className="spinner" id="spinner" /> : `Payer maintenant ${amount}€`}
         </span>
-      </button>
-      {message && <div id="payment-message">{message}</div>}
+      </motion.button>
+      )}
+
+      {message && <motion.div id="payment-message">{message}</motion.div>}
     </form>
   );
 }
 CheckoutForm.propTypes = {
   paymentIntentId: PropTypes.string.isRequired,
+  isStripeTop: PropTypes.bool.isRequired,
   paymentCustomerId: PropTypes.string.isRequired,
+  setIsFocus: PropTypes.func.isRequired,
 };
 export default CheckoutForm;
