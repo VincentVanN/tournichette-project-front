@@ -20,6 +20,7 @@ function Stripe() {
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
   const [paymentIntentId, setPaymentIntentId] = useState('');
   const amount = useSelector((state) => state.shoppingCart.cartAmount);
   const paymentCustomerId = useSelector((state) => state.shoppingCart.paymentCustomerId);
@@ -28,6 +29,7 @@ function Stripe() {
   const navigate = useNavigate();
   //
   //
+
   useEffect(() => {
     if (!paymentCustomerId) {
       fetch('http://localhost:5000/create-customer', {
@@ -111,17 +113,21 @@ function Stripe() {
       paymentMethodArray.push(element);
     }
   });
-
   //
   //
   return (
     <div className="stripe">
       {(paymentMethods.length !== 0) && (
-        <>
+        <div
+          className="stripe-top"
+          onFocus={() => setIsFocus(true)}
+        >
           <h2 className="title-paymentMethod">
-            selectionne une carte
+            Selectionne une carte
           </h2>
-          <ul className="paymentMethod-container">
+          <ul
+            className="paymentMethod-container"
+          >
             {paymentMethodArray.map((method) => (
               <li
                 key={method.id}
@@ -135,7 +141,7 @@ function Stripe() {
                 />
                 <label
                   htmlFor={method.id}
-                  className={`paymentMethod-label ${paymentMethod === method.id ? 'selected' : ''}`}
+                  className={`paymentMethod-label ${(paymentMethod === method.id && isFocus) ? 'selected' : ''}`}
                 >
                   <input
                     type="radio"
@@ -152,7 +158,7 @@ function Stripe() {
                     </p>
                     <p>**** **** **** {method.card.last4}</p>
                     <p>exp {method.card.exp_month}/{method.card.exp_year}</p>
-                    {paymentMethod === method.id && (
+                    {(paymentMethod === method.id && isFocus) && (
                     <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" width="32" height="32" viewBox="0 0 512 512" color="#fd7c55"><title>Checkmark Circle</title>
                       <motion.path
                         initial={{ pathLength: 0 }}
@@ -183,7 +189,7 @@ function Stripe() {
               </li>
             ))}
           </ul>
-          {paymentMethod && (
+          {(paymentMethod && isFocus) && (
             <motion.button
               className="creditCard-button paymentMethod"
               type="button"
@@ -198,12 +204,15 @@ function Stripe() {
             </motion.button>
           )}
 
-        </>
+        </div>
 
       )}
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm paymentIntentId={paymentIntentId} paymentCustomerId={paymentCustomerId} />
+          <h2 className="title-paymentMethod">
+            {paymentMethods.length !== 0 ? 'Ou saisis ta nouvelle carte' : 'Saisis ta nouvelle carte'}
+          </h2>
+          <CheckoutForm paymentIntentId={paymentIntentId} paymentCustomerId={paymentCustomerId} isStripeTop={isFocus} setIsFocus={setIsFocus} />
         </Elements>
       )}
     </div>

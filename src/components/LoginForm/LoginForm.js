@@ -5,6 +5,7 @@ import Field from './Field/Field';
 import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';
 import { loginUser } from '../../AsyncChunk/AsyncChunkUser';
+import Button from '../Button/Button';
 
 function LoginForm() {
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
@@ -50,7 +51,7 @@ function LoginForm() {
                   type="submit"
                   className="form-button"
                 >
-                  <ion-icon name="checkmark-circle-outline" style={{ fontSize: '3.5em' }} />
+                  <Button text="Valider" icon="checkmark-circle-outline" />
                 </button>
                 <div
                   className="form-signIn"

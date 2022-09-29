@@ -1,0 +1,66 @@
+@use 'src/styles/_vars.scss';
+
+.iconButton_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttonToggle {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 70px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.window {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: vars.$colorBackgroundButton;
+  border-radius: 70px;
+}
+.buttonToggle.active ~ .window {
+  width: 180px;
+  height: 50px;
+  z-index: 1;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+.window::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: vars.$colorBackgroundButton;
+  left: calc(50% - 8px);
+  bottom: 4px;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.buttonToggle.active ~ .window::before {
+  transition-delay: 0.3s;
+  bottom: -6px;
+}
+.text {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.1s;
+  font-size: 1.8em;
+  color: #fff;
+  transform: translateY(-10px);
+  transition-delay: 0s;
+}
+.buttonToggle.active ~ .window .text {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(10px);
+  transition-delay: 0.7s;
+}

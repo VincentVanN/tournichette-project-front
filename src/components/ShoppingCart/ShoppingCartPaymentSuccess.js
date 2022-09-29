@@ -1,7 +1,10 @@
 import { useLocation, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import logo from 'src/assets/logo.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import './shoppingCartPaymentSuccess.scss';
+
 import { getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 
 function ShoppingCartPaymentSuccess() {
@@ -9,43 +12,61 @@ function ShoppingCartPaymentSuccess() {
   const dispatch = useDispatch();
   const handleClickHome = () => navigate('/');
   const handleClickProfil = () => navigate('/profil');
+  const name = useSelector((state) => state.user.user.firstname);
   const { state } = useLocation();
   useEffect(() => {
     dispatch(getOrderHistory());
   }, []);
   return (
-    <div className="shoppingCart">
-      <motion.div
-        className="shoppingCart-empty"
-        initial={{ x: '-100vw' }}
-        animate={{ x: 0 }}
-      >
-        <div
-          className="shoppingCart-empty-title"
-        >
-          {!state || state.origin === 'creditCard' ? 'Paiement effectué! Merci pour tes achats' : 'Commande enregistrée! Merci pour ta fidélité'}
-        </div>
-        <div
-          className="shoppingCart-empty-content"
-          onClick={handleClickHome}
-        >
-          Retour à l'accueil
-        </div>
-        <ion-icon name="arrow-forward-circle-outline" size="large" />
-        <div
-          className="shoppingCart-empty"
-          onClick={handleClickProfil}
-          initial={{ x: '100vw' }}
-          animate={{ x: 0 }}
-        >
-          <div
-            className="shoppingCart-empty-content"
-          >
-            Détail des commandes
+    <div className="ShoppingCartSuccess-container">
+      <div className="ShoppingCartSuccess">
+        <img className="ShoppingCartSuccess-logo" src={logo} alt="logo Tournichette" />
+        <div className="ShoppingCartSuccess-annoncement">
+          <div className="ShoppingCartSuccess-hello">
+            {`Merci ${name}!`}
           </div>
-          <ion-icon name="arrow-forward-circle-outline" size="large" />
+          {!state || state.origin === 'creditCard' ? 'Paiement effectué!' : 'Commande enregistrée!'}
         </div>
-      </motion.div>
+        <div className="ShoppingCartSuccess-button-group">
+          <div
+            className="ShoppingCartSuccess-button-container"
+            onClick={handleClickHome}
+          >
+            <h2 className="ShoppingCartSuccess-button-title">Retour à l'accueil</h2>
+            <motion.button
+              className="ShoppingCartSuccess-button"
+              type="button"
+              initial={{ x: 0 }}
+              animate={{
+                x: [0, 90, 0],
+                rotate: [0, 360, 0],
+                transition: { duration: 1, delay: 0.2 },
+              }}
+            >
+              <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f88e6d', fontSize: '50px' }} />
+            </motion.button>
+          </div>
+          <div
+            className="ShoppingCartSuccess-button-container"
+            onClick={handleClickProfil}
+          >
+            <h2 className="ShoppingCartSuccess-button-title">Voir l'historique des commandes</h2>
+            <motion.button
+              className="ShoppingCartSuccess-button"
+              type="button"
+              initial={{ x: 0 }}
+              animate={{
+                x: [0, 90, 0],
+                rotate: [0, 360, 0],
+                transition: { duration: 1, delay: 0.2 },
+              }}
+              exit={{ x: 0 }}
+            >
+              <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f88e6d', fontSize: '50px' }} />
+            </motion.button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
