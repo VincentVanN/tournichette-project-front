@@ -29,6 +29,7 @@ function CartWithCount() {
   //
   const [isHover, setIsHover] = useState(false);
   const [isHoverRedirection, setIsHoverRedirection] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
   const windowVariants = {
     open: {
       width: 'auto',
@@ -140,7 +141,7 @@ function CartWithCount() {
             variants={textVariants}
           >
             <ul>
-              {cartToDisplay.map((product) => (
+              {cartToDisplay.map((product, index) => (
                 <li
                   className="productToDisplay"
                   key={product.name}
@@ -158,16 +159,20 @@ function CartWithCount() {
                     <div className="cartWithCountIncrement">
                       <ion-icon
                         name="remove-circle-outline"
-                        style={{ fontSize: '1.5em' }}
+                        style={{ fontSize: '1.5em', color: -(index + 1) === activeIndex ? '#fd7c55' : '#356859' }}
                         onClick={() => handleClickDecrementCart(product)}
                         className="carWithCount-button"
+                        onMouseDown={() => setActiveIndex(-(index + 1))}
+                        onMouseUp={() => setActiveIndex(null)}
                       />
 
                       <ion-icon
                         name="add-circle-outline"
-                        style={{ fontSize: '1.5em' }}
+                        style={{ fontSize: '1.5em', color: (index + 1) === activeIndex ? '#fd7c55' : '#356859' }}
                         onClick={() => handleClickIncrementCart(product)}
                         className="carWithCount-button"
+                        onMouseDown={() => setActiveIndex((index + 1))}
+                        onMouseUp={() => setActiveIndex(null)}
                       />
                     </div>
                     <div className="carWithCount-button-group-meta">
