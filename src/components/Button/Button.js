@@ -9,7 +9,7 @@ function Button({ text, icon }) {
     open: {
       width: '180px',
       height: '50px',
-      zIndex: 1,
+      zIndex: 5,
       y: '-70px',
       transition: {
         duration: 0.5,
@@ -22,7 +22,7 @@ function Button({ text, icon }) {
       width: '30px',
       height: '30px',
       y: 0,
-      zIndex: -1,
+      zIndex: -5,
       transition: {
         duration: 0.4,
         width: { duration: 0.1 },
@@ -44,10 +44,16 @@ function Button({ text, icon }) {
         whileHover={{ scale: 1.1 }}
         animate={{
           rotate: isHover ? 360 : 0,
-          transition: { duration: 0.7 },
+          transition: {
+            duration: 0.7,
+          },
         }}
       >
-        <ion-icon name={icon} style={{ fontSize: '3.5em' }} />
+        <ion-icon
+          name={icon}
+          style={{ fontSize: '3.5em', color: isHover ? '#fd7c55' : '#356859' }}
+        />
+
       </motion.div>
 
       <motion.div

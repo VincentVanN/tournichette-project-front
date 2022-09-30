@@ -54,7 +54,6 @@ function Home() {
                   rotate: [0, 360, 0],
                   transition: { duration: 1, delay: 0.2 },
                 }}
-                exit={{ x: 0 }}
               >
                 <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f88e6d', fontSize: '50px' }} />
               </motion.button>
