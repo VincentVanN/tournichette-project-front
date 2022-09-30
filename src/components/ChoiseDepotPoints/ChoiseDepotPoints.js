@@ -6,6 +6,7 @@ import { postOrder } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { getSelectedDepotId, setIsCreditCardLayout, setSelectedDepot } from '../../feature/shoppingCart.slice';
 import './choiseDepotPoints.scss';
 import Stripe from '../../stripe/StripeContainer';
+import Button from '../Button/Button';
 
 function ChoiseDepotPoints() {
   const dispatch = useDispatch();
@@ -44,10 +45,6 @@ function ChoiseDepotPoints() {
     dispatch(postOrder());
     navigate('/commande-ok', { state: { origin: 'cash' } });
   };
-  //
-  // change icon color at selection
-  const ValidateColor = selectedDepot ? '#fd7c55' : '#356859';
-  //
   const handleChangePayment = (e) => {
     setSelectedPayment(e.target.id);
   };
@@ -188,8 +185,7 @@ function ChoiseDepotPoints() {
           animate={{ x: 0 }}
 
         >
-          <p>Valider</p>
-          <ion-icon name="checkmark-circle-outline" style={{ color: ValidateColor }} />
+          <Button text="Valider" icon="checkmark-circle-outline" />
         </motion.div>
         )}
       </ul>

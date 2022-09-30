@@ -1,0 +1,67 @@
+@use 'src/styles/_vars.scss';
+
+.cartWindow {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: vars.$colorMediumGreen;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cartText {
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.1s;
+  font-size: 0.9em;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+}
+.product-line {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.dotted {
+  flex: 1;
+  height: 15px;
+  border-bottom: dotted 1px #fff;
+}
+.carWithCount-button-group{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: vars.$colorMediumGreen;
+  color: #fff;
+  font-weight: 600;
+  color: vars.$colorDarkGreen;
+}
+.cartWithCountIncrement {
+  display: flex;
+}
+.productToDisplay {
+  margin-bottom: 7px;
+}
+.globalAmount {
+  display: flex;
+  justify-content:flex-end;
+  font-size: 1.1em;
+  border-top: solid 2px rgb(53, 104, 89);
+  padding: 10px;
+}
+.redirection {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2em;
+  &:hover {
+    color: vars.$colorOrange;
+  }
+}

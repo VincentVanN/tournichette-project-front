@@ -64,21 +64,7 @@
 }
 .validOrderButton {
   position: absolute;
-  bottom: 10px;
-  width: auto;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 40px;
-  border-radius: 20px;
-  border: solid 1px vars.$colorMediumGreen;
-  background: vars.$colorMediumGreen;
-  font-family: vars.$fontMontserrat;
-  color: vars.$colorBeige;
-  font-weight: 600;
-  font-size: 1.2em;
-  box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+  bottom: 20px;
   & :hover {
     cursor: pointer;
   }

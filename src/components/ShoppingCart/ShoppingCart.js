@@ -6,6 +6,7 @@ import Card from '../Card/Card';
 import ChoiseDepotPoints from '../ChoiseDepotPoints/ChoiseDepotPoints';
 import ShoppingCartEmpty from './ShoppingCartEmpty';
 import { deleteShoppingCart } from '../../feature/shoppingCart.slice';
+import Button from '../Button/Button';
 
 function ShoppingCart() {
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
@@ -91,11 +92,10 @@ function ShoppingCart() {
               </div>
               )}
               <div
-                className="choiseDepotButton"
+                className="choiseDepotButton-largeScreen"
                 onClick={handleDeleteCart}
               >
-                <p>Vider</p>
-                <ion-icon name="close-circle-outline" style={{ color: '#fd7c55' }} />
+                <Button text="Tout supprimer" icon="trash-outline" />
               </div>
             </motion.div>
 
