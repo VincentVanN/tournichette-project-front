@@ -32,24 +32,24 @@ function Stripe() {
   //
 
   useEffect(() => {
-    // if (!paymentCustomerId) {
-    //   fetch(`${baseUrlNode}/create-customer`, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     mode: 'no-cors',
-    //     body: JSON.stringify({ email }),
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       dispatch(setpaymentCustomerId(data.customer.id));
-    //     });
-    // }
-    // if (paymentCustomerId) {
+    if (!paymentCustomerId) {
+      fetch(`${baseUrlNode}/create-customer`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        body: JSON.stringify({ email }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch(setpaymentCustomerId(data.customer.id));
+        });
+    }
+    if (paymentCustomerId) {
       fetch(`${baseUrlNode}/create-payment-intent`, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount/*, customer: paymentCustomerId*/ }),
+        body: JSON.stringify({ amount, customer: paymentCustomerId }),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -57,8 +57,8 @@ function Stripe() {
           setPaymentIntentId(data.paymentIntentId);
           setClientSecret(data.clientSecret);
         });
-    // }
-  }, [/*paymentCustomerId*/ ]);
+    }
+  }, [paymentCustomerId]);
   //
   //
   const handleChangePaymentMethod = (e) => {

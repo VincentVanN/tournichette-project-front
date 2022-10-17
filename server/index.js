@@ -33,30 +33,38 @@ app.post('/create-customer', async (req, res) => {
   const customer = await stripe.customers.create({
     email: email,
   });
+  res.set({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  });
   res.send(
     {
       customer: customer,
     },
   );
 });
-app.post('/update-payment-intent', async (req, res) => {
+app.post('/update-payment-intent', { mode: 'no-cors' }, async (req, res) => {
   const { paymentMethod, paymentIntentId } = req.body;
   const paymentIntent = await stripe.paymentIntents.update(
     paymentIntentId,
     { payment_method: paymentMethod },
   );
+  res.set({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  });
   res.send(
     {
       clientSecret: paymentIntent.client_secret,
     },
   );
 });
-app.post('/create-payment-intent', async (req, res) => {
-  const { amount/* , customer */ } = req.body;
-  // const paymentMethods = await stripe.customers.listPaymentMethods(
-  //   customer,
-  //   { type: 'card' },
-  // );
+app.post('/create-payment-intent', { mode: 'no-cors' }, async (req, res) => {
+  const { amount, customer } = req.body;
+  const paymentMethods = await stripe.customers.listPaymentMethods(
+    customer,
+    { type: 'card' },
+  );
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(amount),
     currency: 'EUR',
@@ -64,18 +72,22 @@ app.post('/create-payment-intent', async (req, res) => {
     automatic_payment_methods: {
       enabled: true,
     },
-    // customer: customer,
+    customer: customer,
     setup_future_usage: 'off_session',
+  });
+  res.set({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   });
   res.send(
     {
       clientSecret: paymentIntent.client_secret,
       paymentIntentId: paymentIntent.id,
-      // paymentMethods: paymentMethods,
+      paymentMethods: paymentMethods,
     },
   );
 });
-app.post('/charge-existing-card', async (req, res) => {
+app.post('/charge-existing-card', { mode: 'no-cors' }, async (req, res) => {
   const { amount, paymentCustomerId, paymentMethod } = req.body;
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -86,6 +98,10 @@ app.post('/charge-existing-card', async (req, res) => {
       customer: paymentCustomerId,
       off_session: true,
       confirm: true,
+    });
+    res.set({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     });
     res.send(
       {
@@ -110,7 +126,7 @@ app.post('/charge-existing-card', async (req, res) => {
     }
   }
 });
-app.post('/delete-card', async (req, res) => {
+app.post('/delete-card', { mode: 'no-cors' }, async (req, res) => {
   const { paymentMethodIdList } = req.body;
   const paymentMethod = await paymentMethodIdList.forEach((element) => stripe.paymentMethods.detach(element));
   res.send(
