@@ -35,11 +35,8 @@ function Stripe() {
     if (!paymentCustomerId) {
       fetch(`${baseUrlNode}/create-customer`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
         body: JSON.stringify({ email }),
       })
         .then((res) => res.json())
@@ -50,11 +47,8 @@ function Stripe() {
     if (paymentCustomerId) {
       fetch(`${baseUrlNode}/create-payment-intent`, {
         method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount, customer: paymentCustomerId }),
       })
         .then((res) => res.json())
@@ -76,11 +70,8 @@ function Stripe() {
     setIsLoading(true);
     fetch(`${baseUrlNode}/charge-existing-card`, {
       method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount, paymentCustomerId, paymentMethod }),
     })
       .then((res) => res.json())
@@ -104,11 +95,8 @@ function Stripe() {
     console.log(paymentMethodIdList);
     fetch(`${baseUrlNode}/delete-card`, {
       method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ paymentMethodIdList }),
     })
       .then((res) => res.json())
