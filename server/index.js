@@ -43,7 +43,7 @@ app.post('/create-customer', async (req, res) => {
     },
   );
 });
-app.post('/update-payment-intent', { mode: 'no-cors' }, async (req, res) => {
+app.post('/update-payment-intent', async (req, res) => {
   const { paymentMethod, paymentIntentId } = req.body;
   const paymentIntent = await stripe.paymentIntents.update(
     paymentIntentId,
@@ -59,7 +59,7 @@ app.post('/update-payment-intent', { mode: 'no-cors' }, async (req, res) => {
     },
   );
 });
-app.post('/create-payment-intent', { mode: 'no-cors' }, async (req, res) => {
+app.post('/create-payment-intent', async (req, res) => {
   const { amount, customer } = req.body;
   const paymentMethods = await stripe.customers.listPaymentMethods(
     customer,
@@ -87,7 +87,7 @@ app.post('/create-payment-intent', { mode: 'no-cors' }, async (req, res) => {
     },
   );
 });
-app.post('/charge-existing-card', { mode: 'no-cors' }, async (req, res) => {
+app.post('/charge-existing-card', async (req, res) => {
   const { amount, paymentCustomerId, paymentMethod } = req.body;
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -126,7 +126,7 @@ app.post('/charge-existing-card', { mode: 'no-cors' }, async (req, res) => {
     }
   }
 });
-app.post('/delete-card', { mode: 'no-cors' }, async (req, res) => {
+app.post('/delete-card', async (req, res) => {
   const { paymentMethodIdList } = req.body;
   const paymentMethod = await paymentMethodIdList.forEach((element) => stripe.paymentMethods.detach(element));
   res.send(
