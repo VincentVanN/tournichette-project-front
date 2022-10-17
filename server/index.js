@@ -33,10 +33,6 @@ app.post('/create-customer', async (req, res) => {
   const customer = await stripe.customers.create({
     email: email,
   });
-  res.set({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  });
   res.send(
     {
       customer: customer,
@@ -49,10 +45,6 @@ app.post('/update-payment-intent', async (req, res) => {
     paymentIntentId,
     { payment_method: paymentMethod },
   );
-  res.set({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  });
   res.send(
     {
       clientSecret: paymentIntent.client_secret,
@@ -75,10 +67,6 @@ app.post('/create-payment-intent', async (req, res) => {
     customer: customer,
     setup_future_usage: 'off_session',
   });
-  res.set({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  });
   res.send(
     {
       clientSecret: paymentIntent.client_secret,
@@ -98,10 +86,6 @@ app.post('/charge-existing-card', async (req, res) => {
       customer: paymentCustomerId,
       off_session: true,
       confirm: true,
-    });
-    res.set({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     });
     res.send(
       {
