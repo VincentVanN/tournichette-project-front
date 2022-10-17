@@ -52,11 +52,11 @@ app.post('/update-payment-intent', async (req, res) => {
   );
 });
 app.post('/create-payment-intent', async (req, res) => {
-  const { amount, customer } = req.body;
-  const paymentMethods = await stripe.customers.listPaymentMethods(
-    customer,
-    { type: 'card' },
-  );
+  const { amount/* , customer */ } = req.body;
+  // const paymentMethods = await stripe.customers.listPaymentMethods(
+  //   customer,
+  //   { type: 'card' },
+  // );
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(amount),
     currency: 'EUR',
@@ -64,14 +64,14 @@ app.post('/create-payment-intent', async (req, res) => {
     automatic_payment_methods: {
       enabled: true,
     },
-    customer: customer,
+    // customer: customer,
     setup_future_usage: 'off_session',
   });
   res.send(
     {
       clientSecret: paymentIntent.client_secret,
       paymentIntentId: paymentIntent.id,
-      paymentMethods: paymentMethods,
+      // paymentMethods: paymentMethods,
     },
   );
 });
