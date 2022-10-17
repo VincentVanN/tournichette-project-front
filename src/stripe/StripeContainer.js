@@ -35,8 +35,11 @@ function Stripe() {
     if (!paymentCustomerId) {
       fetch(`${baseUrlNode}/create-customer`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://www.tournichette.fr',
+        },
         body: JSON.stringify({ email }),
       })
         .then((res) => res.json())
@@ -48,7 +51,10 @@ function Stripe() {
       fetch(`${baseUrlNode}/create-payment-intent`, {
         method: 'POST',
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://www.tournichette.fr',
+        },
         body: JSON.stringify({ amount, customer: paymentCustomerId }),
       })
         .then((res) => res.json())
@@ -71,7 +77,10 @@ function Stripe() {
     fetch(`${baseUrlNode}/charge-existing-card`, {
       method: 'POST',
       mode: 'cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://www.tournichette.fr',
+      },
       body: JSON.stringify({ amount, paymentCustomerId, paymentMethod }),
     })
       .then((res) => res.json())
@@ -96,7 +105,10 @@ function Stripe() {
     fetch(`${baseUrlNode}/delete-card`, {
       method: 'POST',
       mode: 'cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://www.tournichette.fr',
+      },
       body: JSON.stringify({ paymentMethodIdList }),
     })
       .then((res) => res.json())
