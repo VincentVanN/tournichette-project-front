@@ -24,6 +24,7 @@ function Stripe() {
   const [paymentIntentId, setPaymentIntentId] = useState('');
   const amount = useSelector((state) => state.shoppingCart.cartAmount);
   const paymentCustomerId = useSelector((state) => state.shoppingCart.paymentCustomerId);
+  const baseUrlNode = useSelector((state) => state.navigation.baseUrlNode);
   const email = useSelector((state) => state.user.user.email);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function Stripe() {
 
   useEffect(() => {
     if (!paymentCustomerId) {
-      fetch('http://localhost:5000/create-customer', {
+      fetch(`${baseUrlNode}/create-customer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -43,7 +44,7 @@ function Stripe() {
         });
     }
     if (paymentCustomerId) {
-      fetch('http://localhost:5000/create-payment-intent', {
+      fetch(`${baseUrlNode}/create-payment-intent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount, customer: paymentCustomerId }),
@@ -65,7 +66,7 @@ function Stripe() {
   //
   const handleSubmitPayment = () => {
     setIsLoading(true);
-    fetch('http://localhost:5000/charge-existing-card', {
+    fetch(`${baseUrlNode}/charge-existing-card`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount, paymentCustomerId, paymentMethod }),
@@ -89,7 +90,7 @@ function Stripe() {
     const paymentMethodIdList = [];
     paymentMethodList.forEach((method) => paymentMethodIdList.push(method.id));
     console.log(paymentMethodIdList);
-    fetch('http://localhost:5000/delete-card', {
+    fetch(`${baseUrlNode}/delete-card`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ paymentMethodIdList }),
