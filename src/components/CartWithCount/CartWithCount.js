@@ -51,7 +51,6 @@ function CartWithCount() {
       height: '30px',
       y: 0,
       zIndex: -5,
-      border: 'none',
       transition: {
         duration: 0.5,
         delay: 0.4,

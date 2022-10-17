@@ -103,7 +103,7 @@ export const updateUser = createAsyncThunk(
 
     const result = await axios
       .patch(
-        'http://localhost:8000/api/v1/users/update',
+        `${getState().navigation.baseUrl}/api/v1/users/update`,
         update,
         config,
       );

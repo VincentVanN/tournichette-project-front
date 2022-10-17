@@ -17,6 +17,7 @@ function CheckoutForm({
   const amount = useSelector((state) => state.shoppingCart.cartAmount);
   const stripe = useStripe();
   const elements = useElements();
+  const baseUrl = useSelector((state) => state.navigation.baseUrl);
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ function CheckoutForm({
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: 'http://localhost:8080/commande-ok',
+        return_url: `${baseUrl}/commande-ok`,
       },
       redirect: 'if_required',
     });
