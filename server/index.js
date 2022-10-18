@@ -2,16 +2,16 @@
 const express = require('express');
 require('dotenv').config();
 
-const https = require('https');
-
 const cors = require('cors');
 
 const app = express();
 
-const httpsServer = https.createServer(app);
+// const https = require('https');
 
-httpsServer.listen(8443);
+// const httpsServer = https.createServer(app);
 
+// httpsServer.listen(8443);
+app.listen(process.env.PORT || 5000);
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 const corsOptions = {
