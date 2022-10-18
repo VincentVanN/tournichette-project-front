@@ -11,7 +11,7 @@ const certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
 
 const credentials = { key: privateKey, cert: certificate };
 
-const cors = require('cors');
+// const cors = require('cors');
 
 const app = express();
 
@@ -23,16 +23,20 @@ httpsServer.listen(8443);
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
-const corsOptions = {
-  origin: 'https://www.tournichette.fr',
-  optionsSuccessStatus: 200,
-};
-
+// const corsOptions = {
+//   origin: 'https://www.tournichette.fr',
+//   optionsSuccessStatus: 200,
+// };
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://www.tournichette.fr');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 app.use(express.static('public'));
 app.use(express.json());
 const calculateOrderAmount = (amount) => Math.round(amount * 100);
 
-app.post('/create-customer', cors(corsOptions), async (req, res) => {
+app.post('/create-customer', async (req, res) => {
   const { email } = req.body;
   const customer = await stripe.customers.create({
     email: email,
@@ -45,7 +49,7 @@ app.post('/create-customer', cors(corsOptions), async (req, res) => {
     },
   );
 });
-app.post('/update-payment-intent', cors(corsOptions), async (req, res) => {
+app.post('/update-payment-intent', async (req, res) => {
   const { paymentMethod, paymentIntentId } = req.body;
   const paymentIntent = await stripe.paymentIntents.update(
     paymentIntentId,
@@ -59,7 +63,7 @@ app.post('/update-payment-intent', cors(corsOptions), async (req, res) => {
     },
   );
 });
-app.post('/create-payment-intent', cors(corsOptions), async (req, res) => {
+app.post('/create-payment-intent', async (req, res) => {
   const { amount, customer } = req.body;
   const paymentMethods = await stripe.customers.listPaymentMethods(
     customer,
@@ -85,7 +89,7 @@ app.post('/create-payment-intent', cors(corsOptions), async (req, res) => {
     },
   );
 });
-app.post('/charge-existing-card', cors(corsOptions), async (req, res) => {
+app.post('/charge-existing-card', async (req, res) => {
   const { amount, paymentCustomerId, paymentMethod } = req.body;
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -122,7 +126,7 @@ app.post('/charge-existing-card', cors(corsOptions), async (req, res) => {
     }
   }
 });
-app.post('/delete-card', cors(corsOptions), async (req, res) => {
+app.post('/delete-card', async (req, res) => {
   const { paymentMethodIdList } = req.body;
   const paymentMethod = await paymentMethodIdList.forEach((element) => stripe.paymentMethods.detach(element));
   // res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
