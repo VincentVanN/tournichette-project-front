@@ -38,7 +38,6 @@ function Stripe() {
         method: 'POST',
 
         headers: {
-          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
@@ -53,7 +52,6 @@ function Stripe() {
         method: 'POST',
 
         headers: {
-          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ amount, customer: paymentCustomerId }),
@@ -77,8 +75,7 @@ function Stripe() {
     setIsLoading(true);
     fetch(`${baseUrlNode}/charge-existing-card`, {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
+      headers: 
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ amount, paymentCustomerId, paymentMethod }),
@@ -103,8 +100,7 @@ function Stripe() {
     paymentMethodList.forEach((method) => paymentMethodIdList.push(method.id));
     fetch(`${baseUrlNode}/delete-card`, {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
+      headers: 
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ paymentMethodIdList }),
