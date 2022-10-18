@@ -21,6 +21,12 @@ httpsServer.listen(8443);
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
+// const cors = (req, res) => {
+//   res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
+//   if (req.method === 'OPTIONS') {
+//     res.setHeader('Acces-Control-Allow-Headers', 'Accept, Content-Type');
+//   }
+// };
 app.use(express.static('public'));
 app.use(express.json());
 const calculateOrderAmount = (amount) => Math.round(amount * 100);
@@ -45,7 +51,7 @@ app.post('/update-payment-intent', async (req, res) => {
     { payment_method: paymentMethod },
   );
   res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
-  res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
+  res.setHeader('Acces-Control-Allow-Headers', 'Accept, Content-Type');
   res.send(
     {
       clientSecret: paymentIntent.client_secret,
@@ -69,7 +75,7 @@ app.post('/create-payment-intent', async (req, res) => {
     setup_future_usage: 'off_session',
   });
   res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
-  res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
+  res.setHeader('Acces-Control-Allow-Headers', 'Accept, Content-Type');
   res.send(
     {
       clientSecret: paymentIntent.client_secret,
@@ -91,7 +97,7 @@ app.post('/charge-existing-card', async (req, res) => {
       confirm: true,
     });
     res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
-    res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
+    res.setHeader('Acces-Control-Allow-Headers', 'Accept, Content-Type');
     res.send(
       {
         succeeded: true,
@@ -119,7 +125,7 @@ app.post('/delete-card', async (req, res) => {
   const { paymentMethodIdList } = req.body;
   const paymentMethod = await paymentMethodIdList.forEach((element) => stripe.paymentMethods.detach(element));
   res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
-  res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
+  res.setHeader('Acces-Control-Allow-Headers', 'Accept, Content-Type');
   res.send(
     {
       paymentMethod,
