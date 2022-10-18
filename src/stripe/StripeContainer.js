@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 /* eslint-disable max-len */
 /* eslint-disable array-callback-return */
 import './stripeContainer.scss';
@@ -35,8 +36,9 @@ function Stripe() {
     if (!paymentCustomerId) {
       fetch(`${baseUrlNode}/create-customer`, {
         method: 'POST',
-        crossDomain: true,
+
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
@@ -49,8 +51,9 @@ function Stripe() {
     if (paymentCustomerId) {
       fetch(`${baseUrlNode}/create-payment-intent`, {
         method: 'POST',
-        crossDomain: true,
+
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ amount, customer: paymentCustomerId }),
@@ -74,8 +77,8 @@ function Stripe() {
     setIsLoading(true);
     fetch(`${baseUrlNode}/charge-existing-card`, {
       method: 'POST',
-      crossDomain: true,
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ amount, paymentCustomerId, paymentMethod }),
@@ -98,11 +101,10 @@ function Stripe() {
     const paymentMethodList = paymentMethods.filter((method) => method.card.fingerprint === e.target.id);
     const paymentMethodIdList = [];
     paymentMethodList.forEach((method) => paymentMethodIdList.push(method.id));
-    console.log(paymentMethodIdList);
     fetch(`${baseUrlNode}/delete-card`, {
       method: 'POST',
-      crossDomain: true,
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ paymentMethodIdList }),
