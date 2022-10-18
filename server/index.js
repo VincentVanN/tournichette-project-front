@@ -1,17 +1,32 @@
 /* eslint-disable max-len */
+const https = require('https');
+
+const fs = require('fs');
 const express = require('express');
+
 require('dotenv').config();
 
 const cors = require('cors');
 
 const app = express();
 
+https
+  .createServer(
+    {
+      key: fs.readFileSync('key.pem'),
+      cert: fs.readFileSync('cert.pem'),
+    },
+    app,
+  )
+  .listen(4000, () => {
+    console.log('server is runing at port 4000');
+  });
 // const https = require('https');
 
 // const httpsServer = https.createServer(app);
 
 // httpsServer.listen(8443);
-app.listen(process.env.PORT || 5000);
+// app.listen(process.env.PORT || 5000);
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 const corsOptions = {
