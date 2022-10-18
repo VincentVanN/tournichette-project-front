@@ -1,4 +1,7 @@
 /* eslint-disable max-len */
+if (typeof (PhusionPassenger) !== 'undefined') {
+  PhusionPassenger.configure({ autoInstall: false });
+}
 const https = require('https');
 
 const fs = require('fs');
@@ -132,3 +135,9 @@ app.post('/delete-card', cors(corsOptions), async (req, res) => {
 // app.listen(process.env.PORT || 5000, () => {
 //   console.log('serveur démarré...');
 // });
+if (typeof (PhusionPassenger) !== 'undefined') {
+  app.listen('passenger');
+}
+else {
+  app.listen(3000);
+}
