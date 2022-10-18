@@ -23,7 +23,9 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
 const calculateOrderAmount = (amount) => Math.round(amount * 100);
-
+const corsOptions = {
+  origin: 'https://www.tournichette.fr',
+};
 app.post('/create-customer', async (req, res) => {
   const { email } = req.body;
   const customer = await stripe.customers.create({
@@ -35,7 +37,7 @@ app.post('/create-customer', async (req, res) => {
     },
   );
 });
-app.post('/update-payment-intent', async (req, res) => {
+app.post('/update-payment-intent', cors(corsOptions), async (req, res) => {
   const { paymentMethod, paymentIntentId } = req.body;
   const paymentIntent = await stripe.paymentIntents.update(
     paymentIntentId,
@@ -47,7 +49,7 @@ app.post('/update-payment-intent', async (req, res) => {
     },
   );
 });
-app.post('/create-payment-intent', async (req, res) => {
+app.post('/create-payment-intent', cors(corsOptions), async (req, res) => {
   const { amount, customer } = req.body;
   const paymentMethods = await stripe.customers.listPaymentMethods(
     customer,
@@ -71,7 +73,7 @@ app.post('/create-payment-intent', async (req, res) => {
     },
   );
 });
-app.post('/charge-existing-card', async (req, res) => {
+app.post('/charge-existing-card', cors(corsOptions), async (req, res) => {
   const { amount, paymentCustomerId, paymentMethod } = req.body;
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -106,7 +108,7 @@ app.post('/charge-existing-card', async (req, res) => {
     }
   }
 });
-app.post('/delete-card', async (req, res) => {
+app.post('/delete-card', cors(corsOptions), async (req, res) => {
   const { paymentMethodIdList } = req.body;
   const paymentMethod = await paymentMethodIdList.forEach((element) => stripe.paymentMethods.detach(element));
   res.send(
