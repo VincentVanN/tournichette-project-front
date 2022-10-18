@@ -11,6 +11,13 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 app.use(express.static('public'));
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 const calculateOrderAmount = (amount) => Math.round(amount * 100);
 app.post('/create-customer', async (req, res) => {
   const { email } = req.body;
