@@ -75,7 +75,7 @@ function Stripe() {
     setIsLoading(true);
     fetch(`${baseUrlNode}/charge-existing-card`, {
       method: 'POST',
-      headers: 
+      headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ amount, paymentCustomerId, paymentMethod }),
@@ -100,7 +100,7 @@ function Stripe() {
     paymentMethodList.forEach((method) => paymentMethodIdList.push(method.id));
     fetch(`${baseUrlNode}/delete-card`, {
       method: 'POST',
-      headers: 
+      headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ paymentMethodIdList }),
