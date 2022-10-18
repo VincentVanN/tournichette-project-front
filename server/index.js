@@ -21,11 +21,8 @@ httpsServer.listen(8443);
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
-const cors = require('cors');
-
 app.use(express.static('public'));
 app.use(express.json());
-app.use(cors());
 const calculateOrderAmount = (amount) => Math.round(amount * 100);
 
 app.post('/create-customer', async (req, res) => {
@@ -33,8 +30,8 @@ app.post('/create-customer', async (req, res) => {
   const customer = await stripe.customers.create({
     email: email,
   });
-  res.setHeader('Acces-Control-Allow-Origin', 'https://tournichette.fr');
-  res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
+  res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
+  res.setHeader('Acces-Control-Allow-Headers', 'Accept, Content-Type');
   res.send(
     {
       customer: customer,
@@ -47,7 +44,7 @@ app.post('/update-payment-intent', async (req, res) => {
     paymentIntentId,
     { payment_method: paymentMethod },
   );
-  res.setHeader('Acces-Control-Allow-Origin', 'https://tournichette.fr');
+  res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
   res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
   res.send(
     {
@@ -71,7 +68,7 @@ app.post('/create-payment-intent', async (req, res) => {
     customer: customer,
     setup_future_usage: 'off_session',
   });
-  res.setHeader('Acces-Control-Allow-Origin', 'https://tournichette.fr');
+  res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
   res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
   res.send(
     {
@@ -93,7 +90,7 @@ app.post('/charge-existing-card', async (req, res) => {
       off_session: true,
       confirm: true,
     });
-    res.setHeader('Acces-Control-Allow-Origin', 'https://tournichette.fr');
+    res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
     res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
     res.send(
       {
@@ -121,7 +118,7 @@ app.post('/charge-existing-card', async (req, res) => {
 app.post('/delete-card', async (req, res) => {
   const { paymentMethodIdList } = req.body;
   const paymentMethod = await paymentMethodIdList.forEach((element) => stripe.paymentMethods.detach(element));
-  res.setHeader('Acces-Control-Allow-Origin', 'https://tournichette.fr');
+  res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
   res.setHeader('Acces-Control-Allow-Headers', 'Accept', 'Content-Type');
   res.send(
     {
