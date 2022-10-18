@@ -16,12 +16,11 @@ const app = express();
 https
   .createServer(
     {
-      key: fs.readFileSync('key.pem'),
       cert: fs.readFileSync('cert.pem'),
     },
     app,
   )
-  .listen(4000, () => {
+  .listen(3000, () => {
     console.log('server is runing at port 4000');
   });
 // const https = require('https');
