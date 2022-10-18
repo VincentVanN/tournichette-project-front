@@ -3,20 +3,15 @@ const http = require('http');
 const express = require('express');
 
 const app = express();
-
+const httpServer = http.createServer(app);
 /* eslint-disable max-len */
 
 require('dotenv').config();
-
-const cors = require('cors');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 app.use(express.static('public'));
 app.use(express.json());
-app.use(cors({
-  origin: 'https://www.tournichette.fr',
-}));
 const calculateOrderAmount = (amount) => Math.round(amount * 100);
 app.post('/create-customer', async (req, res) => {
   const { email } = req.body;
@@ -110,7 +105,6 @@ app.post('/delete-card', async (req, res) => {
   );
 });
 // Starting both http & https servers
-const httpServer = http.createServer(app);
 httpServer.listen(80, () => {
   console.log('HTTP Server running on port 80');
 });
