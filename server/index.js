@@ -24,16 +24,10 @@ httpsServer.listen(8443);
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 const corsOptions = {
-  origin: 'https://www.tournhichette.fr',
+  origin: 'https://www.tournichette.fr',
   optionsSuccessStatus: 200,
 };
 
-// const cors = (req, res) => {
-//   res.setHeader('Acces-Control-Allow-Origin', 'https://www.tournichette.fr');
-//   if (req.method === 'OPTIONS') {
-//     res.setHeader('Acces-Control-Allow-Headers', 'Accept, Content-Type');
-//   }
-// };
 app.use(express.static('public'));
 app.use(express.json());
 const calculateOrderAmount = (amount) => Math.round(amount * 100);
