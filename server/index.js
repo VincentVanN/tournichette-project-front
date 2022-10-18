@@ -1,19 +1,12 @@
 const https = require('https');
 const express = require('express');
-const fs = require('mz/fs');
 
-const { key, cert } = await (async () => {
-  const certdir = (await fs.readdir('/etc/letsencrypt/live'))[0];
-
-  return {
-    key: await fs.readFile(`/etc/letsencrypt/live/${certdir}/privkey.pem`),
-    cert: await fs.readFile(`/etc/letsencrypt/live/${certdir}/fullchain.pem`),
-  };
-})();
 
 const app = express();
-
-const httpsServer = https.createServer({ key, cert }, app).listen(443);
+app.use((req, res) => {
+  res.send('Hello there !');
+});
+const httpsServer = https.createServer(app).listen(443);
 // httpsServer.listen(443, () => {
 //   console.log('HTTPS Server running on port 443');
 // });
