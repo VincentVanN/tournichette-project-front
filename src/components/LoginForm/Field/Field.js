@@ -1,11 +1,7 @@
 /* eslint-disable react/require-default-props */
 import '../loginForm.scss';
 import PropTypes from 'prop-types';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-// import { isValidEmail } from '../../../utils/formValidation';
-// import { setErrorMessage } from '../../../feature/user.slice';
-// import Error from '../../Error/Error';
 
 function Field({
   name,
@@ -32,6 +28,7 @@ function Field({
           className="field-input"
           placeholder={placeholder}
           name={name}
+          autoComplete={name === 'password' || name === 'sndPassword' ? 'current-password' : name}
           {...((name === 'password' || name === 'sndPassword') && { onFocus: onFocus })}
           {...((name === 'password' || name === 'sndPassword') && { onBlur: onBlur })}
         />
@@ -44,7 +41,6 @@ function Field({
         />
         )}
       </div>
-      {/* (errorMessage && name === 'email' && email) && <Error /> */}
     </div>
 
   );

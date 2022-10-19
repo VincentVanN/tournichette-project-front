@@ -52,7 +52,6 @@ function CheckoutForm({
       }
     });
   }, [stripe]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -68,7 +67,6 @@ function CheckoutForm({
       redirect: 'if_required',
     });
     if (error) {
-      console.log(error);
       dispatch(setServerMessage(error.message));
       dispatch(setShowModal(true));
     }

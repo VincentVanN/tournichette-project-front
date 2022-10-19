@@ -85,15 +85,16 @@ export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (_, { getState }) => {
     const {
-      token, oldPassword, email, firstname, lastname, phone,
+      token, oldPassword, email, firstname, lastname, phone, paymentCustomerId,
     } = getState().user.user;
     //
     const update = {
       currentpassword: oldPassword,
-      email: email,
-      firstname: firstname,
-      lastname: lastname,
-      phone: phone,
+      email,
+      firstname,
+      lastname,
+      phone,
+      paymentCustomerId,
     };
     const config = {
       headers: {

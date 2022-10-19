@@ -81,7 +81,6 @@ function SubscribeForm() {
             name="email"
             type="email"
             value={email}
-            autocomplete="username"
             placeholder="Email"
             onChange={handleChangeSubscribeForm}
           />
@@ -109,7 +108,6 @@ function SubscribeForm() {
           <Field
             name="password"
             type="password"
-            autocomplete="new-password"
             onFocus={() => setIsFocusPassword(true)}
             onBlur={() => setIsFocusPassword(false)}
             value={password}
@@ -119,7 +117,6 @@ function SubscribeForm() {
           <Field
             name="sndPassword"
             type="password"
-            autocomplete="new-password"
             onFocus={() => setIsFocusScdPassword(true)}
             onBlur={() => setIsFocusScdPassword(false)}
             value={sndPassword}

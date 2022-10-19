@@ -23,7 +23,7 @@ export const postOrder = createAsyncThunk(
     // get token & payment element
     //
     const { token } = getState().user.user;
-    const { stripeCustomerId, paymentIntentId } = paymentObject;
+    const { stripeCustomerId, paymentId } = paymentObject;
     //
     // get cart product in shoppingCart
     //
@@ -50,10 +50,11 @@ export const postOrder = createAsyncThunk(
       price: getState().shoppingCart.cartAmount.toString(),
       depot: getState().shoppingCart.selectedDepotId,
       stripeCustomerId: stripeCustomerId || null,
-      paymentIntentId: paymentIntentId || null,
+      paymentId: paymentId || null,
       orderProducts,
       cartOrders,
     };
+    console.log(order);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,

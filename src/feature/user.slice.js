@@ -18,6 +18,8 @@ export const userSlice = createSlice({
       password: '',
       sndPassword: '',
       oldPassword: '',
+      paymentCustomerId: '',
+      sub: '',
     },
     login: {
       username: '',
@@ -56,11 +58,13 @@ export const userSlice = createSlice({
       console.log('[setUser]waiting...');
     },
     [setUser.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.logged = true;
       state.user.email = payload.email;
       state.user.firstname = payload.firstname;
       state.user.lastname = payload.lastname;
       state.user.phone = payload.phone;
+      state.user.paymentCustomerId = payload.stripeCustomerId;
       console.log('[setUser] OK!');
     },
     [setUser.rejected]: (state, { payload }) => {
@@ -144,6 +148,8 @@ export const userSlice = createSlice({
       state.user.firstname = '';
       state.user.lastname = '';
       state.user.phone = '';
+      state.user.paymentCustomerId = '';
+      state.user.sub = '';
       removeLocalStorage('user');
       removeLocalStorage('shoppingCart');
       removeLocalStorage('count');
@@ -166,6 +172,15 @@ export const userSlice = createSlice({
     setIsSubscribe: (state, { payload }) => {
       state.isSubscribe = payload;
     },
+    setpaymentCustomerId: (state, { payload }) => {
+      state.paymentCustomerId = payload;
+    },
+    setUserWithGoogle: (state, { payload }) => {
+      state.user.firstname = payload.given_name;
+      state.user.lastname = payload.family_name;
+      state.user.email = payload.email;
+      state.user.sub = payload.sub;
+    },
   },
 });
 
@@ -182,5 +197,7 @@ export const {
   deleteErrorMessage,
   deleteServerMessageUser,
   setIsSubscribe,
+  setpaymentCustomerId,
+  setUserWithGoogle,
 } = userSlice.actions;
 export default userSlice.reducer;

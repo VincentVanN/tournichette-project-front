@@ -9,9 +9,10 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import CheckoutForm from './CheckoutForm';
-import { setpaymentCustomerId, setServerMessage } from '../feature/shoppingCart.slice';
+import { setServerMessage } from '../feature/shoppingCart.slice';
 import { setShowModal } from '../feature/navigation.slice';
 import { postOrder } from '../AsyncChunk/AsyncChunkShoppingCart';
+import { setpaymentCustomerId } from '../feature/user.slice';
 
 const PUBLIC_KEY = 'pk_test_51Lg4rDEUfQPSV59kZLzUyYVz3DHuJprHXB7Nv6PozToLr3ddyVlyj8NoEndy4Z1qdLkGRo3TWUnyN7Y4SA9Kz4TI00PnqOc0yx';
 const stripePromise = loadStripe(PUBLIC_KEY);
@@ -24,13 +25,11 @@ function Stripe() {
   const [isFocus, setIsFocus] = useState(false);
   const [paymentIntentId, setPaymentIntentId] = useState('');
   const amount = useSelector((state) => state.shoppingCart.cartAmount);
-  const paymentCustomerId = useSelector((state) => state.shoppingCart.paymentCustomerId);
+  const paymentCustomerId = useSelector((state) => state.user.user.paymentCustomerId);
   const baseUrlNode = useSelector((state) => state.navigation.baseUrlNode);
   const email = useSelector((state) => state.user.user.email);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //
-  //
 
   useEffect(() => {
     if (!paymentCustomerId) {
@@ -126,6 +125,7 @@ function Stripe() {
   });
   //
   //
+
   return (
     <div className="stripe">
       {(paymentMethods.length !== 0) && (
