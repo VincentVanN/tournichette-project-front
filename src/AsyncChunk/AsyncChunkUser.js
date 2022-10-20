@@ -2,8 +2,16 @@
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { setButtonText, setRedirection, setShowModal } from '../feature/navigation.slice';
-import { setLocalStorageToken } from '../utils/localStorage';
+import {
+  setButtonText,
+  setIsPassword,
+  setIsPhone,
+  setLoginWithGoogleRejected,
+  setNavigationMessage,
+  setRedirection,
+  setShowModal,
+} from '../feature/navigation.slice';
+import { removeLocalStorage, setLocalStorageToken } from '../utils/localStorage';
 
 export const setUser = createAsyncThunk(
   'user/setUser',
@@ -43,11 +51,12 @@ export const loginUser = createAsyncThunk(
       });
       const { token } = result.data;
       setLocalStorageToken(token);
-      dispatch(setRedirection('/'));
-      dispatch(setButtonText('Par ici'));
       return result.data;
     }
     catch (error) {
+      if (error.response.data.error === 'Invalid credentials.') {
+        dispatch(setNavigationMessage('Identifiants invalides!'));
+      }
       dispatch(setButtonText('Connexion'));
       isError = true;
       return rejectWithValue(error.response.data);
@@ -59,25 +68,57 @@ export const loginUser = createAsyncThunk(
     }
   },
 );
-
+export const loginUserWithGoogle = createAsyncThunk(
+  'user/loginUserWithGoogle',
+  async (_, { getState, rejectWithValue, dispatch }) => {
+    const { sub } = getState().user.user;
+    try {
+      const result = await axios.post(`${getState().navigation.baseUrl}/api/login_google`, {
+        sub,
+      });
+      const { token } = result.data;
+      removeLocalStorage('user');
+      setLocalStorageToken(token);
+      return result.data;
+    }
+    catch (error) {
+      if (error.response.request.status === 404) {
+        dispatch(setLoginWithGoogleRejected(true));
+        dispatch(setIsPhone(true));
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 export const createUser = createAsyncThunk(
   'user/createUser',
-  async (_, { getState }) => {
+  async (isGoogleCreate, { getState, rejectWithValue, dispatch }) => {
     const {
       firstname,
       lastname,
       phone,
       email,
       password,
+      sub,
     } = getState().user.user;
-    const result = await axios.post(`${getState().navigation.baseUrl}/api/v1/users/create`, {
-      email,
-      password,
-      firstname,
-      lastname,
-      phone,
-    });
-    return result.data;
+    try {
+      const result = await axios.post(`${getState().navigation.baseUrl}/api/v1/users/create`, {
+        email,
+        password,
+        firstname,
+        lastname,
+        phone,
+        sub,
+      });
+      return result.data;
+    }
+    catch (error) {
+      if (isGoogleCreate === true && error.response.request.status === 400) {
+        dispatch(setLoginWithGoogleRejected(true));
+        dispatch(setIsPassword(true));
+      }
+      return rejectWithValue(error.response.data);
+    }
   },
 );
 
@@ -85,15 +126,16 @@ export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (_, { getState }) => {
     const {
-      token, oldPassword, email, firstname, lastname, phone,
+      token, oldPassword, email, firstname, lastname, phone, paymentCustomerId,
     } = getState().user.user;
     //
     const update = {
       currentpassword: oldPassword,
-      email: email,
-      firstname: firstname,
-      lastname: lastname,
-      phone: phone,
+      email,
+      firstname,
+      lastname,
+      phone,
+      paymentCustomerId,
     };
     const config = {
       headers: {
@@ -110,7 +152,30 @@ export const updateUser = createAsyncThunk(
     return result.data;
   },
 );
+export const updateUserWithGoogle = createAsyncThunk(
+  'user/updateUserWithGoogle',
+  async (_, { getState }) => {
+    const {
+      email, password, sub,
+    } = getState().user.user;
+    //
+    const update = {
+      email,
+      password,
+      sub,
+    };
 
+    const result = await axios
+      .patch(
+        `${getState().navigation.baseUrl}/api/v1/users/google_update`,
+        update,
+      );
+    const { token } = result.data;
+    removeLocalStorage('user');
+    setLocalStorageToken(token);
+    return result.data;
+  },
+);
 export const getOrderHistory = createAsyncThunk(
   'user/getOrderHistory',
   async (_, { getState }) => {

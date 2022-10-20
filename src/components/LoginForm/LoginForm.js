@@ -1,15 +1,20 @@
+/* eslint-disable max-len */
+import jwtDecode from 'jwt-decode';
+import { useEffect } from 'react';
 import logo from 'src/assets/logo.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeLoginForm, setIsSubscribe } from 'src/feature/user.slice';
+import { changeLoginForm, setIsSubscribe, setUserWithGoogle } from 'src/feature/user.slice';
 import Field from './Field/Field';
 import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';
-import { loginUser } from '../../AsyncChunk/AsyncChunkUser';
+import { loginUser, loginUserWithGoogle } from '../../AsyncChunk/AsyncChunkUser';
 import Button from '../Button/Button';
+import { setShowModal } from '../../feature/navigation.slice';
 
 function LoginForm() {
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
   const { username, password } = useSelector((state) => state.user.login);
+  const loginWithGoogleRejected = useSelector((state) => state.navigation.loginWithGoogleRejected);
   const dispatch = useDispatch();
   const handleChangeLogin = (value, key) => {
     dispatch(changeLoginForm([key, value]));
@@ -21,6 +26,32 @@ function LoginForm() {
   const handleSubscribe = () => {
     dispatch(setIsSubscribe(true));
   };
+  //
+  // globale google
+  //
+  let googleUser = null;
+  function handleCallbackResponse(response) {
+    googleUser = jwtDecode(response.credential);
+    dispatch(setUserWithGoogle(googleUser));
+    dispatch(loginUserWithGoogle());
+  }
+  useEffect(() => {
+    // eslint-disable-next-line no-undef
+    google.accounts.id.initialize({
+      client_id: '1095458830535-c9ctnmdqptdrtre3ivfo2tkl78r0flom.apps.googleusercontent.com',
+      callback: handleCallbackResponse,
+    });
+    // eslint-disable-next-line no-undef
+    google.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      { theme: 'outline', size: 'large' },
+    );
+  }, []);
+  useEffect(() => {
+    if (loginWithGoogleRejected === true) {
+      dispatch(setShowModal(true));
+    }
+  }, [loginWithGoogleRejected]);
   return (
 
     <div className="form">
@@ -34,14 +65,12 @@ function LoginForm() {
                 name="username"
                 type="text"
                 placeholder="Email"
-                autocomplete="username"
                 value={username}
                 onChange={handleChangeLogin}
               />
               <Field
                 name="password"
                 type="password"
-                autocomplete="current-password"
                 placeholder="Mot de passe"
                 value={password}
                 onChange={handleChangeLogin}

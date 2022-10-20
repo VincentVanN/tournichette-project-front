@@ -1,7 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  loginUser, setUser, createUser, updateUser, getOrderHistory,
+  loginUser,
+  setUser,
+  createUser,
+  updateUser,
+  getOrderHistory,
+  loginUserWithGoogle,
+  updateUserWithGoogle,
 } from '../AsyncChunk/AsyncChunkUser';
 import { removeLocalStorage } from '../utils/localStorage';
 
@@ -18,6 +24,8 @@ export const userSlice = createSlice({
       password: '',
       sndPassword: '',
       oldPassword: '',
+      paymentCustomerId: '',
+      sub: '',
     },
     login: {
       username: '',
@@ -33,13 +41,9 @@ export const userSlice = createSlice({
   //
   //
   extraReducers: {
-    [loginUser.pending]: () => {
-      console.log('[loginUser]waiting...');
-    },
     [loginUser.fulfilled]: (state, { payload }) => {
       const { token } = payload;
       state.user.token = token;
-      state.serverMessageUser = 'Identifiants invalides!';
     },
     [loginUser.rejected]: (state, { payload }) => {
       if (payload.message === 'Invalid credentials.') {
@@ -52,15 +56,35 @@ export const userSlice = createSlice({
     },
     //
     //
+    [loginUserWithGoogle.fulfilled]: (state, { payload }) => {
+      const { token } = payload;
+      state.user.token = token;
+    },
+    [loginUserWithGoogle.rejected]: () => {
+      console.log('[loginUserWithGoogle]rejected...');
+    },
+    //
+    //
+    [updateUserWithGoogle.fulfilled]: (state, { payload }) => {
+      const { token } = payload;
+      state.user.token = token;
+    },
+    [updateUserWithGoogle.rejected]: () => {
+      console.log('[updateUserWithGoogle]rejected...');
+    },
+    //
+    //
     [setUser.pending]: () => {
       console.log('[setUser]waiting...');
     },
     [setUser.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.logged = true;
       state.user.email = payload.email;
       state.user.firstname = payload.firstname;
       state.user.lastname = payload.lastname;
       state.user.phone = payload.phone;
+      state.user.paymentCustomerId = payload.stripeCustomerId;
       console.log('[setUser] OK!');
     },
     [setUser.rejected]: (state, { payload }) => {
@@ -144,6 +168,8 @@ export const userSlice = createSlice({
       state.user.firstname = '';
       state.user.lastname = '';
       state.user.phone = '';
+      state.user.paymentCustomerId = '';
+      state.user.sub = '';
       removeLocalStorage('user');
       removeLocalStorage('shoppingCart');
       removeLocalStorage('count');
@@ -166,6 +192,15 @@ export const userSlice = createSlice({
     setIsSubscribe: (state, { payload }) => {
       state.isSubscribe = payload;
     },
+    setpaymentCustomerId: (state, { payload }) => {
+      state.paymentCustomerId = payload;
+    },
+    setUserWithGoogle: (state, { payload }) => {
+      state.user.firstname = payload.given_name;
+      state.user.lastname = payload.family_name;
+      state.user.email = payload.email;
+      state.user.sub = payload.sub;
+    },
   },
 });
 
@@ -182,5 +217,7 @@ export const {
   deleteErrorMessage,
   deleteServerMessageUser,
   setIsSubscribe,
+  setpaymentCustomerId,
+  setUserWithGoogle,
 } = userSlice.actions;
 export default userSlice.reducer;

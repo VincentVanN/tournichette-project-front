@@ -14,7 +14,6 @@ export const shoppingCartSlice = createSlice({
     selectedDepotId: 0,
     serverMessage: '',
     isCreditCardLayout: false,
-    paymentCustomerId: 'cus_MT10BrWP1QMdQC',
   },
   extraReducers: {
     [getDepotsList.pending]: () => {
@@ -63,9 +62,6 @@ export const shoppingCartSlice = createSlice({
     setIsCreditCardLayout: (state, { payload }) => {
       state.isCreditCardLayout = payload;
     },
-    setpaymentCustomerId: (state, { payload }) => {
-      state.paymentCustomerId = payload;
-    },
     setCartAmount: (state) => {
       const arrayToReduce = [];
       state.shoppingCart.forEach((element) => {
@@ -104,7 +100,5 @@ export const {
   deleteShoppingCart,
   setServerMessage,
   setIsCreditCardLayout,
-  setpaymentMethodId,
-  setpaymentCustomerId,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;
