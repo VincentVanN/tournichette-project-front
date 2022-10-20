@@ -9,7 +9,7 @@ import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';
 import { loginUser, loginUserWithGoogle } from '../../AsyncChunk/AsyncChunkUser';
 import Button from '../Button/Button';
-import { setShowModal } from '../../feature/navigation.slice';
+import { setButtonText, setShowModal } from '../../feature/navigation.slice';
 
 function LoginForm() {
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
@@ -22,9 +22,6 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser());
-  };
-  const handleSubscribe = () => {
-    dispatch(setIsSubscribe(true));
   };
   //
   // globale google
@@ -44,11 +41,12 @@ function LoginForm() {
     // eslint-disable-next-line no-undef
     google.accounts.id.renderButton(
       document.getElementById('signInDiv'),
-      { theme: 'outline', size: 'large' },
+      { theme: 'outline', size: 'large', dataShape: 'pill' },
     );
-  }, []);
+  }, [isSubscribe]);
   useEffect(() => {
     if (loginWithGoogleRejected === true) {
+      dispatch(setButtonText('Valider'));
       dispatch(setShowModal(true));
     }
   }, [loginWithGoogleRejected]);
@@ -57,9 +55,45 @@ function LoginForm() {
     <div className="form">
       {!isSubscribe && (
         <div className="form-container">
+          <div className="tab">
+            <div
+              className="tab-singIn"
+              onClick={() => dispatch(setIsSubscribe(false))}
+              {...((!isSubscribe) && {
+                style: {
+                  color: '#fd7c55', border: 'none', fontWeight: '500', background: 'none', opacity: '1', cursor: 'default',
+                },
+              })}
+            >
+              <p
+                {...((!isSubscribe) && {
+                  style: {
+                    opacity: 1,
+                  },
+                })}
+              >
+                CONNEXION
+              </p>
+            </div>
+            <div
+              className="tab-signUp"
+              onClick={() => dispatch(setIsSubscribe(true))}
+              {...((isSubscribe) && {
+                style: {
+                  color: '#fd7c55', border: 'none', fontWeight: '500', background: 'none', opacity: '1', cursor: 'default',
+                },
+              })}
+            >
+              <p>
+                INSCRIPTION
+              </p>
+            </div>
+          </div>
           <img className="form-logo" src={logo} alt="logo Tournichette" />
-          <h1 className="form-title">Connexion</h1>
           <div className="form-field-container">
+            <h2 className="googleTitle">Connexion/Inscription via Google </h2>
+            <div id="signInDiv" />
+            <h2 className="form-title">Connexion</h2>
             <form onSubmit={handleSubmit}>
               <Field
                 name="username"
@@ -82,14 +116,7 @@ function LoginForm() {
                 >
                   <Button text="Valider" icon="checkmark-circle-outline" />
                 </button>
-                <div
-                  className="form-signIn"
-                  onClick={handleSubscribe}
-                >
-                  <ion-icon name="newspaper-outline" style={{ fontSize: '2.8em' }} />
-                </div>
               </div>
-              <div id="signInDiv" />
             </form>
           </div>
         </div>

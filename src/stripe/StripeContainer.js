@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import CheckoutForm from './CheckoutForm';
 import { setServerMessage } from '../feature/shoppingCart.slice';
-import { setShowModal } from '../feature/navigation.slice';
+import { setButtonText, setShowModal } from '../feature/navigation.slice';
 import { postOrder } from '../AsyncChunk/AsyncChunkShoppingCart';
 import { setpaymentCustomerId } from '../feature/user.slice';
 
@@ -84,6 +84,7 @@ function Stripe() {
         if (data.error) {
           dispatch(setServerMessage(data.error));
           setIsLoading(false);
+          dispatch(setButtonText('Valider'));
           dispatch(setShowModal(true));
         }
         else {

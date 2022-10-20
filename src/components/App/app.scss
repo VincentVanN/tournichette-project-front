@@ -66,13 +66,12 @@ body {
     border-radius: 20px;
     margin: auto;
     margin-bottom: 10px;
-    border: solid 1px vars.$colorMediumGreen;
-    background: vars.$colorMediumGreen;
-    font-family: vars.$fontMontserrat;
-    color: vars.$colorBeige;
-    font-weight: 600;
-    font-size: 0.8em;
-    box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+    border: none;
+    
+   
+    background: #F2F5DF;
+   
+    
     & :hover {
       cursor: pointer;
     }
@@ -100,7 +99,24 @@ body {
     font-weight: 600;
     padding: 15px;
 }
+.checkbox {
+  width: 200px;
+  color: vars.$colorDarkGreen;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1em;
+  font-weight: 600;
+}
+.check-password-google {
+  width: auto;
+  height: auto;
 
+  display: flex;
+ 
+  align-items: flex-start;
+  justify-content: center;
+}
 @media only screen and (min-width: 576px) {
   .modal {
     margin: -50px auto; 

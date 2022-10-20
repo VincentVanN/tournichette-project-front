@@ -25,6 +25,7 @@ export const getProducts = createAsyncThunk(
     }
     finally {
       if (isError) {
+        dispatch(setButtonText('Valider'));
         dispatch(setShowModal(true));
       }
     }

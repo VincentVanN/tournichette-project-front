@@ -19,6 +19,8 @@ import {
   deleteServerMessageUser,
   setIsSubscribe,
 } from '../../feature/user.slice';
+import { validateScdPassword } from '../../utils/validatePassword';
+import Button from '../Button/Button';
 import Field from '../LoginForm/Field/Field';
 
 function Modal() {
@@ -145,6 +147,7 @@ function Modal() {
                   <Field
                     name="password"
                     type="password"
+                    autocomplete="current-password"
                     value={password}
                     placeholder="Mot de passe"
                     onChange={handleChange}
@@ -152,18 +155,30 @@ function Modal() {
                   <Field
                     name="sndPassword"
                     type="password"
+                    autocomplete="current-password"
                     value={sndPassword}
                     placeholder="Confirmation mdp"
                     onChange={handleChange}
                   />
+                  <motion.div
+                    className="check-password-google"
+                    key="scdPassword"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: 120, opacity: 0 }}
+                  >
+                    <div className="checkbox">
+                      <ion-icon name={`${validateScdPassword(password, sndPassword) ? 'checkmark' : 'close'}-outline`} style={{ color: validateScdPassword(password, sndPassword) ? 'green' : 'red' }} />
+                      <p>{validateScdPassword(password, sndPassword) ? 'Mdp identiques!' : 'Mdp différents'}</p>
+                    </div>
+                  </motion.div>
                 </div>
               )}
               <button
                 type="button"
                 onClick={handleModal}
               >
-                <p>{buttonText}</p>
-                <ion-icon name="arrow-forward-circle-outline" style={{ color: '#fd7c55', fontSize: '2em' }} />
+                <Button text={buttonText} icon="checkmark-circle-outline" />
               </button>
             </motion.div>
           </motion.div>
