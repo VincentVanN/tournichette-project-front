@@ -29,6 +29,15 @@
     color: vars.$colorDarkGreen;
     font-weight: 500;
     padding-top: 200px;
+    &-closed {
+      padding: 0;
+      width: 100%;
+      font-family: vars.$fontMontserrat;
+      font-size: 25px;
+      text-align: center;
+      color: vars.$colorDarkGreen;
+      font-weight: 500;
+    }
   }
   &-button {
     font-family: vars.$fontMontserrat;

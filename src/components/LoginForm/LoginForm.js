@@ -91,7 +91,7 @@ function LoginForm() {
           </div>
           <img className="form-logo" src={logo} alt="logo Tournichette" />
           <div className="form-field-container">
-            <h2 className="googleTitle">Connexion/Inscription via Google </h2>
+            <h2 className="googleTitle">Connexion via Google </h2>
             <div id="signInDiv" />
             <h2 className="form-title">Connexion</h2>
             <form onSubmit={handleSubmit}>

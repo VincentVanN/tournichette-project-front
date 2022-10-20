@@ -1,12 +1,13 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
-import { getCarts, getCategories, getProducts } from '../AsyncChunk/AsyncChunkPoducts';
+import { checkSales, getCarts, getCategories, getProducts } from '../AsyncChunk/AsyncChunkPoducts';
 import { removeLocalStorage } from '../utils/localStorage';
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
+    areSalesOpen: false,
     loadingProducts: true,
     loadingCategories: true,
     loadingCarts: true,
@@ -50,6 +51,17 @@ export const productsSlice = createSlice({
     },
     [getCarts.rejected]: () => {
       // console.log('[getCarts] request rejected');
+    },
+    [checkSales.pending]: () => {
+      console.log('[checkSales]waiting...');
+    },
+    [checkSales.fulfilled]: (state) => {
+      state.areSalesOpen = true;
+    },
+    [checkSales.rejected]: (state, {payload}) => {
+      console.log(payload);
+      state.areSalesOpen = false;
+      console.log('[checkSales] rejected!');
     },
   },
   reducers: {
