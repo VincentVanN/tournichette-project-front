@@ -1,7 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  loginUser, setUser, createUser, updateUser, getOrderHistory,
+  loginUser,
+  setUser,
+  createUser,
+  updateUser,
+  getOrderHistory,
+  loginUserWithGoogle,
+  updateUserWithGoogle,
 } from '../AsyncChunk/AsyncChunkUser';
 import { removeLocalStorage } from '../utils/localStorage';
 
@@ -35,13 +41,9 @@ export const userSlice = createSlice({
   //
   //
   extraReducers: {
-    [loginUser.pending]: () => {
-      console.log('[loginUser]waiting...');
-    },
     [loginUser.fulfilled]: (state, { payload }) => {
       const { token } = payload;
       state.user.token = token;
-      state.serverMessageUser = 'Identifiants invalides!';
     },
     [loginUser.rejected]: (state, { payload }) => {
       if (payload.message === 'Invalid credentials.') {
@@ -51,6 +53,24 @@ export const userSlice = createSlice({
         removeLocalStorage('user');
         state.serverMessageUser = 'Veuillez vous reconnecter';
       }
+    },
+    //
+    //
+    [loginUserWithGoogle.fulfilled]: (state, { payload }) => {
+      const { token } = payload;
+      state.user.token = token;
+    },
+    [loginUserWithGoogle.rejected]: () => {
+      console.log('[loginUserWithGoogle]rejected...');
+    },
+    //
+    //
+    [updateUserWithGoogle.fulfilled]: (state, { payload }) => {
+      const { token } = payload;
+      state.user.token = token;
+    },
+    [updateUserWithGoogle.rejected]: () => {
+      console.log('[updateUserWithGoogle]rejected...');
     },
     //
     //

@@ -67,7 +67,7 @@ function SubscribeForm() {
     if (isError === false) {
       dispatch(setButtonText('Connexion'));
       dispatch(setRedirection('/'));
-      dispatch(createUser());
+      dispatch(createUser(false));
       dispatch(setShowModal(true));
     }
   };

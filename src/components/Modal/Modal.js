@@ -1,17 +1,29 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { createUser, updateUserWithGoogle } from '../../AsyncChunk/AsyncChunkUser';
 import {
   deleteButtonText,
   deleteNavigationMessage,
   deleteRedirection,
+  setIsPassword,
+  setIsPhone,
+  setLoginWithGoogleRejected,
   setShowModal,
 } from '../../feature/navigation.slice';
 import { deleteMessageProductsServer } from '../../feature/products.slice';
 import { deleteServerMessage } from '../../feature/shoppingCart.slice';
-import { deleteErrorMessage, deleteServerMessageUser, setIsSubscribe } from '../../feature/user.slice';
+import {
+  changeSubscribeForm,
+  deleteErrorMessage,
+  deleteServerMessageUser,
+  setIsSubscribe,
+} from '../../feature/user.slice';
+import Field from '../LoginForm/Field/Field';
 
 function Modal() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const showModal = useSelector((state) => state.navigation.showModal);
   const navigationMessage = useSelector((state) => state.navigation.navigationMessage);
   const serverMessageShoppingCart = useSelector((state) => state.shoppingCart.serverMessage);
@@ -19,12 +31,16 @@ function Modal() {
   const errorUserMessage = useSelector((state) => state.user.errorMessage);
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
   const messageProductsServer = useSelector((state) => state.products.messageProductsServer);
-
+  const isPhone = useSelector((state) => state.navigation.isPhone);
+  const isPassword = useSelector((state) => state.navigation.isPassword);
   const buttonText = useSelector((state) => state.navigation.buttonText);
   const redirection = useSelector((state) => state.navigation.redirection);
   const height = useSelector((state) => state.navigation.height);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { phone, password, sndPassword } = useSelector((state) => state.user.user);
+  const handleChange = (value, key) => {
+    dispatch(changeSubscribeForm([key, value]));
+  };
+
   const deleteMessage = () => {
     if (messageProductsServer) {
       dispatch(deleteMessageProductsServer());
@@ -48,6 +64,16 @@ function Modal() {
     }
     if (isSubscribe && errorUserMessage.length === 0) {
       dispatch(setIsSubscribe(false));
+    }
+    if (isPhone) {
+      dispatch(createUser(true));
+      dispatch(setLoginWithGoogleRejected(false));
+      dispatch(setIsPhone(false));
+    }
+    if (isPassword) {
+      dispatch(updateUserWithGoogle());
+      dispatch(setLoginWithGoogleRejected(false));
+      dispatch(setIsPassword(false));
     }
     dispatch(deleteButtonText());
     dispatch(deleteRedirection());
@@ -98,6 +124,39 @@ function Modal() {
                 <ul className="error-message-container">
                   {errorUserMessage.map((error) => <li>{error}</li>)}
                 </ul>
+              )}
+              {isPhone && (
+                <div className="modalInput">
+                  <p> Entre ton numéro de téléphone pour finaliser ton inscription</p>
+                  <Field
+                    name="phone"
+                    type="text"
+                    value={phone}
+                    placeholder="Téléphone"
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
+              {isPassword && (
+                <div className="modalInput">
+                  <p>Un compte existe déjà à cet email.
+                    Entre le mot de passe de la Tournichette pour lier tes comptes
+                  </p>
+                  <Field
+                    name="password"
+                    type="password"
+                    value={password}
+                    placeholder="Mot de passe"
+                    onChange={handleChange}
+                  />
+                  <Field
+                    name="sndPassword"
+                    type="password"
+                    value={sndPassword}
+                    placeholder="Confirmation mdp"
+                    onChange={handleChange}
+                  />
+                </div>
               )}
               <button
                 type="button"

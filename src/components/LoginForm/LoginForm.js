@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import jwtDecode from 'jwt-decode';
 import { useEffect } from 'react';
 import logo from 'src/assets/logo.svg';
@@ -6,12 +7,14 @@ import { changeLoginForm, setIsSubscribe, setUserWithGoogle } from 'src/feature/
 import Field from './Field/Field';
 import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';
-import { loginUser } from '../../AsyncChunk/AsyncChunkUser';
+import { loginUser, loginUserWithGoogle } from '../../AsyncChunk/AsyncChunkUser';
 import Button from '../Button/Button';
+import { setShowModal } from '../../feature/navigation.slice';
 
 function LoginForm() {
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
   const { username, password } = useSelector((state) => state.user.login);
+  const loginWithGoogleRejected = useSelector((state) => state.navigation.loginWithGoogleRejected);
   const dispatch = useDispatch();
   const handleChangeLogin = (value, key) => {
     dispatch(changeLoginForm([key, value]));
@@ -26,11 +29,11 @@ function LoginForm() {
   //
   // globale google
   //
+  let googleUser = null;
   function handleCallbackResponse(response) {
-    console.log(`jwt Token:${response.credential}`);
-    const googleUser = jwtDecode(response.credential);
-    console.log(googleUser);
+    googleUser = jwtDecode(response.credential);
     dispatch(setUserWithGoogle(googleUser));
+    dispatch(loginUserWithGoogle());
   }
   useEffect(() => {
     // eslint-disable-next-line no-undef
@@ -44,6 +47,11 @@ function LoginForm() {
       { theme: 'outline', size: 'large' },
     );
   }, []);
+  useEffect(() => {
+    if (loginWithGoogleRejected === true) {
+      dispatch(setShowModal(true));
+    }
+  }, [loginWithGoogleRejected]);
   return (
 
     <div className="form">

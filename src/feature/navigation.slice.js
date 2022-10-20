@@ -12,6 +12,10 @@ export const navigationSlice = createSlice({
     buttonText: '',
     redirection: '',
     showModal: false,
+    loginWithGoogleRejected: false,
+    isPhone: false,
+    isPassword: false,
+
   },
   reducers: {
     setParamsLoading: (state, { payload }) => {
@@ -44,6 +48,15 @@ export const navigationSlice = createSlice({
     setShowModal: (state, { payload }) => {
       state.showModal = payload;
     },
+    setIsPhone: (state, { payload }) => {
+      state.isPhone = payload;
+    },
+    setIsPassword: (state, { payload }) => {
+      state.isPassword = payload;
+    },
+    setLoginWithGoogleRejected: (state, { payload }) => {
+      state.loginWithGoogleRejected = payload;
+    },
   },
 });
 export const {
@@ -57,5 +70,8 @@ export const {
   setRedirection,
   deleteRedirection,
   setParamsLoading,
+  setLoginWithGoogleRejected,
+  setIsPassword,
+  setIsPhone,
 } = navigationSlice.actions;
 export default navigationSlice.reducer;
