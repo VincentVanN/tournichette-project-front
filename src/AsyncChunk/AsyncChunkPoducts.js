@@ -4,6 +4,21 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setButtonText, setRedirection, setShowModal } from '../feature/navigation.slice';
 
+export const checkSales = createAsyncThunk(
+  'products/sales',
+  async (_, { getState, rejectWithValue }) => {
+    try {
+      const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/sales`, {
+      });
+      console.log(result);
+      return result.data;
+    }
+    catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 export const getProducts = createAsyncThunk(
   'products/setProducts',
   async (_, { getState, dispatch, rejectWithValue }) => {

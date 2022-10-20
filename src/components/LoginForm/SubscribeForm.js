@@ -106,7 +106,7 @@ function SubscribeForm() {
           <p
             {...((isSubscribe) && {
               style: {
-                opacity: '1',
+                opacity: 1,
               },
             })}
           >

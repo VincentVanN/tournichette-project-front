@@ -6,7 +6,12 @@ import { AnimatePresence } from 'framer-motion';
 import { setUser, getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
-import { getCarts, getCategories, getProducts } from '../../AsyncChunk/AsyncChunkPoducts';
+import {
+  checkSales,
+  getCarts,
+  getCategories,
+  getProducts,
+} from '../../AsyncChunk/AsyncChunkPoducts';
 import { setToken } from '../../feature/user.slice';
 import { pushInCart, setCartAmount, setCount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
@@ -15,8 +20,11 @@ import AnimatedRoutesSmallScreen from '../AnimationComponents/AnimatedRoutesSmal
 import AnimatedRoutesLargeScreen from '../AnimationComponents/AnimatedRoutesLargeScreen';
 import Modal from '../Modal/Modal';
 import { setLocalStorageCount, setLocalStorageShoppingCart } from '../../utils/localStorage';
+import HomeClosed from '../Home/HomeClosed';
+import Page from '../Page/Page';
 
 function App() {
+  const areSalesOpen = useSelector((state) => state.products.areSalesOpen);
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
   const loadingCategories = useSelector((state) => state.products.loadingCategories);
   const shoppingCart = useSelector((state) => state.shoppingCart.shoppingCart);
@@ -53,8 +61,13 @@ function App() {
   // set data and user
   //
   useEffect(() => {
+    dispatch(checkSales());
+  }, []);
+  useEffect(() => {
     if (loggedUser) {
       dispatch(setToken(loggedUser.token));
+    }
+    if (loggedUser && areSalesOpen) {
       dispatch(getDepotsList());
       dispatch(getCarts());
       dispatch(getProducts());
@@ -64,7 +77,7 @@ function App() {
     if (token) {
       dispatch(setUser(token));
     }
-  }, [token]);
+  }, [token, areSalesOpen]);
   useEffect(() => {
     if (localStorageShoppingCart && localStorageShoppingCart.lenght !== 0) {
       dispatch(pushInCart(localStorageShoppingCart.shoppingCart));
@@ -80,10 +93,17 @@ function App() {
   }, [shoppingCart, count]);
   //
   //
-  if ((loadingProducts && logged)
-  || (loadingCategories && logged)
+  if ((loadingProducts && logged && areSalesOpen)
+  || (loadingCategories && logged && areSalesOpen)
   ) {
     return <Loading />;
+  }
+  if (logged && !areSalesOpen) {
+    return (
+      <Page>
+        <HomeClosed />
+      </Page>
+    );
   }
   //
   //
@@ -98,7 +118,7 @@ function App() {
             </AnimatePresence>
           </>
         )}
-        {(logged)
+        {(logged && areSalesOpen)
     && (
     <AnimatedRoutesLargeScreen />
     )}
@@ -109,7 +129,6 @@ function App() {
   //
   return (
     <div className="app">
-
       {(!logged && !loggedUser)
       && (
       <>
@@ -119,7 +138,7 @@ function App() {
         </AnimatePresence>
       </>
       )}
-      {(logged)
+      {(logged && areSalesOpen)
     && (
     <AnimatedRoutesSmallScreen />
     )}
