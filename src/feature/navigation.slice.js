@@ -39,8 +39,8 @@ export const navigationSlice = createSlice({
     deleteButtonText: (state) => {
       state.buttonText = '';
     },
-    setRedirection: (state, { payload }) => {
-      state.redirection = payload;
+    setButtonIcon: (state, { payload }) => {
+      state.buttonText = payload;
     },
     deleteRedirection: (state) => {
       state.redirection = '';

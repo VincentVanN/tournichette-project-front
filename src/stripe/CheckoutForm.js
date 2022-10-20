@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
-import { setShowModal } from '../feature/navigation.slice';
+import { setButtonText, setShowModal } from '../feature/navigation.slice';
 import { setServerMessage } from '../feature/shoppingCart.slice';
 import { postOrder } from '../AsyncChunk/AsyncChunkShoppingCart';
 
@@ -42,11 +42,13 @@ function CheckoutForm({
           setMessage('Paiement en cours');
           break;
         case 'requires_payment_method':
-          dispatch(setServerMessage('Paiement annulé, veuillez réitérer.'));
+          dispatch(setServerMessage('Paiement annulé, il faut recommencer.'));
+          dispatch(setButtonText('Ok!'));
           dispatch(setShowModal(true));
           break;
         default:
           dispatch(setServerMessage('Une erreur est survenue'));
+          dispatch(setButtonText('Fermer'));
           dispatch(setShowModal(true));
           break;
       }
@@ -68,6 +70,7 @@ function CheckoutForm({
     });
     if (error) {
       dispatch(setServerMessage(error.message));
+      dispatch(setButtonText('Valider'));
       dispatch(setShowModal(true));
     }
     if (!error) {

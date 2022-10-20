@@ -29,7 +29,7 @@ export const setUser = createAsyncThunk(
       dispatch(setRedirection('/'));
       dispatch(setButtonText('Connexion'));
       isError = true;
-      return rejectWithValue(error.response.data) && dispatch(setShowModal(true));
+      return rejectWithValue(error.response.data);
     }
     finally {
       if (isError) {

@@ -12,6 +12,7 @@ import {
 import Field from './Field/Field';
 import { createUser } from '../../AsyncChunk/AsyncChunkUser';
 import { setButtonText, setRedirection, setShowModal } from '../../feature/navigation.slice';
+import Button from '../Button/Button';
 
 function SubscribeForm() {
   const {
@@ -21,10 +22,10 @@ function SubscribeForm() {
   const handleChangeSubscribeForm = (value, key) => {
     dispatch(changeSubscribeForm([key, value]));
   };
+  const isSubscribe = useSelector((state) => state.user.isSubscribe);
   const [isFocusPassword, setIsFocusPassword] = useState(false);
   const [isFocusScdPassword, setIsFocusScdPassword] = useState(false);
   const width = useSelector((state) => state.navigation.width);
-  const handleReturn = () => dispatch(setIsSubscribe(false));
   const handleSubscribe = (e) => {
     e.preventDefault();
     let isError = false;
@@ -73,8 +74,48 @@ function SubscribeForm() {
   };
   return (
     <div className="form-container">
+      <div className="tab">
+        <div
+          className="tab-singIn"
+          onClick={() => dispatch(setIsSubscribe(false))}
+          {...((!isSubscribe) && {
+            style: {
+              color: '#fd7c55', border: 'none', fontWeight: '500', background: 'none', cursor: 'default',
+            },
+          })}
+        >
+          <p
+            {...((!isSubscribe) && {
+              style: {
+                opacity: 1,
+              },
+            })}
+          >
+            CONNEXION
+          </p>
+        </div>
+        <div
+          className="tab-signUp"
+          onClick={() => dispatch(setIsSubscribe(true))}
+          {...((isSubscribe) && {
+            style: {
+              color: '#fd7c55', border: 'none', fontWeight: '500', background: 'none', cursor: 'default',
+            },
+          })}
+        >
+          <p
+            {...((isSubscribe) && {
+              style: {
+                opacity: '1',
+              },
+            })}
+          >
+            INSCRIPTION
+          </p>
+        </div>
+      </div>
       <img className="form-logo" src={logo} alt="logo Tournichette" />
-      <h1 className="form-title">Inscription</h1>
+      <h1 className="form-title-subscribe">Entre tes informations</h1>
       <div className="form-field-container">
         <form onSubmit={handleSubscribe}>
           <Field
@@ -124,16 +165,11 @@ function SubscribeForm() {
             onChange={handleChangeSubscribeForm}
           />
           <div className="form-button-container">
-            <ion-icon
-              name="arrow-undo-circle-outline"
-              style={{ fontSize: '3em' }}
-              onClick={handleReturn}
-            />
             <button
               type="submit"
               className="form-button"
             >
-              <ion-icon name="checkmark-circle-outline" style={{ fontSize: '3.5em' }} />
+              <Button text="Valider" icon="checkmark-circle-outline" />
             </button>
           </div>
         </form>
