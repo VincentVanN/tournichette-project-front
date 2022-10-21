@@ -29,20 +29,6 @@ function Products() {
   //
   // algorithm to filter products by category
   //
-  const selectedRoute = (related, slug) => {
-    if (related === 'products' && slugCategory) {
-      return `/categorie/${slugCategory}/${slug}`;
-    }
-    if (related === 'carts') {
-      return `/paniers/${slug}`;
-    }
-    return `/produit/${slug}`;
-  };
-  const productToDisplay = (related, slug) => {
-    const product = related === 'carts' ? carts.find((item) => item.slug === slug) : products.find((item) => item.slug === slug);
-    return product;
-  };
-  const handleClickProduct = (related, slug) => navigate(selectedRoute(related, slug), { state: { currentProduct: productToDisplay(related, slug) } });
   const filterProducts = () => products
     .filter((product) => (product.category.slug === slugCategory));
 
@@ -68,6 +54,25 @@ function Products() {
   else {
     arrayToDisplay = filteredArray;
   }
+  //
+  // element for product display
+  //
+  const selectedRoute = (related, slug) => {
+    if (related === 'products' && slugCategory) {
+      return { path: `/categorie/${slugCategory}/${slug}`, type: 'category' };
+    }
+    if (related === 'carts') {
+      return { path: `/paniers/${slug}`, type: 'carts' };
+    }
+    return { path: `/produit/${slug}`, type: 'products' };
+  };
+  const productToDisplay = (related, slug) => {
+    const product = related === 'carts' ? carts.find((item) => item.slug === slug) : products.find((item) => item.slug === slug);
+    const { type } = selectedRoute(related, slug);
+    const productObject = { product, arrayToDisplay, type };
+    return productObject;
+  };
+  const handleClickProduct = (related, slug) => navigate(selectedRoute(related, slug).path, { state: { currentProduct: productToDisplay(related, slug) } });
   //
   // display for searchBar
   //

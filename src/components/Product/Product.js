@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import './product.scss';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
@@ -11,34 +11,18 @@ import Loading from '../Loading/Loading';
 function Product() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const params = useParams();
-  const { slugProduct, slugCart, slugCategory } = params;
+  const { slugProduct, slugCart, slugCategory } = useParams();
+  const { product, arrayToDisplay, type } = useLocation().state.currentProduct;
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
   const width = useSelector((state) => state.navigation.width);
   //
-  // select product or cart
-  //
-  const products = useSelector((state) => state.products.products.data);
-  const carts = useSelector((state) => state.products.carts.data);
-  let oneProduct;
-  if (slugProduct) {
-    oneProduct = products.find((element) => element.slug === slugProduct);
-  }
-  if (slugCart) {
-    oneProduct = carts.find((element) => element.slug === slugCart);
-  }
-  let productsListInCart;
-  if (carts.some((element) => element.slug === slugCart)) {
-    productsListInCart = oneProduct.cartProducts;
-  }
-  //
   // add product in cart
   //
   const cart = useSelector((state) => state.shoppingCart.shoppingCart);
   const handleClickCart = () => {
-    dispatch(pushInCart(changeQuantityProduct(cart, oneProduct, 1)));
+    dispatch(pushInCart(changeQuantityProduct(cart, product, 1)));
     dispatch(setCount(1));
   };
   //
@@ -57,23 +41,25 @@ function Product() {
     }
     return '/produit/';
   };
-  const filteredArrayFunction = () => {
-    if (slugCategory) {
-      return products.filter((product) => (product.category.slug === slugCategory));
-    }
-    return products;
+  const productToDisplay = (increment) => {
+    const object = {
+      product: navigationInProduct(arrayToDisplay, product, increment),
+      arrayToDisplay,
+      type,
+    };
+    return object;
   };
   const handleNavigateForward = () => {
     setIsForward(true);
-    navigate(`${selectRoute()}${navigationInProduct(slugProduct ? filteredArrayFunction() : carts, oneProduct, 1)}`);
+    navigate(`${selectRoute()}${navigationInProduct(arrayToDisplay, product, 1).slug}`, { state: { currentProduct: productToDisplay(1) } });
   };
   const handleNavigateBackward = () => {
     setIsForward(false);
-    navigate(`${selectRoute()}${navigationInProduct(slugProduct ? filteredArrayFunction() : carts, oneProduct, -1)}`);
+    navigate(`${selectRoute()}${navigationInProduct(arrayToDisplay, product, -1).slug}`, { state: { currentProduct: productToDisplay(-1) } });
   };
   //
   const getQuantityInCart = () => {
-    const productInCart = cart.find((product) => product.name === oneProduct.name);
+    const productInCart = cart.find((wantedProduct) => wantedProduct.name === product.name);
     if (!productInCart) {
       return 0;
     }
@@ -102,7 +88,7 @@ function Product() {
     >
       <motion.div
         className="product"
-        key={oneProduct.name}
+        key={product.name}
         initial={{ width: 0 }}
         animate={{ width: `${widthForAnimation}` }}
         exit={{ x: isForward ? `-${widthForAnimation}` : `${widthForAnimation}`, opacity: 0, transition: { duration: 0.20 } }}
@@ -115,38 +101,38 @@ function Product() {
           exit={{ y: -300, opacity: 0, transition: { duration: 0.2 } }}
           style={{ color: '#fd7c55' }}
         >
-          {oneProduct.name}
+          {product.name}
         </motion.h2>
         {!slugCart && (
-          <img src={oneProduct.image} alt="product" className="product-image" />
+          <img src={product.image} alt="product" className="product-image" />
         )}
         <div className="product-content">
           {slugCart && (
             <div className="productsListinCart">
-              {productsListInCart.map((product) => (
+              {product.cartProducts.map((productInCart) => (
                 <div
                   className="productInCart"
-                  key={product.product.name}
+                  key={productInCart.product.name}
                 >
                   <div className="product-name">
-                    {product.product.name}
+                    {productInCart.product.name}
                   </div>
                   <div className="doted" />
                   <div className="meta">
-                    {`${(product.product.unity === 'kg' ? parseInt(product.quantity, 10) : product.quantity)}${product.product.unity}`}
+                    {`${(productInCart.product.unity === 'kg' ? parseInt(productInCart.quantity, 10) : productInCart.quantity)}${productInCart.product.unity}`}
                   </div>
                 </div>
               ))}
 
             </div>
           )}
-          {(products.find((element) => element.slug === slugProduct)) && (
+          { (type === 'products' || 'category') && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              {oneProduct.description}
+              {product.description}
             </motion.p>
           )}
         </div>
@@ -155,14 +141,14 @@ function Product() {
             <span className="product-meta-span span-one">
               <span className="span-one-title">Quantité</span>
               <div className="container-meta">
-                <span className="span-one-info">{oneProduct.quantity}</span>
-                <span className="span-one-info">{oneProduct.unity}</span>
+                <span className="span-one-info">{product.quantity}</span>
+                <span className="span-one-info">{product.unity}</span>
               </div>
             </span>
             <span className="product-meta-span span-two">
               <span className="span-two-title">Prix</span>
               <div className="container-meta">
-                <span className="span-two-info">{`${oneProduct.price}€`}</span>
+                <span className="span-two-info">{`${product.price}€`}</span>
               </div>
             </span>
             <span className="product-meta-span span-three">
