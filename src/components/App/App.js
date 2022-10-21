@@ -16,8 +16,7 @@ import { setToken } from '../../feature/user.slice';
 import { pushInCart, setCartAmount, setCount } from '../../feature/shoppingCart.slice';
 import { getDepotsList } from '../../AsyncChunk/AsyncChunkShoppingCart';
 import { setHeight, setShowModal, setWidth } from '../../feature/navigation.slice';
-import AnimatedRoutesSmallScreen from '../AnimationComponents/AnimatedRoutesSmallScreen';
-import AnimatedRoutesLargeScreen from '../AnimationComponents/AnimatedRoutesLargeScreen';
+import AnimatedRoutes from '../AnimationComponents/AnimatedRoutes';
 import Modal from '../Modal/Modal';
 import { setLocalStorageCount, setLocalStorageShoppingCart } from '../../utils/localStorage';
 import HomeClosed from '../Home/HomeClosed';
@@ -35,7 +34,6 @@ function App() {
   const localStorageShoppingCart = JSON.parse(localStorage.getItem('shoppingCart'));
   const localStorageCount = JSON.parse(localStorage.getItem('count'));
   const token = useSelector((state) => state.user.user.token);
-  const stateWidth = useSelector((state) => state.navigation.width);
 
   //
   // getting screen size in state
@@ -107,26 +105,6 @@ function App() {
   }
   //
   //
-  if (stateWidth >= 1024) {
-    return (
-      <div className="app">
-        {(!logged && !loggedUser) && (
-          <>
-            <Modal />
-            <AnimatePresence mode="wait" onExitComplete={() => dispatch(setShowModal(false))}>
-              <LoginForm />
-            </AnimatePresence>
-          </>
-        )}
-        {(logged && areSalesOpen)
-    && (
-    <AnimatedRoutesLargeScreen />
-    )}
-      </div>
-    );
-  }
-  //
-  //
   return (
     <div className="app">
       {(!logged && !loggedUser)
@@ -140,7 +118,7 @@ function App() {
       )}
       {(logged && areSalesOpen)
     && (
-    <AnimatedRoutesSmallScreen />
+    <AnimatedRoutes />
     )}
 
     </div>
