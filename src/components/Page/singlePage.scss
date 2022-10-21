@@ -51,7 +51,7 @@ main {
     justify-content: center;
     align-items: center;
     top: 20px;
-    right: 120px;
+    right: 90px;
     height: 90px;
     width: 90px;
     z-index: 20;
@@ -67,27 +67,37 @@ main {
     border: solid 2px vars.$colorDarkGreen;
   }
 .cart {
-  position: static;
-  margin-top: 20px;
+  position: relative;
+  left: 35px;
+  bottom: -20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-  .count {
-    width: 33px;
-    height: 33px;
-    position: absolute;
-    right: -18px;
-    top: 10px;
+.icon {
+  position: absolute;
+}
+  .countLargeSize {
+    position: relative;
+    top: -70px;
+    left: 35px;
+    width: 30px;
+    height: 30px;
     color: vars.$colorMediumGreen;
+    background: vars.$colorBeige;
     padding-bottom: 1px;
     border: solid 2px  vars.$colorOrange;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     & p {
       position: relative;
-      font-size: 1.2em;
+      font-size: 1.5em;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

@@ -32,5 +32,5 @@ export const navigationInProduct = (products, product, increment) => {
       nextProduct = products[(products.length - 1)];
     }
   }
-  return nextProduct.slug;
+  return nextProduct;
 };
