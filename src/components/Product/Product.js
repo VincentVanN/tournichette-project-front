@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import './product.scss';
 import { useLocation, useNavigate, useParams } from 'react-router';
-import { useEffect, useState } from 'react';
 import { pushInCart, setCount } from '../../feature/shoppingCart.slice';
 import { changeQuantityProduct, navigationInProduct } from '../../utils/cartUtils';
 import Page from '../Page/Page';
@@ -28,10 +27,6 @@ function Product() {
   //
   // navigate in product
   //
-  const [isForward, setIsForward] = useState(false);
-  useEffect(() => () => {
-    setIsForward(false);
-  }, []);
   const selectRoute = () => {
     if (slugProduct && slugCategory) {
       return `/categorie/${slugCategory}/`;
@@ -50,11 +45,9 @@ function Product() {
     return object;
   };
   const handleNavigateForward = () => {
-    setIsForward(true);
     navigate(`${selectRoute()}${navigationInProduct(arrayToDisplay, product, 1).slug}`, { state: { currentProduct: productToDisplay(1) } });
   };
   const handleNavigateBackward = () => {
-    setIsForward(false);
     navigate(`${selectRoute()}${navigationInProduct(arrayToDisplay, product, -1).slug}`, { state: { currentProduct: productToDisplay(-1) } });
   };
   //
@@ -91,14 +84,15 @@ function Product() {
         key={product.name}
         initial={{ width: 0 }}
         animate={{ width: `${widthForAnimation}` }}
-        exit={{ x: isForward ? `-${widthForAnimation}` : `${widthForAnimation}`, opacity: 0, transition: { duration: 0.20 } }}
+        transition={{ duration: 0.3 }}
       >
         <motion.h2
           className="product-title"
-          initial={{ y: -900 }}
+          initial={{ y: -500 }}
           animate={{ y: 0 }}
-          transition={{ duration: 0.4 }}
-          exit={{ y: -300, opacity: 0, transition: { duration: 0.2 } }}
+          transition={{
+            duration: 0.3, type: 'spring', damping: 10, stiffness: 500,
+          }}
           style={{ color: '#fd7c55' }}
         >
           {product.name}

@@ -4,6 +4,7 @@ import logo from 'src/assets/logo.svg';
 import './home.scss';
 import { useSelector } from 'react-redux';
 import Page from '../Page/Page';
+import SocialNetwork from '../SocialNetwork/SocialNetwork';
 
 function Home() {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ function Home() {
               </motion.button>
             </div>
           </div>
+          <SocialNetwork widthDiv="30%" />
         </div>
       </div>
     </Page>

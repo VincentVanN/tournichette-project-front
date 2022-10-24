@@ -6,10 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import '../Page/singlePage.scss';
 import Cgu from '../Cgu/Cgu';
-import Contact from '../Contact/Contact';
-import DevTeam from '../DevTeam/DevTeam';
 import Home from '../Home/Home';
-import AboutUs from '../AboutUs/AboutUs';
 import LegalNotice from '../LegalNotice/LegalNotice';
 import NotFound from '../NotFound/NotFound';
 import Modal from '../Modal/Modal';
@@ -191,11 +188,8 @@ function AnimatedRoutes() {
           />
           <Route path="/profil/historique" element={<Page><Orders /></Page>} />
           <Route path="/profil/coordonnees" element={<Page><UserContact /></Page>} />
-          <Route path="/apropos" element={<Page><AboutUs /></Page>} />
           <Route path="/CGU" element={<Page><Cgu /></Page>} />
           <Route path="/mentions-legales" element={<Page><LegalNotice /></Page>} />
-          <Route path="/contact" element={<Page><Contact /></Page>} />
-          <Route path="/La-Dev-Team" element={<Page><DevTeam /></Page>} />
           <Route path="/*" element={<Page><NotFound /></Page>} />
         </Routes>
       </AnimatePresence>

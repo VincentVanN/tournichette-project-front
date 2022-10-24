@@ -4,18 +4,16 @@ import './staticProductsDisplay.scss';
 import panier from 'src/components/StaticProductsDisplay/Brouette.jpg';
 import { useLocation, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import epicerie from './produitsVerres.jpg';
 import legumes from './HaricotsVert.jpg';
 import detail from './detail.jpg';
 import fruits from './fraises.jpg';
-import { setParamsLoading } from '../../feature/navigation.slice';
 import Loading from '../Loading/Loading';
 import Page from '../Page/Page';
 
 function StaticProductsDisplay() {
   const isLoadingParams = useSelector((state) => state.navigation.paramsLoading);
-  const dispatch = useDispatch();
   const params = useParams();
   const location = useLocation();
   const { slugCategory } = params;
