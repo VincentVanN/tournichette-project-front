@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import './button.scss';
 import { motion } from 'framer-motion';
 
-function Button({ text, icon }) {
+function Button({
+  text, icon, onClick, size,
+}) {
   const [isHover, setIsHover] = useState(false);
   const windowVariants = {
     open: {
@@ -37,6 +39,7 @@ function Button({ text, icon }) {
       className="iconButton_container"
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
+      onClick={() => onClick()}
     >
 
       <motion.div
@@ -51,7 +54,7 @@ function Button({ text, icon }) {
       >
         <ion-icon
           name={icon}
-          style={{ fontSize: '3.5em', color: isHover ? '#fd7c55' : '#356859' }}
+          style={{ fontSize: size === undefined ? '3.5em' : size, color: isHover ? '#fd7c55' : '#356859' }}
         />
 
       </motion.div>
@@ -73,5 +76,11 @@ function Button({ text, icon }) {
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  size: PropTypes.string,
+};
+Button.defaultProps = {
+  onClick: null,
+  size: undefined,
 };
 export default Button;

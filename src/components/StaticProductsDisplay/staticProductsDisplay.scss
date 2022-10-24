@@ -25,7 +25,7 @@
     color: vars.$colorOrange;
     font-family: vars.$fontMontserrat;
     font-size: 4em;
-    font-weight: 600;
+    font-weight: 500;
     text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.4);
     background: rgba(226, 221, 199, 0.5);
     &-container {
@@ -38,9 +38,10 @@
   }
   &-subtitle {
     text-align: center;
+    font-family: vars.$fontMontserrat;
     color: vars.$colorDarkGreen;
     font-size: 1.8em;
-    font-weight: 600;
+    font-weight: 500;
     padding: 0 80px;
     &-container {
       width: 100%;

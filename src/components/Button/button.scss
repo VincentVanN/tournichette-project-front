@@ -54,6 +54,7 @@
   font-size: 1.3em;
   color: #fff;
   font-weight: 500;
+  font-family: vars.$fontMontserrat;
   transition-delay: 0s;
 }
 .buttonToggle.active ~ .window .text {

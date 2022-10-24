@@ -10,6 +10,7 @@ import SubscribeForm from './SubscribeForm';
 import { loginUser, loginUserWithGoogle } from '../../AsyncChunk/AsyncChunkUser';
 import Button from '../Button/Button';
 import { setButtonText, setShowModal } from '../../feature/navigation.slice';
+import SocialNetwork from '../SocialNetwork/SocialNetwork';
 
 function LoginForm() {
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
@@ -119,6 +120,7 @@ function LoginForm() {
               </div>
             </form>
           </div>
+          <SocialNetwork />
         </div>
 
       )}

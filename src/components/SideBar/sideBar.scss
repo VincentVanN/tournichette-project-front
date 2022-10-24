@@ -199,7 +199,6 @@
   width: 300px;
   z-index: 10;
   box-shadow: none;
-  border: no;
 }
 .toggle {
   position: absolute;
@@ -254,6 +253,7 @@
   width: 100%;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  margin-bottom: 20px;
 }
 .navigation ul li a{
 position: relative;
@@ -263,10 +263,10 @@ display: flex;
 text-decoration: none;
 color: vars.$colorBeige;
 }
-.navigation ul li:hover{
-  background: vars.$colorBeige;
-  color: #222;
-}
+// .navigation ul li:hover{
+//   background: vars.$colorBeige;
+//   color: #222;
+// }
 
 .navigation ul li a .icon {
   position: relative;
@@ -288,28 +288,7 @@ color: vars.$colorBeige;
   text-align: start;
   white-space: nowrap;
 }
-.navigation ul li:hover::before{
-  content: '';
-  position: absolute;
-  top: -20px;
-  right: 0;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-bottom-right-radius: 20px;
-  box-shadow: 7.5px 7.5px 0 7.5px vars.$colorBeige;
-}
-.navigation ul li:hover::after{
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  right: 0;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-top-right-radius: 20px;
-  box-shadow: 7.5px -7.5px 0 7.5px vars.$colorBeige;
-}
+
 .navigation ul li a .icon:hover ion-icon{
   color: vars.$colorOrange;
 }
@@ -326,7 +305,33 @@ color: vars.$colorBeige;
 .link.active {
   border-bottom: none;
 }
-
+.link.active {
+  background: vars.$colorBeige;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.link.active::before {
+  content: '';
+position: absolute;
+top: -20px;
+right: 0;
+width: 20px;
+height: 20px;
+background: transparent;
+border-bottom-right-radius: 20px;
+box-shadow: 7.5px 7.5px 0 7.5px vars.$colorBeige;
+}
+.link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 7.5px -7.5px 0 7.5px vars.$colorBeige;
+}
 @media only screen and (min-width: 1024px) {
   .navigation {
     background: vars.$colorBeige;
@@ -339,13 +344,40 @@ color: vars.$colorBeige;
   .navigation ul li a {
     color :vars.$colorLightGreen;
   }
-  .navigation ul li:hover {
-    background: vars.$colorLightGreen;
-  }
   .navigation ul li:hover::before{
     box-shadow: 7.5px 7.5px 0 7.5px vars.$colorLightGreen;
   }
   .navigation ul li:hover::after{
+    box-shadow: 7.5px -7.5px 0 7.5px vars.$colorLightGreen;
+  }
+  .link.active {
+    background: vars.$colorLightGreen;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    & ion-icon {
+      color: vars.$colorOrange;
+    }
+  }
+  .link.active::before {
+    content: '';
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-bottom-right-radius: 20px;
+  box-shadow: 7.5px 7.5px 0 7.5px vars.$colorLightGreen;
+  }
+  .link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
     box-shadow: 7.5px -7.5px 0 7.5px vars.$colorLightGreen;
   }
 }
