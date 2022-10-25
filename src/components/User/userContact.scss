@@ -43,6 +43,10 @@ p.updateUserAccount.input-item{
   margin-bottom: 10px;
   font-family: vars.$fontLekton;
   &.input-item {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: auto;
       font-family: vars.$fontLekton;
       border: 0.1px solid vars.$colorveryLightGreen;
       background-color: vars.$colorMediumGreen;

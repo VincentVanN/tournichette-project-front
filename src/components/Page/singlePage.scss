@@ -21,20 +21,23 @@ main {
   min-width: 500px;
   max-height: 90vh;
   color: black;
-  margin: 40px 150px 40px 20px;
+  margin: 40px 150px 40px 10px;
   background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
   overflow: auto;
+  border-radius: 10px;
 }
 .smallComponent{
+  display: block;
+  overflow: auto;
   flex-basis:33.33%;
   max-width: 600px;
   min-width: 400px;
   max-height: 90vh;
-  margin: 40px 10px 40px 40px;
-  margin-left: 200px;
+  margin: 40px 0 40px 210px;
   background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);
+  border-radius: 10px;
 }
 @media only screen and (min-width: 1024px) {
   .largeComponent{
@@ -57,8 +60,8 @@ main {
     width: 90px;
     z-index: 20;
     margin: 0;
-    background: vars.$colorMediumGreen;
-    color: vars.$colorLightGreen;
+    background: vars.$colorLightGreen;
+    color: vars.$colorDarkGreen;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -84,7 +87,7 @@ main {
     left: 35px;
     width: 30px;
     height: 30px;
-    color: vars.$colorMediumGreen;
+    color: vars.$colorDarkGreen;
     background: vars.$colorBeige;
     padding-bottom: 1px;
     border: solid 2px  vars.$colorOrange;

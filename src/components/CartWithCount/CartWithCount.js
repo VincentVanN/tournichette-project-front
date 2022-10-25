@@ -10,9 +10,6 @@ function CartWithCount() {
   const countOfProducts = useSelector((state) => state.shoppingCart.count);
   const cartToDisplay = useSelector((state) => state.shoppingCart.shoppingCart);
   const cartAmount = useSelector((state) => state.shoppingCart.cartAmount);
-  const width = useSelector((state) => state.navigation.width);
-  const color = width > 1024 ? '#f2f5df' : '#356859';
-  const size = width >= 1024 ? '55px' : '45px';
   const navigate = useNavigate();
   const handleClick = () => navigate('/MesAchats');
   const dispatch = useDispatch();
@@ -32,25 +29,27 @@ function CartWithCount() {
   const [activeIndex, setActiveIndex] = useState(null);
   const windowVariants = {
     open: {
-      width: 'auto',
+      width: '300px',
       height: 'auto',
       top: '14px',
-      zIndex: 5,
+      zIndex: '5',
       y: '80px',
+      x: '-90px',
       border: 'solid 2px rgb(53, 104, 89)',
       transition: {
         duration: 0.5,
         width: { delay: 0.5 },
         height: { delay: 0.5 },
         zIndex: { delay: 0.2 },
-        border: { delay: 0.5 },
+        border: { delay: 0.1 },
       },
     },
     closed: {
       width: '30px',
       height: '30px',
       y: 0,
-      zIndex: -5,
+      x: 0,
+      zIndex: '-5',
       transition: {
         duration: 0.5,
         delay: 0.4,
@@ -58,12 +57,12 @@ function CartWithCount() {
         width: { delay: 0.5 },
         height: { delay: 0.5 },
         zIndex: { delay: 0.2 },
-        border: { delay: 0.5 },
       },
     },
   };
   const textVariants = {
     open: {
+      width: '300px',
       opacity: 1,
       visibility: 'visible',
       zIndex: 5,
@@ -75,11 +74,13 @@ function CartWithCount() {
       },
     },
     closed: {
+      width: 0,
       opacity: 0,
       visibility: 'hidden',
       zIndex: -5,
       transition: {
         duration: 0.5,
+        width: { delay: 0.3 },
         opacity: { delay: 0.3 },
         visibility: { delay: 0.3 },
       },
@@ -107,7 +108,7 @@ function CartWithCount() {
         <div className="cart">
 
           <div className="icon">
-            <ion-icon name="cart-outline" style={{ fontSize: `${size}`, color: `${color}` }} />
+            <ion-icon name="cart-outline" style={{ fontSize: '55px', color: '#356859' }} />
             <motion.div
               className="countLargeSize"
               key={countOfProducts}
@@ -198,6 +199,7 @@ function CartWithCount() {
                 className="rediction-icon"
                 animate={{
                   rotate: isHoverRedirection ? [0, 360, 0] : 0,
+                  x: isHoverRedirection ? [0, 90, 0] : 0,
                   transition: {
                     duration: 1.5,
                   },

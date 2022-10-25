@@ -4,7 +4,7 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  background: vars.$colorMediumGreen;
+  background: vars.$colorLightGreen;
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@
   visibility: hidden;
   transition: 0.1s;
   font-size: 0.9em;
-  color: #fff;
+  color: vars.$colorDarkGreen;
   font-weight: 600;
   padding: 10px;
 }
@@ -29,17 +29,16 @@
 .dotted {
   flex: 1;
   height: 15px;
-  border-bottom: dotted 1px #fff;
+  border-bottom: dotted 1px vars.$colorDarkGreen;
 }
 .carWithCount-button-group{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: vars.$colorMediumGreen;
-  color: #fff;
-  font-weight: 600;
+  background: vars.$colorLightGreen;
   color: vars.$colorDarkGreen;
+  font-weight: 600;
 }
 .cartWithCountIncrement {
   display: flex;
