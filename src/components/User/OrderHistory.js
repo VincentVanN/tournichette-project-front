@@ -6,7 +6,6 @@ import 'src/components/User/orders.scss';
 
 function OrderHistory({ order }) {
   const [isActive, setIsActive] = useState(false);
-  const hiddenNoDetail = !isActive ? 'hidden' : '';
   const textVariants = {
     open: {
       x: 0,

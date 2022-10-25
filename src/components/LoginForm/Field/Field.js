@@ -1,4 +1,5 @@
 /* eslint-disable react/require-default-props */
+import { motion } from 'framer-motion';
 import '../loginForm.scss';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -11,6 +12,9 @@ function Field({
   onChange,
   onFocus,
   onBlur,
+  initial,
+  animate,
+  variants,
 }) {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
@@ -19,7 +23,12 @@ function Field({
   const eyeOff = (isVisible ? 'off-' : '');
   const handleClick = () => setIsVisible(!isVisible);
   return (
-    <div className="field">
+    <motion.div
+      className="field"
+      initial={initial}
+      animate={animate}
+      variants={variants}
+    >
       <div className="field field-container">
         <input
           value={value}
@@ -41,7 +50,7 @@ function Field({
         />
         )}
       </div>
-    </div>
+    </motion.div>
 
   );
 }
@@ -53,6 +62,9 @@ Field.propTypes = {
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  initial: PropTypes.string,
+  animate: PropTypes.string,
+  variants: PropTypes.object,
 };
 Field.defaultProps = {
   placeholder: '',
