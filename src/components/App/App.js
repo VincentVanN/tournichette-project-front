@@ -23,6 +23,7 @@ import HomeClosed from '../Home/HomeClosed';
 import Page from '../Page/Page';
 
 function App() {
+  const { isLoadingOrderHistory } = useSelector((state) => state.user);
   const areSalesOpen = useSelector((state) => state.products.areSalesOpen);
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
   const loadingCategories = useSelector((state) => state.products.loadingCategories);
@@ -93,6 +94,7 @@ function App() {
   //
   if ((loadingProducts && logged && areSalesOpen)
   || (loadingCategories && logged && areSalesOpen)
+  || (logged && areSalesOpen && isLoadingOrderHistory)
   ) {
     return <Loading />;
   }

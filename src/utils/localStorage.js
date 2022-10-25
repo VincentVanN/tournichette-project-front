@@ -9,3 +9,7 @@ export const setLocalStorageCount = (count) => localStorage.setItem('count', JSO
   count,
 }));
 export const removeLocalStorage = (item) => localStorage.removeItem(item);
+
+export const setLocalStorageCurrentProduct = (currentProduct) => localStorage.setItem('currentProduct', JSON.stringify({
+  currentProduct,
+}));

@@ -11,7 +11,20 @@ function Product() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { slugProduct, slugCart, slugCategory } = useParams();
-  const { product, arrayToDisplay, type } = useLocation().state.currentProduct;
+  let product;
+  let arrayToDisplay;
+  let type;
+  if (useLocation().state.currentProduct) {
+    product = useLocation().state.currentProduct.product;
+    arrayToDisplay = useLocation().state.currentProduct.arrayToDisplay;
+    type = useLocation().state.currentProduct.type;
+  }
+  else {
+    const currentProduct = JSON.parse(localStorage.getItem('currentProduct'));
+    product = currentProduct.product;
+    arrayToDisplay = currentProduct.arrayToDisplay;
+    type = currentProduct.type;
+  }
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);

@@ -15,6 +15,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     logged: false,
+    isLoadingOrderHistory: true,
     user: {
       firstname: '',
       lastname: '',
@@ -134,6 +135,7 @@ export const userSlice = createSlice({
     },
     [getOrderHistory.fulfilled]: (state, { payload }) => {
       state.orderHistory = payload;
+      state.isLoadingOrderHistory = false;
       console.log('[getOrderHistory] OK!');
     },
     [getOrderHistory.rejected]: () => {

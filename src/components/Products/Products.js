@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Page from '../Page/Page';
 import Loading from '../Loading/Loading';
 import SearchBar from '../SearchBar/SearchBar';
+import { setLocalStorageCurrentProduct } from '../../utils/localStorage';
 
 function Products() {
   const navigate = useNavigate();
@@ -72,7 +73,11 @@ function Products() {
     const productObject = { product, arrayToDisplay, type };
     return productObject;
   };
-  const handleClickProduct = (related, slug) => navigate(selectedRoute(related, slug).path, { state: { currentProduct: productToDisplay(related, slug) } });
+
+  const handleClickProduct = (related, slug) => {
+    setLocalStorageCurrentProduct(productToDisplay(related, slug));
+    navigate(selectedRoute(related, slug).path, { state: { currentProduct: productToDisplay(related, slug) } });
+  };
   //
   // display for searchBar
   //
