@@ -1,11 +1,15 @@
 @use 'src/styles/_vars.scss';
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Maze&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .container-notFound {
   width: 100vw;
   height: 100vh;
   background: vars.$colorLightGreen;
-  cursor: url('src/assets/icons8-hammer-64-removebg-preview.png'), auto;	
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .goal {
   width: 100vw;
@@ -24,24 +28,24 @@
  }
 }
 .parallax {
-  top: 5%;
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 50px;
   font-family: 'Rubik Maze';
-  overflow: hidden;
+  font-size: 800%;
   letter-spacing: -2px;
   line-height: 0.8;
-  margin: 0;
-  white-space: nowrap;
-  display: flex;
-  flex-wrap: nowrap;
-  background: vars.$colorLightGreen;
   color: #b65c41;
 }
-
-.parallax .scroller {
-  
+.subtitle {
+  text-align: center;
+  font-size: 200%;
+  font-family: 'Press Start 2P';
+  letter-spacing: -2px;
+  line-height: 0.8;
+}
+.parallax .scroller { 
   text-transform: uppercase;
   background: vars.$colorLightGreen;
   font-size: 300px;

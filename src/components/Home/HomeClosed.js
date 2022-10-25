@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import logo from 'src/assets/logo.svg';
 import Page from '../Page/Page';
+import SocialNetwork from '../SocialNetwork/SocialNetwork';
 
 function HomeClosed() {
   const name = useSelector((state) => state.user.user.firstname);
@@ -15,6 +16,7 @@ function HomeClosed() {
             </div>
             Les ventes ventes sont actuellement fermées, un email te sera envoyé à l'ouverture!
           </div>
+          <SocialNetwork widthDiv="30%" />
         </div>
       </div>
     </Page>

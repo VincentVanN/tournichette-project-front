@@ -1,13 +1,16 @@
 import 'src/components/User/userContact.scss';
+import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 // import './user.scss';
 import { useState } from 'react';
-import { changeEditForm, addErrorMessage, deleteErrorMessage } from 'src/feature/user.slice';
+import { changeEditForm, addErrorMessage } from 'src/feature/user.slice';
 import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
-import Field from './Field';
+import Field from 'src/components/LoginForm/Field/Field';
+import Button from '../Button/Button';
 import {
   validateUpperCase, validateLength, validateDigit, validateScdPassword, isValidEmail,
 } from '../../utils/validatePassword';
+import { setButtonText, setShowModal } from '../../feature/navigation.slice';
 
 function UserContact() {
   const {
@@ -15,9 +18,6 @@ function UserContact() {
   } = useSelector((state) => state.user.user);
   const [isForm, setIsForm] = useState(false);
   const dispatch = useDispatch();
-
-  const hiddenForm = !isForm ? 'hidden' : '';
-  const hiddenLi = isForm ? 'hidden' : '';
   const handleChangeEditForm = (value, key) => {
     dispatch(changeEditForm([key, value]));
   };
@@ -58,9 +58,8 @@ function UserContact() {
       dispatch(addErrorMessage('Mots de passe différents'));
     }
     if (isError === true) {
-      setTimeout(() => {
-        dispatch(deleteErrorMessage());
-      }, 2500);
+      dispatch(setButtonText('ok!'));
+      dispatch(setShowModal(true));
     }
     if (isError === false) {
       dispatch(updateUser());
@@ -81,6 +80,24 @@ function UserContact() {
       </div>
     );
   }
+  const textVariants = {
+    open: {
+      x: 0,
+      display: 'flex',
+      transition: {
+        delay: 0.2,
+        duration: 0.2,
+      },
+    },
+    closed: {
+      x: '130%',
+      display: 'none',
+      transition: {
+        duration: 0.2,
+        display: { delay: 0.2 },
+      },
+    },
+  };
   return (
     <form
       onSubmit={handleSubmit}
@@ -91,98 +108,164 @@ function UserContact() {
       </header>
       <ul className="updateUserAccount">
         <div className="updateUserAccount container">
-          <li className={`updateUserAccount list-item ${hiddenLi}`}>{firstname}</li>
+          <motion.li
+            className="updateUserAccount list-item"
+            initial="open"
+            animate={!isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >{firstname}
+          </motion.li>
           <Field
-            className={`updateUserAccount input-item ${hiddenForm}`}
             name="firstname"
             type="text"
             value={firstname}
             onChange={handleChangeEditForm}
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
           />
         </div>
         <div className="updateUserAccount container">
-          <li className={`updateUserAccount list-item ${hiddenLi}`}>{lastname}</li>
+          <motion.li
+            className="updateUserAccount list-item"
+            initial="open"
+            animate={!isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >{lastname}
+          </motion.li>
           <Field
-            className={`updateUserAccount input-item ${hiddenForm}`}
             name="lastname"
             type="text"
             value={lastname}
             onChange={handleChangeEditForm}
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
           />
         </div>
         <div className="updateUserAccount container">
-          <li className={`updateUserAccount list-item ${hiddenLi}`}>{phone}</li>
+          <motion.li
+            className="updateUserAccount list-item"
+            initial="open"
+            animate={!isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >{phone}
+          </motion.li>
           <Field
-            className={`updateUserAccount input-item ${hiddenForm}`}
             name="phone"
             type="text"
             value={phone}
             onChange={handleChangeEditForm}
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
           />
         </div>
         <div className="updateUserAccount container">
-          <li className={`updateUserAccount list-item ${hiddenLi}`}>{email}</li>
+          <motion.li
+            className="updateUserAccount list-item"
+            initial="open"
+            animate={!isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >{email}
+          </motion.li>
           <Field
-            className={`updateUserAccount input-item ${hiddenForm}`}
             name="email"
             type="text"
             autocomplete="username"
             value={email}
             onChange={handleChangeEditForm}
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
           />
         </div>
         <div className="updateUserAccount container">
-          <p className={`updateUserAccount input-item ${hiddenForm}`}>Ancien mot de passe</p>
+          <motion.p
+            className="updateUserAccount input-item"
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >Ancien mot de passe
+          </motion.p>
           <Field
-            className={`updateUserAccount input-item ${hiddenForm}`}
             name="oldPassword"
             type="password"
             placeholder="Ancien mot de passe"
             autocomplete="current-password"
             value={oldPassword}
             onChange={handleChangeEditForm}
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
           />
         </div>
         <div className="updateUserAccount container">
-          <p className={`updateUserAccount input-item ${hiddenForm}`}>Nouveau mot de passe</p>
+          <motion.p
+            className="updateUserAccount input-item"
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >Nouveau mot de passe
+          </motion.p>
           <Field
-            className={`updateUserAccount input-item ${hiddenForm}`}
             name="password"
             type="password"
             placeholder="Nouveau mot de passe"
             autocomplete="new-password"
             value={password}
             onChange={handleChangeEditForm}
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
           />
         </div>
         <div className="updateUserAccount container">
-          <p className={`updateUserAccount input-item ${hiddenForm}`}>Confirmez votre mot de passe</p>
+          <motion.p
+            className="updateUserAccount input-item"
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >Confirmez votre mot de passe
+          </motion.p>
           <Field
-            className={`updateUserAccount input-item ${hiddenForm}`}
             name="sndPassword"
             type="password"
             autocomplete="new-password"
             placeholder="Confirmez votre mot de passe"
             value={sndPassword}
             onChange={handleChangeEditForm}
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
           />
         </div>
-        <div className={`contactForm-button-container ${hiddenForm}`}>
+      </ul>
+
+      {isForm && (
+        <div className="contactForm-button-container">
+          <Button
+            icon="arrow-undo-outline"
+            text="Retour"
+            onClick={() => setIsForm(!isForm)}
+          />
           <button
             type="submit"
             className="contactForm-button"
           >
-            <ion-icon name="checkmark-circle-outline" />
+            <Button icon="checkmark-circle-outline" text="Valider" />
           </button>
         </div>
-
-      </ul>
-      <button
-        className="updateUserAccount button"
-        type="button"
-        onClick={() => setIsForm(!isForm)}
-      > {!isForm ? 'Mettre à jour mes informations' : 'Annuler'}
-      </button>
+      )}
+      {!isForm && (
+        <div className="contactForm-button-container">
+          <Button
+            icon="create-outline"
+            text="Editer"
+            onClick={() => setIsForm(!isForm)}
+          />
+        </div>
+      )}
     </form>
 
   );

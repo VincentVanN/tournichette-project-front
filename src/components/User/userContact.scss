@@ -16,28 +16,25 @@
   }
 
   &-title{
-    font-size: 1.5em;
-    font-family: vars.$fontLekton;
+    font-size: 1.8em;
     color: vars.$colorDarkGreen;
-    font-weight: 500;
+  font-family: vars.$fontMontserrat;
+  font-weight: 500;
   }
   &-button {
     border: none;
     background-color: vars.$colorBeige;
   }
-
-  &-button-container {
-    text-align: center;
-  }
 }
-
-
 
 p.updateUserAccount.input-item{
   background-color: vars.$colorBeige;
   border: none;
   color: vars.$colorDarkGreen;
 }
+  
+
+
 .updateUserAccount {
   background: vars.$colorBeige;
   color: vars.$colorDarkGreen;
@@ -45,8 +42,37 @@ p.updateUserAccount.input-item{
   overflow: auto;
   margin-bottom: 10px;
   font-family: vars.$fontLekton;
+  &.input-item {
+      font-family: vars.$fontLekton;
+      border: 0.1px solid vars.$colorveryLightGreen;
+      background-color: vars.$colorMediumGreen;
+      padding: 4%;
+      font-size: 1em;
+      padding: 2%;
+      margin: 0 30px;
+      left: 10;
+      color: vars.$colorMediumGreen;
+      text-align: center;
+  }
+  &.list-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: auto;
+      font-family: vars.$fontMontserrat;
+      height: 35px;
+      font-size: 1.1em;
+      font-weight: 400;
+      color: vars.$colorDarkGreen;
+    &.container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
   
-
   &.container{
     height: 8vh;
   }
@@ -56,19 +82,6 @@ p.updateUserAccount.input-item{
     margin-inline: 10%;
     border: 1px solid vars.$colorBeige;
   }
-
-}
-.updateUserAccount .input-item {
-  font-family: vars.$fontLekton;
-  border: 0.1px solid vars.$colorveryLightGreen;
-  background-color: vars.$colorMediumGreen;
-  padding: 4%;
-  font-size: 0.7em;
-  padding: 2%;
-  margin: 0 30px;
-  left: 10;
-  color: vars.$colorMediumGreen;
-  text-align: center;
 }
 .errorMessage{
   font-family: vars.$fontMontserrat;
@@ -100,6 +113,11 @@ p.updateUserAccount.input-item{
   align-items: center;
  }
 }
+.contactForm-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @media only screen and (min-width: 576px) {
 
   .contactForm-button-container {
@@ -128,14 +146,6 @@ p.updateUserAccount.input-item{
     margin-left: 2%;
     text-align: center;
 
-    &.list-item{
-
-      width: 70%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 0.8em;
-    }
 
     &.input-item{
       padding: 2%;
