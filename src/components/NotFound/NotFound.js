@@ -1,60 +1,89 @@
 /* eslint-disable no-plusplus */
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+// import { useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router';
 import Page from '../Page/Page';
 import './notFound.scss';
-import ParallaxText from './ParallaxText';
 
 function NotFound() {
-  const navigate = useNavigate();
-  const [xPosition, setXposition] = useState(0);
-  const [color, setColor] = useState('#A2FF33');
-  const [isGoal, setIsGoal] = useState(false);
-  const changeBackground = (currentColor) => setColor(currentColor);
-  const colorArray = [
-    '#E66B1C',
-    '#0BBCD8',
-    '#5F0BD8',
-    '#8CAF16',
-    '#F407FB',
-  ];
-  let index = 0;
-  useEffect(() => {
-    const changeColor = setInterval(() => {
-      index++;
-      if (index === colorArray.length - 1) {
-        index = 0;
-      }
-      changeBackground(colorArray[index]);
-      return () => {
-        clearInterval(changeColor);
-      };
-    }, 300);
-  }, []);
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setXposition(Math.floor((Math.random() - 0.5) * ((2000 - (-2000) + 1) + -2000)));
-    }, 2000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, [xPosition]);
-  useEffect(() => () => {
-    setIsGoal(false);
-  }, []);
-  const handleClick = () => {
-    setIsGoal(true);
-    setTimeout(() => {
-      navigate('/');
-    }, 4500);
-  };
+  // const navigate = useNavigate();
+  // const [xPosition, setXposition] = useState(0);
+  // const [color, setColor] = useState('#A2FF33');
+  // const [isGoal, setIsGoal] = useState(false);
+  // const changeBackground = (currentColor) => setColor(currentColor);
+  // const colorArray = [
+  //   '#E66B1C',
+  //   '#0BBCD8',
+  //   '#5F0BD8',
+  //   '#8CAF16',
+  //   '#F407FB',
+  // ];
+  // let index = 0;
+  // useEffect(() => {
+  //   const changeColor = setInterval(() => {
+  //     index++;
+  //     if (index === colorArray.length - 1) {
+  //       index = 0;
+  //     }
+  //     changeBackground(colorArray[index]);
+  //     return () => {
+  //       clearInterval(changeColor);
+  //     };
+  //   }, 300);
+  // }, []);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setXposition(Math.floor((Math.random() - 0.5) * ((2000 - (-2000) + 1) + -2000)));
+  //   }, 2000);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, [xPosition]);
+  // useEffect(() => () => {
+  //   setIsGoal(false);
+  // }, []);
+  // const handleClick = () => {
+  //   setIsGoal(true);
+  //   setTimeout(() => {
+  //     navigate('/');
+  //   }, 4500);
+  // };
   return (
     <Page>
       <div
         className="container-notFound"
       >
-        {isGoal && (
+        <div className="parallax">
+          <motion.p
+            animate={{
+              x: [0, 90, 0],
+              rotate: [0, 360, 0],
+              transition: { duration: 1, delay: 0.2 },
+            }}
+          >4
+          </motion.p>
+          <motion.p
+            animate={{
+              x: [0, 90, 0],
+              rotate: [0, 360, 0],
+              transition: { duration: 1, delay: 0.2 },
+            }}
+          >0
+          </motion.p>
+          <motion.p
+            animate={{
+              x: [0, 90, 0],
+              rotate: [0, 360, 0],
+              transition: { duration: 1, delay: 0.2 },
+            }}
+          >4
+          </motion.p>
+
+        </div>
+        <div className="subtitle">
+          Carrot not found
+        </div>
+        {/* {isGoal && (
           <motion.div
             className="goal"
             initial={{ scale: 0 }}
@@ -77,8 +106,8 @@ function NotFound() {
               GOAL !!!!!
             </motion.p>
           </motion.div>
-        )}
-        {!isGoal && (
+        )} */}
+        {/* {!isGoal && (
 
           <section>
             <ParallaxText className="paraOne" baseVelocity={4}>-CARROT NOT FOUND</ParallaxText>
@@ -123,7 +152,7 @@ function NotFound() {
               </div>
             </motion.div>
           </section>
-        )}
+        )} */}
       </div>
     </Page>
   );

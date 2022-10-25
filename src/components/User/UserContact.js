@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 // import './user.scss';
 import { useState } from 'react';
-import { changeEditForm, addErrorMessage, deleteErrorMessage } from 'src/feature/user.slice';
+import { changeEditForm, addErrorMessage } from 'src/feature/user.slice';
 import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
 import Field from 'src/components/LoginForm/Field/Field';
 import Button from '../Button/Button';
