@@ -83,13 +83,11 @@ function ShoppingCart() {
               transition={{ delay: 0.3 }}
             >
               {width < 1024 && (
-              <div
-                className="choiseDepotButton"
-                onClick={handleClickAdressMenu}
-              >
-                <p>Valider</p>
-                <ion-icon name="arrow-forward-circle-outline" style={{ color: '#fd7c55' }} />
-              </div>
+                <Button
+                  icon="arrow-forward-circle-outline"
+                  text="Valider"
+                  onClick={handleClickAdressMenu}
+                />
               )}
               <div
                 className="choiseDepotButton-largeScreen"

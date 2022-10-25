@@ -9,18 +9,16 @@
   height: 100vh;
   background: vars.$colorBeige;
   display: flex;
- 
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   &-hello {
     margin-bottom: 20px;
   }
   &-logo {
-    position: fixed;
+    position: relative;
+    width: 50vw;
     top: 0;
-    width: 320px;
-    height: 320px;
   }
   &-annoncement{
     width: 100%;
@@ -29,7 +27,7 @@
     text-align: center;
     color: vars.$colorDarkGreen;
     font-weight: 500;
-    padding-top: 200px;
+    ;
     &-closed {
       padding: 0;
       width: 100%;
@@ -52,12 +50,14 @@
     color: vars.$colorDarkGreen;
     border-radius: 3px;
     &-group {
+      flex: 1;
       width: 350px;
       height: 130px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      margin-bottom: 5%;
     }
     &-container {
       display: flex;
@@ -83,5 +83,11 @@ ion-icon:active{
 .top{
   border-bottom: solid 1px vars.$colorMediumGreen;
 }
-
+@media only screen and (min-width: 1024px) {
+  .home {
+    &-logo {
+      width: 320px;
+    }
+  }
+}
 

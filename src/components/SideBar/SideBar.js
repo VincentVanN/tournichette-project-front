@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from 'src/assets/logo-noName.svg';
 import { logout, setSecondaryMenu } from '../../feature/user.slice';
-import CartWithCount from '../CartWithCount/CartWithCount';
 import './sideBar.scss';
 
 function SideBar() {
@@ -101,7 +100,6 @@ function SideBar() {
           </div>
           {(!isSecondaryMenu && (
             <div className="menu-items">
-              <CartWithCount />
               <img src={logo} alt="logo tournichette" className="logo" />
               <NavLink className="navlink" onClick={handleCheck} to="/">Accueil</NavLink>
               <NavLink className="navlink" onClick={handleCheck} to="/profil">Mon profil</NavLink>

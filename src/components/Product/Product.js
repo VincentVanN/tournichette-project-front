@@ -28,7 +28,6 @@ function Product() {
   const isLoadingProducts = useSelector((state) => state.products.loadingProducts);
   const isLoadingCategories = useSelector((state) => state.products.loadingCategories);
   const isLoadingCarts = useSelector((state) => state.products.loadingCarts);
-  const width = useSelector((state) => state.navigation.width);
   //
   // add product in cart
   //
@@ -71,13 +70,6 @@ function Product() {
     }
     return productInCart.quantity;
   };
-  const widthForAnimationFunction = () => {
-    if (width <= 577) {
-      return '90%';
-    }
-    return '80%';
-  };
-  const widthForAnimation = widthForAnimationFunction();
   const quantityInCart = getQuantityInCart();
   if (isLoadingProducts
     || isLoadingCategories
@@ -96,7 +88,7 @@ function Product() {
         className="product"
         key={product.name}
         initial={{ width: 0 }}
-        animate={{ width: `${widthForAnimation}` }}
+        animate={{ width: '100%' }}
         transition={{ duration: 0.3 }}
       >
         <motion.h2

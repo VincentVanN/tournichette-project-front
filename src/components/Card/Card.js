@@ -17,7 +17,7 @@ function Card({
   };
   const dispatch = useDispatch();
   const params = useParams();
-  const { slugProduct, slugCart } = params;
+  const { slugProduct } = params;
   const products = useSelector((state) => state.shoppingCart.shoppingCart);
   const handleClickIncrementCart = () => {
     dispatch(pushInCart(changeQuantityProduct(products, product, 1)));
@@ -29,13 +29,13 @@ function Card({
   };
   return (
     <>
-      {related === 'products' && (
+      {(related === 'products' || related === 'carts') && (
       <div
         className="card-container"
       >
         <div
           className="card-article"
-          {...(width >= 1024 && { onClick: handleClick })}
+          onClick={handleClick}
         >
           <div className="card-leftSide">
             <h2
@@ -44,13 +44,18 @@ function Card({
             >{name}
             </h2>
           </div>
-          <div className="doted" />
-          <ul className="card-infos">
-            <li className="card-unity">{quantity}</li>
-            <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
-            <li className="card-unity">/</li>
-            <li className="card-price">{`${price}€`}</li>
-          </ul>
+          {width >= 1024 && (
+            <>
+              <div className="doted" />
+              <ul className="card-infos">
+                <li className="card-unity">{quantity}</li>
+                <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
+                <li className="card-unity">/</li>
+                <li className="card-price">{`${price}€`}</li>
+              </ul>
+            </>
+          )}
+
         </div>
         {width < 1024 && (
         <div className="button-group">
@@ -61,13 +66,13 @@ function Card({
           >
             <ion-icon name="cart-outline" size="medium" />
           </button>
-          <button
-            type="button"
-            onClick={handleClick}
-            className="card-button"
-          >
-            <ion-icon name="reader-outline" size="medium" />
-          </button>
+          <div className="doted" />
+          <ul className="card-infos">
+            <li className="card-unity">{quantity}</li>
+            <li className="card-unity">{unity === 'bouteille(s)' ? 'btl' : unity}</li>
+            <li className="card-unity">/</li>
+            <li className="card-price">{`${price}€`}</li>
+          </ul>
         </div>
         )}
 
@@ -115,48 +120,6 @@ function Card({
         </div>
         )}
 
-      </div>
-      )}
-      {related === 'carts' && (
-      <div className="card-container">
-        <div
-          className="card-article"
-          {...(width >= 1024 && { onClick: handleClick })}
-        >
-          <div className="card-leftSide">
-            <h2
-              className="card-leftSide card-title"
-              {...((slugCart === slug) && { style: { color: '#fd7c55' } })}
-            >
-              {name}
-            </h2>
-          </div>
-          <div className="doted" />
-          <ul className="card-infos">
-            <li className="card-unity">{quantity}</li>
-            <li className="card-unity">Pièce</li>
-            <li className="card-unity">/</li>
-            <li className="card-price">{`${price}€`}</li>
-          </ul>
-        </div>
-        {width < 1024 && (
-        <div className="button-group">
-          <button
-            type="button"
-            onClick={handleClickIncrementCart}
-            className="card-button"
-          >
-            <ion-icon name="cart-outline" size="medium" />
-          </button>
-          <button
-            type="button"
-            onClick={handleClick}
-            className="card-button"
-          >
-            <ion-icon name="reader-outline" size="medium" />
-          </button>
-        </div>
-        )}
       </div>
       )}
     </>
