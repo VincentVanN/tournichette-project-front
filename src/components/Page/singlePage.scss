@@ -29,8 +29,9 @@ main {
 .smallComponent{
   flex-basis:33.33%;
   max-width: 600px;
+  min-width: 400px;
   max-height: 90vh;
-  margin: 40px;
+  margin: 40px 10px 40px 40px;
   margin-left: 200px;
   background: vars.$colorBeige;
   box-shadow: 4px 7px 8px -3px rgba(0,0,0,0.34);

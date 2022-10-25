@@ -15,15 +15,23 @@ flex-direction: column;
     z-index: 3;
     top: 0;
     left: 0;
-    font-size: 1.5em;
+    font-size: 1.2em;
     width: 100%;
-    height: 90px;
     color: vars.$colorDarkGreen;
     background: vars.$colorBeige;
     font-weight: 500;
-    border-bottom: solid 1px vars.$colorMediumGreen;
+    & p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 90px;
+      margin: auto;
+      border-bottom: solid 1px vars.$colorMediumGreen;
+      font-family: vars.$fontMontserrat;
+    }
   }
-  p{
+  .order-empty{
     font-family: vars.$fontLekton;
     color: vars.$colorDarkGreen;
     font-weight: 600;
@@ -61,6 +69,41 @@ flex-direction: column;
     box-shadow: 5px 5px 5px grey;
   }
 
+}
+input[type="date"] {
+  width: 150px;
+  height: 30px;
+  background: vars.$colorLightGreen;
+  border: solid 1px vars.$colorDarkGreen;
+  border-radius: 5px;
+  color: vars.$colorDarkGreen;
+  font-family: vars.$fontMontserrat;
+  font-weight: 600;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  width: 30px;
+  background-image: url('src/components/User/calendar_date_event_schedule_icon_127191.png');
+  background-size: 20px;
+  background-position: 100% center;
+}
+.filter-container {
+  position: sticky;
+  color: vars.$colorDarkGreen;
+  font-family: vars.$fontMontserrat;
+  font-weight: 400;
+  &-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  & h3 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: vars.$colorDarkGreen;
+  font-family: vars.$fontMontserrat;
+  font-weight: 500;
+  }
 }
 @media only screen and (min-width: 1024px) {
 
