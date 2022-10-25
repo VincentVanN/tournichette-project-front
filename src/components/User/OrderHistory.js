@@ -1,20 +1,40 @@
 /* eslint-disable react/prop-types */
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import './user.scss';
 import 'src/components/User/orders.scss';
 
 function OrderHistory({ order }) {
-  // const orderHistory = useSelector((state) => state.user.orderHistory);
-
   const [isActive, setIsActive] = useState(false);
   const hiddenNoDetail = !isActive ? 'hidden' : '';
-
+  const textVariants = {
+    open: {
+      x: 0,
+      display: 'block',
+      transition: {
+        duration: 0.4,
+      },
+    },
+    closed: {
+      x: '150%',
+      display: 'none',
+      transition: {
+        duration: 0.4,
+        display: { delay: 0.4 },
+      },
+    },
+  };
   return (
     <div className="orderHistory-one">
       <ul>
-        <li className="orderHistory-date">Commande du {order.dateOrder}</li>
+        <li className="orderHistory-date">Commande du {order.dateOrder.slice(0, 10)}</li>
         <li className="orderHistory-depot">Déposé au {order.depot.address}</li>
-        <div className={`orderHistory-detail ${hiddenNoDetail}`}>
+        <motion.div
+          className="orderHistory-detail"
+          initial="closed"
+          animate={isActive ? 'open' : 'closed'}
+          variants={textVariants}
+        >
           { order.orderProducts.map((product) => (
             <li
               className="orderHistory-product"
@@ -31,16 +51,23 @@ function OrderHistory({ order }) {
               {cart.quantity} {cart.cart.name} /{cart.cart.price}€
             </li>
           ))}
-        </div>
+        </motion.div>
         <li className="orderHistory-price">Prix total: {order.price}€</li>
       </ul>
-      <button
+      <motion.button
         className="orderHistory-button"
         type="button"
         onClick={() => setIsActive(!isActive)}
+        animate={{
+          rotate: isActive ? 180 : 0,
+          transition: {
+            duration: 0.3,
+          },
+        }}
       >
-        {!isActive ? 'Voir le détail' : 'Masquer le détail'}
-      </button>
+        <ion-icon name="chevron-down-circle-outline" style={{ color: isActive ? '#fd7c55' : '' }} />
+
+      </motion.button>
 
     </div>
   );
