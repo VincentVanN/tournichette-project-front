@@ -41,18 +41,17 @@ flex-direction: column;
 
   &-one{
     margin-top: 30px;
-    background-color: vars.$colorLightGreen;
     font-family: vars.$fontLekton;
     color: vars.$colorDarkGreen;
     font-weight: 400;
-    box-shadow: 2px 2px 2px grey;
     margin-left: 14%;
     width: 79%;
     padding: 2% 1%;
+    border-bottom: solid 1px vars.$colorDarkGreen;
   }
 
-  &-date, &-depot, &-price{
-    font-weight: bold;
+  &-date, &-price{
+    font-weight: 500;
   }
   &-product{
     font-weight: 500;
@@ -64,9 +63,9 @@ flex-direction: column;
     font-family: vars.$fontLekton;
     color: vars.$colorDarkGreen;
     font-weight: bold;
-    background-color: vars.$colorLightGreen;
+    background-color: vars.$colorBeige;
     border: none;
-    box-shadow: 5px 5px 5px grey;
+   
   }
 
 }
