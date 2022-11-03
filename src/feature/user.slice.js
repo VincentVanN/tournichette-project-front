@@ -55,6 +55,7 @@ export const userSlice = createSlice({
         removeLocalStorage('user');
         state.serverMessageUser = 'Veuillez vous reconnecter';
       }
+      state.serverMessageUser = payload.message;
     },
     //
     //
@@ -80,7 +81,6 @@ export const userSlice = createSlice({
       console.log('[setUser]waiting...');
     },
     [setUser.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.logged = true;
       state.user.email = payload.email;
       state.user.firstname = payload.firstname;
@@ -116,8 +116,8 @@ export const userSlice = createSlice({
       state.adresse = '';
       console.log('[createUser] OK!');
     },
-    [createUser.rejected]: () => {
-      console.log('[createUser] request rejected');
+    [createUser.rejected]: (state, { payload }) => {
+      state.serverMessageUser = payload.message;
     },
     //
     //

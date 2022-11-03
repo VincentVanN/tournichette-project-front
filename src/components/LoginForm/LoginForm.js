@@ -20,8 +20,7 @@ function LoginForm() {
   const handleChangeLogin = (value, key) => {
     dispatch(changeLoginForm([key, value]));
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     dispatch(loginUser());
   };
   //
@@ -111,12 +110,11 @@ function LoginForm() {
                 onChange={handleChangeLogin}
               />
               <div className="form-button-container">
-                <button
-                  type="submit"
-                  className="form-button"
-                >
-                  <Button text="Valider" icon="checkmark-circle-outline" />
-                </button>
+                <Button
+                  text="Valider"
+                  icon="checkmark-circle-outline"
+                  onClick={() => handleSubmit()}
+                />
               </div>
             </form>
           </div>

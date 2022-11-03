@@ -54,6 +54,7 @@ export const loginUser = createAsyncThunk(
       return result.data;
     }
     catch (error) {
+      console.log(error.response.data);
       if (error.response.data.error === 'Invalid credentials.') {
         dispatch(setNavigationMessage('Identifiants invalides!'));
       }
@@ -102,6 +103,14 @@ export const createUser = createAsyncThunk(
       password,
       sub,
     } = getState().user.user;
+    const currentSub = () => {
+      if (sub === '') {
+        return null;
+      }
+
+      return sub;
+    };
+    let isError = false;
     try {
       const result = await axios.post(`${getState().navigation.baseUrl}/api/v1/users/create`, {
         email,
@@ -109,7 +118,7 @@ export const createUser = createAsyncThunk(
         firstname,
         lastname,
         phone,
-        sub,
+        sub: currentSub(),
         emailNotifications,
       });
       return result.data;
@@ -119,7 +128,13 @@ export const createUser = createAsyncThunk(
         dispatch(setLoginWithGoogleRejected(true));
         dispatch(setIsPassword(true));
       }
+      isError = true;
       return rejectWithValue(error.response.data);
+    }
+    finally {
+      if (isError) {
+        dispatch(setShowModal(true));
+      }
     }
   },
 );
