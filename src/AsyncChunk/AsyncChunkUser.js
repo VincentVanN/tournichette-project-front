@@ -98,6 +98,7 @@ export const createUser = createAsyncThunk(
       lastname,
       phone,
       email,
+      emailNotifications,
       password,
       sub,
     } = getState().user.user;
@@ -109,6 +110,7 @@ export const createUser = createAsyncThunk(
         lastname,
         phone,
         sub,
+        emailNotifications,
       });
       return result.data;
     }
@@ -124,9 +126,9 @@ export const createUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'user/updateUser',
-  async (_, { getState }) => {
+  async (_, { getState, rejectWithValue, dispatch }) => {
     const {
-      token, oldPassword, email, firstname, lastname, phone, paymentCustomerId,
+      token, oldPassword, email, firstname, lastname, phone, paymentCustomerId, emailNotifications,
     } = getState().user.user;
     //
     const update = {
@@ -135,6 +137,7 @@ export const updateUser = createAsyncThunk(
       firstname,
       lastname,
       phone,
+      emailNotifications,
       paymentCustomerId,
     };
     const config = {
@@ -142,14 +145,23 @@ export const updateUser = createAsyncThunk(
         Authorization: `Bearer ${token}`,
       },
     };
-
-    const result = await axios
-      .patch(
-        `${getState().navigation.baseUrl}/api/v1/users/update`,
-        update,
-        config,
-      );
-    return result.data;
+    try {
+      const result = await axios
+        .patch(
+          `${getState().navigation.baseUrl}/api/v1/users/update`,
+          update,
+          config,
+        );
+      dispatch(setButtonText('valider'));
+      return result.data;
+    }
+    catch (error) {
+      dispatch(setButtonText('valider'));
+      return rejectWithValue(error.response.data);
+    }
+    finally {
+      dispatch(setShowModal(true));
+    }
   },
 );
 export const updateUserWithGoogle = createAsyncThunk(
