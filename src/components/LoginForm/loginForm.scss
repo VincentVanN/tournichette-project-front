@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .subscribe-container{
   display: flex;
@@ -108,12 +109,6 @@ ion-icon{
     font-size: 1.1em;
     color: vars.$colorDarkGreen;
   }
-}
-.form-field-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
 }
 #signInDiv {
   width: 100%;
@@ -236,6 +231,25 @@ ion-icon{
     }
   }
 }
+#checkMailing {
+  margin: 10% 0;
+  visibility: hidden;
+}
+.checkMailingLabel {
+  color: vars.$colorDarkGreen;
+  font-family: vars.$fontMontserrat;
+}
+.checkBoxWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-button {
+    width: 18px;
+    height: 18px;
+    border: solid 2px vars.$colorDarkGreen;
+    border-radius: 50%;
+  }
+}
 @media screen and (min-height: 0) and (max-height: 765px) {
 .form-logo {
   width: 200px;
@@ -279,6 +293,12 @@ ion-icon{
       margin: 30px 0 30px 0;
     }
   }
+  .form-field-container {
+    margin-top: 0;
+   }
+   .socialNetwork-container {
+    margin-top: 10%;
+   }
 }
 @media only screen and (min-width: 1290px) {
  

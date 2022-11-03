@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  addErrorMessage, changeSubscribeForm, setIsSubscribe,
+  addErrorMessage, changeSubscribeForm, setIsSubscribe, setMailing,
 } from '../../feature/user.slice';
 import {
   validateUpperCase, validateLength, validateDigit, validateScdPassword, isValidEmail,
@@ -16,11 +16,14 @@ import Button from '../Button/Button';
 
 function SubscribeForm() {
   const {
-    firstname, lastname, phone, email, password, sndPassword,
+    firstname, lastname, phone, email, password, sndPassword, emailNotifications,
   } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const handleChangeSubscribeForm = (value, key) => {
     dispatch(changeSubscribeForm([key, value]));
+  };
+  const handleChangeMailing = () => {
+    dispatch(setMailing());
   };
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
   const [isFocusPassword, setIsFocusPassword] = useState(false);
@@ -164,6 +167,24 @@ function SubscribeForm() {
             placeholder="Confirmation mdp"
             onChange={handleChangeSubscribeForm}
           />
+          <div className="checkBoxWrapper">
+            <div
+              className="checkBoxWrapper-button"
+              style={{ background: emailNotifications ? '#fd7c55' : '' }}
+              onClick={handleChangeMailing}
+            />
+            <label className="checkMailingLabel" htmlFor="checkMailing">
+              <input
+                type="checkbox"
+                id="checkMailing"
+                value={emailNotifications}
+                checked={emailNotifications}
+                onChange={handleChangeMailing}
+              />
+              Recevoir les Emails d'ouverture des ventes?
+            </label>
+          </div>
+
           <div className="form-button-container">
             <button
               type="submit"

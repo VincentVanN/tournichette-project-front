@@ -23,6 +23,7 @@ export const userSlice = createSlice({
       email: '',
       token: '',
       password: '',
+      emailNotifications: true,
       sndPassword: '',
       oldPassword: '',
       paymentCustomerId: '',
@@ -84,6 +85,7 @@ export const userSlice = createSlice({
       state.user.email = payload.email;
       state.user.firstname = payload.firstname;
       state.user.lastname = payload.lastname;
+      state.user.emailNotifications = payload.emailNotifications;
       state.user.phone = payload.phone;
       state.user.paymentCustomerId = payload.stripeCustomerId;
       console.log('[setUser] OK!');
@@ -122,11 +124,11 @@ export const userSlice = createSlice({
     [updateUser.pending]: () => {
       console.log('[updateUser]waiting...');
     },
-    [updateUser.fulfilled]: () => {
-      console.log('[updateUser] OK!');
+    [updateUser.fulfilled]: (state) => {
+      state.serverMessageUser = 'Modification effectuée!';
     },
-    [updateUser.rejected]: () => {
-      console.log('[updateUser] request rejected');
+    [updateUser.rejected]: (state, { payload }) => {
+      state.serverMessageUser = payload.message;
     },
     //
     //
@@ -146,6 +148,9 @@ export const userSlice = createSlice({
   //
   //
   reducers: {
+    setMailing: (state) => {
+      state.user.emailNotifications = !state.user.emailNotifications;
+    },
     setToken: (state, { payload }) => {
       state.user.token = payload;
     },
@@ -221,5 +226,6 @@ export const {
   setIsSubscribe,
   setpaymentCustomerId,
   setUserWithGoogle,
+  setMailing,
 } = userSlice.actions;
 export default userSlice.reducer;

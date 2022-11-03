@@ -3,27 +3,29 @@ import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 // import './user.scss';
 import { useState } from 'react';
-import { changeEditForm, addErrorMessage } from 'src/feature/user.slice';
+import { changeEditForm, addErrorMessage, setMailing } from 'src/feature/user.slice';
 import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
 import Field from 'src/components/LoginForm/Field/Field';
 import Button from '../Button/Button';
 import {
-  validateUpperCase, validateLength, validateDigit, validateScdPassword, isValidEmail,
+  isValidEmail,
 } from '../../utils/validatePassword';
 import { setButtonText, setShowModal } from '../../feature/navigation.slice';
 
 function UserContact() {
   const {
-    firstname, lastname, phone, email, password, sndPassword, oldPassword,
+    firstname, lastname, phone, email, password, sndPassword, oldPassword, emailNotifications,
   } = useSelector((state) => state.user.user);
   const [isForm, setIsForm] = useState(false);
   const dispatch = useDispatch();
   const handleChangeEditForm = (value, key) => {
     dispatch(changeEditForm([key, value]));
   };
+  const handleChangeMailing = () => {
+    dispatch(setMailing());
+  };
   const { errorMessage } = useSelector((state) => state.user);
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     let isError = false;
     if (firstname === '') {
       isError = true;
@@ -41,21 +43,9 @@ function UserContact() {
       isError = true;
       dispatch(addErrorMessage('L\'email non valide'));
     }
-    if (validateUpperCase(password) === false) {
+    if (oldPassword.length === 0) {
       isError = true;
-      dispatch(addErrorMessage('une majuscule au mot de passe'));
-    }
-    if (validateLength(password) === false) {
-      isError = true;
-      dispatch(addErrorMessage('Mot de passe de 6 caractères'));
-    }
-    if (validateDigit(password) === false) {
-      isError = true;
-      dispatch(addErrorMessage('Un chiffre au mot de passe'));
-    }
-    if (validateScdPassword(password, sndPassword) === false) {
-      isError = true;
-      dispatch(addErrorMessage('Mots de passe différents'));
+      dispatch(addErrorMessage('Le mdp est obligatoire pour toute modification'));
     }
     if (isError === true) {
       dispatch(setButtonText('ok!'));
@@ -63,6 +53,7 @@ function UserContact() {
     }
     if (isError === false) {
       dispatch(updateUser());
+      setIsForm(false);
     }
   };
 
@@ -181,6 +172,38 @@ function UserContact() {
           />
         </div>
         <div className="updateUserAccount container">
+          <motion.li
+            className="updateUserAccount list-item"
+            initial="open"
+            animate={!isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >
+            {emailNotifications ? 'tu es inscrit à l\'envoi d\'email' : 'tu n\'es pas inscrit à l\'envoi d\'email'}
+          </motion.li>
+          <motion.div
+            className="checkBoxWrapper"
+            initial="closed"
+            animate={isForm ? 'open' : 'closed'}
+            variants={textVariants}
+          >
+            <div
+              className="checkBoxWrapper-button"
+              style={{ background: emailNotifications ? '#fd7c55' : '' }}
+              onClick={handleChangeMailing}
+            />
+            <label className="checkMailingLabel" htmlFor="checkMailing">
+              <input
+                type="checkbox"
+                id="checkMailing"
+                value={emailNotifications}
+                checked={emailNotifications}
+                onChange={handleChangeMailing}
+              />
+              Recevoir les Emails d'ouverture des ventes?
+            </label>
+          </motion.div>
+        </div>
+        <div className="updateUserAccount container">
           <motion.p
             className="updateUserAccount input-item"
             initial="closed"
@@ -249,12 +272,11 @@ function UserContact() {
             text="Retour"
             onClick={() => setIsForm(!isForm)}
           />
-          <button
-            type="submit"
-            className="contactForm-button"
-          >
-            <Button icon="checkmark-circle-outline" text="Valider" />
-          </button>
+          <Button
+            icon="checkmark-circle-outline"
+            text="Valider"
+            onClick={handleSubmit}
+          />
         </div>
       )}
       {!isForm && (
