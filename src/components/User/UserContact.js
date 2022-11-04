@@ -275,7 +275,7 @@ function UserContact() {
           <Button
             icon="checkmark-circle-outline"
             text="Valider"
-            onClick={handleSubmit}
+            onClick={() => handleSubmit()}
           />
         </div>
       )}

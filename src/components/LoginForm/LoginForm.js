@@ -7,7 +7,7 @@ import { changeLoginForm, setIsSubscribe, setUserWithGoogle } from 'src/feature/
 import Field from './Field/Field';
 import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';
-import { loginUser, loginUserWithGoogle } from '../../AsyncChunk/AsyncChunkUser';
+import { loginUser, loginUserWithGoogle, resetPassword } from '../../AsyncChunk/AsyncChunkUser';
 import Button from '../Button/Button';
 import { setButtonText, setShowModal } from '../../feature/navigation.slice';
 import SocialNetwork from '../SocialNetwork/SocialNetwork';
@@ -20,8 +20,7 @@ function LoginForm() {
   const handleChangeLogin = (value, key) => {
     dispatch(changeLoginForm([key, value]));
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     dispatch(loginUser());
   };
   //
@@ -110,13 +109,20 @@ function LoginForm() {
                 value={password}
                 onChange={handleChangeLogin}
               />
+              <div
+                className="forgotPassword"
+                onClick={() => dispatch(resetPassword())}
+              >
+                <p>
+                  Mot de passe oublié?
+                </p>
+              </div>
               <div className="form-button-container">
-                <button
-                  type="submit"
-                  className="form-button"
-                >
-                  <Button text="Valider" icon="checkmark-circle-outline" />
-                </button>
+                <Button
+                  text="Valider"
+                  icon="checkmark-circle-outline"
+                  onClick={() => handleSubmit()}
+                />
               </div>
             </form>
           </div>

@@ -11,7 +11,7 @@ import {
 } from '../../utils/validatePassword';
 import Field from './Field/Field';
 import { createUser } from '../../AsyncChunk/AsyncChunkUser';
-import { setButtonText, setRedirection, setShowModal } from '../../feature/navigation.slice';
+import { setButtonText, setShowModal } from '../../feature/navigation.slice';
 import Button from '../Button/Button';
 
 function SubscribeForm() {
@@ -29,8 +29,7 @@ function SubscribeForm() {
   const [isFocusPassword, setIsFocusPassword] = useState(false);
   const [isFocusScdPassword, setIsFocusScdPassword] = useState(false);
   const width = useSelector((state) => state.navigation.width);
-  const handleSubscribe = (e) => {
-    e.preventDefault();
+  const handleSubscribe = () => {
     let isError = false;
     if (firstname === '') {
       isError = true;
@@ -70,7 +69,6 @@ function SubscribeForm() {
     }
     if (isError === false) {
       dispatch(setButtonText('Connexion'));
-      dispatch(setRedirection('/'));
       dispatch(createUser(false));
       dispatch(setShowModal(true));
     }
@@ -186,12 +184,11 @@ function SubscribeForm() {
           </div>
 
           <div className="form-button-container">
-            <button
-              type="submit"
-              className="form-button"
-            >
-              <Button text="Valider" icon="checkmark-circle-outline" />
-            </button>
+            <Button
+              text="Valider"
+              icon="checkmark-circle-outline"
+              onClick={() => handleSubscribe()}
+            />
           </div>
         </form>
         <AnimatePresence mode="wait">
@@ -199,8 +196,8 @@ function SubscribeForm() {
           <motion.div
             className="check-password"
             key="password"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1, zIndex: 0 }}
+            initial={{ x: 0, opacity: 0 }}
+            animate={{ x: 400, opacity: 1, zIndex: 0 }}
             exit={{ x: 120, opacity: 0, zIndex: 0 }}
           >
             <div className="checkbox">
@@ -221,8 +218,8 @@ function SubscribeForm() {
           <motion.div
             className="check-password"
             key="scdPassword"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: 0, opacity: 0 }}
+            animate={{ x: 400, opacity: 1 }}
             exit={{ x: 120, opacity: 0 }}
           >
             <div className="checkbox">

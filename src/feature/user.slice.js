@@ -8,6 +8,8 @@ import {
   getOrderHistory,
   loginUserWithGoogle,
   updateUserWithGoogle,
+  resetPassword,
+  updatePassword,
 } from '../AsyncChunk/AsyncChunkUser';
 import { removeLocalStorage } from '../utils/localStorage';
 
@@ -43,6 +45,22 @@ export const userSlice = createSlice({
   //
   //
   extraReducers: {
+    [updatePassword.fulfilled]: () => {
+      console.log('updatePassword ok');
+    },
+    [updatePassword.rejected]: ({ payload }) => {
+      console.log(payload);
+    },
+    //
+    //
+    [resetPassword.fulfilled]: () => {
+      console.log('resetPassword ok');
+    },
+    [resetPassword.rejected]: ({ payload }) => {
+      console.log(payload);
+    },
+    //
+    //
     [loginUser.fulfilled]: (state, { payload }) => {
       const { token } = payload;
       state.user.token = token;
@@ -55,6 +73,7 @@ export const userSlice = createSlice({
         removeLocalStorage('user');
         state.serverMessageUser = 'Veuillez vous reconnecter';
       }
+      state.serverMessageUser = payload.message;
     },
     //
     //
@@ -80,7 +99,6 @@ export const userSlice = createSlice({
       console.log('[setUser]waiting...');
     },
     [setUser.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.logged = true;
       state.user.email = payload.email;
       state.user.firstname = payload.firstname;
@@ -116,8 +134,8 @@ export const userSlice = createSlice({
       state.adresse = '';
       console.log('[createUser] OK!');
     },
-    [createUser.rejected]: () => {
-      console.log('[createUser] request rejected');
+    [createUser.rejected]: (state, { payload }) => {
+      state.serverMessageUser = payload.message;
     },
     //
     //

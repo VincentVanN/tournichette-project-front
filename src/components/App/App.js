@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './app.scss';
 import { AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router';
 import { setUser, getOrderHistory } from '../../AsyncChunk/AsyncChunkUser';
 import Loading from '../Loading/Loading';
 import LoginForm from '../LoginForm/LoginForm';
@@ -21,8 +22,11 @@ import Modal from '../Modal/Modal';
 import { setLocalStorageCount, setLocalStorageShoppingCart } from '../../utils/localStorage';
 import HomeClosed from '../Home/HomeClosed';
 import Page from '../Page/Page';
+import AccountConfirmation from '../AccountConfirmation/AccountConfirmation';
+import ResetPassword from '../ResetPassword/ResetPassword';
 
 function App() {
+  const location = useLocation();
   const { isLoadingOrderHistory } = useSelector((state) => state.user);
   const areSalesOpen = useSelector((state) => state.products.areSalesOpen);
   const loadingProducts = useSelector((state) => state.products.loadingProducts);
@@ -90,6 +94,25 @@ function App() {
     setLocalStorageShoppingCart(shoppingCart);
     setLocalStorageCount(count);
   }, [shoppingCart, count]);
+  //
+  //
+  if (location.pathname === '/confirmation-compte') {
+    return (
+      <AccountConfirmation />
+    );
+  }
+  //
+  //
+  if (location.pathname === '/oublie-mdp') {
+    return (
+      <>
+        <Modal />
+        <AnimatePresence mode="wait" onExitComplete={() => dispatch(setShowModal(false))}>
+          <ResetPassword />
+        </AnimatePresence>
+      </>
+    );
+  }
   //
   //
   if ((loadingProducts && logged && areSalesOpen)

@@ -3,8 +3,8 @@
 input{
   box-shadow: 0 0 0px 1000px #F1F5DF inset;
   background: vars.$colorLightGreen;
+  font-family: vars.$fontMontserrat;
 }
-
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   // hidden blue highlight on selection
@@ -67,11 +67,7 @@ body {
     margin: auto;
     margin-bottom: 10px;
     border: none;
-    
-   
     background: #F2F5DF;
-   
-    
     & :hover {
       cursor: pointer;
     }

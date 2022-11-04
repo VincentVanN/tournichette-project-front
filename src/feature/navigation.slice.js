@@ -42,6 +42,9 @@ export const navigationSlice = createSlice({
     deleteRedirection: (state) => {
       state.redirection = '';
     },
+    setRedirection: (state, { payload }) => {
+      state.redirection = payload;
+    },
     setShowModal: (state, { payload }) => {
       state.showModal = payload;
     },

@@ -88,7 +88,7 @@ function SideBar() {
             className="checkbox"
             type="checkbox"
             checked={isChecked}
-            onClick={handleCheck}
+            onChange={handleCheck}
           />
           <div
             className="hamburger-lines"
