@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import SideBar from 'src/components/SideBar/SideBar';
+// import SideBar from 'src/components/SideBar/SideBar';
+import SideBarMotion from '../SideBar/SideBarMotion';
 
 function Page({ children }) {
   return (
     <main>
-      <SideBar />
+      <SideBarMotion />
       {children}
     </main>
   );

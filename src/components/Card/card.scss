@@ -37,6 +37,10 @@
     font-size: 1.1em;
     font-weight: 500;
     margin-left: 5px;
+    & :hover {
+      color: vars.$colorOrange;
+      scale: 1.05;
+    }
   }
   &-unity{
     color: vars.$colorMediumGreen;

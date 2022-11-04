@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: vars.$colorBeige;
 }
 
 .window {
@@ -38,6 +38,8 @@
   width: 16px;
   height: 16px;
   background: vars.$colorLightGreen;
+  border-right: solid 2px vars.$colorDarkGreen;
+  border-bottom: solid 2px vars.$colorDarkGreen;;
   left: calc(50% - 8px);
   bottom: 4px;
   transform: rotate(45deg);
@@ -47,8 +49,6 @@
 .buttonToggle.active ~ .window::before {
   transition-delay: 0.3s;
   bottom: -6px;
-  border-right: solid 2px vars.$colorDarkGreen;
-  border-bottom: solid 2px vars.$colorDarkGreen;
 }
 .text {
   opacity: 0;
