@@ -14,6 +14,7 @@ import SocialNetwork from '../SocialNetwork/SocialNetwork';
 
 function LoginForm() {
   const isSubscribe = useSelector((state) => state.user.isSubscribe);
+  const width = useSelector((state) => state.navigation.width);
   const { username, password } = useSelector((state) => state.user.login);
   const loginWithGoogleRejected = useSelector((state) => state.navigation.loginWithGoogleRejected);
   const dispatch = useDispatch();
@@ -89,8 +90,13 @@ function LoginForm() {
               </p>
             </div>
           </div>
-          <img className="form-logo" src={logo} alt="logo Tournichette" />
           <div className="form-field-container">
+            {width < 577 && (
+              <h1 className="login-title">La Tournichette</h1>
+            )}
+            {width >= 577 && (
+              <img className="form-logo" src={logo} alt="logo Tournichette" />
+            )}
             <h2 className="googleTitle">Connexion via Google </h2>
             <div id="signInDiv" />
             <h2 className="form-title">Connexion</h2>

@@ -98,7 +98,7 @@ function UserContact() {
         <h2 className="contactForm-title">Profil</h2>
       </header>
       <ul className="updateUserAccount">
-        <div className="updateUserAccount container">
+        <div className="updateUserAccount-container ">
           <motion.li
             className="updateUserAccount list-item"
             initial="open"
@@ -116,7 +116,7 @@ function UserContact() {
             variants={textVariants}
           />
         </div>
-        <div className="updateUserAccount container">
+        <div className="updateUserAccount-container ">
           <motion.li
             className="updateUserAccount list-item"
             initial="open"
@@ -134,7 +134,7 @@ function UserContact() {
             variants={textVariants}
           />
         </div>
-        <div className="updateUserAccount container">
+        <div className="updateUserAccount-container ">
           <motion.li
             className="updateUserAccount list-item"
             initial="open"
@@ -152,7 +152,7 @@ function UserContact() {
             variants={textVariants}
           />
         </div>
-        <div className="updateUserAccount container">
+        <div className="updateUserAccount-container ">
           <motion.li
             className="updateUserAccount list-item"
             initial="open"
@@ -171,7 +171,7 @@ function UserContact() {
             variants={textVariants}
           />
         </div>
-        <div className="updateUserAccount container">
+        <div className="updateUserAccount-container ">
           <motion.li
             className="updateUserAccount list-item"
             initial="open"
@@ -203,7 +203,7 @@ function UserContact() {
             </label>
           </motion.div>
         </div>
-        <div className="updateUserAccount container">
+        <div className="updateUserAccount-container ">
           <motion.p
             className="updateUserAccount input-item"
             initial="closed"
@@ -223,7 +223,7 @@ function UserContact() {
             variants={textVariants}
           />
         </div>
-        <div className="updateUserAccount container">
+        <div className="updateUserAccount-container ">
           <motion.p
             className="updateUserAccount input-item"
             initial="closed"
@@ -243,7 +243,7 @@ function UserContact() {
             variants={textVariants}
           />
         </div>
-        <div className="updateUserAccount container">
+        <div className="updateUserAccount-container ">
           <motion.p
             className="updateUserAccount input-item"
             initial="closed"

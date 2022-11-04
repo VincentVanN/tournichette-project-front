@@ -20,7 +20,6 @@ function User() {
           <button
             className="user-button"
             type="button"
-            onClick={handleClickOrders}
           >
             <ion-icon name="arrow-forward-circle-outline" style={{ color: '#f88e6d', fontSize: '50px' }} />
           </button>

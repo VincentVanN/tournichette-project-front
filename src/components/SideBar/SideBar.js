@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -85,19 +86,16 @@ function SideBar() {
       <div className="navbar">
         <div className="nav nav-container">
           <input
-            className="checkbox"
+            id="menu__toggle"
             type="checkbox"
             checked={isChecked}
             onChange={handleCheck}
           />
-          <div
-            className="hamburger-lines"
-            onClick={handleCheck}
-          >
-            <span className="line line1" />
-            <span className="line line2" />
-            <span className="line line3" />
-          </div>
+          <label className="menu__btn" htmlFor="menu__toggle">
+            <span
+              onClick={handleCheck}
+            />
+          </label>
           {(!isSecondaryMenu && (
             <div className="menu-items">
               <img src={logo} alt="logo tournichette" className="logo" />

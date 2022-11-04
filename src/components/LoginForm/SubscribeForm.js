@@ -115,9 +115,15 @@ function SubscribeForm() {
           </p>
         </div>
       </div>
-      <img className="form-logo" src={logo} alt="logo Tournichette" />
-      <h1 className="form-title-subscribe">Entre tes informations</h1>
+      {/* <img className="form-logo" src={logo} alt="logo Tournichette" /> */}
       <div className="form-field-container">
+        {width < 577 && (
+        <h1 className="login-title">La Tournichette</h1>
+        )}
+        {width >= 577 && (
+        <img className="form-logo" src={logo} alt="logo Tournichette" />
+        )}
+        <h1 className="form-title">Entre tes informations</h1>
         <form onSubmit={handleSubscribe}>
           <Field
             name="email"
