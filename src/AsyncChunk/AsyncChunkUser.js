@@ -12,7 +12,9 @@ import {
   setShowModal,
 } from '../feature/navigation.slice';
 import { removeLocalStorage, setLocalStorageToken } from '../utils/localStorage';
-
+//
+//
+//
 export const setUser = createAsyncThunk(
   'user/setUser',
   async (token, { getState, rejectWithValue, dispatch }) => {
@@ -38,7 +40,9 @@ export const setUser = createAsyncThunk(
     }
   },
 );
-
+//
+//
+//
 export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (_, { getState, rejectWithValue, dispatch }) => {
@@ -54,7 +58,6 @@ export const loginUser = createAsyncThunk(
       return result.data;
     }
     catch (error) {
-      console.log(error.response.data);
       if (error.response.data.error === 'Invalid credentials.') {
         dispatch(setNavigationMessage('Identifiants invalides!'));
       }
@@ -69,6 +72,36 @@ export const loginUser = createAsyncThunk(
     }
   },
 );
+//
+//
+//
+export const resetPassword = createAsyncThunk(
+  'user/resetPassword',
+  async (_, { getState, rejectWithValue, dispatch }) => {
+    const { username } = getState().user.login;
+    let isError = false;
+    try {
+      const result = await axios.post(`${getState().navigation.baseUrl}/api/v1/reset-password`, {
+        email: username,
+      });
+      dispatch(setButtonText('ok!'));
+      dispatch(setNavigationMessage('Un email avec un lien de réinitialisation t\'a été envoyé'));
+      return result.data;
+    }
+    catch (error) {
+      isError = true;
+      dispatch(setButtonText('ok!'));
+      dispatch(setNavigationMessage(error.response.data.message));
+      return rejectWithValue(error.response.data);
+    }
+    finally {
+      dispatch(setShowModal(true));
+    }
+  },
+);
+//
+//
+//
 export const loginUserWithGoogle = createAsyncThunk(
   'user/loginUserWithGoogle',
   async (_, { getState, rejectWithValue, dispatch }) => {
@@ -91,6 +124,9 @@ export const loginUserWithGoogle = createAsyncThunk(
     }
   },
 );
+//
+//
+//
 export const createUser = createAsyncThunk(
   'user/createUser',
   async (isGoogleCreate, { getState, rejectWithValue, dispatch }) => {
@@ -138,14 +174,15 @@ export const createUser = createAsyncThunk(
     }
   },
 );
-
+//
+//
+//
 export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (_, { getState, rejectWithValue, dispatch }) => {
     const {
       token, oldPassword, email, firstname, lastname, phone, paymentCustomerId, emailNotifications,
     } = getState().user.user;
-    //
     const update = {
       currentpassword: oldPassword,
       email,
@@ -179,6 +216,48 @@ export const updateUser = createAsyncThunk(
     }
   },
 );
+//
+//
+export const updatePassword = createAsyncThunk(
+  'user/updatePassword',
+  async (token, { getState, rejectWithValue, dispatch }) => {
+    const {
+      password,
+    } = getState().user.user;
+    const update = {
+      password,
+    };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const result = await axios
+        .patch(
+          `${getState().navigation.baseUrl}/api/v1/update-password`,
+          update,
+          config,
+        );
+      dispatch(setButtonText('retour à l\'accueil'));
+      dispatch(setRedirection('/'));
+      dispatch(setNavigationMessage('Le mot de passe a été réinitialisé'));
+      return result.data;
+    }
+    catch (error) {
+      dispatch(setButtonText('retour à l\'accueil'));
+      dispatch(setRedirection('/'));
+      dispatch(setNavigationMessage('une erreur s\'est produite'));
+      return rejectWithValue(error.response.data);
+    }
+    finally {
+      dispatch(setShowModal(true));
+    }
+  },
+);
+//
+//
+//
 export const updateUserWithGoogle = createAsyncThunk(
   'user/updateUserWithGoogle',
   async (_, { getState }) => {
@@ -203,6 +282,9 @@ export const updateUserWithGoogle = createAsyncThunk(
     return result.data;
   },
 );
+//
+//
+//
 export const getOrderHistory = createAsyncThunk(
   'user/getOrderHistory',
   async (_, { getState }) => {

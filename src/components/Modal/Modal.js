@@ -174,12 +174,11 @@ function Modal() {
                   </motion.div>
                 </div>
               )}
-              <button
-                type="button"
+              <Button
+                text={buttonText}
+                icon="checkmark-circle-outline"
                 onClick={handleModal}
-              >
-                <Button text={buttonText} icon="checkmark-circle-outline" />
-              </button>
+              />
             </motion.div>
           </motion.div>
         </div>

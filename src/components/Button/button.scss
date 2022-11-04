@@ -15,14 +15,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: vars.$colorBeige;
+  background: transparent;
 }
 
 .window {
   position: absolute;
   width: 30px;
   height: 30px;
-  background: vars.$colorBackgroundButton;
+  background: vars.$colorLightGreen;
+  border: solid 2px vars.$colorDarkGreen;
   border-radius: 70px;
   display: flex;
   justify-content: center;
@@ -36,7 +37,7 @@
   position: absolute;
   width: 16px;
   height: 16px;
-  background: vars.$colorBackgroundButton;
+  background: vars.$colorLightGreen;
   left: calc(50% - 8px);
   bottom: 4px;
   transform: rotate(45deg);
@@ -46,13 +47,15 @@
 .buttonToggle.active ~ .window::before {
   transition-delay: 0.3s;
   bottom: -6px;
+  border-right: solid 2px vars.$colorDarkGreen;
+  border-bottom: solid 2px vars.$colorDarkGreen;
 }
 .text {
   opacity: 0;
   visibility: hidden;
   transition: 0.1s;
   font-size: 1.3em;
-  color: #fff;
+  color: vars.$colorDarkGreen;
   font-weight: 500;
   font-family: vars.$fontMontserrat;
   transition-delay: 0s;

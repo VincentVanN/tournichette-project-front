@@ -23,6 +23,7 @@ import { setLocalStorageCount, setLocalStorageShoppingCart } from '../../utils/l
 import HomeClosed from '../Home/HomeClosed';
 import Page from '../Page/Page';
 import AccountConfirmation from '../AccountConfirmation/AccountConfirmation';
+import ResetPassword from '../ResetPassword/ResetPassword';
 
 function App() {
   const location = useLocation();
@@ -98,6 +99,18 @@ function App() {
   if (location.pathname === '/confirmation-compte') {
     return (
       <AccountConfirmation />
+    );
+  }
+  //
+  //
+  if (location.pathname === '/oublie-mdp') {
+    return (
+      <>
+        <Modal />
+        <AnimatePresence mode="wait" onExitComplete={() => dispatch(setShowModal(false))}>
+          <ResetPassword />
+        </AnimatePresence>
+      </>
     );
   }
   //

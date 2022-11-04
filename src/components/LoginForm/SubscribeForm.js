@@ -196,8 +196,8 @@ function SubscribeForm() {
           <motion.div
             className="check-password"
             key="password"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1, zIndex: 0 }}
+            initial={{ x: 0, opacity: 0 }}
+            animate={{ x: 400, opacity: 1, zIndex: 0 }}
             exit={{ x: 120, opacity: 0, zIndex: 0 }}
           >
             <div className="checkbox">
@@ -218,8 +218,8 @@ function SubscribeForm() {
           <motion.div
             className="check-password"
             key="scdPassword"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: 0, opacity: 0 }}
+            animate={{ x: 400, opacity: 1 }}
             exit={{ x: 120, opacity: 0 }}
           >
             <div className="checkbox">

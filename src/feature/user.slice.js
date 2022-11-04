@@ -8,6 +8,8 @@ import {
   getOrderHistory,
   loginUserWithGoogle,
   updateUserWithGoogle,
+  resetPassword,
+  updatePassword,
 } from '../AsyncChunk/AsyncChunkUser';
 import { removeLocalStorage } from '../utils/localStorage';
 
@@ -43,6 +45,22 @@ export const userSlice = createSlice({
   //
   //
   extraReducers: {
+    [updatePassword.fulfilled]: () => {
+      console.log('updatePassword ok');
+    },
+    [updatePassword.rejected]: ({ payload }) => {
+      console.log(payload);
+    },
+    //
+    //
+    [resetPassword.fulfilled]: () => {
+      console.log('resetPassword ok');
+    },
+    [resetPassword.rejected]: ({ payload }) => {
+      console.log(payload);
+    },
+    //
+    //
     [loginUser.fulfilled]: (state, { payload }) => {
       const { token } = payload;
       state.user.token = token;

@@ -11,12 +11,6 @@ main {
     overflow: auto;
     background: vars.$colorBeige;
   }
-  &-container {
-    overflow: scroll;
-    
-    padding-top: 130px;
-    padding-bottom: 130px;
-  }
   width: 100%;
   height: 100vh;
   display: flex;

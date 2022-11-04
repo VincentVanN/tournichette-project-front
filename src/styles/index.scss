@@ -26,6 +26,8 @@ body {
 h1, h2, h3 {
   font-weight: normal;
 }
-input {
+input{
+  box-shadow: 0 0 0px 1000px #F1F5DF inset;
   background: vars.$colorLightGreen;
+  font-family: vars.$fontMontserrat;
 }

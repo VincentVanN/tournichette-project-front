@@ -7,7 +7,7 @@ import { changeLoginForm, setIsSubscribe, setUserWithGoogle } from 'src/feature/
 import Field from './Field/Field';
 import './loginForm.scss';
 import SubscribeForm from './SubscribeForm';
-import { loginUser, loginUserWithGoogle } from '../../AsyncChunk/AsyncChunkUser';
+import { loginUser, loginUserWithGoogle, resetPassword } from '../../AsyncChunk/AsyncChunkUser';
 import Button from '../Button/Button';
 import { setButtonText, setShowModal } from '../../feature/navigation.slice';
 import SocialNetwork from '../SocialNetwork/SocialNetwork';
@@ -109,6 +109,14 @@ function LoginForm() {
                 value={password}
                 onChange={handleChangeLogin}
               />
+              <div
+                className="forgotPassword"
+                onClick={() => dispatch(resetPassword())}
+              >
+                <p>
+                  Mot de passe oublié?
+                </p>
+              </div>
               <div className="form-button-container">
                 <Button
                   text="Valider"
