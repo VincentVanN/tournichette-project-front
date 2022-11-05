@@ -1,7 +1,6 @@
 import 'src/components/User/userContact.scss';
 import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-// import './user.scss';
 import { useState } from 'react';
 import { changeEditForm, addErrorMessage, setMailing } from 'src/feature/user.slice';
 import { updateUser } from 'src/AsyncChunk/AsyncChunkUser';
@@ -95,7 +94,7 @@ function UserContact() {
       className="contactForm"
     >
       <header className="contactForm-header">
-        <h2 className="contactForm-title">Profil</h2>
+        <div className="contactForm-title"><p>Profil</p></div>
       </header>
       <ul className="updateUserAccount">
         <div className="updateUserAccount-container ">

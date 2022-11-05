@@ -27,6 +27,7 @@ function Stripe() {
   const amount = useSelector((state) => state.shoppingCart.cartAmount);
   const paymentCustomerId = useSelector((state) => state.user.user.paymentCustomerId);
   const baseUrlNode = useSelector((state) => state.navigation.baseUrlNode);
+  const width = useSelector((state) => state.navigation.width);
   const email = useSelector((state) => state.user.user.email);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -170,7 +171,7 @@ function Stripe() {
                     </p>
                     <p>**** **** **** {method.card.last4}</p>
                     <p>exp {method.card.exp_month}/{method.card.exp_year}</p>
-                    {(paymentMethod === method.id && isFocus) && (
+                    {(paymentMethod === method.id && isFocus && width > 380) && (
                     <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" width="32" height="32" viewBox="0 0 512 512" color="#fd7c55"><title>Checkmark Circle</title>
                       <motion.path
                         initial={{ pathLength: 0 }}

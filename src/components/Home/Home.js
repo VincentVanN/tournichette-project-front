@@ -11,6 +11,7 @@ function Home() {
   const handleClickProducts = () => navigate('/liste');
   const handleClickCarts = () => navigate('/NosPaniers');
   const name = useSelector((state) => state.user.user.firstname);
+  const width = useSelector((state) => state.navigation.width);
   return (
     <Page>
       <div className="home-container">
@@ -60,7 +61,7 @@ function Home() {
               </motion.button>
             </div>
           </div>
-          <SocialNetwork widthDiv="30%" />
+          <SocialNetwork widthDiv="30%" position={width > 560 ? '50px' : '20px'} />
         </div>
       </div>
     </Page>

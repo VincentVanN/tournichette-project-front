@@ -106,7 +106,6 @@ function CartWithCount() {
       >
         {countOfProducts !== 0 && (
         <div className="cart">
-
           <div className="icon">
             <ion-icon name="cart-outline" style={{ fontSize: '55px', color: '#356859' }} />
             <motion.div

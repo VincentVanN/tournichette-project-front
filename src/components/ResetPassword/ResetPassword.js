@@ -105,10 +105,10 @@ function ResetPassword() {
   }
   return (
     <div className="ResetPassword-container">
-      <div className="form-container">
-        <img className="form-logo" src={logo} alt="logo Tournichette" />
-        <h1 className="form-title-subscribe">Saisis ton nouveau mot de passe</h1>
-        <div className="form-field-container">
+      <div className="form-ResetPassword-container">
+        <img className="form-ResetPassword-logo" src={logo} alt="logo Tournichette" />
+        <h1 className="form-ResetPassword-title-subscribe">Saisis ton nouveau mot de passe</h1>
+        <div className="form-ResetPassword-field-container">
           <form onSubmit={handleSubscribe}>
             <Field
               name="password"

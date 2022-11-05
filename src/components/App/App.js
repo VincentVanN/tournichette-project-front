@@ -103,7 +103,7 @@ function App() {
   }
   //
   //
-  if (location.pathname === '/oublie-mdp') {
+  if (location.pathname === '/oubli-mdp') {
     return (
       <>
         <Modal />

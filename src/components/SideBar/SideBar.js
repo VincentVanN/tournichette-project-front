@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from 'src/assets/logo-noName.svg';
 import { logout, setSecondaryMenu } from '../../feature/user.slice';
-import './sideBar.scss';
 
 function SideBar() {
   const isSecondaryMenu = useSelector((state) => state.user.isSecondaryMenu);

@@ -106,19 +106,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-weight: 500;
   }
 }
-@media screen and (min-width: 577px) and (max-width: 1023px) {
-
-  .orderHistory-one{
-    margin-left: 14%;
-  }
-  .filter-container-input {
-    margin-left: 14%;
-  }
-}
 @media only screen and (min-width: 1024px) {
 
   .orderHistory-one{
-    margin-left: 10%;
     width: 79%;
   }
 }

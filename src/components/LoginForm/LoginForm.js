@@ -132,7 +132,7 @@ function LoginForm() {
               </div>
             </form>
           </div>
-          <SocialNetwork />
+          <SocialNetwork position="-20px" />
         </div>
 
       )}

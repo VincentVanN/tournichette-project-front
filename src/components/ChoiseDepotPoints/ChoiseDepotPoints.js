@@ -27,6 +27,7 @@ function ChoiseDepotPoints() {
   //
   // get adress of depots
   //
+  console.log(depots);
   const ArrayOfDepotsAdress = [];
   depots.forEach((depot) => ArrayOfDepotsAdress.push(depot.address));
   //
@@ -53,35 +54,35 @@ function ChoiseDepotPoints() {
     dispatch(setIsCreditCardLayout(true));
   };
   const title = () => {
-    if (isPaymentchoiseLayout) {
-      return 'choisis ton moyen de paiement';
+    if (isPaymentchoiseLayout || isCreditCardLayout) {
+      return 'Paiement';
     }
-    if (isCreditCardLayout) {
-      return 'Informations bancaires';
-    }
-    return 'Clique sur ton point de retrait';
+    return 'Point de retrait';
   };
   return (
     <div className="depot-container">
-      <div className="title">
+      <div className="depot-title">
         <ion-icon name="bag-check-outline" style={{ paddingBottom: '5px' }} />
         <p>{title()}</p>
       </div>
       {isSelectDepotLayout && (
       <ul className="radio-container">
-        {ArrayOfDepotsAdress.map((adress) => (
+        {depots.map((depot) => (
           <li
-            key={adress}
+            key={depot.id}
           >
             <input
               type="radio"
               className="radio"
-              id={adress}
+              id={depot.address}
               name="adressRadio"
-              checked={adress === selectedDepot}
+              checked={depot.address === selectedDepot}
               onChange={handleChange}
             />
-            <label className={adress === selectedDepot ? 'selected' : ''} htmlFor={adress}>{adress}</label>
+            <label className={`depot-label ${depot.address === selectedDepot ? 'selected' : ''}`} htmlFor={depot.address}>{depot.address}</label>
+            <div className="depot-information">
+              {depot.informations}
+            </div>
           </li>
         ))}
       </ul>
