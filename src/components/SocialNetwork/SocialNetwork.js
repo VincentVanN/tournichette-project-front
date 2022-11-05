@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import './socialNetwork.scss';
 
-function SocialNetwork({ widthDiv }) {
+function SocialNetwork({ widthDiv, position }) {
   function onEmailClick() {
     window.open('mailto:panier@tournichette.fr');
   }
   return (
     <div
       className="socialNetwork-container"
-      style={{ width: widthDiv || '' }}
+      style={{ width: widthDiv || '', bottom: position || '' }}
     >
       <a href="https://facebook.com/tournichette/" target="_blank" rel="noreferrer">
         <Button text="Facebook" icon="logo-facebook" size="2.5em" />
@@ -34,8 +34,10 @@ function SocialNetwork({ widthDiv }) {
 }
 SocialNetwork.propTypes = {
   widthDiv: PropTypes.string,
+  position: PropTypes.string,
 };
 SocialNetwork.defaultProps = {
   widthDiv: undefined,
+  position: undefined,
 };
 export default SocialNetwork;

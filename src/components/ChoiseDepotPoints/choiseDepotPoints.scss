@@ -28,13 +28,12 @@
     }
   }
 }
-// .selected {
-//   color: vars.$colorOrange;
-// }
 .radio {
   opacity: 0;
 }
-.title {
+.depot-title {
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 130px;
   display: flex;
@@ -45,6 +44,7 @@
   font-weight: 600;
   font-size: 1.2em;
   border-bottom: solid 1px vars.$colorMediumGreen;
+  background: vars.$colorBeige;
 }
 .message {
   width: 100%;
@@ -84,10 +84,19 @@
 .ionicon {
   margin-left: 20px;
 }
+.depot-label {
+  font-size: 1.2em;
+  font-weight: 600;
+  &:hover {
+    color: vars.$colorOrange;
+  }
+}
+.depot-information {
+  font-size: 0.8em;
+}
   @media screen and (min-width: 577px) and (max-width: 1023px){
     .radio-container{
       width: 80%;
-      margin-left: 50px;
     }
   }
   @media only screen and (min-width: 1024px) {
