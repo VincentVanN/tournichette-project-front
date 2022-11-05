@@ -124,7 +124,7 @@ function Modal() {
               )}
               {(errorUserMessage.length !== 0) && (
                 <ul className="error-message-container">
-                  {errorUserMessage.map((error) => <li>{error}</li>)}
+                  {errorUserMessage.map((error) => <li key={error}>{error}</li>)}
                 </ul>
               )}
               {isPhone && (
