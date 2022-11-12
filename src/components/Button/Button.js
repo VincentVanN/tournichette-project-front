@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './button.scss';
@@ -39,7 +42,9 @@ function Button({
       className="iconButton_container"
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
-      onClick={() => onClick()}
+      onClick={() => {
+        onClick ? onClick() : '';
+      }}
     >
 
       <motion.div

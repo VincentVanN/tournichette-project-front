@@ -218,7 +218,7 @@ export const userSlice = createSlice({
       state.isSubscribe = payload;
     },
     setpaymentCustomerId: (state, { payload }) => {
-      state.paymentCustomerId = payload;
+      state.user.paymentCustomerId = payload;
     },
     setUserWithGoogle: (state, { payload }) => {
       state.user.firstname = payload.given_name;

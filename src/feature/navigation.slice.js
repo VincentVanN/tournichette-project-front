@@ -6,7 +6,7 @@ export const navigationSlice = createSlice({
     width: 0,
     height: 0,
     baseUrl: 'http://localhost:8000',
-    baseUrlNode: 'http://localhost:5000',
+    baseUrlNode: 'http://localhost:8000/api/stripe',
     navigationMessage: '',
     buttonText: '',
     redirection: '',
