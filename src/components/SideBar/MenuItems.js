@@ -36,8 +36,8 @@ function MenuItems({
       },
     },
   };
-  const colors = ['#fef6e4', '#f582ae', '#8bd3dd', '#b8c1ec', '#ff8906', '#fff'];
-  const style = { border: `3px solid ${colors[id]}` };
+  const colors = ['#fef6e4'];
+  const style = { border: `3px solid ${colors[0]}` };
   return (
     <motion.li
       variants={variants}

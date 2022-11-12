@@ -27,7 +27,6 @@ function ChoiseDepotPoints() {
   //
   // get adress of depots
   //
-  console.log(depots);
   const ArrayOfDepotsAdress = [];
   depots.forEach((depot) => ArrayOfDepotsAdress.push(depot.address));
   //

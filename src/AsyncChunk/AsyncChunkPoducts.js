@@ -10,11 +10,9 @@ export const checkSales = createAsyncThunk(
     try {
       const result = await axios.get(`${getState().navigation.baseUrl}/api/v1/sales`, {
       });
-      console.log(result);
       return result.data;
     }
     catch (error) {
-      console.log(error);
       return rejectWithValue(error.response.data);
     }
   },
