@@ -54,7 +54,6 @@ export const postOrder = createAsyncThunk(
       orderProducts,
       cartOrders,
     };
-    console.log(order);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -66,7 +65,6 @@ export const postOrder = createAsyncThunk(
         order,
         config,
       );
-    console.log(result.data);
     return result.data;
   },
 );

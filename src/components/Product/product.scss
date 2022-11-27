@@ -38,9 +38,10 @@
     font-family: vars.$fontMontserrat;
     font-weight: 500;
     text-align: center;
-    color: vars.$colorOrange;
+    color: #fff;
     text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.4);
     // background: rgba(226, 221, 199, 0.5);
+    -webkit-text-stroke: 0.7px black; 
   }
   &-content {
     width: 100%;
