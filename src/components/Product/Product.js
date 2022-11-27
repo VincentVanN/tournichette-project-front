@@ -98,7 +98,6 @@ function Product() {
           transition={{
             duration: 0.3, type: 'spring', damping: 10, stiffness: 500,
           }}
-          style={{ color: '#fd7c55' }}
         >
           {product.name}
         </motion.h2>

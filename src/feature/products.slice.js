@@ -58,13 +58,12 @@ export const productsSlice = createSlice({
       // console.log('[getCarts] request rejected');
     },
     [checkSales.pending]: () => {
-      console.log('[checkSales]waiting...');
+      // console.log('[checkSales]waiting...');
     },
     [checkSales.fulfilled]: (state) => {
       state.areSalesOpen = true;
     },
-    [checkSales.rejected]: (state, { payload }) => {
-      console.log(payload);
+    [checkSales.rejected]: (state) => {
       state.areSalesOpen = false;
       console.log('[checkSales] rejected!');
     },

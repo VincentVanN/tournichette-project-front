@@ -46,18 +46,18 @@ export const userSlice = createSlice({
   //
   extraReducers: {
     [updatePassword.fulfilled]: () => {
-      console.log('updatePassword ok');
+      // console.log('updatePassword ok');
     },
-    [updatePassword.rejected]: ({ payload }) => {
-      console.log(payload);
+    [updatePassword.rejected]: () => {
+      // console.log(payload);
     },
     //
     //
     [resetPassword.fulfilled]: () => {
-      console.log('resetPassword ok');
+      //  console.log('resetPassword ok');
     },
-    [resetPassword.rejected]: ({ payload }) => {
-      console.log(payload);
+    [resetPassword.rejected]: () => {
+      // console.log(payload);
     },
     //
     //
@@ -82,7 +82,7 @@ export const userSlice = createSlice({
       state.user.token = token;
     },
     [loginUserWithGoogle.rejected]: () => {
-      console.log('[loginUserWithGoogle]rejected...');
+      // console.log('[loginUserWithGoogle]rejected...');
     },
     //
     //
@@ -91,12 +91,12 @@ export const userSlice = createSlice({
       state.user.token = token;
     },
     [updateUserWithGoogle.rejected]: () => {
-      console.log('[updateUserWithGoogle]rejected...');
+      // console.log('[updateUserWithGoogle]rejected...');
     },
     //
     //
     [setUser.pending]: () => {
-      console.log('[setUser]waiting...');
+      // console.log('[setUser]waiting...');
     },
     [setUser.fulfilled]: (state, { payload }) => {
       state.logged = true;
@@ -106,7 +106,6 @@ export const userSlice = createSlice({
       state.user.emailNotifications = payload.emailNotifications;
       state.user.phone = payload.phone;
       state.user.paymentCustomerId = payload.stripeCustomerId;
-      console.log('[setUser] OK!');
     },
     [setUser.rejected]: (state, { payload }) => {
       if (payload.code === 401) {
@@ -117,7 +116,7 @@ export const userSlice = createSlice({
     //
     //
     [createUser.pending]: () => {
-      console.log('[createUser]waiting...');
+      // console.log('[createUser]waiting...');
     },
     [createUser.fulfilled]: (state, { payload }) => {
       if (!payload.error) {
@@ -132,7 +131,6 @@ export const userSlice = createSlice({
       state.lastname = '';
       state.phone = '';
       state.adresse = '';
-      console.log('[createUser] OK!');
     },
     [createUser.rejected]: (state, { payload }) => {
       state.serverMessageUser = payload.message;
@@ -140,7 +138,7 @@ export const userSlice = createSlice({
     //
     //
     [updateUser.pending]: () => {
-      console.log('[updateUser]waiting...');
+      // console.log('[updateUser]waiting...');
     },
     [updateUser.fulfilled]: (state) => {
       state.serverMessageUser = 'Modification effectuée!';
@@ -151,15 +149,14 @@ export const userSlice = createSlice({
     //
     //
     [getOrderHistory.pending]: () => {
-      console.log('[getOrderHistory]waiting...');
+      // console.log('[getOrderHistory]waiting...');
     },
     [getOrderHistory.fulfilled]: (state, { payload }) => {
       state.orderHistory = payload;
       state.isLoadingOrderHistory = false;
-      console.log('[getOrderHistory] OK!');
     },
     [getOrderHistory.rejected]: () => {
-      console.log('[getOrderHistory] request rejected');
+      // console.log('[getOrderHistory] request rejected');
     },
   },
   //

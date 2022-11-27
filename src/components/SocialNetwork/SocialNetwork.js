@@ -25,9 +25,6 @@ function SocialNetwork({ widthDiv, position }) {
         size="2.5em"
         onClick={onEmailClick}
       />
-      <a href="https://www.instagram.com/imagiraphe/" target="_blank" rel="noreferrer">
-        <Button text="Instagram" icon="logo-instagram" size="2.5em" />
-      </a>
       <Button text="09.81.73.12.87" icon="call-outline" size="2.5em" />
     </div>
   );

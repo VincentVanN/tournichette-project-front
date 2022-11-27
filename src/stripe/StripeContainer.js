@@ -44,7 +44,6 @@ function Stripe() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           dispatch(setpaymentCustomerId(data.customer.id));
         });
     }

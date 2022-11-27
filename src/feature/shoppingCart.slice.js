@@ -17,17 +17,17 @@ export const shoppingCartSlice = createSlice({
   },
   extraReducers: {
     [getDepotsList.pending]: () => {
-      console.log('[getDepotsList]waiting...');
+      // console.log('[getDepotsList]waiting...');
     },
     [getDepotsList.fulfilled]: (state, { payload }) => {
       state.depots = payload;
-      console.log('[getDepotsList] OK!');
+      // console.log('[getDepotsList] OK!');
     },
     [getDepotsList.rejected]: () => {
-      console.log('[getDepotsList] request rejected');
+      // console.log('[getDepotsList] request rejected');
     },
     [postOrder.pending]: () => {
-      console.log('[postOrder]waiting...');
+      // console.log('[postOrder]waiting...');
     },
     [postOrder.fulfilled]: (state, { payload }) => {
       if (!payload.error) {
@@ -42,8 +42,7 @@ export const shoppingCartSlice = createSlice({
       state.selectedDepot = '';
       state.selectedDepotId = 0;
     },
-    [postOrder.rejected]: ({ payload }) => {
-      console.log(payload);
+    [postOrder.rejected]: () => {
       console.log('[postOrder] request rejected');
     },
   },
